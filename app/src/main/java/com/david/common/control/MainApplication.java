@@ -4,6 +4,13 @@ import android.app.Application;
 
 import com.apkfuns.logutils.LogUtils;
 
+/**
+ * author: Ling Lin
+ * created on: 2017/8/2 16:39
+ * email: 10525677@qq.com
+ * description:
+ */
+
 public abstract class MainApplication extends Application{
 
     private static MainApplication application;
