@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="background">#102858</color>
+    <color name="border">#000000</color>
+    <color name="info">#00FFFF</color>
+    <color name="info_dark">#CCCCCC</color>
+    <color name="info_white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+    <color name="info_background">#204890</color>
+
+    <color name="button">#2E79E8</color>
+    <color name="button_border_normal">#125cc9</color>
+    <color name="button_border_selected">#FFFF00</color>
+    <color name="confirm_button_border_selected">#F6B625</color>
+    <color name="button_disabled">#999999</color>
+
+    <color name="skin1">#00FFFF</color>
+    <color name="skin2">#E6E6E6</color>
+    <color name="c_air">#F6B625</color>
+    <color name="humidity">#FFFFFF</color>
+    <color name="oxygen">#00FF00</color>
+    <color name="spo2">#91F6FF</color>
+    <color name="scale">#FFFFFF</color>
+    <color name="scale_in_sensor_list">#F7B03F</color>
+    <color name="warmer">#FD4545</color>
+
+    <color name="warning_background">#F4EA00</color>
+    <color name="warning_text">#000000</color>
+
+    <!--Monitor-->
+    <color name="main_foreground">#164088</color>
+
+    <color name="ecg">#00FF00</color>
+    <color name="resp">#FFFF00</color>
+</resources>

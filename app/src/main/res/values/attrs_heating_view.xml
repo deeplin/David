@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="HeatingView">
+        <attr name="heat" format="integer" />
+    </declare-styleable>
+</resources>

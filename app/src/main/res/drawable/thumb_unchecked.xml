@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape xmlns:android="http://schemas.android.com/apk/res/android"
+            android:shape="rectangle">
+
+            <!-- 高度40 -->
+            <size
+                android:width="@dimen/x60"
+                android:height="@dimen/y40" />
+            <!-- 圆角弧度 20 -->
+            <corners android:radius="@dimen/y20" />
+
+            <!-- 变化率 -->
+            <gradient
+                android:endColor="@color/button"
+                android:startColor="@color/button" />
+
+            <stroke
+                android:width="3dp"
+                android:color="@color/button_border_normal" />
+
+        </shape>
+    </item>
+    <item
+        android:bottom="@dimen/y10"
+        android:drawable="@mipmap/chart"
+        android:left="@dimen/x10"
+        android:right="@dimen/x10"
+        android:top="@dimen/y10" />
+</layer-list>
