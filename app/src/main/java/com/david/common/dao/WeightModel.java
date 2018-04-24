@@ -1,4 +1,4 @@
-package com.david.incubator.dao;
+package com.david.common.dao;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;

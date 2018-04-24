@@ -1,4 +1,4 @@
-package com.david.incubator.mode;
+package com.david.common.mode;
 
 /**
  * author: Ling Lin

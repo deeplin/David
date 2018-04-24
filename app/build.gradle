@@ -32,7 +32,7 @@ android {
     }
     greendao {
         schemaVersion 1
-        daoPackage 'com.async.davidconsole.dao.gen'
+        daoPackage 'com.david.common.dao.gen'
         targetGenDir 'src/main/java'
     }
 }

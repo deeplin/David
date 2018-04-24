@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.david.common.mode.SystemMode" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.top.TopViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/main_foreground">
+
+        <TextView
+            android:id="@+id/topUser"
+            android:layout_width="728dp"
+            android:layout_height="match_parent"
+            android:background="@{viewModel.overheatExperimentMode? @color/warning_background : @color/transparent}"
+            android:gravity="center_vertical"
+            android:paddingStart="60dp"
+            android:text="@{viewModel.userId}"
+            android:textColor="@{viewModel.overheatExperimentMode? @color/warning_text:@color/info_white}"
+            android:textSize="@dimen/f28"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alertVisibility? View.INVISIBLE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y20"
+            android:paddingStart="16dp"
+            android:src="@mipmap/user"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alertVisibility? View.INVISIBLE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.52083333"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="728dp"
+            android:layout_height="match_parent"
+            android:background="@color/warning_background"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:text="@{viewModel.alertMessage}"
+            android:textColor="@color/warning_text"
+            android:textSize="@dimen/f28"
+            android:visibility="@{viewModel.alertVisibility? View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivTop3G"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@mipmap/n3g"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivTopAbove37"
+            app:layout_constraintHeight_percent="0.52083333"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/topUser"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivTopAbove37"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@mipmap/alert_above_37"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || (!viewModel.above37Visibility)? View.INVISIBLE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivBattery"
+            app:layout_constraintHeight_percent="0.541666667"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/ivTop3G"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivBattery"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:imageSrc="@{viewModel.batteryImageId}"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit)? View.INVISIBLE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvSideDate"
+            app:layout_constraintHeight_percent="0.41666667"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/ivTopAbove37"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvSideDate"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:text="@{viewModel.dateTime}"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.8"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintStart_toEndOf="@id/ivBattery"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

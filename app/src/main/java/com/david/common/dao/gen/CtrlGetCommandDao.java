@@ -1,4 +1,4 @@
-package com.async.davidconsole.dao.gen;
+package com.david.common.dao.gen;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteStatement;

@@ -1,7 +1,6 @@
 package com.david.common.control;
 
 import android.app.Application;
-
 import com.apkfuns.logutils.LogUtils;
 
 /**

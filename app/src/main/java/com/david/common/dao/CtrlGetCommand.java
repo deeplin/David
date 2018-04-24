@@ -1,4 +1,4 @@
-package com.david.incubator.dao;
+package com.david.common.dao;
 
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.utils.CommandChar;

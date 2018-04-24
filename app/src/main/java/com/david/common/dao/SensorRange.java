@@ -1,6 +1,6 @@
-package com.david.incubator.dao;
+package com.david.common.dao;
 
-import com.david.incubator.mode.LanguageMode;
+import com.david.common.mode.LanguageMode;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;

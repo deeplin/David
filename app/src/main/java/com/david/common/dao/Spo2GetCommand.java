@@ -1,9 +1,9 @@
-package com.david.incubator.dao;
+package com.david.common.dao;
 
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.utils.CommandChar;
 import com.david.common.utils.Constant;
-import com.david.incubator.mode.AverageTimeMode;
+import com.david.common.mode.AverageTimeMode;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
