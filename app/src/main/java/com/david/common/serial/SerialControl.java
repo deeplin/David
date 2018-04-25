@@ -65,6 +65,8 @@ public class SerialControl extends BaseSerialControl {
                 LogUtils.e(e);
             }
         }
+        repeatSessionMap.clear();
+        sessionMap.clear();
     }
 
     @Override
@@ -104,11 +106,6 @@ public class SerialControl extends BaseSerialControl {
         startRepeatSession();
     }
 
-    public synchronized void clear() {
-        repeatSessionMap.clear();
-        sessionMap.clear();
-    }
-
     private void startSession() {
         Iterator<Map.Entry<Class, BaseSerialMessage>> iterator = sessionMap.entrySet().iterator();
         while (iterator.hasNext()) {
@@ -117,12 +114,12 @@ public class SerialControl extends BaseSerialControl {
             MessageMode messageMode = serialMessage.getMessageMode();
 
             if (messageMode.equals(MessageMode.Error)) {
-                if (serialMessage.getRepeatTime() <= 0 && (!(serialMessage.isCriticalCommand()))) {
-                    serialMessage.setOnCompleted(null);
-                    iterator.remove();
-                } else {
+                if (serialMessage.getRepeatTime() == BaseSerialMessage.CRITICAL_COMMAND) {
                     serialMessage.setMessageMode(MessageMode.InProcess);
                     sendAsync(serialMessage);
+                } else {
+                    serialMessage.setOnCompleted(null);
+                    iterator.remove();
                 }
             } else if (messageMode.equals(MessageMode.Completed)) {
                 serialMessage.setOnCompleted(null);

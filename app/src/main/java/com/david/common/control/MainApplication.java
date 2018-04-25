@@ -23,8 +23,6 @@ public abstract class MainApplication extends Application{
     @Override
     public void onCreate() {
         super.onCreate();
-
-        super.onCreate();
         application = this;
         applicationComponent = DaggerApplicationComponent.builder().build();
         applicationComponent.inject(this);

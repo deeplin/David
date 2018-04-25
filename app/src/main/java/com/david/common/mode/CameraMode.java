@@ -9,5 +9,5 @@ package com.david.common.mode;
 
 
 public enum CameraMode {
-    capture, imageConfirm, video, videoConfirm
+    Capture, ImageConfirm, Video, VideoConfirm
 }

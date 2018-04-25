@@ -14,7 +14,7 @@ import java.io.OutputStream;
 
 public abstract class BaseSerialControl {
 
-    private volatile boolean running;
+    private boolean running;
 
     private byte[] inputBuffer;
 
@@ -26,12 +26,12 @@ public abstract class BaseSerialControl {
         this.running = false;
     }
 
-    protected void open(int bufferSize) {
+    protected synchronized void open(int bufferSize) {
         this.inputBuffer = new byte[bufferSize];
         this.running = true;
     }
 
-    protected void close() {
+    protected synchronized void close() {
         this.running = false;
     }
 

@@ -13,18 +13,18 @@ import io.reactivex.functions.BiConsumer;
 
 public abstract class BaseSerialMessage {
 
+    public static final int CRITICAL_COMMAND = -100;
+
     private MessageMode messageMode;
     private byte[] response;
     private BiConsumer<Boolean, BaseSerialMessage> onCompleted;
     private int repeatTime;
-    private boolean criticalCommand;
 
     public BaseSerialMessage() {
         messageMode = MessageMode.Start;
         response = null;
         onCompleted = null;
-        repeatTime = 5;
-        criticalCommand = false;
+        repeatTime = 3;
     }
 
     public MessageMode getMessageMode() {
@@ -61,11 +61,7 @@ public abstract class BaseSerialMessage {
         return repeatTime;
     }
 
-    public boolean isCriticalCommand() {
-        return criticalCommand;
-    }
-
-    public void setCriticalCommand(boolean criticalCommand) {
-        this.criticalCommand = criticalCommand;
+    public synchronized void setRepeatTime(int repeatTime){
+        this.repeatTime = repeatTime;
     }
 }
