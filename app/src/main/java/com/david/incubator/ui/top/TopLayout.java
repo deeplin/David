@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 
 import com.david.common.control.MainApplication;
 import com.david.common.ui.AutoAttachConstraintLayout;
+import com.david.databinding.LayoutTopBinding;
 
 import javax.inject.Inject;
 
@@ -27,7 +28,7 @@ public class TopLayout extends AutoAttachConstraintLayout {
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
         LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        monitorTopBinding = MonitorTopBinding.inflate(layoutInflater, this, true);
+        monitorTopBinding = LayoutTopBinding.inflate(layoutInflater, this, true);
 
         monitorTopBinding.setViewModel(topViewModel);
     }

@@ -1,6 +1,7 @@
 package com.david.common.control;
 
 import com.david.incubator.control.IncubatorApplication;
+import com.david.incubator.ui.top.TopLayout;
 
 import javax.inject.Singleton;
 
@@ -19,4 +20,6 @@ public interface ApplicationComponent {
     void inject(MainApplication mainApplication);
 
     void inject(IncubatorApplication incubatorApplication);
+
+    void inject(TopLayout topLayout);
 }

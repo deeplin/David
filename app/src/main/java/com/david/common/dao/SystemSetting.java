@@ -14,7 +14,7 @@ import org.greenrobot.greendao.annotation.Id;
  */
 
 @Entity
-public class SensorRange {
+public class SystemSetting {
 
     @Id
     private Long id = 0L;
@@ -35,13 +35,17 @@ public class SensorRange {
     private int oxygenLower = 200;
     private int humidityUpper = 950;
     private int humidityLower = 0;
+
+    
     private byte languageIndex;
     private byte volume = 100;
     private byte luminance = 100;
     private int blueTime = 0;
 
-    @Generated(hash = 999705762)
-    public SensorRange(Long id, int skinUpper, int skinLowerChinese,
+
+
+    @Generated(hash = 1899057136)
+    public SystemSetting(Long id, int skinUpper, int skinLowerChinese,
             int skinLowerNonChinese, int airUpper, int airLower, int spo2UpperTop,
             int spo2UpperBottom, int spo2LowerTop, int spo2LowerBottom,
             int prUpperTop, int prUpperBottom, int prLowerTop, int prLowerBottom,
@@ -71,9 +75,11 @@ public class SensorRange {
         this.blueTime = blueTime;
     }
 
-    @Generated(hash = 1754299684)
-    public SensorRange() {
+    @Generated(hash = 1428461116)
+    public SystemSetting() {
     }
+
+
 
     public int getBlueTime() {
         return blueTime;

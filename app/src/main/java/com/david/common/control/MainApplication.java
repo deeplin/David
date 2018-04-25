@@ -53,7 +53,7 @@ public abstract class MainApplication extends Application{
     }
 
     private void setLanguage() {
-//        SensorRange sensorRange = daoControl.getSensorRange();
+//        SystemSetting sensorRange = daoControl.getSensorRange();
 //        if (sensorRange.getLanguageIndex() == LanguageMode.English.getIndex()) {
 //            ResourceUtil.setLocalLanguage(this, Locale.ENGLISH);
 //        } else if (sensorRange.getLanguageIndex() == LanguageMode.Chinese.getIndex()) {

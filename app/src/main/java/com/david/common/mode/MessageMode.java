@@ -1,4 +1,4 @@
-package com.david.common.serial;
+package com.david.common.mode;
 
 /**
  * author: Ling Lin

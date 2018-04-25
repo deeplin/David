@@ -1,5 +1,7 @@
 package com.david.common.serial;
 
+import com.david.common.mode.MessageMode;
+
 import io.reactivex.functions.BiConsumer;
 
 /**

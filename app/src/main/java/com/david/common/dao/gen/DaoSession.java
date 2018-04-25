@@ -10,17 +10,17 @@ import org.greenrobot.greendao.internal.DaoConfig;
 
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.CtrlGetCommand;
-import com.david.common.dao.SensorRange;
 import com.david.common.dao.Spo2GetCommand;
 import com.david.common.dao.StatusCommand;
+import com.david.common.dao.SystemSetting;
 import com.david.common.dao.UserModel;
 import com.david.common.dao.WeightModel;
 
 import com.david.common.dao.gen.AnalogCommandDao;
 import com.david.common.dao.gen.CtrlGetCommandDao;
-import com.david.common.dao.gen.SensorRangeDao;
 import com.david.common.dao.gen.Spo2GetCommandDao;
 import com.david.common.dao.gen.StatusCommandDao;
+import com.david.common.dao.gen.SystemSettingDao;
 import com.david.common.dao.gen.UserModelDao;
 import com.david.common.dao.gen.WeightModelDao;
 
@@ -35,17 +35,17 @@ public class DaoSession extends AbstractDaoSession {
 
     private final DaoConfig analogCommandDaoConfig;
     private final DaoConfig ctrlGetCommandDaoConfig;
-    private final DaoConfig sensorRangeDaoConfig;
     private final DaoConfig spo2GetCommandDaoConfig;
     private final DaoConfig statusCommandDaoConfig;
+    private final DaoConfig systemSettingDaoConfig;
     private final DaoConfig userModelDaoConfig;
     private final DaoConfig weightModelDaoConfig;
 
     private final AnalogCommandDao analogCommandDao;
     private final CtrlGetCommandDao ctrlGetCommandDao;
-    private final SensorRangeDao sensorRangeDao;
     private final Spo2GetCommandDao spo2GetCommandDao;
     private final StatusCommandDao statusCommandDao;
+    private final SystemSettingDao systemSettingDao;
     private final UserModelDao userModelDao;
     private final WeightModelDao weightModelDao;
 
@@ -59,14 +59,14 @@ public class DaoSession extends AbstractDaoSession {
         ctrlGetCommandDaoConfig = daoConfigMap.get(CtrlGetCommandDao.class).clone();
         ctrlGetCommandDaoConfig.initIdentityScope(type);
 
-        sensorRangeDaoConfig = daoConfigMap.get(SensorRangeDao.class).clone();
-        sensorRangeDaoConfig.initIdentityScope(type);
-
         spo2GetCommandDaoConfig = daoConfigMap.get(Spo2GetCommandDao.class).clone();
         spo2GetCommandDaoConfig.initIdentityScope(type);
 
         statusCommandDaoConfig = daoConfigMap.get(StatusCommandDao.class).clone();
         statusCommandDaoConfig.initIdentityScope(type);
+
+        systemSettingDaoConfig = daoConfigMap.get(SystemSettingDao.class).clone();
+        systemSettingDaoConfig.initIdentityScope(type);
 
         userModelDaoConfig = daoConfigMap.get(UserModelDao.class).clone();
         userModelDaoConfig.initIdentityScope(type);
@@ -76,17 +76,17 @@ public class DaoSession extends AbstractDaoSession {
 
         analogCommandDao = new AnalogCommandDao(analogCommandDaoConfig, this);
         ctrlGetCommandDao = new CtrlGetCommandDao(ctrlGetCommandDaoConfig, this);
-        sensorRangeDao = new SensorRangeDao(sensorRangeDaoConfig, this);
         spo2GetCommandDao = new Spo2GetCommandDao(spo2GetCommandDaoConfig, this);
         statusCommandDao = new StatusCommandDao(statusCommandDaoConfig, this);
+        systemSettingDao = new SystemSettingDao(systemSettingDaoConfig, this);
         userModelDao = new UserModelDao(userModelDaoConfig, this);
         weightModelDao = new WeightModelDao(weightModelDaoConfig, this);
 
         registerDao(AnalogCommand.class, analogCommandDao);
         registerDao(CtrlGetCommand.class, ctrlGetCommandDao);
-        registerDao(SensorRange.class, sensorRangeDao);
         registerDao(Spo2GetCommand.class, spo2GetCommandDao);
         registerDao(StatusCommand.class, statusCommandDao);
+        registerDao(SystemSetting.class, systemSettingDao);
         registerDao(UserModel.class, userModelDao);
         registerDao(WeightModel.class, weightModelDao);
     }
@@ -94,9 +94,9 @@ public class DaoSession extends AbstractDaoSession {
     public void clear() {
         analogCommandDaoConfig.clearIdentityScope();
         ctrlGetCommandDaoConfig.clearIdentityScope();
-        sensorRangeDaoConfig.clearIdentityScope();
         spo2GetCommandDaoConfig.clearIdentityScope();
         statusCommandDaoConfig.clearIdentityScope();
+        systemSettingDaoConfig.clearIdentityScope();
         userModelDaoConfig.clearIdentityScope();
         weightModelDaoConfig.clearIdentityScope();
     }
@@ -109,16 +109,16 @@ public class DaoSession extends AbstractDaoSession {
         return ctrlGetCommandDao;
     }
 
-    public SensorRangeDao getSensorRangeDao() {
-        return sensorRangeDao;
-    }
-
     public Spo2GetCommandDao getSpo2GetCommandDao() {
         return spo2GetCommandDao;
     }
 
     public StatusCommandDao getStatusCommandDao() {
         return statusCommandDao;
+    }
+
+    public SystemSettingDao getSystemSettingDao() {
+        return systemSettingDao;
     }
 
     public UserModelDao getUserModelDao() {

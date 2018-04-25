@@ -23,9 +23,9 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void createAllTables(Database db, boolean ifNotExists) {
         AnalogCommandDao.createTable(db, ifNotExists);
         CtrlGetCommandDao.createTable(db, ifNotExists);
-        SensorRangeDao.createTable(db, ifNotExists);
         Spo2GetCommandDao.createTable(db, ifNotExists);
         StatusCommandDao.createTable(db, ifNotExists);
+        SystemSettingDao.createTable(db, ifNotExists);
         UserModelDao.createTable(db, ifNotExists);
         WeightModelDao.createTable(db, ifNotExists);
     }
@@ -34,9 +34,9 @@ public class DaoMaster extends AbstractDaoMaster {
     public static void dropAllTables(Database db, boolean ifExists) {
         AnalogCommandDao.dropTable(db, ifExists);
         CtrlGetCommandDao.dropTable(db, ifExists);
-        SensorRangeDao.dropTable(db, ifExists);
         Spo2GetCommandDao.dropTable(db, ifExists);
         StatusCommandDao.dropTable(db, ifExists);
+        SystemSettingDao.dropTable(db, ifExists);
         UserModelDao.dropTable(db, ifExists);
         WeightModelDao.dropTable(db, ifExists);
     }
@@ -59,9 +59,9 @@ public class DaoMaster extends AbstractDaoMaster {
         super(db, SCHEMA_VERSION);
         registerDaoClass(AnalogCommandDao.class);
         registerDaoClass(CtrlGetCommandDao.class);
-        registerDaoClass(SensorRangeDao.class);
         registerDaoClass(Spo2GetCommandDao.class);
         registerDaoClass(StatusCommandDao.class);
+        registerDaoClass(SystemSettingDao.class);
         registerDaoClass(UserModelDao.class);
         registerDaoClass(WeightModelDao.class);
     }
