@@ -1,7 +1,7 @@
 package com.david.common.serial;
 
 import com.apkfuns.logutils.LogUtils;
-import com.david.common.utils.Constant;
+import com.david.common.util.Constant;
 import com.lztek.toolkit.SerialPort;
 
 import java.io.InputStream;

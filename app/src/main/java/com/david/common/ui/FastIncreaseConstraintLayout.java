@@ -5,7 +5,7 @@ import android.support.constraint.ConstraintLayout;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
 
-import com.david.common.utils.Constant;
+import com.david.common.util.Constant;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;

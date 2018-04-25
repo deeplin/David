@@ -1,4 +1,4 @@
-package com.david.common.utils;
+package com.david.common.util;
 
 import android.app.Activity;
 import android.graphics.Point;

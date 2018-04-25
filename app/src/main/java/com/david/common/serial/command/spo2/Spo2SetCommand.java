@@ -1,7 +1,7 @@
 package com.david.common.serial.command.spo2;
 
 import com.david.common.serial.BaseSerialMessage;
-import com.david.common.utils.CommandChar;
+import com.david.common.util.CommandChar;
 
 /**
  * filename: com.eternal.davidconsole.serial.command.spo2.Spo2SetCommand.java

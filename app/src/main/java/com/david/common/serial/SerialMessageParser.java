@@ -4,11 +4,11 @@ import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.CtrlGetCommand;
 import com.david.common.mode.MessageMode;
 import com.david.common.serial.command.spo2.Spo2WaveCommand;
-import com.david.common.utils.CommandChar;
-import com.david.common.utils.Constant;
-import com.david.common.utils.ReflectionUtil;
-import com.david.common.utils.ResourceUtil;
-import com.david.common.utils.StringUtil;
+import com.david.common.util.CommandChar;
+import com.david.common.util.Constant;
+import com.david.common.util.ReflectionUtil;
+import com.david.common.util.ResourceUtil;
+import com.david.common.util.StringUtil;
 
 import java.util.Locale;
 

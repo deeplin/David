@@ -1,7 +1,7 @@
 package com.david.common.dao;
 
 import com.david.common.serial.BaseSerialMessage;
-import com.david.common.utils.CommandChar;
+import com.david.common.util.CommandChar;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;

@@ -1,4 +1,4 @@
-package com.david.common.utils;
+package com.david.common.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

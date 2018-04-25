@@ -1,8 +1,8 @@
 package com.david.common.serial.command.alert;
 
 import com.david.common.serial.BaseSerialMessage;
-import com.david.common.utils.CommandChar;
-import com.david.common.utils.Constant;
+import com.david.common.util.CommandChar;
+import com.david.common.util.Constant;
 
 /**
  * author: Ling Lin

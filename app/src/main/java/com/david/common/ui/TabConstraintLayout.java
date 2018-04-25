@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.david.common.utils.Constant;
+import com.david.common.util.Constant;
 
 public class TabConstraintLayout extends ConstraintLayout {
 

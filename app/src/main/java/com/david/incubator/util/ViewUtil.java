@@ -9,10 +9,10 @@ import android.content.DialogInterface;
 import android.databinding.ObservableBoolean;
 
 import com.david.R;
-import com.david.common.utils.Action;
-import com.david.common.utils.Constant;
-import com.david.common.utils.ResourceUtil;
-import com.david.common.utils.SensorRange;
+import com.david.common.util.Action;
+import com.david.common.util.Constant;
+import com.david.common.util.ResourceUtil;
+import com.david.common.util.SensorRange;
 
 import java.text.DecimalFormat;
 import java.util.Locale;

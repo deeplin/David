@@ -3,8 +3,8 @@ package com.david.common.data;
 import com.david.R;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.command.module.ModuleGetSoftwareCommand;
-import com.david.common.utils.Constant;
-import com.david.common.utils.ResourceUtil;
+import com.david.common.util.Constant;
+import com.david.common.util.ResourceUtil;
 
 import java.net.InetAddress;
 

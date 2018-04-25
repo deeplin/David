@@ -1,8 +1,8 @@
 package com.david.common.dao;
 
 import com.david.common.serial.BaseSerialMessage;
-import com.david.common.utils.CommandChar;
-import com.david.common.utils.Constant;
+import com.david.common.util.CommandChar;
+import com.david.common.util.Constant;
 import com.david.common.mode.AverageTimeMode;
 
 import org.greenrobot.greendao.annotation.Entity;

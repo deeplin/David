@@ -1,6 +1,6 @@
 package com.david.common.serial;
 
-import com.david.common.utils.LogUtil;
+import com.david.common.util.LogUtil;
 
 import java.io.InputStream;
 import java.io.OutputStream;

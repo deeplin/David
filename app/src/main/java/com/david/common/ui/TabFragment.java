@@ -4,7 +4,7 @@ import android.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.david.common.utils.Constant;
+import com.david.common.util.Constant;
 
 
 /**

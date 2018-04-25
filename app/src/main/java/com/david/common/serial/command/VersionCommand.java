@@ -1,7 +1,7 @@
 package com.david.common.serial.command;
 
 import com.david.common.serial.BaseSerialMessage;
-import com.david.common.utils.CommandChar;
+import com.david.common.util.CommandChar;
 
 /**
  * author: Ling Lin

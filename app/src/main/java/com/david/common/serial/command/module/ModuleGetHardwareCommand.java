@@ -1,6 +1,6 @@
 package com.david.common.serial.command.module;
 
-import com.david.common.utils.CommandChar;
+import com.david.common.util.CommandChar;
 
 /**
  * author: Ling Lin

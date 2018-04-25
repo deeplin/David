@@ -22,4 +22,8 @@ public interface ApplicationComponent {
     void inject(IncubatorApplication incubatorApplication);
 
     void inject(TopLayout topLayout);
+
+    void inject(MessageSender messageSender);
+
+    void inject(DaoControl daoControl);
 }

@@ -19,14 +19,14 @@ public enum LanguageMode {
         this.index = index;
     }
 
-    public static LanguageMode getMode(String languageString) throws Exception {
+    public static LanguageMode getMode(String languageString){
         String languageUpper = languageString.toUpperCase();
         for (LanguageMode mode : values()) {
             if (mode.getName().equals(languageUpper)) {
                 return mode;
             }
         }
-        throw new Exception("Illegal language: " + languageString);
+        return LanguageMode.Chinese;
     }
 
     public String getName() {

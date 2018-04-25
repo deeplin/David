@@ -17,10 +17,10 @@ import com.david.common.mode.Spo2SensMode;
 import com.david.common.mode.SystemMode;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.command.alert.AlertGetCommand;
-import com.david.common.utils.CommandChar;
-import com.david.common.utils.Constant;
-import com.david.common.utils.FragmentPage;
-import com.david.common.utils.ResourceUtil;
+import com.david.common.util.CommandChar;
+import com.david.common.util.Constant;
+import com.david.common.util.FragmentPage;
+import com.david.common.util.ResourceUtil;
 
 import java.util.Objects;
 
@@ -74,19 +74,8 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
     public ObservableInt functionTag = new ObservableInt();
 
-    private boolean login;
-
     @Inject
     public ShareMemory() {
-        login = false;
-    }
-
-    public boolean isLogin() {
-        return login;
-    }
-
-    public void setLogin(boolean login) {
-        this.login = login;
     }
 
     @Override
