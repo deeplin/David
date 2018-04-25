@@ -18,7 +18,7 @@ public class Constant {
     public static final int BUTTON_CLICK_TIMEOUT = 500; //millisecond
     public static final int LONG_CLICK_DELAY = 100; //millisecond
 
-    public static final int SENSOR_SAVED_IN_DATABASE = 86400; //43200 per month 存储二月
+    public static final int SENSOR_SAVED_IN_DATABASE = 86400; //43200 per month 存储二月，秒为单位
     public static final int SCALE_SAVED_IN_DATABASE = 1440; //720 per month 存储二月
 
     public static final String SYSTEM_PASSWORD = "121212";

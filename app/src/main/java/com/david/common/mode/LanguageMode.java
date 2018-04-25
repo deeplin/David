@@ -1,5 +1,7 @@
 package com.david.common.mode;
 
+import java.util.Objects;
+
 /**
  * author: Ling Lin
  * created on: 2017/7/20 11:23
@@ -22,7 +24,7 @@ public enum LanguageMode {
     public static LanguageMode getMode(String languageString){
         String languageUpper = languageString.toUpperCase();
         for (LanguageMode mode : values()) {
-            if (mode.getName().equals(languageUpper)) {
+            if (Objects.equals(mode.getName(), languageUpper)) {
                 return mode;
             }
         }

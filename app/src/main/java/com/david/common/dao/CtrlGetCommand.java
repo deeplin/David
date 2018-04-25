@@ -22,7 +22,6 @@ public class CtrlGetCommand extends BaseSerialMessage {
     @Id(autoincrement = true)
     private Long id;
     private long timeStamp;
-
     private String ctrl;
     private int c_air;
     private int c_hum;
@@ -101,6 +100,22 @@ public class CtrlGetCommand extends BaseSerialMessage {
         this.w_inc = w_inc;
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public long getTimeStamp() {
+        return this.timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
+
     @Transient
     private CtrlGetCommand ctrlGetCommand;
 
@@ -150,21 +165,5 @@ public class CtrlGetCommand extends BaseSerialMessage {
             return true;
         }
         return false;
-    }
-
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public long getTimeStamp() {
-        return this.timeStamp;
-    }
-
-    public void setTimeStamp(long timeStamp) {
-        this.timeStamp = timeStamp;
     }
 }
