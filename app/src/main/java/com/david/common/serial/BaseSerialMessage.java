@@ -61,7 +61,7 @@ public abstract class BaseSerialMessage {
         return repeatTime;
     }
 
-    public synchronized void setRepeatTime(int repeatTime){
-        this.repeatTime = repeatTime;
+    public void setCritical() {
+        this.repeatTime = CRITICAL_COMMAND;
     }
 }

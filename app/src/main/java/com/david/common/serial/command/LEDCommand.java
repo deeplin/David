@@ -20,6 +20,7 @@ public class LEDCommand extends BaseSerialMessage {
     private String status;
 
     public LEDCommand(String value, boolean status) {
+        super.setCritical();
         this.value = value;
         if (status) {
             this.status = CommandChar.ON;

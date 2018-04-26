@@ -26,4 +26,6 @@ public interface ApplicationComponent {
     void inject(MessageSender messageSender);
 
     void inject(DaoControl daoControl);
+
+    void inject(AutomationControl automationControl);
 }

@@ -11,6 +11,7 @@ import com.david.common.util.CommandChar;
  */
 
 public class ModuleGetSoftwareCommand extends BaseSerialMessage {
+
     public static final byte[] SOFTWARE_COMMAND = ("~MODULE GET" + CommandChar.ENTER).getBytes();
 
     protected int O2;
@@ -20,6 +21,10 @@ public class ModuleGetSoftwareCommand extends BaseSerialMessage {
     protected int CAMERA;
     protected int BLUE;
     protected String MODEL;
+
+    public ModuleGetSoftwareCommand() {
+        super.setCritical();
+    }
 
     @Override
     public byte[] getRequest() {

@@ -79,4 +79,12 @@ public class ModuleHardware extends ModuleSoftware {
             super.accept(true, baseSerialMessage);
         }
     }
+
+    public boolean showLED37() {
+        if (deviceModel.equals(Constant.HKN93S)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

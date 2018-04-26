@@ -1,8 +1,14 @@
 package com.david.common.control;
 
+import com.david.common.dao.Spo2GetCommand;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
+import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
+import com.david.common.serial.command.LEDCommand;
+import com.david.common.serial.command.module.ModuleGetHardwareCommand;
+import com.david.common.serial.command.module.ModuleGetSoftwareCommand;
+import com.david.common.serial.command.spo2.Spo2SetCommand;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -33,38 +39,47 @@ public class MessageSender {
         MainApplication.getInstance().getApplicationComponent().inject(this);
     }
 
+    //    //读取下位机配置信息
+    public void getModule() {
+        ModuleGetHardwareCommand moduleGetHardwareCommand = new ModuleGetHardwareCommand();
+        moduleGetHardwareCommand.setOnCompleted(moduleHardware);
+        serialControl.addSession(moduleGetHardwareCommand);
+        ModuleGetSoftwareCommand moduleSoftwareGetCommand = new ModuleGetSoftwareCommand();
+        moduleSoftwareGetCommand.setOnCompleted(moduleSoftware);
+        serialControl.addSession(moduleSoftwareGetCommand);
+    }
+
+    public void setLED(String ledId, boolean status, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        LEDCommand ledCommand = new LEDCommand(ledId, status);
+        ledCommand.setOnCompleted(onComplete);
+        serialControl.addSession(ledCommand);
+    }
+
 //    /*数据库相关命令*/
-//    public void getSpo2Config(boolean criticalCommand, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        Spo2GetCommand spo2GetCommand = new Spo2GetCommand();
-//
-//        spo2GetCommand.setCriticalCommand(criticalCommand);
-//        spo2GetCommand.setOnCompleted((aBoolean, baseSerialMessage) -> {
-//            if (aBoolean) {
-//                onComplete.accept(true, baseSerialMessage);
-//                daoControl.saveCommand(spo2GetCommand);
-//            }
-//        });
-//        serialControl.addSession(spo2GetCommand);
-//    }
-//
-//    public void setSpo2(boolean criticalCommand, String target, String value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        Spo2SetCommand spo2SetCommand = new Spo2SetCommand(target, value);
-//        spo2SetCommand.setCriticalCommand(criticalCommand);
-//        spo2SetCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(spo2SetCommand);
-//    }
-//
-//    //读取下位机配置信息
-//    public void getModule() {
-//        ModuleGetHardwareCommand moduleGetHardwareCommand = new ModuleGetHardwareCommand();
-//        moduleGetHardwareCommand.setCriticalCommand(true);
-//        moduleGetHardwareCommand.setOnCompleted(moduleHardware);
-//        serialControl.addSession(moduleGetHardwareCommand);
-//        ModuleGetSoftwareCommand moduleSoftwareGetCommand = new ModuleGetSoftwareCommand();
-//        moduleSoftwareGetCommand.setCriticalCommand(true);
-//        moduleSoftwareGetCommand.setOnCompleted(moduleSoftware);
-//        serialControl.addSession(moduleSoftwareGetCommand);
-//    }
+    public void getSpo2(boolean criticalCommand, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        Spo2GetCommand spo2GetCommand = new Spo2GetCommand();
+        if(criticalCommand){
+            spo2GetCommand.setCritical();
+        }
+
+        spo2GetCommand.setOnCompleted((aBoolean, baseSerialMessage) -> {
+            if (aBoolean) {
+                onComplete.accept(true, baseSerialMessage);
+                daoControl.saveCommand(spo2GetCommand);
+            }
+        });
+        serialControl.addSession(spo2GetCommand);
+    }
+
+    public void setSpo2(boolean criticalCommand, String target, String value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        Spo2SetCommand spo2SetCommand = new Spo2SetCommand(target, value);
+        if(criticalCommand){
+            spo2SetCommand.setCritical();
+        }
+        spo2SetCommand.setOnCompleted(onComplete);
+        serialControl.addSession(spo2SetCommand);
+    }
+
 //
 //    public void getCtrlGet(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        CtrlGetCommand ctrlGetCommand = new CtrlGetCommand();
@@ -116,12 +131,7 @@ public class MessageSender {
 //        serialControl.addSession(versionCommand);
 //    }
 //
-//    public void setLED(String ledId, boolean status, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        LEDCommand ledCommand = new LEDCommand(ledId, status);
-//        ledCommand.setCriticalCommand(true);
-//        ledCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(ledCommand);
-//    }
+
 //
 //    public void setStandBy(boolean status) {
 //        CtrlStandbyCommand ctrlStandbyCommand = new CtrlStandbyCommand(status);
