@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.david.common.mode.SystemMode" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.main.MainViewModel" />
+    </data>
+
+    <!--1024*768-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@{viewModel.shareMemory.lockScreen? @color/border : @color/background}"
+        tools:context=".ui.main.MainActivity">
+
+        <FrameLayout
+            android:id="@+id/flHome"
+            android:layout_width="904dp"
+            android:layout_height="@dimen/y620"
+            android:layout_marginTop="@dimen/y48"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <!--<com.async.davidconsole.ui.menu.MenuLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/y100"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/flHome" />-->
+
+        <!--<com.async.davidconsole.ui.side.SideLayout-->
+        <!--android:layout_width="120dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--app:layout_constraintLeft_toRightOf="@id/flHome" />-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@mipmap/convertible"-->
+        <!--android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit)? View.VISIBLE : View.INVISIBLE}" />-->
+
+        <!--&lt;!&ndash;Corner&ndash;&gt;-->
+        <!--<ImageView-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:background="@mipmap/top_corner"-->
+        <!--android:visibility="@{viewModel.shareMemory.lockScreen?View.GONE:View.VISIBLE}"-->
+        <!--app:layout_constraintRight_toRightOf="@id/flHome"-->
+        <!--app:layout_constraintTop_toTopOf="@id/flHome" />-->
+
+        <!--<ImageView-->
+        <!--android:layout_width="20dp"-->
+        <!--android:layout_height="20dp"-->
+        <!--android:background="@mipmap/bottom_corner"-->
+        <!--android:visibility="@{viewModel.shareMemory.lockScreen?View.GONE:View.VISIBLE}"-->
+        <!--app:layout_constraintBottom_toBottomOf="@id/flHome"-->
+        <!--app:layout_constraintRight_toRightOf="@id/flHome" />-->
+        <!--&lt;!&ndash;/Corner&ndash;&gt;-->
+
+        <!--<com.async.davidconsole.ui.top.TopLayout-->
+        <!--android:id="@+id/tlTop"-->
+        <!--android:layout_width="904dp"-->
+        <!--android:layout_height="@dimen/y48"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

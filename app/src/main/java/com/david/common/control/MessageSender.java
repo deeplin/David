@@ -1,8 +1,6 @@
 package com.david.common.control;
 
 import com.david.common.dao.Spo2GetCommand;
-import com.david.common.data.ModuleHardware;
-import com.david.common.data.ModuleSoftware;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
@@ -29,10 +27,7 @@ public class MessageSender {
     SerialControl serialControl;
     @Inject
     DaoControl daoControl;
-    @Inject
-    ModuleHardware moduleHardware;
-    @Inject
-    ModuleSoftware moduleSoftware;
+
 
     @Inject
     public MessageSender() {
@@ -40,12 +35,15 @@ public class MessageSender {
     }
 
     //    //读取下位机配置信息
-    public void getModule() {
+    public void getHardwareModule(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         ModuleGetHardwareCommand moduleGetHardwareCommand = new ModuleGetHardwareCommand();
-        moduleGetHardwareCommand.setOnCompleted(moduleHardware);
+        moduleGetHardwareCommand.setOnCompleted(onComplete);
         serialControl.addSession(moduleGetHardwareCommand);
+    }
+
+    public void getSoftwareModule(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         ModuleGetSoftwareCommand moduleSoftwareGetCommand = new ModuleGetSoftwareCommand();
-        moduleSoftwareGetCommand.setOnCompleted(moduleSoftware);
+        moduleSoftwareGetCommand.setOnCompleted(onComplete);
         serialControl.addSession(moduleSoftwareGetCommand);
     }
 
@@ -55,10 +53,10 @@ public class MessageSender {
         serialControl.addSession(ledCommand);
     }
 
-//    /*数据库相关命令*/
+    //    /*数据库相关命令*/
     public void getSpo2(boolean criticalCommand, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         Spo2GetCommand spo2GetCommand = new Spo2GetCommand();
-        if(criticalCommand){
+        if (criticalCommand) {
             spo2GetCommand.setCritical();
         }
 
@@ -73,7 +71,7 @@ public class MessageSender {
 
     public void setSpo2(boolean criticalCommand, String target, String value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         Spo2SetCommand spo2SetCommand = new Spo2SetCommand(target, value);
-        if(criticalCommand){
+        if (criticalCommand) {
             spo2SetCommand.setCritical();
         }
         spo2SetCommand.setOnCompleted(onComplete);

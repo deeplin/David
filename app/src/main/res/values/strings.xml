@@ -19,7 +19,7 @@
     <string name="on">开</string>
     <string name="off">关</string>
     <string name="blue_time">光源总计时</string>
-    <string name="clockwise">顺时针</string>
+    <string name="clockwise">顺计时</string>
     <string name="countdown">倒计时</string>
 
     <!--Chart-->
@@ -82,7 +82,7 @@
     <string name="calibration_o2">氧气传感器校准</string>
     <string name="calibration_confirm_o2_21">请确认是否在21%氧浓度下校准</string>
     <string name="calibration_confirm_o2_100">请确认是否在100%氧浓度下校准</string>
-    <string name="calibration_scale">承重传感器校准</string>
+    <string name="calibration_scale">称重传感器校准</string>
     <string name="calibration_confirm_scale_0">当前称重%sg\n请确认称重是否在0g下校准</string>
     <string name="calibration_confirm_scale_5000">当前称重%sg\n请确认称重是否在5000g下校准</string>
     <string name="cancel">取消</string>
@@ -100,7 +100,7 @@
     <!--Login-->
     <string name="input_password">请输入密码</string>
 
-    <!--SYSTEM-->
+    <!--System-->
     <string name="system_setting">系统设置</string>
 
     <!--Home-->
@@ -147,7 +147,6 @@
     <string name="signs_data">体征数据</string>
     <string name="video_data">视频数据</string>
     <string name="image_data">照片数据</string>
-
 
     <!--告警-->
     <string name="SYS.CON">串口通讯故障</string>

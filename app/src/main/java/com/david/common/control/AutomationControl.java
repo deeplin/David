@@ -5,8 +5,10 @@ import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.Spo2GetCommand;
 import com.david.common.dao.StatusCommand;
 import com.david.common.data.ModuleHardware;
+import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.Spo2SensMode;
+import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
 import com.david.common.ui.IViewModel;
@@ -19,6 +21,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.BiConsumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -41,6 +44,8 @@ public class AutomationControl implements IViewModel {
     DaoControl daoControl;
     @Inject
     ModuleHardware moduleHardware;
+    @Inject
+    ModuleSoftware moduleSoftware;
 
     private Disposable ioDisposable;
     private Disposable staleDisposable;
@@ -55,31 +60,37 @@ public class AutomationControl implements IViewModel {
     @Override
     public void attach() {
         /*读取配置文件*/
-        messageSender.getModule();
-
-        /*配置37度灯*/
-        if (moduleHardware.showLED37()) {
-            shareMemory.above37.addOnPropertyChangedCallback(new android.databinding.Observable.OnPropertyChangedCallback() {
-                @Override
-                public void onPropertyChanged(android.databinding.Observable observable, int i) {
-                    messageSender.setLED(LEDCommand.LED37, shareMemory.above37.get(), null);
+        messageSender.getHardwareModule((aBoolean, baseSerialMessage) -> {
+            if(aBoolean){
+                moduleHardware.accept(true, baseSerialMessage);
+                /*配置37度灯*/
+                if (moduleHardware.showLED37()) {
+                    shareMemory.above37.addOnPropertyChangedCallback(new android.databinding.Observable.OnPropertyChangedCallback() {
+                        @Override
+                        public void onPropertyChanged(android.databinding.Observable observable, int i) {
+                            messageSender.setLED(LEDCommand.LED37, shareMemory.above37.get(), null);
+                        }
+                    });
+                    shareMemory.above37.notifyChange();
                 }
-            });
-            shareMemory.above37.notifyChange();
-        }
 
-        /*如果Spo2开机时灵敏度设置是Max，需要改成normal*/
-        if(moduleHardware.isSPO2()) {
-            messageSender.getSpo2(true, (aBoolean, baseSerialMessage) -> {
-                if (aBoolean) {
-                    Spo2GetCommand spo2GetCommand = (Spo2GetCommand) baseSerialMessage;
-                    Spo2SensMode spo2SensMode = Spo2SensMode.getMode(spo2GetCommand.getSens());
-                    if (spo2SensMode != null && spo2SensMode.equals(Spo2SensMode.MAX)) {
-                        messageSender.setSpo2(true, "SENS", Spo2SensMode.Normal.getName(), null);
-                    }
+                /*如果Spo2开机时灵敏度设置是Max，需要改成normal*/
+                if(moduleHardware.isSPO2()) {
+                    messageSender.getSpo2(true, (bBoolean, serialMessage) -> {
+                        if (bBoolean) {
+                            Spo2GetCommand spo2GetCommand = (Spo2GetCommand) serialMessage;
+                            Spo2SensMode spo2SensMode = Spo2SensMode.getMode(spo2GetCommand.getSens());
+                            if (spo2SensMode != null && spo2SensMode.equals(Spo2SensMode.MAX)) {
+                                messageSender.setSpo2(true, "SENS",
+                                        Spo2SensMode.Normal.getName(), null);
+                            }
+                        }
+                    });
                 }
-            });
-        }
+            }
+        });
+
+        messageSender.getSoftwareModule(moduleSoftware);
 
         /*连续发送AnalogCommand*/
         AnalogCommand analogCommand = new AnalogCommand();

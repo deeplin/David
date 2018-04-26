@@ -34,10 +34,10 @@
 
     <!--Scale-->
     <string name="scale">Scale</string>
-    <string name="rescale">Re-Scale</string>
     <string name="raise_baby">Please raise the baby...</string>
     <string name="put_down_baby">Please put down the baby...</string>
     <string name="no_record_added">No record added</string>
+    <string name="current_weight">Weight</string>
 
     <!--Setting-->
 

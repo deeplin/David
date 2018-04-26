@@ -3,7 +3,8 @@ package com.david.common.control;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import com.david.MainActivity;
+
+import com.david.incubator.ui.main.MainActivity;
 
 import java.util.Objects;
 

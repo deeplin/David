@@ -2,6 +2,11 @@ package com.david.common.control;
 
 import android.app.Application;
 import com.apkfuns.logutils.LogUtils;
+import com.david.common.dao.SystemSetting;
+import com.david.common.mode.LanguageMode;
+import com.david.common.util.ResourceUtil;
+
+import java.util.Locale;
 
 /**
  * author: Ling Lin
@@ -27,8 +32,6 @@ public abstract class MainApplication extends Application{
         applicationComponent = DaggerApplicationComponent.builder().build();
         applicationComponent.inject(this);
 
-        this.setLanguage();
-
         start();
     }
 
@@ -50,12 +53,12 @@ public abstract class MainApplication extends Application{
         return applicationComponent;
     }
 
-    private void setLanguage() {
-//        SystemSetting sensorRange = daoControl.getSensorRange();
-//        if (sensorRange.getLanguageIndex() == LanguageMode.English.getIndex()) {
-//            ResourceUtil.setLocalLanguage(this, Locale.ENGLISH);
-//        } else if (sensorRange.getLanguageIndex() == LanguageMode.Chinese.getIndex()) {
-//            ResourceUtil.setLocalLanguage(this, Locale.SIMPLIFIED_CHINESE);
-//        }
+    protected void setLanguage(DaoControl daoControl) {
+        SystemSetting sensorRange = daoControl.getSystemSetting();
+        if (sensorRange.getLanguageIndex() == LanguageMode.English.getIndex()) {
+            ResourceUtil.setLocalLanguage(this, Locale.ENGLISH);
+        } else if (sensorRange.getLanguageIndex() == LanguageMode.Chinese.getIndex()) {
+            ResourceUtil.setLocalLanguage(this, Locale.SIMPLIFIED_CHINESE);
+        }
     }
 }

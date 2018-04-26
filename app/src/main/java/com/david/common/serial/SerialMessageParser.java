@@ -68,7 +68,7 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
         } catch (Exception e) {
             serialMessage.setMessageMode(MessageMode.Error);
             String response = serialMessage.getResponse() == null ? "" : new String(serialMessage.getResponse());
-            LogUtils.e(String.format(Locale.US, "Serial connection: %s%s%s" + e.getMessage(),
+            LogUtils.e(String.format(Locale.US, "Serial connection: %s%s%s", e.getMessage(),
                     new String(serialMessage.getRequest()), response));
             LogUtils.e(e);
 

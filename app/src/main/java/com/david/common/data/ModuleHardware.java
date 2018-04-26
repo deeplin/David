@@ -69,12 +69,7 @@ public class ModuleHardware extends ModuleSoftware {
             ModuleGetSoftwareCommand moduleGetSoftwareCommand = (ModuleGetSoftwareCommand) baseSerialMessage;
             cameraInstalled = moduleGetSoftwareCommand.getCAMERA() == 1;
             jaundiceInstalled = moduleGetSoftwareCommand.getBLUE() == 1;
-            //todo
-            if (Constant.RELEASE_TO_DAVID) {
-                deviceModel = moduleGetSoftwareCommand.getMODEL();
-            } else {
-                deviceModel = "YP-2008S";
-            }
+            deviceModel = moduleGetSoftwareCommand.getMODEL();
 
             super.accept(true, baseSerialMessage);
         }

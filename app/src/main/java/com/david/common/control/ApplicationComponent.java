@@ -1,6 +1,8 @@
 package com.david.common.control;
 
 import com.david.incubator.control.IncubatorApplication;
+import com.david.incubator.ui.main.MainActivity;
+import com.david.incubator.ui.main.MainViewModel;
 import com.david.incubator.ui.top.TopLayout;
 
 import javax.inject.Singleton;
@@ -28,4 +30,8 @@ public interface ApplicationComponent {
     void inject(DaoControl daoControl);
 
     void inject(AutomationControl automationControl);
+
+    void inject(MainActivity mainActivity);
+
+    void inject(MainViewModel mainViewModel);
 }
