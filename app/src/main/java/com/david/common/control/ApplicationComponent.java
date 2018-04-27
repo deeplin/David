@@ -3,7 +3,10 @@ package com.david.common.control;
 import com.david.incubator.control.IncubatorApplication;
 import com.david.incubator.ui.main.MainActivity;
 import com.david.incubator.ui.main.MainViewModel;
-import com.david.incubator.ui.top.TopLayout;
+import com.david.incubator.ui.main.side.SideLayout;
+import com.david.incubator.ui.main.side.SideViewModel;
+import com.david.incubator.ui.menu.MenuLayout;
+import com.david.incubator.ui.main.top.TopLayout;
 
 import javax.inject.Singleton;
 
@@ -34,4 +37,11 @@ public interface ApplicationComponent {
     void inject(MainActivity mainActivity);
 
     void inject(MainViewModel mainViewModel);
+
+    void inject(MenuLayout menuLayout);
+
+    void inject(SideViewModel sideViewModel);
+
+    void inject(SideLayout sideLayout);
+
 }

@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.david.incubator.ui.top.TopViewModel" />
+            type="com.david.incubator.ui.main.top.TopViewModel" />
     </data>
 
     <android.support.constraint.ConstraintLayout

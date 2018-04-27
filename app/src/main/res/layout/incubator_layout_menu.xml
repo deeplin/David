@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.menu.MenuViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/btMenuSetting"
+            android:layout_width="170dp"
+            android:layout_height="@dimen/y48"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/menu_button"
+            android:isSelected="@{viewModel.menuSetting}"
+            android:src="@mipmap/setting"
+            android:visibility="@{viewModel.lockScreen?View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/btMenuChart"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/btMenuChart" />
+
+        <ImageButton
+            android:id="@+id/btMenuChart"
+            android:layout_width="170dp"
+            android:layout_height="@dimen/y48"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/menu_button"
+            android:isSelected="@{viewModel.menuChart}"
+            android:src="@mipmap/curve"
+            android:visibility="@{viewModel.lockScreen?View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btMenuSetting"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btMenuSpo2"
+            android:layout_width="170dp"
+            android:layout_height="@dimen/y48"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/menu_button"
+            android:isSelected="@{viewModel.menuSpo2}"
+            android:src="@mipmap/heart"
+            android:visibility="@{viewModel.lockScreen?View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/btMenuChart"
+            app:layout_constraintStart_toEndOf="@+id/btMenuChart"
+            app:layout_constraintTop_toTopOf="@+id/btMenuChart" />
+
+        <ImageButton
+            android:id="@+id/btMenuScale"
+            android:layout_width="170dp"
+            android:layout_height="@dimen/y48"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/menu_button"
+            android:isSelected="@{viewModel.menuScale}"
+            android:src="@mipmap/scale"
+            android:visibility="@{viewModel.lockScreen?View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/btMenuChart"
+            app:layout_constraintStart_toEndOf="@+id/btMenuSpo2"
+            app:layout_constraintTop_toTopOf="@+id/btMenuChart" />
+
+        <ImageButton
+            android:id="@+id/btMenuCamera"
+            android:layout_width="170dp"
+            android:layout_height="@dimen/y48"
+            android:layout_marginStart="6dp"
+            android:background="@drawable/menu_button"
+            android:isSelected="@{viewModel.menuCamera}"
+            android:src="@mipmap/camera"
+            android:visibility="@{viewModel.lockScreen || !viewModel.cameraVisible? View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@+id/btMenuChart"
+            app:layout_constraintStart_toEndOf="@+id/btMenuScale"
+            app:layout_constraintTop_toTopOf="@+id/btMenuChart" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>

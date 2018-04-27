@@ -1,4 +1,4 @@
-package com.david.incubator.ui.top;
+package com.david.incubator.ui.main.top;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -20,7 +20,7 @@ public class TopLayout extends AutoAttachConstraintLayout {
 
     @Inject
     TopViewModel topViewModel;
-    LayoutTopBinding monitorTopBinding;
+    LayoutTopBinding binding;
 
     public TopLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -28,9 +28,9 @@ public class TopLayout extends AutoAttachConstraintLayout {
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
         LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        monitorTopBinding = LayoutTopBinding.inflate(layoutInflater, this, true);
+        binding = LayoutTopBinding.inflate(layoutInflater, this, true);
 
-        monitorTopBinding.setViewModel(topViewModel);
+        binding.setViewModel(topViewModel);
     }
 
     @Override

@@ -28,11 +28,10 @@
             android:layout_marginTop="@dimen/y48"
             app:layout_constraintLeft_toLeftOf="parent" />
 
-        <!--<com.async.davidconsole.ui.menu.MenuLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/y100"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/flHome" />-->
+        <com.david.incubator.ui.menu.MenuLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y100"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <!--<com.async.davidconsole.ui.side.SideLayout-->
         <!--android:layout_width="120dp"-->

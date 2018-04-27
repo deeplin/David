@@ -1,4 +1,4 @@
-package com.david.incubator.ui.top;
+package com.david.incubator.ui.main.top;
 
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
