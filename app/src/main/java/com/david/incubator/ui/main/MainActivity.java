@@ -14,6 +14,7 @@ import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
 import com.david.common.util.AutoUtil;
 import com.david.databinding.IncubatorActivityMainBinding;
+import com.david.incubator.ui.menu.MenuViewModel;
 import com.david.incubator.util.ViewUtil;
 
 import javax.inject.Inject;
@@ -32,8 +33,8 @@ public class MainActivity extends Activity implements MainNavigator {
 
     @Inject
     MainViewModel mainViewModel;
-//    @Inject
-//    MenuViewModel menuViewModel;
+    @Inject
+    MenuViewModel menuViewModel;
     @Inject
     AutomationControl automationControl;
 

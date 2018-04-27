@@ -5,6 +5,7 @@ import com.david.incubator.ui.main.MainActivity;
 import com.david.incubator.ui.main.MainViewModel;
 import com.david.incubator.ui.main.side.SideLayout;
 import com.david.incubator.ui.main.side.SideViewModel;
+import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.main.top.TopLayout;
 
@@ -43,5 +44,7 @@ public interface ApplicationComponent {
     void inject(SideViewModel sideViewModel);
 
     void inject(SideLayout sideLayout);
+
+    void inject(TopViewModel topViewModel);
 
 }

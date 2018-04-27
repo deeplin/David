@@ -113,7 +113,7 @@ public class AutomationControl implements IViewModel {
         serialControl.addRepeatSession(statusCommand);
 
         //todo
-        if (Constant.RELEASE_TO_DAVID) {
+//        if (Constant.RELEASE_TO_DAVID) {
             /*读取传感器*/
             if (ioDisposable == null) {
                 Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
@@ -128,7 +128,7 @@ public class AutomationControl implements IViewModel {
                         .observeOn(Schedulers.io())
                         .subscribe((aLong) -> daoControl.deleteStale(), LogUtils::e);
             }
-        }
+//        }
     }
 
     @Override

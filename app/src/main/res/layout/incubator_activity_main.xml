@@ -62,12 +62,11 @@
         <!--app:layout_constraintRight_toRightOf="@id/flHome" />-->
         <!--&lt;!&ndash;/Corner&ndash;&gt;-->
 
-        <!--<com.async.davidconsole.ui.top.TopLayout-->
-        <!--android:id="@+id/tlTop"-->
-        <!--android:layout_width="904dp"-->
-        <!--android:layout_height="@dimen/y48"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
+        <com.david.incubator.ui.main.top.TopLayout
+            android:id="@+id/tlTop"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y48"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

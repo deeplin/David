@@ -4,6 +4,7 @@ import com.david.common.util.LogUtil;
 
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Locale;
 
 /**
  * author: Ling Lin
@@ -45,31 +46,28 @@ public abstract class BaseSerialControl {
     protected void send(BaseSerialMessage serialMessage) throws Exception {
         OutputStream outputStream = getOutputStream();
         outputStream.write(serialMessage.getRequest());
-        LogUtil.i(this, "Serial send: " + new String(serialMessage.getRequest()));
+        LogUtil.i(this, String.format(Locale.US, "Serial send: %s", new String(serialMessage.getRequest())));
     }
 
     private void receive(BaseSerialMessage serialMessage) throws Exception {
         InputStream inputStream = getInputStream();
         int index = 0;
-        Thread.sleep(10);
-        for (int inputCount = 8; inputCount > 0; inputCount--) {
+        Thread.sleep(20);
+        for (int inputCount = 6; inputCount > 0; inputCount--) {
             int inputLength = inputStream.read(this.inputBuffer, index, this.inputBuffer.length - index);
             if (inputLength > 0) {
-//                LogUtil.i(this, inputCount + ": " + inputLength + " index: " + index);
+                LogUtil.i(this, String.format(Locale.US, "%d: %d: %d", inputCount, inputLength, index));
                 index += inputLength;
-                if (index >= this.inputBuffer.length) {
-                    throw new Exception("Serial buffer overflows.");
-                }
             } else {
                 break;
             }
-            Thread.sleep(10);
+            Thread.sleep(2);
         }
         if (index > 0) {
             byte[] tempBuffer = new byte[index];
             System.arraycopy(this.inputBuffer, 0, tempBuffer, 0, index);
             serialMessage.setResponse(tempBuffer);
-            LogUtil.i(this, "Serial receive: " + index + " " + new String(tempBuffer));
+            LogUtil.i(this, String.format(Locale.US, "Serial receive: %d %s", index, new String(tempBuffer)));
         } else {
             throw new Exception("No response.");
         }
