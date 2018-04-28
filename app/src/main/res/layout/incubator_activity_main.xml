@@ -33,10 +33,11 @@
             android:layout_height="@dimen/y100"
             app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!--<com.async.davidconsole.ui.side.SideLayout-->
-        <!--android:layout_width="120dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/flHome" />-->
+        <com.david.incubator.ui.main.side.SideLayout
+            android:layout_width="120dp"
+            android:layout_height="@dimen/y620"
+            android:layout_marginTop="@dimen/y48"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <!--<ImageView-->
         <!--android:layout_width="match_parent"-->

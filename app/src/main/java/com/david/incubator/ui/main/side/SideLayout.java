@@ -8,6 +8,7 @@ import com.david.common.alert.AlertControl;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachConstraintLayout;
+import com.david.databinding.LayoutSideBinding;
 import com.david.incubator.ui.main.MainViewModel;
 
 import javax.inject.Inject;
@@ -29,17 +30,17 @@ public class SideLayout extends AutoAttachConstraintLayout {
     @Inject
     AlertControl alertControl;
 
-//    LayoutSideBinding layoutBinding;
+    LayoutSideBinding binding;
 
     public SideLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
         LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        layoutBinding = LayoutSideBinding.inflate(layoutInflater, this, true);
-//        layoutBinding.setViewModel(sideViewModel);
+        binding = LayoutSideBinding.inflate(layoutInflater, this, true);
+        binding.setViewModel(sideViewModel);
 
-//        RxView.clicks(layoutBinding.btSideHome)
+//        RxView.clicks(binding.btSideHome)
 //                .throttleFirst(SystemConfig.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
 //                .subscribe((Object Void) -> {
 //                    if (shareMemory.isCabin()) {
@@ -49,7 +50,7 @@ public class SideLayout extends AutoAttachConstraintLayout {
 //                    }
 //                });
 //
-//        RxView.clicks(layoutBinding.btSideLockScreen)
+//        RxView.clicks(binding.btSideLockScreen)
 //                .throttleFirst(SystemConfig.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
 //                .subscribe((Object Void) -> {
 //                    SystemMode systemMode = shareMemory.systemMode.get();
@@ -58,7 +59,7 @@ public class SideLayout extends AutoAttachConstraintLayout {
 //                    }
 //                });
 //
-//        RxView.clicks(layoutBinding.btSideStopAlarm)
+//        RxView.clicks(binding.btSideStopAlarm)
 //                .throttleFirst(SystemConfig.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
 //                .subscribe((Object Void) -> sideViewModel.muteAlarm());
     }

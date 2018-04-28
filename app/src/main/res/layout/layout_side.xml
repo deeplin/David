@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.main.side.SideViewModel" />
+    </data>
+
+    <!--120*768-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/btSideHome"
+            android:layout_width="96dp"
+            android:layout_height="@dimen/y100"
+            android:background="@drawable/side_top_button"
+            android:src="@mipmap/home"
+            android:visibility="@{viewModel.lockScreen? View.INVISIBLE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@id/btSideLockScreen"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btSideLockScreen"
+            android:layout_width="96dp"
+            android:layout_height="@dimen/y100"
+            android:background="@drawable/side_middle_top_button"
+            android:imageSrc="@{viewModel.lockScreenImage}"
+            android:isSelected="@{viewModel.lockScreen}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.55" />
+
+        <ImageButton
+            android:id="@+id/btSideClearAlarm"
+            android:layout_width="96dp"
+            android:layout_height="@dimen/y100"
+            android:background="@drawable/side_middle_button"
+            android:imageSrc="@{viewModel.clearAlarmImage}"
+            android:isSelected="@{viewModel.lockScreen}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btSideLockScreen" />
+
+        <ImageButton
+            android:id="@+id/btSideStopAlarm"
+            android:layout_width="96dp"
+            android:layout_height="@dimen/y100"
+            android:background="@drawable/side_bottom_button"
+            android:imageSrc="@{viewModel.stopAlarmImage}"
+            android:isSelected="@{viewModel.lockScreen}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btSideClearAlarm" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

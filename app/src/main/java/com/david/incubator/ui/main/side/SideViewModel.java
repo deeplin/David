@@ -37,14 +37,12 @@ public class SideViewModel implements IViewModel {
     @Inject
     MessageSender messageSender;
 
-    private Disposable disposable= null;
-
-    public ObservableField<String> date = new ObservableField<>("0000-00-00");
-    public ObservableField<String> time = new ObservableField<>("--:--");
     public ObservableBoolean lockScreen = new ObservableBoolean(false);
     public ObservableInt lockScreenImage = new ObservableInt(R.mipmap.screen_unlock);
     public ObservableBoolean stopAlarm = new ObservableBoolean(false);
     public ObservableInt stopAlarmImage = new ObservableInt(R.mipmap.alarm_started);
+
+    public ObservableInt clearAlarmImage = new ObservableInt(R.mipmap.alarm_started);
 
     private Observable.OnPropertyChangedCallback alertCallback;
 
@@ -79,10 +77,6 @@ public class SideViewModel implements IViewModel {
 //        alertControl.alertStringField.removeOnPropertyChangedCallback(alertCallback);
     }
 
-    public void displayCurrentTime() {
-        this.date.set(TimeUtil.getCurrentDate(TimeUtil.Date));
-        this.time.set(TimeUtil.getCurrentEnglishDate(TimeUtil.Time));
-    }
 
     public void setLockScreen(boolean status) {
         lockScreen.set(status);
@@ -94,7 +88,7 @@ public class SideViewModel implements IViewModel {
         }
     }
 
-    public void muteAlarm(){
+    public void muteAlarm() {
         SystemMode systemMode = shareMemory.systemMode.get();
         if (!Objects.equals(systemMode, SystemMode.Transit)) {
 //            String alertID = alertControl.getAlertID();
