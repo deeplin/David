@@ -75,6 +75,7 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
             if (serialMessage.getRepeatTime() != BaseSerialMessage.CRITICAL_COMMAND) {
                 serialMessage.decreaseRepeatTime();
                 if (serialMessage.getRepeatTime() <= 0) {
+                    //todo
 //                alertControl.setAlert(AlertPriorityMode.Sys_Con, "SYS.CON");
                     if (onCompleted != null) {
                         onCompleted.accept(false, serialMessage);
@@ -119,7 +120,6 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
                         filteredInputBuffer[filterIndex++] = data;
                         enter = false;
                         break;
-                    case (0x24): //$
                     case (0x0A):
                         if (enter) {
                             completePacket = true;
@@ -130,7 +130,7 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
                     case (0x0D):/*无用字符*/
                         break;
                     default: {
-                        throw new Exception("Receive illegal char. " + StringUtil.byteToHex(data) + "\n");
+                        throw new Exception(String.format(Locale.US, "Receive illegal char. %s", StringUtil.byteToHex(data)));
                     }
                 }
             }
@@ -140,7 +140,7 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
             System.arraycopy(filteredInputBuffer, 0, filteredInput, 0, filterIndex);
             return filteredInput;
         }
-        throw new Exception("No detach char.\n");
+        throw new Exception("No detach char.");
     }
 
     /*检查返回指令状态，返回指令数据段*/
@@ -155,7 +155,7 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
                 return null;
             }
         } else {
-            throw new Exception("Error in checking status.\n");
+            throw new Exception("Error in checking status.");
         }
     }
 
@@ -166,13 +166,13 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
                 return index;
             }
         }
-        throw new Exception("Get status index error.\n");
+        throw new Exception("Get status index error.");
     }
 
     private void parseCommandString(String commandString, BaseSerialMessage command) throws Exception {
         String[] items = commandString.split(CommandChar.SEMICOLON);
         if (items.length <= 0) {
-            throw new Exception("Too short length.\n");
+            throw new Exception("Too short length.");
         }
 
         for (String item : items) {
@@ -198,7 +198,7 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
                     }
                 }
             } else {
-                throw new Exception("Parse command error.\n");
+                throw new Exception("Parse command error.");
             }
         }
     }

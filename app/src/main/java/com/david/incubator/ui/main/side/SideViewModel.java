@@ -6,10 +6,9 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import com.david.R;
-import com.david.common.control.AlertControl;
+import com.david.common.alert.AlertControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
@@ -20,7 +19,6 @@ import com.david.common.util.TimeUtil;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -73,12 +71,12 @@ public class SideViewModel implements IViewModel {
 
     @Override
     public void attach() {
-        alertControl.alertStringField.addOnPropertyChangedCallback(alertCallback);
+//        alertControl.alertStringField.addOnPropertyChangedCallback(alertCallback);
     }
 
     @Override
     public void detach() {
-        alertControl.alertStringField.removeOnPropertyChangedCallback(alertCallback);
+//        alertControl.alertStringField.removeOnPropertyChangedCallback(alertCallback);
     }
 
     public void displayCurrentTime() {

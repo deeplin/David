@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
-import com.david.common.control.AlertControl;
+import com.david.common.alert.AlertControl;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachConstraintLayout;

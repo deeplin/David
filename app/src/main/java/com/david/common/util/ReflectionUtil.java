@@ -2,6 +2,8 @@ package com.david.common.util;
 
 import android.content.Context;
 
+import com.david.common.control.MainApplication;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
@@ -42,14 +44,13 @@ public class ReflectionUtil {
     /**
      * 根据名字，反射取得资源
      *
-     * @param context context
-     * @param name    resources name
-     * @param type    enum of ResourcesType
+     * @param name resources name
+     * @param type enum of ResourcesType
      * @return resources id
      */
-    public static int getResourceId(Context context, String name, ReflectionUtil.ResourcesType type) throws Exception {
+    public static int getResourceId(String name, ReflectionUtil.ResourcesType type) throws Exception {
         name = name.replace(".", "_");
-        String className = context.getPackageName() + ".R";
+        String className = MainApplication.getInstance().getPackageName() + ".R";
         Class<?> c = Class.forName(className);
         for (Class childClass : c.getClasses()) {
             String simpleName = childClass.getSimpleName();

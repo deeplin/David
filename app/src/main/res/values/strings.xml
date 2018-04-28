@@ -216,7 +216,6 @@
     <string name="SPO2.BIT6">太多环境光</string>
     <string name="SPO2.BIT10">低信号质量</string>
 
-    <string name="SYS.RESPONSE.ERR">串口通讯返回ERR</string>
     <string name="SYS.PWR">电源故障</string>
 
     <!--监护仪-->

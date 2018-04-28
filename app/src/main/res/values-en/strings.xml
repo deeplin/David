@@ -204,6 +204,5 @@
     <string name="SPO2.BIT6">Too Much Ambient Light</string>
     <string name="SPO2.BIT10">Low Signal Quality</string>
 
-    <string name="SYS.RESPONSE.ERR">Return ERR via Serial interface</string>
     <string name="SYS.PWR">Power failure</string>
 </resources>

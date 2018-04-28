@@ -1,5 +1,7 @@
 package com.david.common.control;
 
+import android.util.Log;
+
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.Spo2GetCommand;
@@ -8,11 +10,12 @@ import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.Spo2SensMode;
-import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
+import com.david.common.util.TimeUtil;
+import com.david.incubator.ui.main.top.TopViewModel;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,8 +23,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.BiConsumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -46,22 +49,22 @@ public class AutomationControl implements IViewModel {
     ModuleHardware moduleHardware;
     @Inject
     ModuleSoftware moduleSoftware;
+    @Inject
+    TopViewModel topViewModel;
 
     private Disposable ioDisposable;
-    private Disposable staleDisposable;
 
     @Inject
     public AutomationControl() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
         ioDisposable = null;
-        staleDisposable = null;
     }
 
     @Override
     public void attach() {
         /*读取配置文件*/
         messageSender.getHardwareModule((aBoolean, baseSerialMessage) -> {
-            if(aBoolean){
+            if (aBoolean) {
                 moduleHardware.accept(true, baseSerialMessage);
                 /*配置37度灯*/
                 if (moduleHardware.showLED37()) {
@@ -75,7 +78,7 @@ public class AutomationControl implements IViewModel {
                 }
 
                 /*如果Spo2开机时灵敏度设置是Max，需要改成normal*/
-                if(moduleHardware.isSPO2()) {
+                if (moduleHardware.isSPO2()) {
                     messageSender.getSpo2(true, (bBoolean, serialMessage) -> {
                         if (bBoolean) {
                             Spo2GetCommand spo2GetCommand = (Spo2GetCommand) serialMessage;
@@ -119,14 +122,14 @@ public class AutomationControl implements IViewModel {
                 Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
                 ioDisposable = observable
                         .observeOn(Schedulers.io())
-                        .subscribe((aLong) -> serialControl.refresh(), LogUtils::e);
-            }
-
-            if (staleDisposable == null) {
-                Observable<Long> staleObservable = Observable.interval(1, 1, TimeUnit.MINUTES);
-                staleDisposable = staleObservable
-                        .observeOn(Schedulers.io())
-                        .subscribe((aLong) -> daoControl.deleteStale(), LogUtils::e);
+                        .subscribe((aLong) -> {
+                            serialControl.refresh();
+                            long currentTime = TimeUtil.getCurrentTimeInSecond();
+                            if (currentTime % 60 == 0) {
+                                daoControl.deleteStale();
+                                topViewModel.displayCurrentTime();
+                            }
+                        }, LogUtils::e);
             }
 //        }
     }
@@ -136,10 +139,6 @@ public class AutomationControl implements IViewModel {
         if (ioDisposable != null) {
             ioDisposable.dispose();
             ioDisposable = null;
-        }
-        if (staleDisposable != null) {
-            staleDisposable.dispose();
-            staleDisposable = null;
         }
     }
 }
