@@ -39,8 +39,7 @@ public class MainActivity extends Activity implements MainNavigator {
     AutomationControl automationControl;
 
     IncubatorActivityMainBinding binding;
-
-    Fragment currentFragment;
+    private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,7 +93,7 @@ public class MainActivity extends Activity implements MainNavigator {
     public boolean dispatchTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
-//                mainViewModel.initializeTimeOut();
+                automationControl.initializeTimeOut();
                 break;
             }
         }

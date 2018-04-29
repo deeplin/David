@@ -54,6 +54,12 @@ public class AutomationControl implements IViewModel {
 
     private Disposable ioDisposable;
 
+    /*
+     * 0: 屏幕解锁，开始计时
+     * Constant.SCREEN_LOCK_SECOND: 时间到，自动锁屏
+     * */
+    private int lockTimeOut = 0;
+
     @Inject
     public AutomationControl() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
@@ -117,20 +123,21 @@ public class AutomationControl implements IViewModel {
 
         //todo
 //        if (Constant.RELEASE_TO_DAVID) {
-            /*读取传感器*/
-            if (ioDisposable == null) {
-                Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
-                ioDisposable = observable
-                        .observeOn(Schedulers.io())
-                        .subscribe((aLong) -> {
-                            serialControl.refresh();
-                            long currentTime = TimeUtil.getCurrentTimeInSecond();
-                            if (currentTime % 60 == 0) {
-                                daoControl.deleteStale();
-                                topViewModel.displayCurrentTime();
-                            }
-                        }, LogUtils::e);
-            }
+        /*读取传感器*/
+        if (ioDisposable == null) {
+            Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
+            ioDisposable = observable
+                    .observeOn(Schedulers.io())
+                    .subscribe((aLong) -> {
+                        serialControl.refresh();
+                        checkLockScreen();
+                        long currentTime = TimeUtil.getCurrentTimeInSecond();
+                        if (currentTime % 60 == 0) {
+                            daoControl.deleteStale();
+                            topViewModel.displayCurrentTime();
+                        }
+                    }, LogUtils::e);
+        }
 //        }
     }
 
@@ -139,6 +146,22 @@ public class AutomationControl implements IViewModel {
         if (ioDisposable != null) {
             ioDisposable.dispose();
             ioDisposable = null;
+        }
+    }
+
+    public synchronized void initializeTimeOut() {
+        lockTimeOut = 0;
+    }
+
+    /* 检测是否锁屏*/
+    public synchronized void checkLockScreen() {
+        /*锁屏不检测*/
+        if (!shareMemory.lockScreen.get()) {
+            /*刷新屏幕时间*/
+            lockTimeOut++;
+            if (lockTimeOut == Constant.SCREEN_LOCK_SECOND) {
+                shareMemory.lockScreen.set(true);
+            }
         }
     }
 }

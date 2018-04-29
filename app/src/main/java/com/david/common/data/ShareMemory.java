@@ -227,4 +227,8 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     public boolean isWarmer() {
         return Objects.equals(systemMode.get(), SystemMode.Warmer);
     }
+
+    public boolean isTransit() {
+        return Objects.equals(systemMode.get(), SystemMode.Transit);
+    }
 }

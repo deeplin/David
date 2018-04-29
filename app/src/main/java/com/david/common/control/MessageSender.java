@@ -1,5 +1,6 @@
 package com.david.common.control;
 
+import com.david.common.dao.CtrlGetCommand;
 import com.david.common.dao.Spo2GetCommand;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
@@ -85,18 +86,16 @@ public class MessageSender {
         serialControl.addSession(alertMuteCommand);
     }
 
-//
-//    public void getCtrlGet(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        CtrlGetCommand ctrlGetCommand = new CtrlGetCommand();
-//        ctrlGetCommand.setOnCompleted((aBoolean, baseSerialMessage) -> {
-//            if (aBoolean) {
-//                onComplete.accept(true, baseSerialMessage);
-//                daoControl.saveCommand(ctrlGetCommand);
-//            }
-//        });
-//
-//        serialControl.addSession(ctrlGetCommand);
-//    }
+    public void getCtrlGet(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        CtrlGetCommand ctrlGetCommand = new CtrlGetCommand();
+        ctrlGetCommand.setOnCompleted((aBoolean, baseSerialMessage) -> {
+            if (aBoolean) {
+                onComplete.accept(true, baseSerialMessage);
+                daoControl.saveCommand(ctrlGetCommand);
+            }
+        });
+        serialControl.addSession(ctrlGetCommand);
+    }
 //
 //    public void getSpo2Alert(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        AlertGetCommand spo2OvHAlertGetCommand = new AlertGetCommand(AlarmSettingMode.SPO2_OVH);
@@ -137,12 +136,6 @@ public class MessageSender {
 //    }
 //
 
-//
-//    public void setStandBy(boolean status) {
-//        CtrlStandbyCommand ctrlStandbyCommand = new CtrlStandbyCommand(status);
-//        serialControl.addSession(ctrlStandbyCommand);
-//    }
-//
 
 //
 //    public void resumeMuteAll() {

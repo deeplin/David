@@ -9,6 +9,7 @@ import com.david.incubator.ui.main.side.SideViewModel;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.main.top.TopLayout;
+import com.david.incubator.ui.menu.MenuViewModel;
 
 import javax.inject.Singleton;
 
@@ -49,5 +50,7 @@ public interface ApplicationComponent {
     void inject(TopViewModel topViewModel);
 
     void inject(AlarmView alarmView);
+
+    void inject(MenuViewModel menuViewModel);
 
 }

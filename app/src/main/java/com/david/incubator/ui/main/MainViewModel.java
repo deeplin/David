@@ -3,14 +3,26 @@ package com.david.incubator.ui.main;
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 
+import com.david.common.alert.AlarmControl;
+import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
+import com.david.common.mode.CtrlMode;
+import com.david.common.mode.SystemMode;
 import com.david.common.ui.BaseNavigatorModel;
+import com.david.common.util.Constant;
+import com.david.common.util.FragmentPage;
+import com.david.incubator.ui.main.side.SideViewModel;
+import com.david.incubator.ui.menu.MenuViewModel;
+
+import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -22,155 +34,100 @@ import io.reactivex.disposables.Disposable;
 @Singleton
 public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
 
-    //    @Inject
-//    SideViewModel sideViewModel;
-//    @Inject
-//    MenuViewModel menuViewModel;
+    @Inject
+    MenuViewModel menuViewModel;
     @Inject
     public ShareMemory shareMemory;
-    //    @Inject
-//    AlarmControl alarmControl;
+    @Inject
+    AlarmControl alarmControl;
     @Inject
     MessageSender messageSender;
+    @Inject
+    AutomationControl automationControl;
 
-    public ObservableBoolean showAlertList = new ObservableBoolean(true);
+    public ObservableBoolean showAlertList = new ObservableBoolean(false);
 
     private Observable.OnPropertyChangedCallback systemModeCallback;
     private Observable.OnPropertyChangedCallback lockScreenCallback;
     private Observable.OnPropertyChangedCallback currentFragmentIDCallback;
 
-    /*
-     * 0: 屏幕解锁，开始计时
-     * Constant.SCREEN_LOCK_SECOND: 时间到，自动锁屏
-     * */
-    private int lockTimeOut = 0;
-
-    private Disposable uiDisposable;
-
     @Inject
     public MainViewModel() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
-//        systemModeCallback = new Observable.OnPropertyChangedCallback() {
-//            @Override
-//            public void onPropertyChanged(Observable observable, int i) {
-//                SystemMode system = shareMemory.systemMode.get();
-//                if (system.equals(SystemMode.Cabin)) {
-//                    shareMemory.currentFragmentID.set(FragmentPage.HOME_FRAGMENT);
-//                    shareMemory.lockScreen.set(false);
-//                } else if (system.equals(SystemMode.Warmer)) {
-//                    shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
-//                    shareMemory.lockScreen.set(false);
-//                } else if (system.equals(SystemMode.Transit)) {
-//                    shareMemory.currentFragmentID.set(FragmentPage.MENU_NONE);
-//                    shareMemory.lockScreen.set(true);
-//                }
-//                initializeTimeOut();
-//            }
-//        };
-//
-//        lockScreenCallback = new Observable.OnPropertyChangedCallback() {
-//            @Override
-//            public void onPropertyChanged(Observable observable, int i) {
-//                //Status 是否锁屏
-//                boolean status = ((ObservableBoolean) observable).get();
-//                sideViewModel.setLockScreen(status);
-//                menuViewModel.setScreenLock(status);
-//
-//                if (!navigator.isLockableFragment()) {
-//                    if (shareMemory.isCabin()) {
-//                        shareMemory.currentFragmentID.set(FragmentPage.HOME_FRAGMENT);
-//                    } else if (shareMemory.isWarmer()) {
-//                        shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
-//                    }
-//                } else {
-//                    CtrlMode ctrlMode = shareMemory.ctrlMode.get();
-//                    if (shareMemory.currentFragmentID.get() == FragmentPage.CHART_FRAGMENT) {
-//                        if (shareMemory.isWarmer() && (!Objects.equals(ctrlMode, CtrlMode.Skin))) {
-//                            shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
-//                        }
-//                    }
-//                }
-//
-//                if (!status) {
-//                    //取消报警
-//                    alarmControl.clearAlert();
-//                    //重新计数
-//                    initializeTimeOut();
-//                }
-//
-//                //改变standby模式
-//                messageSender.setStandBy(status);
-//
-//                //刷新系统状态
-//                messageSender.getCtrlGet(shareMemory);
-//            }
-//        };
-//
-//        currentFragmentIDCallback = new Observable.OnPropertyChangedCallback() {
-//            @Override
-//            public void onPropertyChanged(Observable observable, int i) {
-//                byte position = ((ObservableByte) observable).get();
-//                navigator.changeFragment(position);
-//            }
-//        };
+        systemModeCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if (shareMemory.isCabin()) {
+                    shareMemory.currentFragmentID.set(FragmentPage.HOME_FRAGMENT);
+                    shareMemory.lockScreen.set(false);
+                } else if (shareMemory.isWarmer()) {
+                    shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
+                    shareMemory.lockScreen.set(false);
+                } else if (shareMemory.isTransit()) {
+                    shareMemory.currentFragmentID.set(FragmentPage.MENU_NONE);
+                    shareMemory.lockScreen.set(true);
+                }
+                automationControl.initializeTimeOut();
+            }
+        };
+
+        lockScreenCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                //Status 是否锁屏
+                boolean status = shareMemory.lockScreen.get();
+
+                if (!navigator.isLockableFragment()) {
+                    if (shareMemory.isCabin()) {
+                        shareMemory.currentFragmentID.set(FragmentPage.HOME_FRAGMENT);
+                    } else if (shareMemory.isWarmer()) {
+                        shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
+                    }
+                } else {
+                    CtrlMode ctrlMode = shareMemory.ctrlMode.get();
+                    if (shareMemory.currentFragmentID.get() == FragmentPage.CHART_FRAGMENT) {
+                        if (shareMemory.isWarmer() && (!Objects.equals(ctrlMode, CtrlMode.Skin))) {
+                            shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
+                        }
+                    }
+                }
+
+                if (status) {
+                    showAlertList.set(false);
+                } else {
+                    automationControl.initializeTimeOut();
+                }
+
+                //刷新系统状态
+                messageSender.getCtrlGet(shareMemory);
+            }
+        };
+
+        currentFragmentIDCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                navigator.changeFragment(shareMemory.currentFragmentID.get());
+            }
+        };
     }
 
     @Override
     public void attach() {
-//        shareMemory.systemMode.addOnPropertyChangedCallback(systemModeCallback);
-//        shareMemory.lockScreen.addOnPropertyChangedCallback(lockScreenCallback);
-//        shareMemory.currentFragmentID.addOnPropertyChangedCallback(currentFragmentIDCallback);
-//        //to be removed
-//        shareMemory.currentFragmentID.notifyChange();
-//
-//        /*刷新屏幕信息*/
-//        io.reactivex.Observable<Long> observable = io.reactivex.Observable.interval(1, 1, TimeUnit.SECONDS);
-//        if (uiDisposable == null) {
-//            uiDisposable = observable
-//                    .observeOn(AndroidSchedulers.mainThread())
-//                    .subscribe((aLong) -> {
-//                        checkScreenLock();
-//                        sideViewModel.displayCurrentTime();
-//                    });
-//        }
+        shareMemory.systemMode.addOnPropertyChangedCallback(systemModeCallback);
+        shareMemory.lockScreen.addOnPropertyChangedCallback(lockScreenCallback);
+        shareMemory.currentFragmentID.addOnPropertyChangedCallback(currentFragmentIDCallback);
     }
 
     @Override
     public void detach() {
-        if (uiDisposable != null) {
-            uiDisposable.dispose();
-            uiDisposable = null;
-        }
-//        shareMemory.currentFragmentID.removeOnPropertyChangedCallback(currentFragmentIDCallback);
-//        shareMemory.lockScreen.removeOnPropertyChangedCallback(lockScreenCallback);
-//        shareMemory.systemMode.removeOnPropertyChangedCallback(systemModeCallback);
+        shareMemory.currentFragmentID.removeOnPropertyChangedCallback(currentFragmentIDCallback);
+        shareMemory.lockScreen.removeOnPropertyChangedCallback(lockScreenCallback);
+        shareMemory.systemMode.removeOnPropertyChangedCallback(systemModeCallback);
     }
 
-//    public void switchToMonitor(){
-//        navigator.switchToMonitor();
-//    }
-//
-
-//    /* 检测是否锁屏*/
-//    public synchronized void checkScreenLock() {
-//        /*锁屏不检测*/
-//        if (shareMemory.lockScreen.get()) {
-//            return;
-//        }
-//        /*刷新屏幕时间*/
-//        lockTimeOut++;
-//        if (lockTimeOut >= SystemConfig.SCREEN_LOCK_SECOND) {
-//            shareMemory.lockScreen.set(true);
-//        }
-//    }
-//
-//    void initializeTimeOut() {
-//        lockTimeOut = 0;
-//    }
-//
-//    public void setLight(int brightness) {
-//        if (navigator != null)
-//            navigator.setLight(brightness);
-//    }
+    public void setLight(int brightness) {
+        if (navigator != null)
+            navigator.setLight(brightness);
+    }
 }

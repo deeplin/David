@@ -61,6 +61,7 @@ public class AlarmControl {
                         alarmModel.setAlertId("SPO2.BIT7");
                         alarmModel.setAlarmPriorityMode(AlarmPriorityMode.Low);
                     }
+                    alarmModel.setMuteTime(240);
                     alarmModelList.add(alarmModel);
                     alarmUpdated.set(alarmUpdated.get() + 1);
 

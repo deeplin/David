@@ -2,6 +2,10 @@ package com.david.incubator.ui.menu;
 
 import android.databinding.ObservableBoolean;
 
+import com.david.common.control.MainApplication;
+import com.david.common.data.ShareMemory;
+import com.david.incubator.ui.main.MainViewModel;
+
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
@@ -15,17 +19,20 @@ import javax.inject.Singleton;
 @Singleton
 public class MenuViewModel {
 
+    @Inject
+    public ShareMemory shareMemory;
+
     public ObservableBoolean menuChart = new ObservableBoolean(false);
     public ObservableBoolean menuSpo2 = new ObservableBoolean(false);
     public ObservableBoolean menuScale = new ObservableBoolean(false);
     public ObservableBoolean menuCamera = new ObservableBoolean(false);
     public ObservableBoolean menuSetting = new ObservableBoolean(false);
-    public ObservableBoolean lockScreen = new ObservableBoolean(false);
 
     public ObservableBoolean cameraVisible = new ObservableBoolean();
 
     @Inject
     public MenuViewModel() {
+        MainApplication.getInstance().getApplicationComponent().inject(this);
     }
 
     public void clearButtonBorder() {
@@ -34,10 +41,6 @@ public class MenuViewModel {
         menuScale.set(false);
         menuCamera.set(false);
         menuSetting.set(false);
-    }
-
-    public void setScreenLock(boolean status) {
-        lockScreen.set(status);
     }
 }
 
