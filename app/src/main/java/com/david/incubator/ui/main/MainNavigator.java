@@ -15,6 +15,4 @@ public interface MainNavigator {
     boolean isLockableFragment();
 
     void setLight(int brightness);
-
-    void switchToMonitor();
 }

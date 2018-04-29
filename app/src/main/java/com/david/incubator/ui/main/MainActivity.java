@@ -66,6 +66,7 @@ public class MainActivity extends Activity implements MainNavigator {
         intent.setAction("android.intent.action.HIDE_NAVIGATION_BAR");
         MainActivity.this.sendBroadcast(intent);
 
+        binding.avAlarm.attach();
         mainViewModel.attach();
         automationControl.attach();
     }
@@ -75,6 +76,7 @@ public class MainActivity extends Activity implements MainNavigator {
         super.onPause();
         automationControl.detach();
         mainViewModel.detach();
+        binding.avAlarm.detach();
     }
 
     @Override
@@ -164,13 +166,6 @@ public class MainActivity extends Activity implements MainNavigator {
     @Override
     public boolean isLockableFragment() {
         return currentFragment instanceof IFragmentLockable;
-    }
-
-    @Override
-    public void switchToMonitor() {
-//        Intent intent = new Intent(this, MonitorActivity.class);
-//        startActivity(intent);
-//        finish();
     }
 
     @Override

@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 /**
  * author: Ling Lin
@@ -40,6 +41,8 @@ public class SideViewModel implements IViewModel {
 
     private Observable.OnPropertyChangedCallback lockScreenCallback;
     private Observable.OnPropertyChangedCallback clearAlarmCallback;
+
+    private Disposable muteDisposable = null;
 
     @Inject
     public SideViewModel() {
@@ -92,8 +95,10 @@ public class SideViewModel implements IViewModel {
                 if (aBoolean) {
                     /*静音成功*/
                     muteAlarmImage.set(R.mipmap.alarm_muted);
-
-                    io.reactivex.Observable.timer(alarmModel.getMuteTime(), TimeUnit.SECONDS)
+                    if (muteDisposable != null) {
+                        muteDisposable.dispose();
+                    }
+                    muteDisposable = io.reactivex.Observable.timer(alarmModel.getMuteTime(), TimeUnit.SECONDS)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(aLong -> muteAlarmImage.set(R.mipmap.alarm_started));
                 }

@@ -63,6 +63,14 @@
         <!--app:layout_constraintRight_toRightOf="@id/flHome" />-->
         <!--&lt;!&ndash;/Corner&ndash;&gt;-->
 
+        <com.david.common.ui.alarm.AlarmView
+            android:id="@+id/avAlarm"
+            android:layout_width="728dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y48"
+            android:visibility="@{viewModel.showAlertList?View.VISIBLE: View.GONE}"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.david.incubator.ui.main.top.TopLayout
             android:id="@+id/tlTop"
             android:layout_width="match_parent"

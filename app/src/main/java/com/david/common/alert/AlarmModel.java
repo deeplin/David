@@ -54,10 +54,6 @@ public class AlarmModel extends Object {
     }
 
     public AlarmModel() {
-        this.alertId = alertId;
-        this.alertPriority = alertPriority;
-        this.alarmPriorityMode = alarmPriorityMode;
-        this.muteTime = muteTime;
     }
 
     @Override

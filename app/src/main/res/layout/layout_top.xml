@@ -18,7 +18,6 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="@dimen/x40"
             android:layout_height="@dimen/y26"
             android:src="@mipmap/user"
@@ -28,32 +27,31 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/topUser"
             android:layout_width="728dp"
             android:layout_height="match_parent"
-            android:background="@{viewModel.overheatExperimentMode? @color/warning_background : @color/transparent}"
+            android:background="@{viewModel.overheatExperimentMode? @color/alarm_middle : @color/transparent}"
             android:gravity="center_vertical"
             android:paddingStart="60dp"
             android:text="@{viewModel.userId}"
-            android:textColor="@{viewModel.overheatExperimentMode? @color/warning_text:@color/info_white}"
+            android:textColor="@{viewModel.overheatExperimentMode? @color/alarm_text:@color/info_white}"
             android:textSize="@dimen/f28"
             android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alarmField != null? View.GONE: View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
+            android:id="@+id/tvTopAlarm"
             android:layout_width="728dp"
             android:layout_height="match_parent"
-            android:background="@color/warning_background"
+            android:background="@color/alarm_middle"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
             android:text="@{viewModel.alarmField}"
-            android:textColor="@color/warning_text"
+            android:textColor="@color/alarm_text"
             android:textSize="@dimen/f28"
             android:visibility="@{viewModel.alarmField != null? View.VISIBLE: View.GONE}"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/ivTop3G"
             android:layout_width="60dp"
             android:layout_height="@dimen/y26"
             android:layout_marginEnd="236dp"
@@ -64,7 +62,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ivTopAbove37"
             android:layout_width="60dp"
             android:layout_height="@dimen/y26"
             android:layout_marginEnd="176dp"
@@ -75,7 +72,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ivBattery"
             android:layout_width="60dp"
             android:layout_height="@dimen/y26"
             android:layout_marginEnd="116dp"
@@ -86,7 +82,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvSideDate"
             android:layout_width="116dp"
             android:layout_height="match_parent"
             android:fontFamily="monospace"

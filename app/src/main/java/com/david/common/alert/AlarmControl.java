@@ -25,35 +25,51 @@ public class AlarmControl {
     public ObservableField<AlarmModel> topAlarm = new ObservableField<>();
 
     public ObservableInt alarmUpdated = new ObservableInt(0);
-    private List<AlarmModel> alarmModelList = new ArrayList<>();
+    public List<AlarmModel> alarmModelList = new ArrayList<>();
 
     @Inject
     public AlarmControl() {
-        alarmModel = new AlarmModel();
-        topAlarm.set(alarmModel);
+
         addAlert("abc");
     }
 
-    AlarmModel alarmModel;
+    private int index = 0;
+
     public void addAlert(String alert) {
-        io.reactivex.Observable.interval(0, 2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread())
+        io.reactivex.Observable.interval(0, 1, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
-                    if (aLong % 4 == 0) {
-                        topAlarm.get().setAlertId("SYS.CON");
-                        topAlarm.notifyChange();
-                    } else if (aLong % 4 == 1){
-                        topAlarm.get().setAlertId("SYS.FAN");
-                        topAlarm.notifyChange();
-                    } else if (aLong % 4 == 2){
-                        topAlarm.get().setAlertId("SKIN.OVH");
-                        topAlarm.notifyChange();
-                    } else{
-//                        topAlarm.set(null);
+                    if (index >= 10) {
+                        if (alarmModelList.size() > 0) {
+                            alarmModelList.remove(0);
+                            alarmUpdated.set(alarmUpdated.get() + 1);
+                        } else {
+                            index = 0;
+                        }
+                        return;
                     }
+                    index++;
+
+                    AlarmModel alarmModel = new AlarmModel();
+
+                    if (aLong % 3 == 0) {
+                        alarmModel.setAlertId("FLOW.OVH");
+                        alarmModel.setAlarmPriorityMode(AlarmPriorityMode.High);
+                    } else if (aLong % 3 == 1) {
+                        alarmModel.setAlertId("SPO2.BIT12");
+                        alarmModel.setAlarmPriorityMode(AlarmPriorityMode.Middle);
+                    } else if (aLong % 3 == 2) {
+                        alarmModel.setAlertId("SPO2.BIT7");
+                        alarmModel.setAlarmPriorityMode(AlarmPriorityMode.Low);
+                    }
+                    alarmModelList.add(alarmModel);
+                    alarmUpdated.set(alarmUpdated.get() + 1);
+
+                    topAlarm.set(alarmModel);
                 });
     }
 
-    public boolean isAlert(){
+    public boolean isAlert() {
         return topAlarm.get() != null;
     }
+
 }

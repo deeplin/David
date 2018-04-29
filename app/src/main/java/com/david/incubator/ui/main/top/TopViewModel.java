@@ -17,6 +17,7 @@ import com.david.common.mode.SystemMode;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
+import com.david.incubator.ui.main.MainViewModel;
 import com.david.incubator.ui.main.side.SideViewModel;
 
 import java.util.Locale;
@@ -42,8 +43,8 @@ public class TopViewModel implements IViewModel {
     public ObservableInt batteryImageId = new ObservableInt();
     public ObservableBoolean overheatExperimentMode = new ObservableBoolean(false);
     public ObservableField<String> dateTime = new ObservableField<>();
-    private ObservableField<BatteryMode> batteryModeCallback = new ObservableField<>();
 
+    private ObservableField<BatteryMode> batteryModeCallback = new ObservableField<>();
     private Observable.OnPropertyChangedCallback vuCallback;
 
     private boolean batteryAlert = false;

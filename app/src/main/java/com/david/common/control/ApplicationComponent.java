@@ -1,5 +1,6 @@
 package com.david.common.control;
 
+import com.david.common.ui.alarm.AlarmView;
 import com.david.incubator.control.IncubatorApplication;
 import com.david.incubator.ui.main.MainActivity;
 import com.david.incubator.ui.main.MainViewModel;
@@ -46,5 +47,7 @@ public interface ApplicationComponent {
     void inject(SideLayout sideLayout);
 
     void inject(TopViewModel topViewModel);
+
+    void inject(AlarmView alarmView);
 
 }

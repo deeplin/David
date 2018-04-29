@@ -1,6 +1,7 @@
 package com.david.incubator.ui.main;
 
 import android.databinding.Observable;
+import android.databinding.ObservableBoolean;
 
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
@@ -31,6 +32,8 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
 //    AlarmControl alarmControl;
     @Inject
     MessageSender messageSender;
+
+    public ObservableBoolean showAlertList = new ObservableBoolean(true);
 
     private Observable.OnPropertyChangedCallback systemModeCallback;
     private Observable.OnPropertyChangedCallback lockScreenCallback;

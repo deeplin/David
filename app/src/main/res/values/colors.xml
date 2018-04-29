@@ -25,8 +25,10 @@
     <color name="scale_in_sensor_list">#F7B03F</color>
     <color name="warmer">#FD4545</color>
 
-    <color name="warning_background">#F4EA00</color>
-    <color name="warning_text">#000000</color>
+    <color name="alarm_text">#000000</color>
+    <color name="alarm_high">#FF0000</color>
+    <color name="alarm_middle">#FFFF00</color>
+    <color name="alarm_low">#00FFFF</color>
 
     <!--Monitor-->
     <color name="main_foreground">#164088</color>
