@@ -10,7 +10,7 @@ import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.CtrlGetCommand;
 import com.david.common.dao.Spo2GetCommand;
 import com.david.common.dao.StatusCommand;
-import com.david.common.mode.AlertSettingMode;
+import com.david.common.mode.AlarmSettingMode;
 import com.david.common.mode.AverageTimeMode;
 import com.david.common.mode.CtrlMode;
 import com.david.common.mode.Spo2SensMode;
@@ -58,7 +58,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     public ObservableInt oxygenObjective = new ObservableInt();
     public ObservableInt humidityObjective = new ObservableInt();
     public ObservableInt manObjective = new ObservableInt();
-    /*AlertSettingMode Command*/
+    /*AlarmSettingMode Command*/
     public ObservableInt spo2UpperLimit = new ObservableInt();
     public ObservableInt spo2LowerLimit = new ObservableInt();
     public ObservableInt prUpperLimit = new ObservableInt();
@@ -180,15 +180,15 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
             } else if (baseSerialMessage instanceof AlertGetCommand) {
                 /*显示Spo2 PR目标值*/
                 AlertGetCommand alertGetCommand = (AlertGetCommand) baseSerialMessage;
-                AlertSettingMode alertSettingMode = alertGetCommand.getAlertSettingMode();
+                AlarmSettingMode alarmSettingMode = alertGetCommand.getAlarmSettingMode();
 
-                if (alertSettingMode.equals(AlertSettingMode.SPO2_OVH)) {
+                if (alarmSettingMode.equals(AlarmSettingMode.SPO2_OVH)) {
                     spo2UpperLimit.set(alertGetCommand.getLimit());
-                } else if (alertSettingMode.equals(AlertSettingMode.SPO2_OVL)) {
+                } else if (alarmSettingMode.equals(AlarmSettingMode.SPO2_OVL)) {
                     spo2LowerLimit.set(alertGetCommand.getLimit());
-                } else if (alertSettingMode.equals(AlertSettingMode.PR_OVH)) {
+                } else if (alarmSettingMode.equals(AlarmSettingMode.PR_OVH)) {
                     prUpperLimit.set(alertGetCommand.getLimit());
-                } else if (alertSettingMode.equals(AlertSettingMode.PR_OVL)) {
+                } else if (alarmSettingMode.equals(AlarmSettingMode.PR_OVL)) {
                     prLowerLimit.set(alertGetCommand.getLimit());
                 }
             } else if (baseSerialMessage instanceof Spo2GetCommand) {

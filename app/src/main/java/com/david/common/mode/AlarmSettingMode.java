@@ -6,7 +6,7 @@ package com.david.common.mode;
  * email: 10525677@qq.com
  * description:
  */
-public enum AlertSettingMode {
+public enum AlarmSettingMode {
     TEMP_DEVH("TEMP.DEVH", 0), TEMP_DEVL("TEMP.DEVL", 1),
 
     O2_DEVH("O2.DEVH", 2), O2_DEVL("O2.DEVL", 3),
@@ -24,13 +24,13 @@ public enum AlertSettingMode {
     private final String name;
     private final int index;
 
-    AlertSettingMode(String name, int index) {
+    AlarmSettingMode(String name, int index) {
         this.name = name;
         this.index = index;
     }
 
-    public static AlertSettingMode getMode(String alertModeString) throws Exception {
-        for (AlertSettingMode mode : values()) {
+    public static AlarmSettingMode getMode(String alertModeString) throws Exception {
+        for (AlarmSettingMode mode : values()) {
             if (mode.getName().equals(alertModeString)) {
                 return mode;
             }

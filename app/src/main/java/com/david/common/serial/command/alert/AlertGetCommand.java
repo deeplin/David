@@ -1,6 +1,6 @@
 package com.david.common.serial.command.alert;
 
-import com.david.common.mode.AlertSettingMode;
+import com.david.common.mode.AlarmSettingMode;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.util.CommandChar;
 
@@ -16,7 +16,7 @@ public class AlertGetCommand extends BaseSerialMessage {
 
     public static final String COMMAND = "~ALERT GET %s" + CommandChar.ENTER;
 
-    AlertSettingMode alertSettingMode;
+    AlarmSettingMode alarmSettingMode;
 
     /*Offset*/
     private int ADevH;
@@ -37,8 +37,8 @@ public class AlertGetCommand extends BaseSerialMessage {
     /*SPO2 PR*/
     private int limit;
 
-    public AlertGetCommand(AlertSettingMode alertSettingMode) {
-        this.alertSettingMode = alertSettingMode;
+    public AlertGetCommand(AlarmSettingMode alarmSettingMode) {
+        this.alarmSettingMode = alarmSettingMode;
     }
 
     public int getADevH() {
@@ -105,13 +105,13 @@ public class AlertGetCommand extends BaseSerialMessage {
         this.HDevL = HDevL;
     }
 
-    public AlertSettingMode getAlertSettingMode() {
-        return alertSettingMode;
+    public AlarmSettingMode getAlarmSettingMode() {
+        return alarmSettingMode;
     }
 
     @Override
     public byte[] getRequest() {
-        return (String.format(COMMAND, alertSettingMode.getName())).getBytes();
+        return (String.format(COMMAND, alarmSettingMode.getName())).getBytes();
     }
 
     public int getT1() {

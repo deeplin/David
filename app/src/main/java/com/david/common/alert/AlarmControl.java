@@ -2,21 +2,15 @@ package com.david.common.alert;
 
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
-import android.util.Log;
-
-import com.david.common.control.MainApplication;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
 
 /**
  * author: Ling Lin
@@ -26,31 +20,40 @@ import io.reactivex.functions.Consumer;
  */
 
 @Singleton
-public class AlertControl {
+public class AlarmControl {
 
-    public ObservableField<String> topAlert = new ObservableField<>();
+    public ObservableField<AlarmModel> topAlarm = new ObservableField<>();
 
-    public ObservableInt alertUpdated = new ObservableInt(0);
-    private List<AlertModel> alertModelList = new ArrayList<>();
+    public ObservableInt alarmUpdated = new ObservableInt(0);
+    private List<AlarmModel> alarmModelList = new ArrayList<>();
 
     @Inject
-    public AlertControl() {
+    public AlarmControl() {
+        alarmModel = new AlarmModel();
+        topAlarm.set(alarmModel);
         addAlert("abc");
     }
 
-
+    AlarmModel alarmModel;
     public void addAlert(String alert) {
         io.reactivex.Observable.interval(0, 2, TimeUnit.SECONDS).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(aLong -> {
                     if (aLong % 4 == 0) {
-                        topAlert.set("SYS.CON");
+                        topAlarm.get().setAlertId("SYS.CON");
+                        topAlarm.notifyChange();
                     } else if (aLong % 4 == 1){
-                        topAlert.set("SYS.FAN");
+                        topAlarm.get().setAlertId("SYS.FAN");
+                        topAlarm.notifyChange();
                     } else if (aLong % 4 == 2){
-                        topAlert.set("SYS.FAN");
+                        topAlarm.get().setAlertId("SKIN.OVH");
+                        topAlarm.notifyChange();
                     } else{
-                        topAlert.set(null);
+//                        topAlarm.set(null);
                     }
                 });
+    }
+
+    public boolean isAlert(){
+        return topAlarm.get() != null;
     }
 }

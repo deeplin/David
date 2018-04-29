@@ -1,25 +1,22 @@
 package com.david.incubator.ui.main.side;
 
 import android.databinding.Observable;
-import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
-import java.util.Objects;
-
 import com.david.R;
-import com.david.common.alert.AlertControl;
+import com.david.common.alert.AlarmControl;
+import com.david.common.alert.AlarmModel;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
-import com.david.common.mode.SystemMode;
 import com.david.common.ui.IViewModel;
-import com.david.common.util.TimeUtil;
+
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.disposables.Disposable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * author: Ling Lin
@@ -31,97 +28,76 @@ import io.reactivex.disposables.Disposable;
 public class SideViewModel implements IViewModel {
 
     @Inject
-    AlertControl alertControl;
+    AlarmControl alarmControl;
     @Inject
-    ShareMemory shareMemory;
+    public ShareMemory shareMemory;
     @Inject
     MessageSender messageSender;
 
-    public ObservableBoolean lockScreen = new ObservableBoolean(false);
-    public ObservableInt lockScreenImage = new ObservableInt(R.mipmap.screen_unlock);
-    public ObservableBoolean stopAlarm = new ObservableBoolean(false);
-    public ObservableInt stopAlarmImage = new ObservableInt(R.mipmap.alarm_started);
+    public ObservableInt lockScreenImage = new ObservableInt(R.mipmap.screen_unlocked);
+    public ObservableInt clearAlarmImage = new ObservableInt(R.mipmap.alarm_cleared);
+    public ObservableInt muteAlarmImage = new ObservableInt(R.mipmap.alarm_unmuted);
 
-    public ObservableInt clearAlarmImage = new ObservableInt(R.mipmap.alarm_started);
-
-    private Observable.OnPropertyChangedCallback alertCallback;
+    private Observable.OnPropertyChangedCallback lockScreenCallback;
+    private Observable.OnPropertyChangedCallback clearAlarmCallback;
 
     @Inject
     public SideViewModel() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
-//        alertCallback = new Observable.OnPropertyChangedCallback() {
-//            @Override
-//            public void onPropertyChanged(Observable observable, int i) {
-//                if (alertControl.isAlert()) {
-//                    lockScreenImage.set(R.mipmap.stop_alert);
-//                } else {
-//                    if (shareMemory.lockScreen.get()) {
-//                        lockScreenImage.set(R.mipmap.screen_lock);
-//                    } else {
-//                        lockScreenImage.set(R.mipmap.screen_unlock);
-//                    }
-//                    stopAlarmImage.set(R.mipmap.alarm_started);
-//                }
-//            }
-//        };
+        lockScreenCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                if (shareMemory.lockScreen.get()) {
+                    lockScreenImage.set(R.mipmap.screen_locked);
+                } else {
+                    lockScreenImage.set(R.mipmap.screen_unlocked);
+                }
+            }
+        };
+
+        clearAlarmCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if (alarmControl.isAlert()) {
+                    clearAlarmImage.set(R.mipmap.alarm_started);
+                } else {
+                    clearAlarmImage.set(R.mipmap.alarm_cleared);
+                }
+            }
+        };
     }
 
     @Override
     public void attach() {
-//        alertControl.alertStringField.addOnPropertyChangedCallback(alertCallback);
+        shareMemory.lockScreen.addOnPropertyChangedCallback(lockScreenCallback);
+        alarmControl.topAlarm.addOnPropertyChangedCallback(clearAlarmCallback);
     }
 
     @Override
     public void detach() {
-//        alertControl.alertStringField.removeOnPropertyChangedCallback(alertCallback);
+        alarmControl.topAlarm.removeOnPropertyChangedCallback(clearAlarmCallback);
+        shareMemory.lockScreen.removeOnPropertyChangedCallback(lockScreenCallback);
     }
 
-
-    public void setLockScreen(boolean status) {
-        lockScreen.set(status);
-        stopAlarm.set(status);
-        if (status) {
-            lockScreenImage.set(R.mipmap.screen_lock);
-        } else {
-            lockScreenImage.set(R.mipmap.screen_unlock);
-        }
+    void clearAlarm() {
+        //send clear alarm command
+        clearAlarmImage.set(R.mipmap.alarm_cleared);
     }
 
     public void muteAlarm() {
-        SystemMode systemMode = shareMemory.systemMode.get();
-        if (!Objects.equals(systemMode, SystemMode.Transit)) {
-//            String alertID = alertControl.getAlertID();
-//            if (alertID != null) {
-//                boolean longMute;
-//                if (alertID.equals("SEN.O2DIF")
-//                        || alertID.equals("SEN.O2_1")
-//                        || alertID.equals("SEN.O2_2")
-//                        || alertID.equals("O2.DEVH")
-//                        || alertID.equals("O2.DEVL")) {
-//                    longMute = false;
-//                } else {
-//                    longMute = true;
-//                }
-//                messageSender.setMute(alertID, longMute, (aBoolean, baseSerialMessage) -> {
-//                    if (aBoolean) {
-//                        /*静音成功*/
-//                        stopAlarmImage.set(R.mipmap.alarm_stopped);
-//                        int delay;
-//                        if (longMute)
-//                            delay = 240;
-//                        else
-//                            delay = 115;
-//
-//                        if(disposable != null){
-//                            disposable.dispose();
-//                        }
-//                        disposable = io.reactivex.Observable.timer(delay, TimeUnit.SECONDS)
-//                                .observeOn(AndroidSchedulers.mainThread())
-//                                .subscribe(aLong -> stopAlarmImage.set(R.mipmap.alarm_started));
-//                    }
-//                });
-//            }
+        AlarmModel alarmModel = alarmControl.topAlarm.get();
+        if (alarmModel != null) {
+            messageSender.setMute(alarmModel.getAlertId(), alarmModel.getMuteTime(), (aBoolean, baseSerialMessage) -> {
+                if (aBoolean) {
+                    /*静音成功*/
+                    muteAlarmImage.set(R.mipmap.alarm_muted);
+
+                    io.reactivex.Observable.timer(alarmModel.getMuteTime(), TimeUnit.SECONDS)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(aLong -> muteAlarmImage.set(R.mipmap.alarm_started));
+                }
+            });
         }
     }
 }

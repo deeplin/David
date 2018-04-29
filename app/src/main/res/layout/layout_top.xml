@@ -22,7 +22,7 @@
             android:layout_width="@dimen/x40"
             android:layout_height="@dimen/y26"
             android:src="@mipmap/user"
-            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alertControl.topAlert != null? View.GONE: View.VISIBLE}"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alarmField != null? View.GONE: View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
             android:text="@{viewModel.userId}"
             android:textColor="@{viewModel.overheatExperimentMode? @color/warning_text:@color/info_white}"
             android:textSize="@dimen/f28"
-            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alertControl.topAlert != null? View.GONE: View.VISIBLE}"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alarmField != null? View.GONE: View.VISIBLE}"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -46,10 +46,10 @@
             android:background="@color/warning_background"
             android:gravity="center_vertical"
             android:paddingStart="16dp"
-            android:text="@{viewModel.alertControl.topAlert}"
+            android:text="@{viewModel.alarmField}"
             android:textColor="@color/warning_text"
             android:textSize="@dimen/f28"
-            android:visibility="@{viewModel.alertControl.topAlert != null? View.VISIBLE: View.GONE}"
+            android:visibility="@{viewModel.alarmField != null? View.VISIBLE: View.GONE}"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
@@ -68,7 +68,7 @@
             android:layout_width="60dp"
             android:layout_height="@dimen/y26"
             android:layout_marginEnd="176dp"
-            android:src="@mipmap/alert_above_37"
+            android:src="@mipmap/alarm_above_37"
             android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || (!viewModel.shareMemory.above37)? View.INVISIBLE: View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

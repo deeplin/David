@@ -76,7 +76,7 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
                 serialMessage.decreaseRepeatTime();
                 if (serialMessage.getRepeatTime() <= 0) {
                     //todo
-//                alertControl.setAlert(AlertPriorityMode.Sys_Con, "SYS.CON");
+//                alarmControl.setAlert(AlarmPriorityMode.Sys_Con, "SYS.CON");
                     if (onCompleted != null) {
                         onCompleted.accept(false, serialMessage);
                     }

@@ -6,6 +6,6 @@ package com.david.common.alert;
  * email: 10525677@qq.com
  * description:
  */
-public enum AlertPriorityMode {
+public enum AlarmPriorityMode {
     High, Middle, Low
 }

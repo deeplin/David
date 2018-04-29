@@ -28,7 +28,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
     @Inject
     public ShareMemory shareMemory;
     //    @Inject
-//    AlertControl alertControl;
+//    AlarmControl alarmControl;
     @Inject
     MessageSender messageSender;
 
@@ -91,7 +91,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
 //
 //                if (!status) {
 //                    //取消报警
-//                    alertControl.clearAlert();
+//                    alarmControl.clearAlert();
 //                    //重新计数
 //                    initializeTimeOut();
 //                }
@@ -148,12 +148,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
 //        navigator.switchToMonitor();
 //    }
 //
-//    public synchronized void lockClick() {
-//        if (!shareMemory.lockScreen.get())
-//            messageSender.resumeMuteAll();
-//        shareMemory.lockScreen.set(!shareMemory.lockScreen.get());
-//    }
-//
+
 //    /* 检测是否锁屏*/
 //    public synchronized void checkScreenLock() {
 //        /*锁屏不检测*/

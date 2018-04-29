@@ -6,7 +6,8 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
 import com.david.R;
-import com.david.common.alert.AlertControl;
+import com.david.common.alert.AlarmControl;
+import com.david.common.alert.AlarmModel;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
@@ -16,6 +17,7 @@ import com.david.common.mode.SystemMode;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
+import com.david.incubator.ui.main.side.SideViewModel;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -27,13 +29,16 @@ import javax.inject.Singleton;
 public class TopViewModel implements IViewModel {
 
     @Inject
-    public AlertControl alertControl;
+    public AlarmControl alarmControl;
     @Inject
     public ShareMemory shareMemory;
+    @Inject
+    SideViewModel sideViewModel;
     @Inject
     DaoControl daoControl;
 
     public ObservableField<String> userId = new ObservableField<>();
+    public ObservableField<String> alarmField = new ObservableField<>();
     public ObservableInt batteryImageId = new ObservableInt();
     public ObservableBoolean overheatExperimentMode = new ObservableBoolean(false);
     public ObservableField<String> dateTime = new ObservableField<>();
@@ -49,19 +54,26 @@ public class TopViewModel implements IViewModel {
         MainApplication.getInstance().getApplicationComponent().inject(this);
         batteryStartTime = TimeUtil.getCurrentTimeInSecond() + 300;
 
-        alertControl.topAlert.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+        alarmControl.topAlarm.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                String alertId = alertControl.topAlert.get();
-                if (alertId != null) {
-                    if (alertId.equals("SYS.UPS") || alertId.equals("SYS.BAT")) {
+                String alarmId = null;
+                AlarmModel alarmModel = alarmControl.topAlarm.get();
+                if (alarmModel != null) {
+                    alarmId = alarmModel.getAlertId();
+                    alarmField.set(alarmModel.toString());
+                } else {
+                    alarmField.set(null);
+                }
+                if (alarmId != null) {
+                    if (alarmId.equals("SYS.UPS") || alarmId.equals("SYS.BAT")) {
                         batteryAlert = true;
                     } else {
                         batteryAlert = false;
                     }
 
-                    if (alertId.equals("SYS.TANK")) {
-//                        sideViewModel.muteAlarm();
+                    if (alarmId.equals("SYS.TANK")) {
+                        sideViewModel.muteAlarm();
                     }
                 } else {
                     batteryAlert = false;

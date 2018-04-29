@@ -22,7 +22,7 @@
             android:layout_height="@dimen/y100"
             android:background="@drawable/side_top_button"
             android:src="@mipmap/home"
-            android:visibility="@{viewModel.lockScreen? View.INVISIBLE : View.VISIBLE}"
+            android:visibility="@{viewModel.shareMemory.lockScreen? View.INVISIBLE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/btSideLockScreen"
             app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -32,7 +32,7 @@
             android:layout_height="@dimen/y100"
             android:background="@drawable/side_middle_top_button"
             android:imageSrc="@{viewModel.lockScreenImage}"
-            android:isSelected="@{viewModel.lockScreen}"
+            android:isSelected="@{viewModel.shareMemory.lockScreen}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -44,17 +44,17 @@
             android:layout_height="@dimen/y100"
             android:background="@drawable/side_middle_button"
             android:imageSrc="@{viewModel.clearAlarmImage}"
-            android:isSelected="@{viewModel.lockScreen}"
+            android:isSelected="@{viewModel.shareMemory.lockScreen}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btSideLockScreen" />
 
         <ImageButton
-            android:id="@+id/btSideStopAlarm"
+            android:id="@+id/btSideMuteAlarm"
             android:layout_width="96dp"
             android:layout_height="@dimen/y100"
             android:background="@drawable/side_bottom_button"
-            android:imageSrc="@{viewModel.stopAlarmImage}"
-            android:isSelected="@{viewModel.lockScreen}"
+            android:imageSrc="@{viewModel.muteAlarmImage}"
+            android:isSelected="@{viewModel.shareMemory.lockScreen}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btSideClearAlarm" />
 

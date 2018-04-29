@@ -9,14 +9,14 @@ import com.david.common.util.ResourceUtil;
  * email: 10525677@qq.com
  * description:
  */
-public class AlertModel extends Object {
+public class AlarmModel extends Object {
 
     private String alertId;
     private int resourceId;
 
     private int alertPriority;
 
-    private AlertPriorityMode alertPriorityMode;
+    private AlarmPriorityMode alarmPriorityMode;
 
     private int muteTime;
 
@@ -29,8 +29,8 @@ public class AlertModel extends Object {
         this.alertPriority = alertPriority;
     }
 
-    public void setAlertPriorityMode(AlertPriorityMode alertPriorityMode) {
-        this.alertPriorityMode = alertPriorityMode;
+    public void setAlarmPriorityMode(AlarmPriorityMode alarmPriorityMode) {
+        this.alarmPriorityMode = alarmPriorityMode;
     }
 
     public void setMuteTime(int muteTime) {
@@ -45,18 +45,18 @@ public class AlertModel extends Object {
         return alertPriority;
     }
 
-    public AlertPriorityMode getAlertPriorityMode() {
-        return alertPriorityMode;
+    public AlarmPriorityMode getAlarmPriorityMode() {
+        return alarmPriorityMode;
     }
 
     public int getMuteTime() {
         return muteTime;
     }
 
-    public AlertModel() {
+    public AlarmModel() {
         this.alertId = alertId;
         this.alertPriority = alertPriority;
-        this.alertPriorityMode = alertPriorityMode;
+        this.alarmPriorityMode = alarmPriorityMode;
         this.muteTime = muteTime;
     }
 

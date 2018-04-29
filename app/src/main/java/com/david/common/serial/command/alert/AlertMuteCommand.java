@@ -16,22 +16,16 @@ public class AlertMuteCommand extends BaseSerialMessage {
 
     private String alertId;
     private String option;
-    private boolean longMute;
+    private int time;
 
-    public AlertMuteCommand(String alertId, String option, boolean longMute) {
+    public AlertMuteCommand(String alertId, String option, int time) {
         this.alertId = alertId;
         this.option = option;
-        this.longMute = longMute;
+        this.time = time;
     }
 
     @Override
     public byte[] getRequest() {
-        int time;
-        if (longMute) {
-            time = 240;
-        } else {
-            time = 115;
-        }
         return (String.format(COMMAND, alertId, option, time)).getBytes();
     }
 }
