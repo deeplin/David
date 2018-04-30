@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.david.common.mode.CtrlMode" />
+
+        <import type="com.david.incubator.util.ViewUtil" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.home.cabin.HomeViewModel" />
+    </data>
+
+    <!--904*620-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/home_background">
+
+        <!--360 to left-->
+        <android.support.constraint.Guideline
+            android:id="@+id/leftVerticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.398230088" />
+
+        <!--560 to left-->
+        <android.support.constraint.Guideline
+            android:id="@+id/middleVerticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.619469027" />
+
+        <!--278 to right-->
+        <android.support.constraint.Guideline
+            android:id="@+id/rightVerticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.692477876" />
+
+        <!--12 to right-->
+        <android.support.constraint.Guideline
+            android:id="@+id/borderVerticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.986725664" />
+
+        <!--210 to top-->
+        <android.support.constraint.Guideline
+            android:id="@+id/topHorizontalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.338709677" />
+
+        <!--410 to top-->
+        <android.support.constraint.Guideline
+            android:id="@+id/middleHorizontalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.661290323" />
+
+        <!--500 to top-->
+        <android.support.constraint.Guideline
+            android:id="@+id/bottomHorizontalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.806451613" />
+
+        <!--200*80-->
+        <ImageView
+            android:id="@+id/ivAirAnimation"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/animation_air"
+            app:layout_constraintBottom_toBottomOf="@id/topHorizontalGuideline"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintRight_toRightOf="@id/middleVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <ImageView
+            android:id="@+id/ivSkinAnimation"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/animation_skin"
+            app:layout_constraintBottom_toBottomOf="@id/middleHorizontalGuideline"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintRight_toRightOf="@id/middleVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/topHorizontalGuideline"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <!--Air-->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal"
+            android:text="@{ViewUtil.formatTempValue(viewModel.shareMemory.A2)}"
+            android:textColor="@color/c_air"
+            android:textSize="@{viewModel.shareMemory.ctrlMode.equals(CtrlMode.Air) ? @dimen/f122:  @dimen/f100}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/topHorizontalGuideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/leftVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1" />
+
+        <ImageView
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/air_set_celsius"
+            android:visibility="@{viewModel.shareMemory.ctrlMode.equals(CtrlMode.Air) ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/ivAirAnimation"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintRight_toRightOf="@id/middleVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/ivAirAnimation" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal"
+            android:text="@{viewModel.shareMemory.ctrlMode.equals(CtrlMode.Air) ? ViewUtil.formatTempValue(viewModel.shareMemory.airObjective) : null}"
+            android:textColor="@color/c_air"
+            android:textSize="@dimen/f30"
+            app:layout_constraintBottom_toBottomOf="@id/ivAirAnimation"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintRight_toRightOf="@id/middleVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/ivAirAnimation" />
+
+        <!--/Air-->
+
+        <!--skin-->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal"
+            android:text="@{ViewUtil.formatTempValue(viewModel.shareMemory.S1B)}"
+            android:textColor="@color/skin1"
+            android:textSize="@{viewModel.shareMemory.ctrlMode.equals(CtrlMode.Skin) ? @dimen/f122:  @dimen/f100}"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/middleHorizontalGuideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/leftVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/topHorizontalGuideline"
+            app:layout_constraintVertical_bias="1" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal"
+            android:text="@{ViewUtil.formatTempValue(viewModel.shareMemory.S2)}"
+            android:textColor="@color/skin2"
+            android:textSize="@dimen/f66"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/bottomHorizontalGuideline"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/leftVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/middleHorizontalGuideline" />
+
+        <ImageView
+            android:layout_width="146dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/skin_set_celsius"
+            android:visibility="@{viewModel.shareMemory.ctrlMode.equals(CtrlMode.Skin) ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/ivSkinAnimation"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintRight_toRightOf="@id/middleVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/ivSkinAnimation" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:gravity="center_horizontal"
+            android:text="@{viewModel.shareMemory.ctrlMode.equals(CtrlMode.Skin) ? ViewUtil.formatTempValue(viewModel.shareMemory.skinObjective) : null}"
+            android:textColor="@color/skin1"
+            android:textSize="@dimen/f30"
+            app:layout_constraintBottom_toBottomOf="@id/ivSkinAnimation"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintRight_toRightOf="@id/middleVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/ivSkinAnimation" />
+
+        <!--side-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatHumidityValue(viewModel.shareMemory.H1)}"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f76"
+            app:layout_constraintBottom_toBottomOf="@id/topHorizontalGuideline"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatHumidityValue(viewModel.shareMemory.humidityObjective)}"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f30"
+            app:layout_constraintBottom_toBottomOf="@id/topHorizontalGuideline"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <!--146-->
+        <ImageView
+            android:id="@+id/ivHomeHumidityHide"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.humidityVisible?View.VISIBLE: View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/topHorizontalGuideline"
+            app:layout_constraintHeight_percent="0.235483871"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="@id/borderVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1875" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatOxygenValue(viewModel.shareMemory.O2)}"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f76"
+            app:layout_constraintBottom_toBottomOf="@id/middleHorizontalGuideline"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/topHorizontalGuideline"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatOxygenValue(viewModel.shareMemory.oxygenObjective)}"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f30"
+            app:layout_constraintBottom_toBottomOf="@id/middleHorizontalGuideline"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/topHorizontalGuideline"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <!--146-->
+        <ImageView
+            android:id="@+id/ivHomeOxygenHide"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.oxygenVisible?View.VISIBLE: View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/middleHorizontalGuideline"
+            app:layout_constraintHeight_percent="0.235483871"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="@id/borderVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.633587786" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatSpo2Value(viewModel.shareMemory.SPO2)}"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f76"
+            app:layout_constraintBottom_toBottomOf="@id/bottomHorizontalGuideline"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/topHorizontalGuideline"
+            app:layout_constraintVertical_bias="0.82" />
+
+        <TextView
+            android:id="@+id/tvHomeSpo2Upper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatSpo2Value(viewModel.shareMemory.spo2UpperLimit)}"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f18"
+            app:layout_constraintBottom_toBottomOf="@id/bottomHorizontalGuideline"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/topHorizontalGuideline"
+            app:layout_constraintVertical_bias="0.72" />
+
+        <TextView
+            android:id="@+id/tvHomeSpo2Lower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatSpo2Value(viewModel.shareMemory.spo2LowerLimit)}"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f18"
+            app:layout_constraintLeft_toLeftOf="@id/tvHomeSpo2Upper"
+            app:layout_constraintTop_toBottomOf="@id/tvHomeSpo2Upper" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatPrValue(viewModel.shareMemory.PR)}"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f76"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bottomHorizontalGuideline"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <TextView
+            android:id="@+id/tvHomePrUpper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatPrValue(viewModel.shareMemory.prUpperLimit)}"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f18"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/bottomHorizontalGuideline"
+            app:layout_constraintVertical_bias="0.45" />
+
+        <TextView
+            android:id="@+id/tvHomePrLower"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@{ViewUtil.formatPrValue(viewModel.shareMemory.prLowerLimit)}"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f18"
+            app:layout_constraintLeft_toLeftOf="@id/tvHomePrUpper"
+            app:layout_constraintTop_toBottomOf="@id/tvHomePrUpper" />
+
+        <!--288-->
+        <ImageView
+            android:id="@+id/ivHomeSpo2Hide"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{viewModel.spo2Visible?View.VISIBLE: View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.464516129"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintRight_toRightOf="@id/borderVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/topHorizontalGuideline"
+            app:layout_constraintVertical_bias="0.918032787" />
+
+        <!--Heater-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{viewModel.shareMemory.inc + "%"}'
+            android:textColor="@color/c_air"
+            android:textSize="@dimen/f28"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.86"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/leftVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/bottomHorizontalGuideline"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <!--688 to right-->
+        <android.support.constraint.Guideline
+            android:id="@+id/heatHorizontalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.238938053" />
+
+        <!--22-->
+        <ImageView
+            android:id="@+id/ivHomeHeatingHide"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@color/border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.035483871"
+            app:layout_constraintRight_toRightOf="@id/heatHorizontalGuideline"
+            app:layout_constraintTop_toTopOf="@id/bottomHorizontalGuideline"
+            app:layout_constraintVertical_bias="0.612244898" />
+
+        <!--/Heater-->
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

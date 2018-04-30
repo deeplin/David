@@ -2,6 +2,8 @@ package com.david.common.control;
 
 import com.david.common.ui.alarm.AlarmView;
 import com.david.incubator.control.IncubatorApplication;
+import com.david.incubator.ui.home.cabin.HomeFragment;
+import com.david.incubator.ui.home.cabin.HomeViewModel;
 import com.david.incubator.ui.main.MainActivity;
 import com.david.incubator.ui.main.MainViewModel;
 import com.david.incubator.ui.main.side.SideLayout;
@@ -53,4 +55,7 @@ public interface ApplicationComponent {
 
     void inject(MenuViewModel menuViewModel);
 
+    void inject(HomeFragment homeFragment);
+
+    void inject(HomeViewModel homeViewModel);
 }

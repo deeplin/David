@@ -11,7 +11,7 @@
             type="com.david.incubator.ui.main.side.SideViewModel" />
     </data>
 
-    <!--120*768-->
+    <!--120*620-->
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -36,7 +36,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.55" />
+            app:layout_constraintVertical_bias="0.513" />
 
         <ImageButton
             android:id="@+id/btSideClearAlarm"

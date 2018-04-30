@@ -2,9 +2,11 @@ package com.david.common.control;
 
 import com.david.common.dao.CtrlGetCommand;
 import com.david.common.dao.Spo2GetCommand;
+import com.david.common.mode.AlarmSettingMode;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
+import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertMuteCommand;
 import com.david.common.serial.command.module.ModuleGetHardwareCommand;
 import com.david.common.serial.command.module.ModuleGetSoftwareCommand;
@@ -96,26 +98,26 @@ public class MessageSender {
         });
         serialControl.addSession(ctrlGetCommand);
     }
-//
-//    public void getSpo2Alert(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        AlertGetCommand spo2OvHAlertGetCommand = new AlertGetCommand(AlarmSettingMode.SPO2_OVH);
-//        spo2OvHAlertGetCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(spo2OvHAlertGetCommand);
-//
-//        AlertGetCommand spo2OvLAlertGetCommand = new AlertGetCommand(AlarmSettingMode.SPO2_OVL);
-//        spo2OvLAlertGetCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(spo2OvLAlertGetCommand);
-//    }
-//
-//    public void getPrAlert(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        AlertGetCommand prOvHAlertGetCommand = new AlertGetCommand(AlarmSettingMode.PR_OVH);
-//        prOvHAlertGetCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(prOvHAlertGetCommand);
-//
-//        AlertGetCommand prOvLAlertGetCommand = new AlertGetCommand(AlarmSettingMode.PR_OVL);
-//        prOvLAlertGetCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(prOvLAlertGetCommand);
-//    }
+
+    public void getSpo2Alert(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        AlertGetCommand spo2OvHAlertGetCommand = new AlertGetCommand(AlarmSettingMode.SPO2_OVH);
+        spo2OvHAlertGetCommand.setOnCompleted(onComplete);
+        serialControl.addSession(spo2OvHAlertGetCommand);
+
+        AlertGetCommand spo2OvLAlertGetCommand = new AlertGetCommand(AlarmSettingMode.SPO2_OVL);
+        spo2OvLAlertGetCommand.setOnCompleted(onComplete);
+        serialControl.addSession(spo2OvLAlertGetCommand);
+    }
+
+    public void getPrAlert(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        AlertGetCommand prOvHAlertGetCommand = new AlertGetCommand(AlarmSettingMode.PR_OVH);
+        prOvHAlertGetCommand.setOnCompleted(onComplete);
+        serialControl.addSession(prOvHAlertGetCommand);
+
+        AlertGetCommand prOvLAlertGetCommand = new AlertGetCommand(AlarmSettingMode.PR_OVL);
+        prOvLAlertGetCommand.setOnCompleted(onComplete);
+        serialControl.addSession(prOvLAlertGetCommand);
+    }
 //
 //    public void getCalibration(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        ShowCalibrationCommand showCalibrationCommand = new ShowCalibrationCommand();

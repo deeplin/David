@@ -3,6 +3,7 @@ package com.david.incubator.ui.main;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -13,9 +14,10 @@ import com.david.R;
 import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
 import com.david.common.util.AutoUtil;
+import com.david.common.util.FragmentPage;
 import com.david.databinding.IncubatorActivityMainBinding;
+import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.menu.MenuViewModel;
-import com.david.incubator.util.ViewUtil;
 
 import javax.inject.Inject;
 
@@ -39,7 +41,7 @@ public class MainActivity extends Activity implements MainNavigator {
     AutomationControl automationControl;
 
     IncubatorActivityMainBinding binding;
-    private Fragment currentFragment;
+    private Fragment[] fragmentArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,10 @@ public class MainActivity extends Activity implements MainNavigator {
 
         binding = DataBindingUtil.setContentView(this, R.layout.incubator_activity_main);
         binding.setViewModel(mainViewModel);
-        currentFragment = null;
+
         mainViewModel.setNavigator(this);
+
+        initFragment();
     }
 
     @Override
@@ -107,6 +111,17 @@ public class MainActivity extends Activity implements MainNavigator {
                 .subscribe(this::rotate);
     }
 
+    private void initFragment() {
+        fragmentArray = new Fragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT];
+        fragmentArray[FragmentPage.HOME_FRAGMENT] = new HomeFragment();
+
+        FragmentManager fragmentManager = this.getFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(R.id.flHome, fragmentArray[FragmentPage.HOME_FRAGMENT]);
+        transaction.commit();
+
+    }
+
     /*
      * 碎片换页
      * */
@@ -157,14 +172,15 @@ public class MainActivity extends Activity implements MainNavigator {
 //                }
 //                break;
             }
-            ViewUtil.changeFragment(fragmentManager, currentFragment, toFragment, position, R.id.flHome);
-            currentFragment = toFragment;
+//            ViewUtil.changeFragment(fragmentManager, currentFragment, toFragment, position, R.id.flHome);
+//            currentFragment = toFragment;
         }
     }
 
     @Override
     public boolean isLockableFragment() {
-        return currentFragment instanceof IFragmentLockable;
+//        return currentFragment instanceof IFragmentLockable;
+        return true;
     }
 
     @Override

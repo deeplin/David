@@ -17,8 +17,8 @@ public class FragmentPage {
     public static final byte SETTING_FRAGMENT = 6;
     public static final byte SETTING_LOGIN = 7;
 
-    public static final byte WARMER_HOME_FRAGMENT = 10;
-    public static final byte WARMER_OBJECTIVE_FRAGMENT = 11;
+    public static final byte WARMER_HOME_FRAGMENT = 8;
+    public static final byte WARMER_OBJECTIVE_FRAGMENT = 9;
 
     public static final byte USER_HOME = 20;
     public static final byte USER_MODEL = 21;
