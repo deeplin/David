@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!--904*620-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/objective_background">
+
+        <!--<android.support.design.widget.TabLayout-->
+            <!--android:id="@+id/tlObjective"-->
+            <!--android:background="#ff00ff"-->
+            <!--android:theme="@style/AppTheme"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/y88" />-->
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpObjective"
+            android:layout_width="804dp"
+            android:background="#00ff00"
+            android:layout_height="@dimen/y470"
+            android:layout_marginBottom="@dimen/y48"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

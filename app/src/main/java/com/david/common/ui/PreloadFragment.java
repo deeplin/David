@@ -1,14 +1,12 @@
 package com.david.common.ui;
 
-import android.app.Fragment;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.david.R;
 
 public abstract class PreloadFragment<U extends ViewDataBinding> extends Fragment implements IViewModel {
 
@@ -17,7 +15,7 @@ public abstract class PreloadFragment<U extends ViewDataBinding> extends Fragmen
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater, R.layout.incubator_fragment_home, container, false);
+        binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         init();
         return binding.getRoot();
     }
@@ -58,6 +56,8 @@ public abstract class PreloadFragment<U extends ViewDataBinding> extends Fragmen
             attach();
         }
     }
+
+    protected abstract int getLayoutId();
 
     protected abstract void init();
 }

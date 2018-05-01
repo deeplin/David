@@ -1,10 +1,6 @@
 package com.david.incubator.ui.home.cabin;
 
-import android.app.Fragment;
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +17,6 @@ import com.david.common.util.AnimationUtil;
 import com.david.common.util.AutoUtil;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.IncubatorFragmentHomeBinding;
-
 
 import javax.inject.Inject;
 
@@ -44,6 +39,11 @@ public class HomeFragment extends PreloadFragment<IncubatorFragmentHomeBinding> 
     ModuleHardware moduleHardware;
 
     AlphaAnimation animation;
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.incubator_fragment_home;
+    }
 
     @Override
     protected void init() {

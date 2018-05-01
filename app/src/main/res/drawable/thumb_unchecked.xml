@@ -6,7 +6,7 @@
 
             <!-- 高度40 -->
             <size
-                android:width="@dimen/x60"
+                android:width="60dp"
                 android:height="@dimen/y40" />
             <!-- 圆角弧度 20 -->
             <corners android:radius="@dimen/y20" />
@@ -25,7 +25,7 @@
     <item
         android:bottom="@dimen/y10"
         android:drawable="@mipmap/chart"
-        android:left="@dimen/x10"
-        android:right="@dimen/x10"
+        android:left="10dp"
+        android:right="10dp"
         android:top="@dimen/y10" />
 </layer-list>

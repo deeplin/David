@@ -4,7 +4,7 @@
     <!-- 高度40 -->
     <size android:height="@dimen/y20" />
     <!-- 圆角弧度 20 -->
-    <corners android:radius="@dimen/x20" />
+    <corners android:radius="20dp" />
 
     <!-- 变化率 -->
     <gradient

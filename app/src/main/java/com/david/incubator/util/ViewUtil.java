@@ -25,32 +25,6 @@ import java.util.Locale;
  */
 
 public class ViewUtil {
-    public static synchronized void changeFragment(FragmentManager fragmentManager, Fragment fromFragment,
-                                                   Fragment toFragment, int toFragmentId, int resourceID) {
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        if (toFragment != null) {
-            if (toFragment.isAdded()) {
-                fragmentTransaction.show(toFragment);
-            } else {
-                fragmentTransaction.add(resourceID, toFragment, String.valueOf(toFragmentId));
-            }
-        }
-        fragmentTransaction.commit();
-
-        if (fromFragment != null) {
-            fragmentTransaction.remove(fromFragment);
-        }
-    }
-
-    public static void switchFragment(FragmentManager fragmentManager, Fragment fromFragment,
-                                              Fragment toFragment) {
-
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.hide(fromFragment).show(toFragment);
-        transaction.commit();
-    }
-
     public static AlertDialog buildConfirmDialog(Context context, int titleId, String message, DialogInterface.OnClickListener listener) {
         String title = ResourceUtil.getString(titleId);
 

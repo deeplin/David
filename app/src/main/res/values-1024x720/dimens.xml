@@ -18,24 +18,15 @@
     <dimen name="f54">54px</dimen>
     <dimen name="f60">60px</dimen>
 
-    <!--dimen x-->
-    <dimen name="x10">10px</dimen>
-    <dimen name="x16">16px</dimen>
-    <dimen name="x20">20px</dimen>
-    <dimen name="y26">26px</dimen>
-    <dimen name="x30">30px</dimen>
-    <dimen name="x40">40px</dimen>
-    <dimen name="x60">60px</dimen>
-    <dimen name="x80">80px</dimen>
-    <dimen name="x100">100px</dimen>
-
     <!--dimen y-->
     <dimen name="y10">10px</dimen>
     <dimen name="y20">20px</dimen>
     <dimen name="y40">40px</dimen>
     <dimen name="y48">48px</dimen>
     <dimen name="y60">60px</dimen>
+    <dimen name="y88">88px</dimen>
     <dimen name="y100">100px</dimen>
+    <dimen name="y470">470px</dimen>
     <dimen name="y620">620px</dimen>
 
     <!--For Animation-->

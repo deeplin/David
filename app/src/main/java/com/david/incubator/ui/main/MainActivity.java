@@ -1,12 +1,13 @@
 package com.david.incubator.ui.main;
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
@@ -18,6 +19,7 @@ import com.david.common.util.FragmentPage;
 import com.david.databinding.IncubatorActivityMainBinding;
 import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.menu.MenuViewModel;
+import com.david.incubator.ui.objective.cabin.ObjectiveFragment;
 
 import javax.inject.Inject;
 
@@ -31,7 +33,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * description: 主活动
  */
 
-public class MainActivity extends Activity implements MainNavigator {
+public class MainActivity extends AppCompatActivity implements MainNavigator {
 
     @Inject
     MainViewModel mainViewModel;
@@ -42,6 +44,7 @@ public class MainActivity extends Activity implements MainNavigator {
 
     IncubatorActivityMainBinding binding;
     private Fragment[] fragmentArray;
+    private Fragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +68,14 @@ public class MainActivity extends Activity implements MainNavigator {
     @Override
     public void onResume() {
         super.onResume();
-        Intent intent = new Intent();
-        intent.setAction("android.intent.action.HIDE_NAVIGATION_BAR");
-        MainActivity.this.sendBroadcast(intent);
+//        Intent intent = new Intent();
+//        intent.setAction("android.intent.action.HIDE_NAVIGATION_BAR");
+//        MainActivity.this.sendBroadcast(intent);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
 
         binding.avAlarm.attach();
         mainViewModel.attach();
@@ -106,6 +114,7 @@ public class MainActivity extends Activity implements MainNavigator {
 
     @Override
     public void changeFragment(byte position) {
+        mainViewModel.showAlertList.set(false);
         Observable.just(position)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::rotate);
@@ -114,66 +123,68 @@ public class MainActivity extends Activity implements MainNavigator {
     private void initFragment() {
         fragmentArray = new Fragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT];
         fragmentArray[FragmentPage.HOME_FRAGMENT] = new HomeFragment();
+        fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT] = new ObjectiveFragment();
 
-        FragmentManager fragmentManager = this.getFragmentManager();
+        FragmentManager fragmentManager = this.getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        transaction.add(R.id.flHome, fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT]);
+        transaction.hide(fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT]);
         transaction.add(R.id.flHome, fragmentArray[FragmentPage.HOME_FRAGMENT]);
         transaction.commit();
 
+        currentFragment = fragmentArray[FragmentPage.HOME_FRAGMENT];
     }
 
     /*
      * 碎片换页
      * */
     private void rotate(byte position) {
-
-        FragmentManager fragmentManager = this.getFragmentManager();
-        Fragment toFragment = fragmentManager.findFragmentByTag(String.valueOf(position));
-        if (toFragment == null) {
-            switch (position) {
-//                case FragmentPage.HOME_FRAGMENT: {
-//                    menuViewModel.clearButtonBorder();
-//                    toFragment = new HomeFragment();
-//                }
-//                break;
-//                case FragmentPage.OBJECTIVE_FRAGMENT: {
-//                    menuViewModel.clearButtonBorder();
-//                    toFragment = new ObjectiveFragment();
-//                }
-//                break;
-//                case FragmentPage.CHART_FRAGMENT: {
-//                    toFragment = new ChartFragment();
-//                }
-//                break;
-//                case FragmentPage.SPO2_FRAGMENT: {
-//                    toFragment = new Spo2Fragment();
-//                }
-//                break;
-//                case FragmentPage.SCALE_FRAGMENT: {
-//                    toFragment = new ScaleFragment();
-//                }
-//                break;
-//                case FragmentPage.CAMERA_FRAGMENT: {
-//                    toFragment = new CameraFragment();
-//                }
-//                break;
-//                case FragmentPage.SETTING_FRAGMENT: {
-//                    toFragment = new SettingFragment();
-//                }
-//                break;
-//                case FragmentPage.WARMER_HOME_FRAGMENT: {
-//                    menuViewModel.clearButtonBorder();
-//                    toFragment = new WarmerHomeFragment();
-//                }
-//                break;
-//                case FragmentPage.WARMER_OBJECTIVE_FRAGMENT: {
-//                    menuViewModel.clearButtonBorder();
-//                    toFragment = new WarmerObjectiveFragment();
-//                }
-//                break;
+        Fragment toFragment = fragmentArray[position];
+        if (toFragment != null) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.hide(currentFragment).show(toFragment);
+            transaction.commit();
+        }
+        switch (position) {
+            case FragmentPage.HOME_FRAGMENT: {
+                menuViewModel.clearButtonBorder();
             }
-//            ViewUtil.changeFragment(fragmentManager, currentFragment, toFragment, position, R.id.flHome);
-//            currentFragment = toFragment;
+            break;
+            case FragmentPage.OBJECTIVE_FRAGMENT: {
+                menuViewModel.clearButtonBorder();
+            }
+            break;
+//            case FragmentPage.CHART_FRAGMENT: {
+//                toFragment = new ChartFragment();
+//            }
+//            break;
+//            case FragmentPage.SPO2_FRAGMENT: {
+//                toFragment = new Spo2Fragment();
+//            }
+//            break;
+//            case FragmentPage.SCALE_FRAGMENT: {
+//                toFragment = new ScaleFragment();
+//            }
+//            break;
+//            case FragmentPage.CAMERA_FRAGMENT: {
+//                toFragment = new CameraFragment();
+//            }
+//            break;
+//            case FragmentPage.SETTING_FRAGMENT: {
+//                toFragment = new SettingFragment();
+//            }
+//            break;
+//            case FragmentPage.WARMER_HOME_FRAGMENT: {
+//                menuViewModel.clearButtonBorder();
+//                toFragment = new WarmerHomeFragment();
+//            }
+//            break;
+//            case FragmentPage.WARMER_OBJECTIVE_FRAGMENT: {
+//                menuViewModel.clearButtonBorder();
+//                toFragment = new WarmerObjectiveFragment();
+//            }
+//            break;
         }
     }
 

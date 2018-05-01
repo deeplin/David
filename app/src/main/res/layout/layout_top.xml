@@ -18,7 +18,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:layout_width="@dimen/x40"
+            android:layout_width="40dp"
             android:layout_height="@dimen/y26"
             android:src="@mipmap/user"
             android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alarmField != null? View.GONE: View.VISIBLE}"
