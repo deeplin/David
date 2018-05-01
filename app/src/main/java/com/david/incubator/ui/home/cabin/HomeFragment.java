@@ -1,6 +1,7 @@
 package com.david.incubator.ui.home.cabin;
 
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,7 @@ import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.mode.FunctionMode;
-import com.david.common.ui.PreloadFragment;
+import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AnimationUtil;
 import com.david.common.util.AutoUtil;
 import com.david.common.util.FragmentPage;
@@ -29,7 +30,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * email: 10525677@qq.com
  * description:
  */
-public class HomeFragment extends PreloadFragment<IncubatorFragmentHomeBinding> implements HomeNavigator {
+public class HomeFragment extends AutoAttachFragment<IncubatorFragmentHomeBinding> implements HomeNavigator {
 
     @Inject
     HomeViewModel homeViewModel;
@@ -99,18 +100,21 @@ public class HomeFragment extends PreloadFragment<IncubatorFragmentHomeBinding> 
             }
             return true;
         });
+        Log.e("home","init");
     }
 
     @Override
     public void attach() {
         homeViewModel.setNavigator(this);
         homeViewModel.attach();
+        Log.e("home","attach");
     }
 
     @Override
     public void detach() {
         homeViewModel.detach();
         homeViewModel.setNavigator(null);
+        Log.e("home","detach");
     }
 
     @Override

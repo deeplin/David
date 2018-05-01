@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class PreloadFragment<U extends ViewDataBinding> extends Fragment implements IViewModel {
+public abstract class AutoAttachFragment<U extends ViewDataBinding> extends Fragment implements IViewModel {
 
     protected U binding;
 

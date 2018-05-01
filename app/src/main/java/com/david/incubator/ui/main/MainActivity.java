@@ -1,9 +1,7 @@
 package com.david.incubator.ui.main;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -14,6 +12,7 @@ import android.view.WindowManager;
 import com.david.R;
 import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
+import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AutoUtil;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.IncubatorActivityMainBinding;
@@ -43,8 +42,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     AutomationControl automationControl;
 
     IncubatorActivityMainBinding binding;
-    private Fragment[] fragmentArray;
-    private Fragment currentFragment;
+    private AutoAttachFragment[] fragmentArray;
+    private AutoAttachFragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     }
 
     private void initFragment() {
-        fragmentArray = new Fragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT];
+        fragmentArray = new AutoAttachFragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT];
         fragmentArray[FragmentPage.HOME_FRAGMENT] = new HomeFragment();
         fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT] = new ObjectiveFragment();
 
@@ -139,14 +138,13 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     /*
      * 碎片换页
      * */
-    private void rotate(byte position) {
-        Fragment toFragment = fragmentArray[position];
-        if(toFragment != currentFragment) {
-            if (toFragment != null) {
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.hide(currentFragment).show(toFragment);
-                transaction.commit();
-            }
+    private synchronized void rotate(byte position) {
+        AutoAttachFragment toFragment = fragmentArray[position];
+        if(toFragment != null && toFragment != currentFragment) {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.hide(currentFragment).show(toFragment);
+            transaction.commit();
+
             switch (position) {
                 case FragmentPage.HOME_FRAGMENT: {
                     menuViewModel.clearButtonBorder();
@@ -187,6 +185,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 //            }
 //            break;
             }
+            currentFragment = toFragment;
         }
     }
 

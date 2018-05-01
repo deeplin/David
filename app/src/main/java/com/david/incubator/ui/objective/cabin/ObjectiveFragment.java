@@ -1,6 +1,6 @@
 package com.david.incubator.ui.objective.cabin;
 
-import android.support.design.widget.TabLayout;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -8,12 +8,12 @@ import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
-import com.david.common.ui.PreloadFragment;
+import com.david.common.ui.AutoAttachFragment;
 import com.david.databinding.IncubatorFragmentObjectiveBinding;
 
 import javax.inject.Inject;
 
-public class ObjectiveFragment extends PreloadFragment<IncubatorFragmentObjectiveBinding> {
+public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjectiveBinding> {
     @Inject
     ShareMemory shareMemory;
     @Inject
@@ -27,6 +27,7 @@ public class ObjectiveFragment extends PreloadFragment<IncubatorFragmentObjectiv
     @Override
     protected void init() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
+        Log.e("objective", "init");
     }
 
     @Override
@@ -41,16 +42,19 @@ public class ObjectiveFragment extends PreloadFragment<IncubatorFragmentObjectiv
 //        binding.tlObjective.setTabMode(TabLayout.MODE_FIXED);
 //        binding.tlObjective.setTabGravity(TabLayout.GRAVITY_CENTER);
 
+        binding.tlObjective.removeAllTabs();
         binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.celsius_small));
         binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.humidity));
         binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.o2));
         binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.spo2));
         binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.pr));
+
+        Log.e("objective", "attach");
     }
 
     @Override
     public void detach() {
-
+        Log.e("objective", "detach");
     }
 
     private void buildTabPage(View view) {
