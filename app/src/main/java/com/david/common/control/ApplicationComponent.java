@@ -14,6 +14,8 @@ import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
 import com.david.incubator.ui.objective.cabin.ObjectiveFragment;
 import com.david.incubator.ui.objective.cabin.ObjectivePagerAdapter;
+import com.david.incubator.ui.objective.cabin.temp.ObjectiveTempLayout;
+import com.david.incubator.ui.objective.cabin.temp.ObjectiveTempViewModel;
 
 import javax.inject.Singleton;
 
@@ -64,4 +66,8 @@ public interface ApplicationComponent {
     void inject(ObjectiveFragment objectiveFragment);
 
     void inject(ObjectivePagerAdapter objectivePagerAdapter);
+
+    void inject(ObjectiveTempViewModel objectiveTempViewModel);
+
+    void inject(ObjectiveTempLayout objectiveTempLayout);
 }

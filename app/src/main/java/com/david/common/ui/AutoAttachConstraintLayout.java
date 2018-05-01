@@ -1,8 +1,11 @@
 package com.david.common.ui;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 
 /**
@@ -12,14 +15,20 @@ import android.view.View;
  * description:
  */
 
-public abstract class AutoAttachConstraintLayout extends ConstraintLayout implements IViewModel {
+public abstract class AutoAttachConstraintLayout<U extends ViewDataBinding> extends ConstraintLayout implements IViewModel {
+
+    protected U binding;
 
     public AutoAttachConstraintLayout(Context context) {
         super(context);
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        binding = DataBindingUtil.inflate(inflater, getLayoutId(), this, true);
     }
 
     public AutoAttachConstraintLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        binding = DataBindingUtil.inflate(inflater, getLayoutId(), this, true);
     }
 
     @Override
@@ -34,4 +43,6 @@ public abstract class AutoAttachConstraintLayout extends ConstraintLayout implem
                 break;
         }
     }
+
+    protected abstract int getLayoutId();
 }

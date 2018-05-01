@@ -33,7 +33,6 @@ public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjec
     @Override
     protected void init() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
-        Log.e("objective", "init");
     }
 
     @Override
@@ -47,7 +46,6 @@ public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjec
 
         binding.tlObjective.removeAllTabs();
         binding.tlObjective.addTab(buildIcon(R.mipmap.celsius_small));
-
 
         if (hardwareConfig.isHUM()) {
             binding.tlObjective.addTab(buildIcon(R.mipmap.humidity));
@@ -70,6 +68,7 @@ public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjec
             @Override
             public void onPageSelected(int position) {
                 Log.e("2", "" + position);
+                binding.vpObjective.getChildAt(position);
             }
 
             @Override
@@ -93,7 +92,6 @@ public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjec
 //        fragmentObjectiveBinding.vpObjective.setOffscreenPageLimit(1);
 
 //        binding.tlObjective.getTabAt(0).select();
-        Log.e("objective","attach");
     }
 
     private TabLayout.Tab buildIcon(int icon) {
@@ -106,6 +104,6 @@ public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjec
 
     @Override
     public void detach() {
-        Log.e("objective","detach");
+        Log.e("2", "detach");
     }
 }

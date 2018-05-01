@@ -5,6 +5,7 @@ import android.databinding.Observable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
+import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
@@ -29,7 +30,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * description:
  */
 
-public class MenuLayout extends AutoAttachConstraintLayout {
+public class MenuLayout extends AutoAttachConstraintLayout<IncubatorLayoutMenuBinding> {
 
     @Inject
     MenuViewModel menuViewModel;
@@ -42,17 +43,12 @@ public class MenuLayout extends AutoAttachConstraintLayout {
     @Inject
     ModuleSoftware moduleSoftware;
 
-    IncubatorLayoutMenuBinding binding;
-
     Observable.OnPropertyChangedCallback hardwareCallback;
     Observable.OnPropertyChangedCallback softwareCallback;
 
     public MenuLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         MainApplication.getInstance().getApplicationComponent().inject(this);
-
-        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        binding = IncubatorLayoutMenuBinding.inflate(layoutInflater, this, true);
         binding.setViewModel(menuViewModel);
 
         softwareCallback = new Observable.OnPropertyChangedCallback() {
@@ -138,6 +134,11 @@ public class MenuLayout extends AutoAttachConstraintLayout {
                         shareMemory.currentFragmentID.set(FragmentPage.CAMERA_FRAGMENT);
                     }
                 });
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.incubator_layout_menu;
     }
 
     @Override

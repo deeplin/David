@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
 
+import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.SystemMode;
@@ -25,21 +26,16 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SideLayout extends AutoAttachConstraintLayout {
+public class SideLayout extends AutoAttachConstraintLayout<IncubatorLayoutSideBinding> {
 
     @Inject
     SideViewModel viewModel;
     @Inject
     ShareMemory shareMemory;
 
-    IncubatorLayoutSideBinding binding;
-
     public SideLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         MainApplication.getInstance().getApplicationComponent().inject(this);
-
-        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        binding = IncubatorLayoutSideBinding.inflate(layoutInflater, this, true);
         binding.setViewModel(viewModel);
 
         RxView.clicks(binding.btSideHome)
@@ -78,6 +74,11 @@ public class SideLayout extends AutoAttachConstraintLayout {
                         viewModel.muteAlarm();
                     }
                 });
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.incubator_layout_side;
     }
 
     @Override

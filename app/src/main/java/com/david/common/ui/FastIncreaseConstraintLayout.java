@@ -1,7 +1,10 @@
 package com.david.common.ui;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
+import android.databinding.ViewDataBinding;
 import android.support.constraint.ConstraintLayout;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
 
@@ -18,7 +21,7 @@ import io.reactivex.disposables.Disposable;
  * email: 10525677@qq.com
  * description:
  */
-public abstract class FastIncreaseConstraintLayout extends ConstraintLayout implements ITabConstraintLayout {
+public abstract class FastIncreaseConstraintLayout<U extends ViewDataBinding> extends ConstraintLayout implements ITabConstraintLayout {
 
     private volatile Disposable increaseDisposable;
     private volatile Disposable decreaseDisposable;
@@ -26,8 +29,12 @@ public abstract class FastIncreaseConstraintLayout extends ConstraintLayout impl
     private ImageButton increaseButton;
     private ImageButton decreaseButton;
 
+    protected U binding;
+
     public FastIncreaseConstraintLayout(Context context) {
         super(context);
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        binding = DataBindingUtil.inflate(inflater, getLayoutId(), this, true);
     }
 
     protected void setButton(ImageButton increaseButton, ImageButton decreaseButton) {
@@ -85,4 +92,6 @@ public abstract class FastIncreaseConstraintLayout extends ConstraintLayout impl
     protected abstract void increaseValue();
 
     protected abstract void decreaseValue();
+
+    protected abstract int getLayoutId();
 }

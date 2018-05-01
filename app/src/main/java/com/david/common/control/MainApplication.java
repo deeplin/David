@@ -1,6 +1,8 @@
 package com.david.common.control;
 
 import android.app.Application;
+import android.util.Log;
+
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.SystemSetting;
 import com.david.common.mode.LanguageMode;
@@ -38,16 +40,11 @@ public abstract class MainApplication extends Application{
     @Override
     public void onTerminate() {
         super.onTerminate();
-        try {
-            stop();
-        } catch (Exception e) {
-            LogUtils.e(e);
-        }
     }
 
     protected abstract void start();
 
-    protected  abstract void stop();
+    public abstract void stop();
 
     public ApplicationComponent getApplicationComponent() {
         return applicationComponent;

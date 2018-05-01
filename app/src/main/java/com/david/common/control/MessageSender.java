@@ -8,6 +8,8 @@ import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
 import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertMuteCommand;
+import com.david.common.serial.command.ctrl.CtrlModeCommand;
+import com.david.common.serial.command.ctrl.CtrlSetCommand;
 import com.david.common.serial.command.module.ModuleGetHardwareCommand;
 import com.david.common.serial.command.module.ModuleGetSoftwareCommand;
 import com.david.common.serial.command.spo2.Spo2SetCommand;
@@ -118,6 +120,22 @@ public class MessageSender {
         prOvLAlertGetCommand.setOnCompleted(onComplete);
         serialControl.addSession(prOvLAlertGetCommand);
     }
+
+    public void setCtrlMode(String ctrlMode, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        CtrlModeCommand controlModeCommand = new CtrlModeCommand(ctrlMode);
+        controlModeCommand.setOnCompleted(onComplete);
+        serialControl.addSession(controlModeCommand);
+    }
+
+    public void setCtrlSet(String mode, String ctrlMode, int target, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        if (target >= 0) {
+            CtrlSetCommand ctrlSetCommand =
+                    new CtrlSetCommand(mode, ctrlMode, String.valueOf(target));
+            ctrlSetCommand.setOnCompleted(onComplete);
+            serialControl.addSession(ctrlSetCommand);
+        }
+    }
+
 //
 //    public void getCalibration(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        ShowCalibrationCommand showCalibrationCommand = new ShowCalibrationCommand();
@@ -145,20 +163,8 @@ public class MessageSender {
 //        serialControl.addSession(alertResumeAllCommand);
 //    }
 //
-//    public void setCtrlMode(String ctrlMode, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        CtrlModeCommand controlModeCommand = new CtrlModeCommand(ctrlMode);
-//        controlModeCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(controlModeCommand);
-//    }
-//
-//    public void setCtrlSet(String mode, String ctrlMode, int target, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        if (target >= 0) {
-//            CtrlSetCommand ctrlSetCommand =
-//                    new CtrlSetCommand(mode, ctrlMode, String.valueOf(target));
-//            ctrlSetCommand.setOnCompleted(onComplete);
-//            serialControl.addSession(ctrlSetCommand);
-//        }
-//    }
+
+
 //
 //    public void setModule(boolean status, String sensorName, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        /*关闭开启模块*/

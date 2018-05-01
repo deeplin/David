@@ -2,8 +2,8 @@ package com.david.incubator.ui.main.top;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 
+import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.ui.AutoAttachConstraintLayout;
 import com.david.common.util.Constant;
@@ -21,26 +21,26 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class TopLayout extends AutoAttachConstraintLayout {
+public class TopLayout extends AutoAttachConstraintLayout<LayoutTopBinding> {
 
     @Inject
     TopViewModel topViewModel;
     @Inject
     MainViewModel mainViewModel;
 
-    LayoutTopBinding binding;
-
     public TopLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         MainApplication.getInstance().getApplicationComponent().inject(this);
-
-        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        binding = LayoutTopBinding.inflate(layoutInflater, this, true);
         binding.setViewModel(topViewModel);
 
         RxView.clicks(binding.tvTopAlarm)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object Void) -> mainViewModel.showAlertList.set(!mainViewModel.showAlertList.get()));
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.layout_top;
     }
 
     @Override

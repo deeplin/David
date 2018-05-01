@@ -50,7 +50,7 @@ public class HomeFragment extends AutoAttachFragment<IncubatorFragmentHomeBindin
     protected void init() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
-        super.binding.setViewModel(homeViewModel);
+        binding.setViewModel(homeViewModel);
         animation = AnimationUtil.getAlphaAnimation();
 
         View view = binding.getRoot();
@@ -100,21 +100,18 @@ public class HomeFragment extends AutoAttachFragment<IncubatorFragmentHomeBindin
             }
             return true;
         });
-        Log.e("home","init");
     }
 
     @Override
     public void attach() {
         homeViewModel.setNavigator(this);
         homeViewModel.attach();
-        Log.e("home","attach");
     }
 
     @Override
     public void detach() {
         homeViewModel.detach();
         homeViewModel.setNavigator(null);
-        Log.e("home","detach");
     }
 
     @Override

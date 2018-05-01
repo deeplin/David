@@ -2,6 +2,7 @@ package com.david.incubator.ui.main;
 
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
+import android.util.Log;
 
 import com.david.common.alert.AlarmControl;
 import com.david.common.control.AutomationControl;
@@ -117,6 +118,8 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
         shareMemory.systemMode.addOnPropertyChangedCallback(systemModeCallback);
         shareMemory.lockScreen.addOnPropertyChangedCallback(lockScreenCallback);
         shareMemory.currentFragmentID.addOnPropertyChangedCallback(currentFragmentIDCallback);
+
+//        shareMemory.systemMode.notifyChange();
     }
 
     @Override

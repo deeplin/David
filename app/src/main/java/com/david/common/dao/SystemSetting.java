@@ -35,14 +35,10 @@ public class SystemSetting {
     private int oxygenLower = 200;
     private int humidityUpper = 950;
     private int humidityLower = 0;
-
-    
     private byte languageIndex;
     private byte volume = 100;
     private byte luminance = 100;
     private int blueTime = 0;
-
-
 
     @Generated(hash = 1899057136)
     public SystemSetting(Long id, int skinUpper, int skinLowerChinese,

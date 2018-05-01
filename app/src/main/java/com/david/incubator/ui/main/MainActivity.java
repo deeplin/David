@@ -74,17 +74,18 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
             actionBar.hide();
         }
 
+        initFragment();
+
         binding.avAlarm.attach();
         mainViewModel.attach();
         automationControl.attach();
-
-        initFragment();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        currentFragment.detach();
+        if (currentFragment != null)
+            currentFragment.detach();
 
         automationControl.detach();
         mainViewModel.detach();
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        MainApplication.getInstance().stop();
+        System.exit(0);
     }
 
     /* 鼠标电击，自动调用*/
@@ -142,10 +145,10 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     private synchronized void rotate(byte position) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         AutoAttachFragment toFragment = fragmentArray[position];
-        if(currentFragment == null){
+        if (currentFragment == null) {
             transaction.show(toFragment);
             transaction.commit();
-        }else if (toFragment != currentFragment) {
+        } else if (toFragment != currentFragment) {
             transaction.hide(currentFragment).show(toFragment);
             transaction.commit();
 

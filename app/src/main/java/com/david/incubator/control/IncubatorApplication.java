@@ -59,7 +59,7 @@ public class IncubatorApplication extends MainApplication {
     }
 
     @Override
-    protected void stop() {
+    public void stop() {
         try {
             serialControl.stop();
             daoControl.stop();

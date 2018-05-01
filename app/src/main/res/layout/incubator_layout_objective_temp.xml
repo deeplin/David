@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.david.incubator.util.ViewUtil" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.objective.cabin.temp.ObjectiveTempViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/ibObjectiveFirst"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button"
+            android:isSelected="@{viewModel.selectFirst}"
+            android:src="@mipmap/air"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.10212766"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/ibObjectiveSecond"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0947867299" />
+
+        <ImageButton
+            android:id="@+id/ibObjectiveSecond"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button"
+            android:isSelected="@{!viewModel.selectFirst}"
+            android:src="@mipmap/skin"
+            app:layout_constraintBottom_toBottomOf="@id/ibObjectiveFirst"
+            app:layout_constraintHeight_percent="0.10212766"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintLeft_toLeftOf="@id/ibObjectiveFirst"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveFirst" />
+
+        <ImageView
+            android:id="@+id/ibObjectiveUpperSet"
+            android:layout_width="77dp"
+            android:layout_height="0dp"
+            android:src="@mipmap/set"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.0787234043"
+            app:layout_constraintHorizontal_bias="0.141442716"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.415704388" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/border"
+            android:gravity="center"
+            android:text="@{ViewUtil.formatTempValue(viewModel.valueField)}"
+            android:textColor="@{viewModel.valueChanged ? @color/info : @color/info_white}"
+            android:textSize="@dimen/f42"
+            app:layout_constraintBottom_toBottomOf="@id/ibObjectiveUpperSet"
+            app:layout_constraintHeight_percent="0.127659574"
+            app:layout_constraintHorizontal_bias="0.31626506"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveUpperSet"
+            app:layout_constraintWidth_percent="0.174129353" />
+
+        <ImageView
+            android:layout_width="77dp"
+            android:layout_height="0dp"
+            android:src="@mipmap/celsius"
+            app:layout_constraintBottom_toBottomOf="@id/ibObjectiveUpperSet"
+            app:layout_constraintHeight_percent="0.05106383"
+            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveUpperSet" />
+
+        <ImageButton
+            android:id="@+id/ibObjectiveUp"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button"
+            android:src="@mipmap/up"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.10212766"
+            app:layout_constraintHorizontal_bias="0.12"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.928909953" />
+
+        <ImageButton
+            android:id="@+id/ibObjectiveDown"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button"
+            android:src="@mipmap/down"
+            app:layout_constraintBottom_toBottomOf="@id/ibObjectiveUp"
+            app:layout_constraintHeight_percent="0.10212766"
+            app:layout_constraintHorizontal_bias="0.32"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveUp"
+            app:layout_constraintVertical_bias="0.928909953" />
+
+        <ImageButton
+            android:id="@+id/ibObjectiveAbove37"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:background="@drawable/button"
+            android:isSelected="@{viewModel.select37}"
+            android:src="@mipmap/above_37"
+            app:layout_constraintBottom_toBottomOf="@id/ibObjectiveUp"
+            app:layout_constraintHeight_percent="0.10212766"
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveUp"
+            app:layout_constraintVertical_bias="0.928909953" />
+
+        <Button
+            android:id="@+id/btObjectiveOK"
+            style="@style/large_button_style"
+            android:background="@drawable/confirm_button"
+            android:isSelected="@{viewModel.selectOK}"
+            android:text="@string/ok"
+            app:layout_constraintBottom_toBottomOf="@id/ibObjectiveUp"
+            app:layout_constraintHeight_percent="0.10212766"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveUp"
+            app:layout_constraintVertical_bias="0.928909953"
+            app:layout_constraintWidth_percent="0.124378109" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
