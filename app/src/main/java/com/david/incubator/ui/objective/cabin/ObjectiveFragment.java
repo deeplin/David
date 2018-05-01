@@ -1,6 +1,8 @@
 package com.david.incubator.ui.objective.cabin;
 
+import android.support.design.widget.TabLayout;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
@@ -29,7 +31,21 @@ public class ObjectiveFragment extends PreloadFragment<IncubatorFragmentObjectiv
 
     @Override
     public void attach() {
+        ViewGroup.LayoutParams layoutParams = binding.tlObjective.getLayoutParams();
 
+        ObjectivePagerAdapter pagerAdapter = new ObjectivePagerAdapter();
+        layoutParams.width = 150 * pagerAdapter.getCount();
+
+        binding.vpObjective.setAdapter(pagerAdapter);
+        binding.tlObjective.setupWithViewPager(binding.vpObjective);
+//        binding.tlObjective.setTabMode(TabLayout.MODE_FIXED);
+//        binding.tlObjective.setTabGravity(TabLayout.GRAVITY_CENTER);
+
+        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.celsius_small));
+        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.humidity));
+        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.o2));
+        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.spo2));
+        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.pr));
     }
 
     @Override

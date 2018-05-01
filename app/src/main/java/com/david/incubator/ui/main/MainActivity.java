@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         binding.setViewModel(mainViewModel);
 
         mainViewModel.setNavigator(this);
-
-        initFragment();
     }
 
     @Override
@@ -80,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         binding.avAlarm.attach();
         mainViewModel.attach();
         automationControl.attach();
+
+        initFragment();
     }
 
     @Override
@@ -141,20 +141,21 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
      * */
     private void rotate(byte position) {
         Fragment toFragment = fragmentArray[position];
-        if (toFragment != null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.hide(currentFragment).show(toFragment);
-            transaction.commit();
-        }
-        switch (position) {
-            case FragmentPage.HOME_FRAGMENT: {
-                menuViewModel.clearButtonBorder();
+        if(toFragment != currentFragment) {
+            if (toFragment != null) {
+                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                transaction.hide(currentFragment).show(toFragment);
+                transaction.commit();
             }
-            break;
-            case FragmentPage.OBJECTIVE_FRAGMENT: {
-                menuViewModel.clearButtonBorder();
-            }
-            break;
+            switch (position) {
+                case FragmentPage.HOME_FRAGMENT: {
+                    menuViewModel.clearButtonBorder();
+                }
+                break;
+                case FragmentPage.OBJECTIVE_FRAGMENT: {
+                    menuViewModel.clearButtonBorder();
+                }
+                break;
 //            case FragmentPage.CHART_FRAGMENT: {
 //                toFragment = new ChartFragment();
 //            }
@@ -185,6 +186,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 //                toFragment = new WarmerObjectiveFragment();
 //            }
 //            break;
+            }
         }
     }
 

@@ -1,7 +1,5 @@
 package com.david.common.control;
 
-import android.databinding.ObservableBoolean;
-
 import com.david.common.ui.alarm.AlarmView;
 import com.david.incubator.control.IncubatorApplication;
 import com.david.incubator.ui.home.cabin.HomeFragment;
@@ -10,11 +8,12 @@ import com.david.incubator.ui.main.MainActivity;
 import com.david.incubator.ui.main.MainViewModel;
 import com.david.incubator.ui.main.side.SideLayout;
 import com.david.incubator.ui.main.side.SideViewModel;
+import com.david.incubator.ui.main.top.TopLayout;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
-import com.david.incubator.ui.main.top.TopLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
 import com.david.incubator.ui.objective.cabin.ObjectiveFragment;
+import com.david.incubator.ui.objective.cabin.ObjectivePagerAdapter;
 
 import javax.inject.Singleton;
 
@@ -63,4 +62,6 @@ public interface ApplicationComponent {
     void inject(HomeViewModel homeViewModel);
 
     void inject(ObjectiveFragment objectiveFragment);
+
+    void inject(ObjectivePagerAdapter objectivePagerAdapter);
 }

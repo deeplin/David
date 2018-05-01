@@ -34,7 +34,6 @@ public abstract class PreloadFragment<U extends ViewDataBinding> extends Fragmen
     @Override
     public void onPause() {
         super.onPause();
-
     }
 
     @Override

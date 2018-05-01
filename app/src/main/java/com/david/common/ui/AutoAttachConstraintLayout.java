@@ -12,7 +12,7 @@ import android.view.View;
  * description:
  */
 
-public abstract class AutoAttachConstraintLayout extends ConstraintLayout implements IViewModel{
+public abstract class AutoAttachConstraintLayout extends ConstraintLayout implements IViewModel {
 
     public AutoAttachConstraintLayout(Context context) {
         super(context);

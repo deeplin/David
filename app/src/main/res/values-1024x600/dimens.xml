@@ -23,6 +23,7 @@
     <dimen name="y10">8px</dimen>
     <dimen name="y20">16px</dimen>
     <dimen name="y26">20px</dimen>
+    <dimen name="y32">25px</dimen>
     <dimen name="y40">32px</dimen>
     <dimen name="y48">38px</dimen>
     <dimen name="y60">46px</dimen>

@@ -8,19 +8,20 @@
         android:layout_height="match_parent"
         android:background="@mipmap/objective_background">
 
-        <!--<android.support.design.widget.TabLayout-->
-            <!--android:id="@+id/tlObjective"-->
-            <!--android:background="#ff00ff"-->
-            <!--android:theme="@style/AppTheme"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="@dimen/y88" />-->
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tlObjective"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y40"
+            android:layout_marginTop="@dimen/y32"
+            android:background="#ff00ff"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vpObjective"
-            android:layout_width="804dp"
-            android:background="#00ff00"
+            android:layout_width="800dp"
             android:layout_height="@dimen/y470"
             android:layout_marginBottom="@dimen/y48"
+            android:background="#00ff00"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
