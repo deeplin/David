@@ -28,7 +28,6 @@ public abstract class AutoAttachFragment<U extends ViewDataBinding> extends Frag
     @Override
     public void onResume() {
         super.onResume();
-        attach();
     }
 
     @Override

@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     @Override
     public void onPause() {
         super.onPause();
+        currentFragment.detach();
+
         automationControl.detach();
         mainViewModel.detach();
         binding.avAlarm.detach();
@@ -130,18 +132,20 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         transaction.add(R.id.flHome, fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT]);
         transaction.hide(fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT]);
         transaction.add(R.id.flHome, fragmentArray[FragmentPage.HOME_FRAGMENT]);
+        transaction.hide(fragmentArray[FragmentPage.HOME_FRAGMENT]);
         transaction.commit();
-
-        currentFragment = fragmentArray[FragmentPage.HOME_FRAGMENT];
     }
 
     /*
      * 碎片换页
      * */
     private synchronized void rotate(byte position) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         AutoAttachFragment toFragment = fragmentArray[position];
-        if(toFragment != null && toFragment != currentFragment) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if(currentFragment == null){
+            transaction.show(toFragment);
+            transaction.commit();
+        }else if (toFragment != currentFragment) {
             transaction.hide(currentFragment).show(toFragment);
             transaction.commit();
 
@@ -185,14 +189,13 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 //            }
 //            break;
             }
-            currentFragment = toFragment;
         }
+        currentFragment = toFragment;
     }
 
     @Override
     public boolean isLockableFragment() {
-//        return currentFragment instanceof IFragmentLockable;
-        return true;
+        return currentFragment instanceof IFragmentLockable;
     }
 
     @Override

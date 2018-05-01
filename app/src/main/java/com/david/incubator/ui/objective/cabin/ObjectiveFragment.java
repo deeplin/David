@@ -1,8 +1,14 @@
 package com.david.incubator.ui.objective.cabin;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
@@ -33,78 +39,44 @@ public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjec
     @Override
     public void attach() {
         ViewGroup.LayoutParams layoutParams = binding.tlObjective.getLayoutParams();
-
         ObjectivePagerAdapter pagerAdapter = new ObjectivePagerAdapter();
         layoutParams.width = 150 * pagerAdapter.getCount();
 
         binding.vpObjective.setAdapter(pagerAdapter);
         binding.tlObjective.setupWithViewPager(binding.vpObjective);
-//        binding.tlObjective.setTabMode(TabLayout.MODE_FIXED);
-//        binding.tlObjective.setTabGravity(TabLayout.GRAVITY_CENTER);
 
         binding.tlObjective.removeAllTabs();
-        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.celsius_small));
-        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.humidity));
-        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.o2));
-        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.spo2));
-        binding.tlObjective.addTab(binding.tlObjective.newTab().setIcon(R.mipmap.pr));
+        binding.tlObjective.addTab(buildIcon(R.mipmap.celsius_small));
 
-        Log.e("objective", "attach");
-    }
 
-    @Override
-    public void detach() {
-        Log.e("objective", "detach");
-    }
+        if (hardwareConfig.isHUM()) {
+            binding.tlObjective.addTab(buildIcon(R.mipmap.humidity));
+        }
 
-    private void buildTabPage(View view) {
-//        ViewGroup.LayoutParams layoutParams = fragmentObjectiveBinding.tabObjective.getLayoutParams();
-//        layoutParams.width = 150 * pagerAdapter.getCount();
-//
-//        fragmentObjectiveBinding.vpObjective.setAdapter(pagerAdapter);
-//        final List<NavigationTabBar.Model> models = new ArrayList<>();
-//        models.add(
-//                new NavigationTabBar.Model.Builder(
-//                        ContextCompat.getDrawable(view.getContext(), R.mipmap.celsius_small),
-//                        ContextCompat.getColor(view.getContext(), R.color.button))
-//                        .build());
-//
-//        if (hardwareConfig.isHUM()) {
-//            models.add(
-//                    new NavigationTabBar.Model.Builder(
-//                            ContextCompat.getDrawable(view.getContext(), R.mipmap.humidity),
-//                            ContextCompat.getColor(view.getContext(), R.color.button))
-//                            .build()
-//            );
-//        }
-//
-//        if (hardwareConfig.isO2()) {
-//            models.add(
-//                    new NavigationTabBar.Model.Builder(
-//                            ContextCompat.getDrawable(view.getContext(), R.mipmap.o2),
-//                            ContextCompat.getColor(view.getContext(), R.color.button))
-//                            .build()
-//            );
-//        }
-//
-//        if (hardwareConfig.isSPO2()) {
-//            models.add(
-//                    new NavigationTabBar.Model.Builder(
-//                            ContextCompat.getDrawable(view.getContext(), R.mipmap.spo2),
-//                            ContextCompat.getColor(view.getContext(), R.color.button))
-//                            .build()
-//            );
-//            models.add(
-//                    new NavigationTabBar.Model.Builder(
-//                            ContextCompat.getDrawable(view.getContext(), R.mipmap.pr),
-//                            ContextCompat.getColor(view.getContext(), R.color.button))
-//                            .build()
-//            );
-//        }
-//
-//        fragmentObjectiveBinding.tabObjective.setModels(models);
-//        fragmentObjectiveBinding.tabObjective.setBgColor(ContextCompat.getColor(view.getContext(), R.color.background));
-//
+        if (hardwareConfig.isO2()) {
+            binding.tlObjective.addTab(buildIcon((R.mipmap.o2)));
+        }
+
+        if (hardwareConfig.isSPO2()) {
+            binding.tlObjective.addTab(buildIcon((R.mipmap.spo2)));
+            binding.tlObjective.addTab(buildIcon((R.mipmap.pr)));
+        }
+
+        binding.vpObjective.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.e("2", "" + position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+
 //        fragmentObjectiveBinding.tabObjective.setOnPageChangeListener(
 //                super.getPageChangeListener(fragmentObjectiveBinding.vpObjective));
 //
@@ -119,7 +91,21 @@ public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjec
 //
 //        fragmentObjectiveBinding.tabObjective.setViewPager(fragmentObjectiveBinding.vpObjective, oldPosition);
 //        fragmentObjectiveBinding.vpObjective.setOffscreenPageLimit(1);
+
+//        binding.tlObjective.getTabAt(0).select();
+        Log.e("objective","attach");
     }
 
+    private TabLayout.Tab buildIcon(int icon) {
+        TabLayout.Tab tab = binding.tlObjective.newTab();
+        ImageView imageView = new ImageView(this.getContext());
+        imageView.setImageResource(icon);
+        tab.setCustomView(imageView);
+        return tab;
+    }
 
+    @Override
+    public void detach() {
+        Log.e("objective","detach");
+    }
 }
