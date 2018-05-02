@@ -4,6 +4,7 @@ import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.support.constraint.ConstraintLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.widget.ImageButton;
@@ -94,4 +95,9 @@ public abstract class FastIncreaseConstraintLayout<U extends ViewDataBinding> ex
     protected abstract void decreaseValue();
 
     protected abstract int getLayoutId();
+
+    @Override
+    public void detach() {
+        stopDisposable();
+    }
 }

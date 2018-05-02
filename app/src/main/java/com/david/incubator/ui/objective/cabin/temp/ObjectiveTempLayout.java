@@ -81,13 +81,11 @@ public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<IncubatorL
     @Override
     public void attach() {
         objectiveViewModel.attach();
-        Log.e("deeplin", "temp attach");
     }
 
     @Override
     public void detach() {
-        stopDisposable();
+        super.detach();
         objectiveViewModel.detach();
-        Log.e("deeplin", "temp detach");
     }
 }

@@ -1,30 +1,29 @@
-package com.david.incubator.ui.objective.cabin.humidity;
+package com.david.incubator.ui.objective.cabin.spo2;
 
 import android.content.Context;
-import android.media.audiofx.LoudnessEnhancer;
 import android.util.Log;
-import android.view.LayoutInflater;
 
+import com.david.R;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.databinding.IncubatorLayoutObjectiveHumidityBinding;
+import com.david.databinding.IncubatorLayoutObjectiveSpo2Binding;
 import com.jakewharton.rxbinding2.view.RxView;
-import com.david.R;
+
 import java.util.concurrent.TimeUnit;
 
 /**
  * author: Ling Lin
- * created on: 2017/12/30 12:07
+ * created on: 2017/12/30 14:58
  * email: 10525677@qq.com
  * description:
  */
-public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<IncubatorLayoutObjectiveHumidityBinding> {
+public class ObjectiveSpo2Layout extends FastIncreaseConstraintLayout<IncubatorLayoutObjectiveSpo2Binding> {
+    ObjectiveSpo2ViewModel objectiveViewModel;
 
-    ObjectiveHumidityViewModel objectiveViewModel;
-
-    public ObjectiveHumidityLayout(Context context, ObjectiveHumidityViewModel objectiveViewModel) {
+    public ObjectiveSpo2Layout(Context context, ObjectiveSpo2ViewModel objectiveViewModel) {
         super(context);
         this.objectiveViewModel = objectiveViewModel;
+
         binding.setViewModel(objectiveViewModel);
 
         setButton(binding.ibObjectiveUp, binding.ibObjectiveDown);
@@ -41,6 +40,34 @@ public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<Incuba
                 .subscribe((Object aVoid) -> {
                     stopDisposable();
                     objectiveViewModel.setEnable(false);
+                });
+
+        RxView.clicks(binding.ibObjectiveUpper)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((Object aVoid) -> {
+                    stopDisposable();
+                    objectiveViewModel.selectUpper.set(true);
+                });
+
+        RxView.clicks(binding.ibObjectiveLower)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((Object aVoid) -> {
+                    stopDisposable();
+                    objectiveViewModel.selectUpper.set(false);
+                });
+
+        RxView.clicks(binding.ibObjectiveUpperValue)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((Object aVoid) -> {
+                    stopDisposable();
+                    objectiveViewModel.selectUpper.set(true);
+                });
+
+        RxView.clicks(binding.ibObjectiveLowerValue)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((Object aVoid) -> {
+                    stopDisposable();
+                    objectiveViewModel.selectUpper.set(false);
                 });
 
         RxView.clicks(binding.btObjectiveOK)
@@ -63,7 +90,7 @@ public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<Incuba
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_layout_objective_humidity;
+        return R.layout.incubator_layout_objective_spo2;
     }
 
     @Override

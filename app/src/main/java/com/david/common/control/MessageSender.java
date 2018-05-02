@@ -8,6 +8,7 @@ import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
 import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertMuteCommand;
+import com.david.common.serial.command.alert.AlertSetCommand;
 import com.david.common.serial.command.ctrl.CtrlModeCommand;
 import com.david.common.serial.command.ctrl.CtrlSetCommand;
 import com.david.common.serial.command.module.ModuleGetHardwareCommand;
@@ -144,6 +145,12 @@ public class MessageSender {
         serialControl.addSession(moduleSetCommand);
     }
 
+    public void setAlarmConfig(String alertSetting, int value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        AlertSetCommand alertSetCommand = new AlertSetCommand(alertSetting, value);
+        alertSetCommand.setOnCompleted(onComplete);
+        serialControl.addSession(alertSetCommand);
+    }
+
 //
 //    public void getCalibration(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        ShowCalibrationCommand showCalibrationCommand = new ShowCalibrationCommand();
@@ -174,13 +181,9 @@ public class MessageSender {
 
 
 
-//
-//    public void setAlertConfig(String alertSetting, int value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        AlertSetCommand alertSetCommand = new AlertSetCommand(alertSetting, value);
-//        alertSetCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(alertSetCommand);
-//    }
-//
+
+
+
 //    public void setAlertConfig(String alertSetting, int value1, int value2, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        AlertSetCommand alertSetCommand = new AlertSetCommand(alertSetting, value1, value2);
 //        alertSetCommand.setOnCompleted(onComplete);

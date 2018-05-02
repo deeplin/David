@@ -1,15 +1,17 @@
 package com.david.incubator.ui.objective.cabin;
 
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.incubator.ui.objective.cabin.humidity.ObjectiveHumidityLayout;
 import com.david.incubator.ui.objective.cabin.humidity.ObjectiveHumidityViewModel;
+import com.david.incubator.ui.objective.cabin.oxygen.ObjectiveOxygenViewModel;
+import com.david.incubator.ui.objective.cabin.pr.ObjectivePrViewModel;
+import com.david.incubator.ui.objective.cabin.spo2.ObjectiveSpo2Layout;
+import com.david.incubator.ui.objective.cabin.spo2.ObjectiveSpo2ViewModel;
 import com.david.incubator.ui.objective.cabin.temp.ObjectiveTempLayout;
 
 import java.util.Objects;
@@ -104,18 +106,18 @@ public class ObjectivePagerAdapter extends PagerAdapter {
                 ObjectiveHumidityViewModel objectiveHumidityViewModel = new ObjectiveHumidityViewModel();
                 view = new ObjectiveHumidityLayout(container.getContext(), objectiveHumidityViewModel);
                 break;
-//            case 2:
-//                ObjectiveOxygenViewModel objectiveOxygenViewModel = new ObjectiveOxygenViewModel();
-//                view = new ObjectiveHumidityLayout(container.getContext(), objectiveOxygenViewModel);
-//                break;
-//            case 3:
-//                ObjectiveSpo2ViewModel objectiveSpo2ViewModel = new ObjectiveSpo2ViewModel();
-//                view = new ObjectiveSpo2Layout(container.getContext(), objectiveSpo2ViewModel);
-//                break;
-//            case 4:
-//                ObjectivePrViewModel objectivePrViewModel = new ObjectivePrViewModel();
-//                view = new ObjectiveSpo2Layout(container.getContext(), objectivePrViewModel);
-//                break;
+            case 2:
+                ObjectiveOxygenViewModel objectiveOxygenViewModel = new ObjectiveOxygenViewModel();
+                view = new ObjectiveHumidityLayout(container.getContext(), objectiveOxygenViewModel);
+                break;
+            case 3:
+                ObjectiveSpo2ViewModel objectiveSpo2ViewModel = new ObjectiveSpo2ViewModel();
+                view = new ObjectiveSpo2Layout(container.getContext(), objectiveSpo2ViewModel);
+                break;
+            case 4:
+                ObjectivePrViewModel objectivePrViewModel = new ObjectivePrViewModel();
+                view = new ObjectiveSpo2Layout(container.getContext(), objectivePrViewModel);
+                break;
             default:
                 view = new View(container.getContext());
                 break;
