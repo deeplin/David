@@ -1,10 +1,6 @@
 package com.david.incubator.ui.objective.cabin;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +10,13 @@ import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
-import com.david.common.ui.AutoAttachFragment;
+import com.david.common.ui.IViewModel;
+import com.david.common.ui.TabFragment;
 import com.david.databinding.IncubatorFragmentObjectiveBinding;
 
 import javax.inject.Inject;
 
-public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjectiveBinding> {
+public class ObjectiveFragment extends TabFragment<IncubatorFragmentObjectiveBinding> {
     @Inject
     ShareMemory shareMemory;
     @Inject
@@ -60,38 +57,19 @@ public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjec
             binding.tlObjective.addTab(buildIcon((R.mipmap.pr)));
         }
 
-        binding.vpObjective.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
+        binding.vpObjective.addOnPageChangeListener(super.getPageChangeListener(binding.vpObjective));
 
-            @Override
-            public void onPageSelected(int position) {
-                Log.e("2", "" + position);
-                binding.vpObjective.getChildAt(position);
-            }
+        currentPosition = 0;
+        int tagId = shareMemory.functionTag.get();
+        if (tagId >= 10) {
+            /*根据按键设置页面*/
+            tagId = pagerAdapter.getPosition(tagId % 10);
+            if (tagId > 0)
+                currentPosition = tagId;
+        }
+        binding.tlObjective.getTabAt(currentPosition).select();
 
-            @Override
-            public void onPageScrollStateChanged(int state) {
-            }
-        });
-
-//        fragmentObjectiveBinding.tabObjective.setOnPageChangeListener(
-//                super.getPageChangeListener(fragmentObjectiveBinding.vpObjective));
-//
-//        oldPosition = 0;
-//        int tagId = shareMemory.functionTag.get();
-//        if (tagId >= 10) {
-//            /*根据按键设置页面*/
-//            int tabId = pagerAdapter.getPosition(tagId % 10);
-//            if (tabId > 0)
-//                oldPosition = tabId;
-//        }
-//
-//        fragmentObjectiveBinding.tabObjective.setViewPager(fragmentObjectiveBinding.vpObjective, oldPosition);
-//        fragmentObjectiveBinding.vpObjective.setOffscreenPageLimit(1);
-
-//        binding.tlObjective.getTabAt(0).select();
+        super.firstTag = true;
     }
 
     private TabLayout.Tab buildIcon(int icon) {
@@ -100,10 +78,5 @@ public class ObjectiveFragment extends AutoAttachFragment<IncubatorFragmentObjec
         imageView.setImageResource(icon);
         tab.setCustomView(imageView);
         return tab;
-    }
-
-    @Override
-    public void detach() {
-        Log.e("2", "detach");
     }
 }

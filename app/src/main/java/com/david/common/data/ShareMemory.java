@@ -72,7 +72,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     public ObservableField<AverageTimeMode> averageTimeMode = new ObservableField<>(AverageTimeMode.Zero);
     public ObservableField<String> fastsatValue = new ObservableField<>();
 
-    public ObservableInt functionTag = new ObservableInt();
+    public ObservableInt functionTag = new ObservableInt(0);
 
     @Inject
     public ShareMemory() {

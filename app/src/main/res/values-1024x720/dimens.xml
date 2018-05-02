@@ -22,6 +22,7 @@
     <dimen name="y10">10px</dimen>
     <dimen name="y20">20px</dimen>
     <dimen name="y32">32px</dimen>
+    <dimen name="y36">36px</dimen>
     <dimen name="y40">40px</dimen>
     <dimen name="y48">48px</dimen>
     <dimen name="y60">60px</dimen>

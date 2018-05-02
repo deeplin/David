@@ -12,6 +12,7 @@ import com.david.common.serial.command.ctrl.CtrlModeCommand;
 import com.david.common.serial.command.ctrl.CtrlSetCommand;
 import com.david.common.serial.command.module.ModuleGetHardwareCommand;
 import com.david.common.serial.command.module.ModuleGetSoftwareCommand;
+import com.david.common.serial.command.module.ModuleSetCommand;
 import com.david.common.serial.command.spo2.Spo2SetCommand;
 
 import javax.inject.Inject;
@@ -136,6 +137,13 @@ public class MessageSender {
         }
     }
 
+    public void setModule(boolean status, String sensorName, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        /*关闭开启模块*/
+        ModuleSetCommand moduleSetCommand = new ModuleSetCommand(status, sensorName);
+        moduleSetCommand.setOnCompleted(onComplete);
+        serialControl.addSession(moduleSetCommand);
+    }
+
 //
 //    public void getCalibration(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        ShowCalibrationCommand showCalibrationCommand = new ShowCalibrationCommand();
@@ -165,13 +173,7 @@ public class MessageSender {
 //
 
 
-//
-//    public void setModule(boolean status, String sensorName, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        /*关闭开启模块*/
-//        ModuleSetCommand moduleSetCommand = new ModuleSetCommand(status, sensorName);
-//        moduleSetCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(moduleSetCommand);
-//    }
+
 //
 //    public void setAlertConfig(String alertSetting, int value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        AlertSetCommand alertSetCommand = new AlertSetCommand(alertSetting, value);

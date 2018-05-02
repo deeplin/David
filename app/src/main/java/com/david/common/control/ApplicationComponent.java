@@ -14,6 +14,7 @@ import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
 import com.david.incubator.ui.objective.cabin.ObjectiveFragment;
 import com.david.incubator.ui.objective.cabin.ObjectivePagerAdapter;
+import com.david.incubator.ui.objective.cabin.humidity.ObjectiveHumidityViewModel;
 import com.david.incubator.ui.objective.cabin.temp.ObjectiveTempLayout;
 import com.david.incubator.ui.objective.cabin.temp.ObjectiveTempViewModel;
 
@@ -70,4 +71,6 @@ public interface ApplicationComponent {
     void inject(ObjectiveTempViewModel objectiveTempViewModel);
 
     void inject(ObjectiveTempLayout objectiveTempLayout);
+
+    void inject(ObjectiveHumidityViewModel objectiveHumidityViewModel);
 }

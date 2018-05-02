@@ -1,12 +1,18 @@
 package com.david.incubator.ui.objective.cabin;
 
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
 
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
+import com.david.incubator.ui.objective.cabin.humidity.ObjectiveHumidityLayout;
+import com.david.incubator.ui.objective.cabin.humidity.ObjectiveHumidityViewModel;
+import com.david.incubator.ui.objective.cabin.temp.ObjectiveTempLayout;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -77,7 +83,7 @@ public class ObjectivePagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(final View view, final Object object) {
-        return view.equals(object);
+        return Objects.equals(view, object);
     }
 
     @Override
@@ -91,13 +97,13 @@ public class ObjectivePagerAdapter extends PagerAdapter {
         int tabId = tabArray[position];
 
         switch (tabId) {
-//            case 0:
-//                view = new ObjectiveTempLayout(container.getContext());
-//                break;
-//            case 1:
-//                ObjectiveHumidityViewModel objectiveHumidityViewModel = new ObjectiveHumidityViewModel();
-//                view = new ObjectiveHumidityLayout(container.getContext(), objectiveHumidityViewModel);
-//                break;
+            case 0:
+                view = new ObjectiveTempLayout(container.getContext());
+                break;
+            case 1:
+                ObjectiveHumidityViewModel objectiveHumidityViewModel = new ObjectiveHumidityViewModel();
+                view = new ObjectiveHumidityLayout(container.getContext(), objectiveHumidityViewModel);
+                break;
 //            case 2:
 //                ObjectiveOxygenViewModel objectiveOxygenViewModel = new ObjectiveOxygenViewModel();
 //                view = new ObjectiveHumidityLayout(container.getContext(), objectiveOxygenViewModel);
@@ -114,7 +120,6 @@ public class ObjectivePagerAdapter extends PagerAdapter {
                 view = new View(container.getContext());
                 break;
         }
-
         container.addView(view);
         view.setTag(position);
         return view;

@@ -1,35 +1,30 @@
-package com.david.incubator.ui.objective.cabin.temp;
+package com.david.incubator.ui.objective.cabin.humidity;
 
 import android.content.Context;
+import android.media.audiofx.LoudnessEnhancer;
 import android.util.Log;
+import android.view.LayoutInflater;
 
-import com.david.R;
-import com.david.common.control.MainApplication;
-import com.david.common.mode.CtrlMode;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.databinding.IncubatorLayoutObjectiveTempBinding;
+import com.david.databinding.IncubatorLayoutObjectiveHumidityBinding;
 import com.jakewharton.rxbinding2.view.RxView;
-
+import com.david.R;
 import java.util.concurrent.TimeUnit;
-
-import javax.inject.Inject;
 
 /**
  * author: Ling Lin
- * created on: 2017/12/29 19:23
+ * created on: 2017/12/30 12:07
  * email: 10525677@qq.com
  * description:
  */
-public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<IncubatorLayoutObjectiveTempBinding> {
+public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<IncubatorLayoutObjectiveHumidityBinding> {
 
-    @Inject
-    ObjectiveTempViewModel objectiveViewModel;
+    ObjectiveHumidityViewModel objectiveViewModel;
 
-    public ObjectiveTempLayout(Context context) {
+    public ObjectiveHumidityLayout(Context context, ObjectiveHumidityViewModel objectiveViewModel) {
         super(context);
-
-        MainApplication.getInstance().getApplicationComponent().inject(this);
+        this.objectiveViewModel = objectiveViewModel;
         binding.setViewModel(objectiveViewModel);
 
         setButton(binding.ibObjectiveUp, binding.ibObjectiveDown);
@@ -38,21 +33,14 @@ public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<IncubatorL
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object aVoid) -> {
                     stopDisposable();
-                    objectiveViewModel.setEnable(CtrlMode.Air);
+                    objectiveViewModel.setEnable(true);
                 });
 
         RxView.clicks(binding.ibObjectiveSecond)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object aVoid) -> {
                     stopDisposable();
-                    objectiveViewModel.setEnable(CtrlMode.Skin);
-                });
-
-        RxView.clicks(binding.ibObjectiveAbove37)
-                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((Object aVoid) -> {
-                    stopDisposable();
-                    objectiveViewModel.shareMemory.above37.set(true);
+                    objectiveViewModel.setEnable(false);
                 });
 
         RxView.clicks(binding.btObjectiveOK)
@@ -75,19 +63,19 @@ public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<IncubatorL
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_layout_objective_temp;
+        return R.layout.incubator_layout_objective_humidity;
     }
 
     @Override
     public void attach() {
         objectiveViewModel.attach();
-        Log.e("deeplin", "temp attach");
+        Log.e("deeplin", "humidity attach");
     }
 
     @Override
     public void detach() {
         stopDisposable();
         objectiveViewModel.detach();
-        Log.e("deeplin", "temp detach");
+        Log.e("deeplin", "humidity detach");
     }
 }

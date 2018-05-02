@@ -1,7 +1,6 @@
 package com.david.incubator.ui.home.cabin;
 
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,35 +127,48 @@ public class HomeFragment extends AutoAttachFragment<IncubatorFragmentHomeBindin
 
     @Override
     public void spo2ShowBorder(boolean status) {
-        if (status) {
-            binding.ivHomeSpo2Hide
-                    .setBackground(ContextCompat.getDrawable(this.getActivity(), R.color.border));
-        } else {
-            binding.ivHomeSpo2Hide
-                    .setBackground(ContextCompat.getDrawable(this.getActivity(), R.mipmap.home_spo2_hide));
-        }
+        Observable.just(this)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((obj) -> {
+                    if (status) {
+                        binding.ivHomeSpo2Hide
+                                .setBackground(ContextCompat.getDrawable(this.getActivity(), R.color.border));
+                    } else {
+                        binding.ivHomeSpo2Hide
+                                .setBackground(ContextCompat.getDrawable(this.getActivity(), R.mipmap.home_spo2_hide));
+                    }
+                });
+
     }
 
     @Override
     public void oxygenShowBorder(boolean status) {
-        if (status) {
-            binding.ivHomeOxygenHide
-                    .setBackground(ContextCompat.getDrawable(this.getActivity(), R.color.border));
-        } else {
-            binding.ivHomeOxygenHide
-                    .setBackground(ContextCompat.getDrawable(this.getActivity(), R.mipmap.home_oxygen_hide));
-        }
+        Observable.just(this)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((obj) -> {
+                    if (status) {
+                        binding.ivHomeOxygenHide
+                                .setBackground(ContextCompat.getDrawable(this.getActivity(), R.color.border));
+                    } else {
+                        binding.ivHomeOxygenHide
+                                .setBackground(ContextCompat.getDrawable(this.getActivity(), R.mipmap.home_oxygen_hide));
+                    }
+                });
     }
 
     @Override
     public void humidityShowBorder(boolean status) {
-        if (status) {
-            binding.ivHomeHumidityHide
-                    .setBackground(ContextCompat.getDrawable(this.getActivity(), R.color.border));
-        } else {
-            binding.ivHomeHumidityHide
-                    .setBackground(ContextCompat.getDrawable(this.getActivity(), R.mipmap.home_humidity_hide));
-        }
+        Observable.just(this)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((obj) -> {
+                    if (status) {
+                        binding.ivHomeHumidityHide
+                                .setBackground(ContextCompat.getDrawable(this.getActivity(), R.color.border));
+                    } else {
+                        binding.ivHomeHumidityHide
+                                .setBackground(ContextCompat.getDrawable(this.getActivity(), R.mipmap.home_humidity_hide));
+                    }
+                });
     }
 
     @Override

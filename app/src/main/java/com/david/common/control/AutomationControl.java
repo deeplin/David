@@ -1,7 +1,5 @@
 package com.david.common.control;
 
-import android.util.Log;
-
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.Spo2GetCommand;
@@ -23,7 +21,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
@@ -122,23 +119,23 @@ public class AutomationControl implements IViewModel {
         serialControl.addRepeatSession(statusCommand);
 
         //todo
-//        if (Constant.RELEASE_TO_DAVID) {
-        /*读取传感器*/
-        if (ioDisposable == null) {
-            Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
-            ioDisposable = observable
-                    .observeOn(Schedulers.io())
-                    .subscribe((aLong) -> {
-                        serialControl.refresh();
-                        checkLockScreen();
-                        long currentTime = TimeUtil.getCurrentTimeInSecond();
-                        if (currentTime % 60 == 0) {
-                            daoControl.deleteStale();
-                            topViewModel.displayCurrentTime();
-                        }
-                    }, LogUtils::e);
+        if (Constant.RELEASE_TO_DAVID) {
+            /*读取传感器*/
+            if (ioDisposable == null) {
+                Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
+                ioDisposable = observable
+                        .observeOn(Schedulers.io())
+                        .subscribe((aLong) -> {
+                            serialControl.refresh();
+                            checkLockScreen();
+                            long currentTime = TimeUtil.getCurrentTimeInSecond();
+                            if (currentTime % 60 == 0) {
+                                daoControl.deleteStale();
+                                topViewModel.displayCurrentTime();
+                            }
+                        }, LogUtils::e);
+            }
         }
-//        }
     }
 
     @Override
