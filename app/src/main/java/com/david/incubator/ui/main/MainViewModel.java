@@ -118,8 +118,6 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
         shareMemory.systemMode.addOnPropertyChangedCallback(systemModeCallback);
         shareMemory.lockScreen.addOnPropertyChangedCallback(lockScreenCallback);
         shareMemory.currentFragmentID.addOnPropertyChangedCallback(currentFragmentIDCallback);
-
-//        shareMemory.systemMode.notifyChange();
     }
 
     @Override

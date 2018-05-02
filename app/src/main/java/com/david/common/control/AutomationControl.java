@@ -10,6 +10,7 @@ import com.david.common.data.ShareMemory;
 import com.david.common.mode.Spo2SensMode;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
+import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.common.util.TimeUtil;
@@ -118,8 +119,11 @@ public class AutomationControl implements IViewModel {
         });
         serialControl.addRepeatSession(statusCommand);
 
+//        AlertListCommand alertListCommand = new AlertListCommand();
+//        serialControl.addRepeatSession(alertListCommand);
+
         //todo
-        if (Constant.RELEASE_TO_DAVID) {
+//        if (Constant.RELEASE_TO_DAVID) {
             /*读取传感器*/
             if (ioDisposable == null) {
                 Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
@@ -135,7 +139,7 @@ public class AutomationControl implements IViewModel {
                             }
                         }, LogUtils::e);
             }
-        }
+//        }
     }
 
     @Override

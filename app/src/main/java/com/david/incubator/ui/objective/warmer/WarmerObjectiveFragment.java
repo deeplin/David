@@ -1,4 +1,4 @@
-package com.david.incubator.ui.objective.cabin;
+package com.david.incubator.ui.objective.warmer;
 
 import android.view.ViewGroup;
 
@@ -11,16 +11,18 @@ import com.david.databinding.IncubatorFragmentObjectiveBinding;
 
 import javax.inject.Inject;
 
-public class ObjectiveFragment extends TabFragment<IncubatorFragmentObjectiveBinding> {
+/**
+ * author: Ling Lin
+ * created on: 2018/1/5 15:49
+ * email: 10525677@qq.com
+ * description:
+ */
+public class WarmerObjectiveFragment extends TabFragment<IncubatorFragmentObjectiveBinding> {
+
     @Inject
     ShareMemory shareMemory;
     @Inject
     ModuleHardware moduleHardware;
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.incubator_fragment_objective;
-    }
 
     @Override
     protected void init() {
@@ -28,9 +30,14 @@ public class ObjectiveFragment extends TabFragment<IncubatorFragmentObjectiveBin
     }
 
     @Override
+    protected int getLayoutId() {
+        return R.layout.incubator_fragment_objective;
+    }
+
+    @Override
     public void attach() {
         ViewGroup.LayoutParams layoutParams = binding.tlObjective.getLayoutParams();
-        ObjectivePagerAdapter pagerAdapter = new ObjectivePagerAdapter();
+        WarmerObjectivePagerAdapter pagerAdapter = new WarmerObjectivePagerAdapter();
         layoutParams.width = 150 * pagerAdapter.getCount();
 
         binding.vpObjective.setAdapter(pagerAdapter);
@@ -38,19 +45,12 @@ public class ObjectiveFragment extends TabFragment<IncubatorFragmentObjectiveBin
 
         binding.tlObjective.removeAllTabs();
         binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.celsius_small));
-
-        if (moduleHardware.isHUM()) {
-            binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.humidity));
-        }
-
-        if (moduleHardware.isO2()) {
-            binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.o2));
-        }
-
+        binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.beep));
         if (moduleHardware.isSPO2()) {
             binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.spo2));
             binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.pr));
         }
+        binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.jaunedice));
 
         binding.vpObjective.addOnPageChangeListener(super.getPageChangeListener(binding.vpObjective));
 

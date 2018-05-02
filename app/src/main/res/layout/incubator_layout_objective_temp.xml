@@ -32,7 +32,7 @@
             android:id="@+id/ibObjectiveSecond"
             android:layout_width="100dp"
             android:layout_height="@dimen/y48"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="120dp"
             android:background="@drawable/button"
             android:isSelected="@{!viewModel.selectFirst}"
             android:src="@mipmap/skin"
@@ -80,54 +80,46 @@
             android:id="@+id/ibObjectiveUp"
             android:layout_width="100dp"
             android:layout_height="@dimen/y48"
+            android:layout_marginBottom="@dimen/y32"
+            android:layout_marginStart="80dp"
             android:background="@drawable/button"
             android:src="@mipmap/up"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.12"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.928909953" />
+            app:layout_constraintLeft_toLeftOf="parent" />
 
         <ImageButton
             android:id="@+id/ibObjectiveDown"
             android:layout_width="100dp"
             android:layout_height="@dimen/y48"
+            android:layout_marginStart="60dp"
             android:background="@drawable/button"
             android:src="@mipmap/down"
             app:layout_constraintBottom_toBottomOf="@id/ibObjectiveUp"
-            app:layout_constraintHorizontal_bias="0.32"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ibObjectiveUp"
-            app:layout_constraintVertical_bias="0.928909953" />
+            app:layout_constraintLeft_toRightOf="@id/ibObjectiveUp"
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveUp" />
 
         <ImageButton
             android:id="@+id/ibObjectiveAbove37"
             android:layout_width="100dp"
             android:layout_height="@dimen/y48"
+            android:layout_marginStart="60dp"
             android:background="@drawable/button"
             android:isSelected="@{viewModel.select37}"
             android:src="@mipmap/above_37"
             app:layout_constraintBottom_toBottomOf="@id/ibObjectiveUp"
-            app:layout_constraintHorizontal_bias="0.52"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ibObjectiveUp"
-            app:layout_constraintVertical_bias="0.928909953" />
+            app:layout_constraintLeft_toRightOf="@id/ibObjectiveDown"
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveUp" />
 
         <Button
             android:id="@+id/btObjectiveOK"
             style="@style/large_button_style"
+            android:layout_marginEnd="80dp"
             android:background="@drawable/confirm_button"
             android:isSelected="@{viewModel.selectOK}"
             android:text="@string/ok"
             app:layout_constraintBottom_toBottomOf="@id/ibObjectiveUp"
-            app:layout_constraintHorizontal_bias="0.9"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/ibObjectiveUp"
-            app:layout_constraintVertical_bias="0.928909953" />
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveUp" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

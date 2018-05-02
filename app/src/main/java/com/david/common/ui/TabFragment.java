@@ -1,8 +1,10 @@
 package com.david.common.ui;
 
 import android.databinding.ViewDataBinding;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.david.common.util.Constant;
 
@@ -87,5 +89,13 @@ public abstract class TabFragment<U extends ViewDataBinding> extends AutoAttachF
             }
         }
         currentPosition = position;
+    }
+
+    protected TabLayout.Tab buildIcon(TabLayout tabLayout, int icon) {
+        TabLayout.Tab tab = tabLayout.newTab();
+        ImageView imageView = new ImageView(this.getContext());
+        imageView.setImageResource(icon);
+        tab.setCustomView(imageView);
+        return tab;
     }
 }

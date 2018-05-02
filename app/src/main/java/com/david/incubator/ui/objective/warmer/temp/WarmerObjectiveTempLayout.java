@@ -1,4 +1,4 @@
-package com.david.incubator.ui.objective.cabin.temp;
+package com.david.incubator.ui.objective.warmer.temp;
 
 import android.content.Context;
 
@@ -7,7 +7,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.mode.CtrlMode;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.databinding.IncubatorLayoutObjectiveTempBinding;
+import com.david.databinding.WarmerLayoutObjectiveTempBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -16,19 +16,19 @@ import javax.inject.Inject;
 
 /**
  * author: Ling Lin
- * created on: 2017/12/29 19:23
+ * created on: 2018/1/5 16:37
  * email: 10525677@qq.com
  * description:
  */
-public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<IncubatorLayoutObjectiveTempBinding> {
+public class WarmerObjectiveTempLayout extends FastIncreaseConstraintLayout<WarmerLayoutObjectiveTempBinding> {
 
     @Inject
-    ObjectiveTempViewModel viewModel;
+    WarmerObjectiveTempViewModel viewModel;
 
-    public ObjectiveTempLayout(Context context) {
+    public WarmerObjectiveTempLayout(Context context) {
         super(context);
-
         MainApplication.getInstance().getApplicationComponent().inject(this);
+
         binding.setViewModel(viewModel);
 
         setButton(binding.ibObjectiveUp, binding.ibObjectiveDown);
@@ -37,14 +37,21 @@ public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<IncubatorL
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object aVoid) -> {
                     stopDisposable();
-                    viewModel.setEnable(CtrlMode.Air);
+                    viewModel.setEnable(CtrlMode.Skin);
                 });
 
         RxView.clicks(binding.ibObjectiveSecond)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object aVoid) -> {
                     stopDisposable();
-                    viewModel.setEnable(CtrlMode.Skin);
+                    viewModel.setEnable(CtrlMode.Manual);
+                });
+
+        RxView.clicks(binding.ibObjectiveThird)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((Object aVoid) -> {
+                    stopDisposable();
+                    viewModel.setEnable(CtrlMode.Prewarm);
                 });
 
         RxView.clicks(binding.ibObjectiveAbove37)
@@ -74,7 +81,7 @@ public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<IncubatorL
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_layout_objective_temp;
+        return R.layout.warmer_layout_objective_temp;
     }
 
     @Override

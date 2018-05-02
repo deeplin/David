@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.objective.warmer.timing.WarmerObjectiveTimingLayout" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/ibObjectiveApgar"
+            style="@style/large_button_style"
+            android:text="APGAR"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="@id/ibObjectiveCpr"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0947867299" />
+
+        <Button
+            android:id="@+id/ibObjectiveCpr"
+            style="@style/large_button_style"
+            android:text="CPR"
+            app:layout_constraintBottom_toBottomOf="@id/ibObjectiveApgar"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintLeft_toLeftOf="@id/ibObjectiveApgar"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibObjectiveApgar" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

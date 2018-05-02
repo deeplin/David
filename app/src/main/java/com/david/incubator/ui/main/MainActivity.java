@@ -2,6 +2,7 @@ package com.david.incubator.ui.main;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
@@ -17,8 +18,10 @@ import com.david.common.util.AutoUtil;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.IncubatorActivityMainBinding;
 import com.david.incubator.ui.home.cabin.HomeFragment;
+import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
 import com.david.incubator.ui.menu.MenuViewModel;
 import com.david.incubator.ui.objective.cabin.ObjectiveFragment;
+import com.david.incubator.ui.objective.warmer.WarmerObjectiveFragment;
 
 import javax.inject.Inject;
 
@@ -125,17 +128,23 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     }
 
     private void initFragment() {
-        fragmentArray = new AutoAttachFragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT];
+        fragmentArray = new AutoAttachFragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT + 1];
         fragmentArray[FragmentPage.HOME_FRAGMENT] = new HomeFragment();
         fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT] = new ObjectiveFragment();
+
+        fragmentArray[FragmentPage.WARMER_HOME_FRAGMENT] = new WarmerHomeFragment();
+        fragmentArray[FragmentPage.WARMER_OBJECTIVE_FRAGMENT] = new WarmerObjectiveFragment();
 
         FragmentManager fragmentManager = this.getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        transaction.add(R.id.flHome, fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT]);
-        transaction.hide(fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT]);
-        transaction.add(R.id.flHome, fragmentArray[FragmentPage.HOME_FRAGMENT]);
-        transaction.hide(fragmentArray[FragmentPage.HOME_FRAGMENT]);
+        for (int index = 0; index < fragmentArray.length; index++) {
+            Fragment fragment = fragmentArray[index];
+            if (fragment != null) {
+                transaction.add(R.id.flHome, fragment);
+                transaction.hide(fragment);
+            }
+        }
         transaction.commit();
     }
 
@@ -161,36 +170,14 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
                     menuViewModel.clearButtonBorder();
                 }
                 break;
-//            case FragmentPage.CHART_FRAGMENT: {
-//                toFragment = new ChartFragment();
-//            }
-//            break;
-//            case FragmentPage.SPO2_FRAGMENT: {
-//                toFragment = new Spo2Fragment();
-//            }
-//            break;
-//            case FragmentPage.SCALE_FRAGMENT: {
-//                toFragment = new ScaleFragment();
-//            }
-//            break;
-//            case FragmentPage.CAMERA_FRAGMENT: {
-//                toFragment = new CameraFragment();
-//            }
-//            break;
-//            case FragmentPage.SETTING_FRAGMENT: {
-//                toFragment = new SettingFragment();
-//            }
-//            break;
-//            case FragmentPage.WARMER_HOME_FRAGMENT: {
-//                menuViewModel.clearButtonBorder();
-//                toFragment = new WarmerHomeFragment();
-//            }
-//            break;
-//            case FragmentPage.WARMER_OBJECTIVE_FRAGMENT: {
-//                menuViewModel.clearButtonBorder();
-//                toFragment = new WarmerObjectiveFragment();
-//            }
-//            break;
+                case FragmentPage.WARMER_HOME_FRAGMENT: {
+                    menuViewModel.clearButtonBorder();
+                }
+                break;
+                case FragmentPage.WARMER_OBJECTIVE_FRAGMENT: {
+                    menuViewModel.clearButtonBorder();
+                }
+                break;
             }
         }
         currentFragment = toFragment;
