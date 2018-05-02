@@ -22,6 +22,7 @@ import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
 import com.david.incubator.ui.menu.MenuViewModel;
 import com.david.incubator.ui.objective.cabin.ObjectiveFragment;
 import com.david.incubator.ui.objective.warmer.WarmerObjectiveFragment;
+import com.david.incubator.ui.setting.SettingFragment;
 
 import javax.inject.Inject;
 
@@ -131,6 +132,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         fragmentArray = new AutoAttachFragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT + 1];
         fragmentArray[FragmentPage.HOME_FRAGMENT] = new HomeFragment();
         fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT] = new ObjectiveFragment();
+        fragmentArray[FragmentPage.SETTING_FRAGMENT] = new SettingFragment();
 
         fragmentArray[FragmentPage.WARMER_HOME_FRAGMENT] = new WarmerHomeFragment();
         fragmentArray[FragmentPage.WARMER_OBJECTIVE_FRAGMENT] = new WarmerObjectiveFragment();

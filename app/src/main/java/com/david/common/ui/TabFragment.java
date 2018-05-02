@@ -17,7 +17,7 @@ import com.david.common.util.Constant;
 
 public abstract class TabFragment<U extends ViewDataBinding> extends AutoAttachFragment<U> {
 
-    protected int currentPosition = Constant.SENSOR_NA_VALUE;
+    protected int currentPosition = 0;
     protected IViewModel currentView = null;
     protected boolean firstTag = true;
 
@@ -32,7 +32,7 @@ public abstract class TabFragment<U extends ViewDataBinding> extends AutoAttachF
                 currentView.detach();
             }
             currentView = null;
-            currentPosition = Constant.SENSOR_NA_VALUE;
+            currentPosition = 0;
             firstTag = true;
         }
     }

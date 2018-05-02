@@ -31,6 +31,7 @@
     <dimen name="y88">68px</dimen>
     <dimen name="y100">78px</dimen>
     <dimen name="y470">366px</dimen>
+    <dimen name="y480">375px</dimen>
     <dimen name="y620">484px</dimen>
 
     <!--For Animation-->

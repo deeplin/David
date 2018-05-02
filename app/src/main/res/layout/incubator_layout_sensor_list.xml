@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.david.common.mode.SystemMode" />
+
+        <import type="com.david.incubator.util.ViewUtil" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.menu.sensorlist.SensorListViewModel" />
+    </data>
+
+    <!--250 * 620-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--28-->
+        <android.support.constraint.Guideline
+            android:id="@+id/leftVerticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.112" />
+
+        <!--196-->
+        <android.support.constraint.Guideline
+            android:id="@+id/rightVerticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.784" />
+
+
+        <ImageView
+            android:id="@+id/ivAirAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/z100"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0192" />
+
+        <ImageView
+            android:id="@+id/ivSkinAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/z100"
+            android:src="@mipmap/animation_skin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2115" />
+
+        <TextView
+            android:id="@+id/tvSensorListTemp1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="#000"
+            android:fontFamily="monospace"
+            android:textColor="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? @color/c_air:@color/skin1}"
+            android:textSize="@dimen/f60"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1290"
+            app:layout_constraintRight_toRightOf="@id/rightVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.037" />
+
+        <ImageView
+            android:id="@+id/ivSensorListTemp1Set"
+            android:layout_width="29dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvSensorListTemp1"
+            app:layout_constraintHeight_percent="0.0274"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSensorListTemp1" />
+
+        <TextView
+            android:id="@+id/tvSensorListTemp1Objective"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? @color/c_air:@color/skin1}"
+            android:textSize="@dimen/f16"
+            app:layout_constraintLeft_toLeftOf="@id/ivSensorListTemp1Set"
+            app:layout_constraintRight_toRightOf="@id/ivSensorListTemp1Set"
+            app:layout_constraintTop_toBottomOf="@id/ivSensorListTemp1Set" />
+
+        <!--Skin-->
+
+        <TextView
+            android:id="@+id/tvSensorListTemp2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="#000"
+            android:fontFamily="monospace"
+            android:gravity="center"
+            android:textColor="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? @color/skin1:@color/skin2}"
+            android:textSize="@dimen/f60"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1290"
+            app:layout_constraintRight_toRightOf="@id/rightVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2222" />
+
+        <ImageView
+            android:id="@+id/ivSensorListTemp2Set"
+            android:layout_width="29dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/set_skin1"
+            app:layout_constraintBottom_toBottomOf="@id/tvSensorListTemp2"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSensorListTemp2" />
+
+        <TextView
+            android:id="@+id/tvSensorListTemp2Objective"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:textColor="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? @color/skin1:@color/skin2}"
+            android:textSize="@dimen/f16"
+            app:layout_constraintLeft_toLeftOf="@id/ivSensorListTemp2Set"
+            app:layout_constraintRight_toRightOf="@id/ivSensorListTemp2Set"
+            app:layout_constraintTop_toBottomOf="@id/ivSensorListTemp2Set" />
+
+        <!--Humidity-->
+
+        <TextView
+            android:id="@+id/tvSensorListHumidity"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:textColor="@color/humidity"
+            android:textSize="@dimen/f54"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1613"
+            app:layout_constraintRight_toRightOf="@id/rightVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+        <TextView
+            android:id="@+id/tvSensorListHumidityObjective"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{ViewUtil.formatHumidityValue(viewModel.shareMemory.humidityObjective)}"
+            android:textColor="@color/humidity"
+            android:textSize="@dimen/f16"
+            app:layout_constraintBottom_toBottomOf="@id/tvSensorListHumidity"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvSensorListHumidity"
+            app:layout_constraintVertical_bias="0.62" />
+
+        <!--Oxygen-->
+
+        <TextView
+            android:id="@+id/tvSensorListOxygen"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:textColor="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? @color/oxygen:@color/scale_in_sensor_list}"
+            android:textSize="@dimen/f54"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1613"
+            app:layout_constraintRight_toRightOf="@id/rightVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <TextView
+            android:id="@+id/tvSensorListOxygenObjective"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{ViewUtil.formatOxygenValue(viewModel.shareMemory.oxygenObjective)}"
+            android:textColor="@color/oxygen"
+            android:textSize="@dimen/f16"
+            app:layout_constraintBottom_toBottomOf="@id/tvSensorListOxygen"
+            app:layout_constraintLeft_toLeftOf="@id/tvSensorListHumidityObjective"
+            app:layout_constraintRight_toRightOf="@id/tvSensorListHumidityObjective"
+            app:layout_constraintTop_toTopOf="@id/tvSensorListOxygen"
+            app:layout_constraintVertical_bias="0.66" />
+
+        <!--Spo2-->
+
+        <TextView
+            android:id="@+id/tvSensorListSpo2"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:text="@{ViewUtil.formatSpo2Value(viewModel.shareMemory.SPO2)}"
+            android:textColor="@color/spo2"
+            android:textSize="@dimen/f54"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1613"
+            app:layout_constraintRight_toRightOf="@id/rightVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7923" />
+
+        <TextView
+            android:id="@+id/tvSensorListSpo2UpperObjective"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{ViewUtil.formatSpo2Value(viewModel.shareMemory.spo2UpperLimit)}"
+            android:textColor="@color/spo2"
+            android:textSize="@dimen/f16"
+            app:layout_constraintBottom_toBottomOf="@id/tvSensorListSpo2"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/tvSensorListSpo2"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <TextView
+            android:id="@+id/tvSensorListSpo2LowerObjective"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{ViewUtil.formatSpo2Value(viewModel.shareMemory.spo2LowerLimit)}"
+            android:textColor="@color/spo2"
+            android:textSize="@dimen/f16"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintTop_toBottomOf="@id/tvSensorListSpo2UpperObjective" />
+
+        <!--Pr-->
+
+        <TextView
+            android:id="@+id/tvSensorListPr"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:fontFamily="monospace"
+            android:gravity="center_vertical"
+            android:text="@{ViewUtil.formatPrValue(viewModel.shareMemory.PR)}"
+            android:textColor="@color/spo2"
+            android:textSize="@dimen/f54"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1613"
+            app:layout_constraintRight_toRightOf="@id/rightVerticalGuideline"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9846" />
+
+        <TextView
+
+            android:id="@+id/tvSensorListPrUpperObjective"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{ViewUtil.formatPrValue(viewModel.shareMemory.prUpperLimit)}"
+            android:textColor="@color/spo2"
+            android:textSize="@dimen/f16"
+            app:layout_constraintBottom_toBottomOf="@id/tvSensorListPr"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@id/tvSensorListPr"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <TextView
+            android:id="@+id/tvSensorListPrLowerObjective"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:text="@{ViewUtil.formatPrValue(viewModel.shareMemory.prLowerLimit)}"
+            android:textColor="@color/spo2"
+            android:textSize="@dimen/f16"
+            app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
+            app:layout_constraintTop_toBottomOf="@id/tvSensorListPrUpperObjective" />
+
+        <!--/Pr-->
+
+        <TextView
+            android:id="@+id/tvSensorListTiming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/humidity"
+            android:textSize="@dimen/f16"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? View.INVISIBLE: View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <ImageView
+            android:id="@+id/ivSensorListHumidityHide"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/border"
+            android:visibility="@{viewModel.humidityVisible?View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1613"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.414" />
+
+        <ImageView
+            android:id="@+id/ivSensorListOxygenHide"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/border"
+            android:visibility="@{viewModel.oxygenVisible?View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.1613"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6" />
+
+        <ImageView
+            android:id="@+id/ivSensorListSpo2Hide"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/border"
+            android:visibility="@{viewModel.spo2Visible?View.VISIBLE: View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.3226"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9810" />
+
+        <!--Air-->
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

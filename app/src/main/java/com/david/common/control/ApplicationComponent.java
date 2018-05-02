@@ -17,6 +17,8 @@ import com.david.incubator.ui.main.top.TopLayout;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
+import com.david.incubator.ui.menu.sensorlist.SensorListLayout;
+import com.david.incubator.ui.menu.sensorlist.SensorListViewModel;
 import com.david.incubator.ui.objective.cabin.ObjectiveFragment;
 import com.david.incubator.ui.objective.cabin.ObjectivePagerAdapter;
 import com.david.incubator.ui.objective.cabin.humidity.ObjectiveHumidityViewModel;
@@ -29,6 +31,7 @@ import com.david.incubator.ui.objective.warmer.jaundice.WarmerObjectiveJaundiceV
 import com.david.incubator.ui.objective.warmer.temp.WarmerObjectiveTempLayout;
 import com.david.incubator.ui.objective.warmer.temp.WarmerObjectiveTempViewModel;
 import com.david.incubator.ui.objective.warmer.timing.WarmerObjectiveTimingLayout;
+import com.david.incubator.ui.setting.SettingFragment;
 
 import javax.inject.Singleton;
 
@@ -109,5 +112,11 @@ public interface ApplicationComponent {
     void inject(WarmerObjectiveJaundiceViewModel warmerObjectiveJaundiceViewModel);
 
     void inject(WarmerObjectiveTimingLayout warmerObjectiveTimingLayout);
+
+    void inject(SettingFragment settingFragment);
+
+    void inject(SensorListViewModel sensorListViewModel);
+
+    void inject(SensorListLayout sensorListLayout);
 
 }
