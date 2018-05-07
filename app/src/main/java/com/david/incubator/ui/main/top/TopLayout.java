@@ -35,7 +35,7 @@ public class TopLayout extends AutoAttachConstraintLayout<LayoutTopBinding> {
 
         RxView.clicks(binding.tvTopAlarm)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((Object Void) -> mainViewModel.showAlertList.set(!mainViewModel.showAlertList.get()));
+                .subscribe((Object Void) -> mainViewModel.enableAlertList.set(!mainViewModel.enableAlertList.get()));
     }
 
     @Override

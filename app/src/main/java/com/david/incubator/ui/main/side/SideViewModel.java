@@ -5,7 +5,6 @@ import android.databinding.ObservableInt;
 
 import com.david.R;
 import com.david.common.alert.AlarmControl;
-import com.david.common.alert.AlarmModel;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
@@ -74,12 +73,12 @@ public class SideViewModel implements IViewModel {
     @Override
     public void attach() {
         shareMemory.lockScreen.addOnPropertyChangedCallback(lockScreenCallback);
-        alarmControl.topAlarm.addOnPropertyChangedCallback(clearAlarmCallback);
+        alarmControl.topAlarmId.addOnPropertyChangedCallback(clearAlarmCallback);
     }
 
     @Override
     public void detach() {
-        alarmControl.topAlarm.removeOnPropertyChangedCallback(clearAlarmCallback);
+        alarmControl.topAlarmId.removeOnPropertyChangedCallback(clearAlarmCallback);
         shareMemory.lockScreen.removeOnPropertyChangedCallback(lockScreenCallback);
     }
 
@@ -89,16 +88,18 @@ public class SideViewModel implements IViewModel {
     }
 
     public void muteAlarm() {
-        AlarmModel alarmModel = alarmControl.topAlarm.get();
-        if (alarmModel != null) {
-            messageSender.setMute(alarmModel.getAlertId(), alarmModel.getMuteTime(), (aBoolean, baseSerialMessage) -> {
+        String alarmId = alarmControl.topAlarmId.get();
+        String alarmModelField = AlarmControl.getAlertField(alarmId);
+        int alarmTime = AlarmControl.getMuteTime(alarmId);
+        if (alarmControl.isAlert()) {
+            messageSender.setMute(alarmModelField, alarmTime, (aBoolean, baseSerialMessage) -> {
                 if (aBoolean) {
                     /*静音成功*/
                     muteAlarmImage.set(R.mipmap.alarm_muted);
                     if (muteDisposable != null) {
                         muteDisposable.dispose();
                     }
-                    muteDisposable = io.reactivex.Observable.timer(alarmModel.getMuteTime(), TimeUnit.SECONDS)
+                    muteDisposable = io.reactivex.Observable.timer(alarmTime, TimeUnit.SECONDS)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(aLong -> muteAlarmImage.set(R.mipmap.alarm_started));
                 }

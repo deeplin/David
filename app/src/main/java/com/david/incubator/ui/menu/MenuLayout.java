@@ -3,7 +3,6 @@ package com.david.incubator.ui.menu;
 import android.content.Context;
 import android.databinding.Observable;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 
 import com.david.R;
 import com.david.common.control.MainApplication;

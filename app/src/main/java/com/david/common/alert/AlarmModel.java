@@ -1,8 +1,5 @@
 package com.david.common.alert;
 
-import com.david.common.util.ReflectionUtil;
-import com.david.common.util.ResourceUtil;
-
 /**
  * author: Ling Lin
  * created on: 2018/1/25 15:51
@@ -11,18 +8,14 @@ import com.david.common.util.ResourceUtil;
  */
 public class AlarmModel extends Object {
 
-    private String alertId;
-    private int resourceId;
+    private String alarmId;
 
     private int alertPriority;
 
     private AlarmPriorityMode alarmPriorityMode;
 
-    private int muteTime;
-
-    public void setAlertId(String alertId) throws Exception{
-        this.alertId = alertId;
-        this.resourceId = ReflectionUtil.getResourceId(alertId, ReflectionUtil.ResourcesType.string);
+    public void setAlarmId(String alarmId){
+        this.alarmId = alarmId;
     }
 
     public void setAlertPriority(int alertPriority) {
@@ -33,12 +26,8 @@ public class AlarmModel extends Object {
         this.alarmPriorityMode = alarmPriorityMode;
     }
 
-    public void setMuteTime(int muteTime) {
-        this.muteTime = muteTime;
-    }
-
-    public String getAlertId() {
-        return alertId;
+    public String getAlarmId() {
+        return alarmId;
     }
 
     public int getAlertPriority() {
@@ -49,15 +38,11 @@ public class AlarmModel extends Object {
         return alarmPriorityMode;
     }
 
-    public int getMuteTime() {
-        return muteTime;
-    }
-
     public AlarmModel() {
     }
 
     @Override
     public String toString() {
-        return ResourceUtil.getString(resourceId);
+        return AlarmControl.getAlertField(alarmId);
     }
 }

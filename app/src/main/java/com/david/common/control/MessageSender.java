@@ -7,6 +7,7 @@ import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
 import com.david.common.serial.command.alert.AlertGetCommand;
+import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.serial.command.alert.AlertMuteCommand;
 import com.david.common.serial.command.alert.AlertSetCommand;
 import com.david.common.serial.command.ctrl.CtrlModeCommand;
@@ -149,6 +150,16 @@ public class MessageSender {
         AlertSetCommand alertSetCommand = new AlertSetCommand(alertSetting, value);
         alertSetCommand.setOnCompleted(onComplete);
         serialControl.addSession(alertSetCommand);
+    }
+
+    public void addAlarmList(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        AlertListCommand alertListCommand = new AlertListCommand();
+        alertListCommand.setOnCompleted(onComplete);
+        serialControl.addRepeatSession(alertListCommand);
+    }
+
+    public void removeAlarmList(){
+        serialControl.removeRepeatSession(AlertListCommand.class);
     }
 
 //

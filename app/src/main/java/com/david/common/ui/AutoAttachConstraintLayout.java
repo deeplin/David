@@ -15,20 +15,14 @@ import android.view.View;
  * description:
  */
 
-public abstract class AutoAttachConstraintLayout<U extends ViewDataBinding> extends ConstraintLayout implements IViewModel {
-
-    protected U binding;
+public abstract class AutoAttachConstraintLayout<U extends ViewDataBinding> extends TabConstraintLayout<U> {
 
     public AutoAttachConstraintLayout(Context context) {
         super(context);
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        binding = DataBindingUtil.inflate(inflater, getLayoutId(), this, true);
     }
 
     public AutoAttachConstraintLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        binding = DataBindingUtil.inflate(inflater, getLayoutId(), this, true);
     }
 
     @Override
@@ -43,6 +37,4 @@ public abstract class AutoAttachConstraintLayout<U extends ViewDataBinding> exte
                 break;
         }
     }
-
-    protected abstract int getLayoutId();
 }

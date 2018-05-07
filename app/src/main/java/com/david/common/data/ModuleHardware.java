@@ -70,7 +70,6 @@ public class ModuleHardware extends ModuleSoftware {
             cameraInstalled = moduleGetSoftwareCommand.getCAMERA() == 1;
             jaundiceInstalled = moduleGetSoftwareCommand.getBLUE() == 1;
             deviceModel = moduleGetSoftwareCommand.getMODEL();
-
             super.accept(true, baseSerialMessage);
         }
     }

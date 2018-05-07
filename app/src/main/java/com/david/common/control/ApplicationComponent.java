@@ -1,5 +1,6 @@
 package com.david.common.control;
 
+import com.david.common.data.ShareMemory;
 import com.david.common.ui.alarm.AlarmView;
 import com.david.incubator.control.IncubatorApplication;
 import com.david.incubator.ui.home.cabin.HomeFragment;
@@ -118,5 +119,7 @@ public interface ApplicationComponent {
     void inject(SensorListViewModel sensorListViewModel);
 
     void inject(SensorListLayout sensorListLayout);
+
+    void inject(ShareMemory shareMemory);
 
 }

@@ -92,6 +92,10 @@ public class SerialControl extends BaseSerialControl {
         addRepeatSession(serialMessage.getClass().getSimpleName(), serialMessage);
     }
 
+    public synchronized void removeRepeatSession(Class clazz){
+        repeatSessionMap.remove(clazz.getClass().getSimpleName());
+    }
+
     private void addRepeatSession(String key, BaseSerialMessage serialMessage) {
         repeatSessionMap.put(key, serialMessage);
         MessageMode messageMode = serialMessage.getMessageMode();

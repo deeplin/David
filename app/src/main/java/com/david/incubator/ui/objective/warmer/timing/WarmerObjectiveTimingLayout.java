@@ -1,10 +1,11 @@
 package com.david.incubator.ui.objective.warmer.timing;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
-import com.david.common.ui.AutoAttachConstraintLayout;
+import com.david.common.ui.TabConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.WarmerLayoutObjectiveTimingBinding;
 import com.david.incubator.util.TimingData;
@@ -20,7 +21,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class WarmerObjectiveTimingLayout extends AutoAttachConstraintLayout<WarmerLayoutObjectiveTimingBinding> {
+public class WarmerObjectiveTimingLayout extends TabConstraintLayout<WarmerLayoutObjectiveTimingBinding> {
 
     @Inject
     TimingData timingData;
@@ -61,11 +62,13 @@ public class WarmerObjectiveTimingLayout extends AutoAttachConstraintLayout<Warm
 
     @Override
     public void attach() {
+        Log.e("deeplin", "timing attach");
         binding.ibObjectiveApgar.setSelected(timingData.isApgarSelected());
         binding.ibObjectiveCpr.setSelected(!timingData.isApgarSelected());
     }
 
     @Override
     public void detach() {
+        Log.e("deeplin", "timging detach");
     }
 }

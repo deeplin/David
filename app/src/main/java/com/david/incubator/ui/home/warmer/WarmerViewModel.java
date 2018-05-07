@@ -16,6 +16,7 @@ import com.david.common.util.Constant;
 import com.david.incubator.util.ViewUtil;
 
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -123,7 +124,7 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
         shareMemory.ctrlMode.notifyChange();
         shareMemory.manObjective.notifyChange();
 
-        if (moduleHardware.getDeviceModel().equals(Constant.HKN93S)) {
+        if (Objects.equals(moduleHardware.getDeviceModel(), Constant.HKN93S)) {
             jaundice.set(true);
         }
     }

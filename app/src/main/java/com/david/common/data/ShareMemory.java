@@ -6,6 +6,8 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
 import com.david.R;
+import com.david.common.alert.AlarmControl;
+import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.CtrlGetCommand;
 import com.david.common.dao.Spo2GetCommand;
@@ -21,6 +23,7 @@ import com.david.common.util.CommandChar;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
+import com.david.incubator.ui.main.MainViewModel;
 
 import java.util.Objects;
 
@@ -32,12 +35,14 @@ import io.reactivex.functions.BiConsumer;
 @Singleton
 public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
+    @Inject
+    AlarmControl alarmControl;
+
     /*Status Command*/
     public ObservableField<SystemMode> systemMode = new ObservableField<>(SystemMode.Init);
     public ObservableInt inc = new ObservableInt(0);
     public ObservableInt warm = new ObservableInt(0);
     public ObservableInt cTime = new ObservableInt(0);
-    public ObservableField<String> alertID = new ObservableField<>(Constant.SENSOR_NA_STRING);
     public ObservableInt ohTest = new ObservableInt(0);
     /*Analog Command*/
     public ObservableInt S1B = new ObservableInt();
@@ -76,6 +81,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
     @Inject
     public ShareMemory() {
+        MainApplication.getInstance().getApplicationComponent().inject(this);
     }
 
     @Override
@@ -101,7 +107,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
                 inc.set(statusCommand.getInc());
                 warm.set(statusCommand.getWarm());
-                alertID.set(statusCommand.getAlert());
+                alarmControl.topAlarmId.set(statusCommand.getAlert());
                 ohTest.set(statusCommand.getOhtest());
             } else if (baseSerialMessage instanceof AnalogCommand) {
                 AnalogCommand analogCommand = (AnalogCommand) baseSerialMessage;

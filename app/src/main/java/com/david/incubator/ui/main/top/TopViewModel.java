@@ -7,7 +7,6 @@ import android.databinding.ObservableInt;
 
 import com.david.R;
 import com.david.common.alert.AlarmControl;
-import com.david.common.alert.AlarmModel;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
@@ -17,7 +16,6 @@ import com.david.common.mode.SystemMode;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
-import com.david.incubator.ui.main.MainViewModel;
 import com.david.incubator.ui.main.side.SideViewModel;
 
 import java.util.Locale;
@@ -55,14 +53,12 @@ public class TopViewModel implements IViewModel {
         MainApplication.getInstance().getApplicationComponent().inject(this);
         batteryStartTime = TimeUtil.getCurrentTimeInSecond() + 300;
 
-        alarmControl.topAlarm.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+        alarmControl.topAlarmId.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                String alarmId = null;
-                AlarmModel alarmModel = alarmControl.topAlarm.get();
-                if (alarmModel != null) {
-                    alarmId = alarmModel.getAlertId();
-                    alarmField.set(alarmModel.toString());
+                String alarmId = alarmControl.topAlarmId.get();
+                if (alarmControl.isAlert()) {
+                    alarmField.set(AlarmControl.getAlertField(alarmId));
                 } else {
                     alarmField.set(null);
                 }

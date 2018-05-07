@@ -50,8 +50,9 @@ public class WarmerObjectiveFragment extends TabFragment<IncubatorFragmentObject
             binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.spo2));
             binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.pr));
         }
-        binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.jaunedice));
-
+        if (moduleHardware.isJaundiceInstalled()) {
+            binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.jaunedice));
+        }
         binding.vpObjective.addOnPageChangeListener(super.getPageChangeListener(binding.vpObjective));
 
         currentPosition = 0;

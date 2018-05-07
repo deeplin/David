@@ -2,7 +2,6 @@ package com.david.incubator.ui.main;
 
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
-import android.util.Log;
 
 import com.david.common.alert.AlarmControl;
 import com.david.common.control.AutomationControl;
@@ -10,21 +9,15 @@ import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
-import com.david.common.mode.SystemMode;
+import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.ui.BaseNavigatorModel;
-import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
-import com.david.incubator.ui.main.side.SideViewModel;
 import com.david.incubator.ui.menu.MenuViewModel;
 
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 
 /**
  * author: Ling Lin
@@ -46,6 +39,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
     @Inject
     AutomationControl automationControl;
 
+    public ObservableBoolean enableAlertList = new ObservableBoolean(false);
     public ObservableBoolean showAlertList = new ObservableBoolean(false);
 
     private Observable.OnPropertyChangedCallback systemModeCallback;
@@ -55,6 +49,23 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
     @Inject
     public MainViewModel() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
+
+        enableAlertList.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                boolean status = enableAlertList.get();
+                if (status) {
+                    messageSender.addAlarmList((aBoolean, serialMessage) -> {
+                        if (aBoolean) {
+                            AlertListCommand alertListCommand = (AlertListCommand) serialMessage;
+                            showAlertList.set(alertListCommand.getAlertCount() > 0);
+                        }
+                    });
+                } else {
+                    messageSender.removeAlarmList();
+                }
+            }
+        });
 
         systemModeCallback = new Observable.OnPropertyChangedCallback() {
             @Override
@@ -95,7 +106,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                 }
 
                 if (status) {
-                    showAlertList.set(false);
+                    enableAlertList.set(false);
                 } else {
                     automationControl.initializeTimeOut();
                 }
