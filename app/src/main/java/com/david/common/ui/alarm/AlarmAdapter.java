@@ -1,6 +1,5 @@
 package com.david.common.ui.alarm;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,16 +9,19 @@ import android.view.ViewGroup;
 import com.david.R;
 import com.david.common.alert.AlarmModel;
 import com.david.common.alert.AlarmPriorityMode;
+import com.david.common.serial.command.alert.AlertListCommand;
 
 import java.util.List;
 import java.util.Objects;
 
 public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
 
+    private final AlertListCommand alertListCommand;
     private final List<AlarmModel> alarmModelList;
 
-    public AlarmAdapter(List<AlarmModel> alarmModelList) {
-        this.alarmModelList = alarmModelList;
+    public AlarmAdapter(AlertListCommand alertListCommand) {
+        this.alertListCommand = alertListCommand;
+        this.alarmModelList = alertListCommand.getAlertList();
     }
 
     @NonNull
@@ -44,6 +46,6 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
 
     @Override
     public int getItemCount() {
-        return alarmModelList.size();
+        return alertListCommand.getAlertCount();
     }
 }

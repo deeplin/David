@@ -1,99 +1,67 @@
 package com.david.common.serial.command.alert;
 
+import com.david.common.alert.AlarmModel;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.util.CommandChar;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class AlertListCommand extends BaseSerialMessage {
 
     public static final byte[] COMMAND = ("~ALERT" + CommandChar.ENTER).getBytes();
 
-    public String getAlert0() {
-        return alert0;
-    }
-
-    public void setAlert0(String alert0) {
-        this.alert0 = alert0;
+    public void setAlert0(String alertId) {
+        this.alarmModelList.get(0).setAlarmId(alertId);
         setAlertCount(1);
     }
 
-    public String getAlert1() {
-        return alert1;
-    }
-
-    public void setAlert1(String alert1) {
-        this.alert1 = alert1;
+    public void setAlert1(String alertId) {
+        this.alarmModelList.get(1).setAlarmId(alertId);
         setAlertCount(2);
     }
 
-    public String getAlert2() {
-        return alert2;
-    }
-
-    public void setAlert2(String alert2) {
-        this.alert2 = alert2;
+    public void setAlert2(String alertId) {
+        this.alarmModelList.get(2).setAlarmId(alertId);
         setAlertCount(3);
     }
 
-    public String getAlert3() {
-        return alert3;
-    }
-
-    public void setAlert3(String alert3) {
-        this.alert3 = alert3;
+    public void setAlert3(String alertId) {
+        this.alarmModelList.get(3).setAlarmId(alertId);
         setAlertCount(4);
     }
 
-    public String getAlert4() {
-        return alert4;
-    }
-
-    public void setAlert4(String alert4) {
-        this.alert4 = alert4;
+    public void setAlert4(String alertId) {
+        this.alarmModelList.get(4).setAlarmId(alertId);
         setAlertCount(5);
     }
 
-    public String getAlert5() {
-        return alert5;
-    }
-
-    public void setAlert5(String alert5) {
-        this.alert5 = alert5;
+    public void setAlert5(String alertId) {
+        this.alarmModelList.get(5).setAlarmId(alertId);
         setAlertCount(6);
     }
 
-    public String getAlert6() {
-        return alert6;
-    }
-
-    public void setAlert6(String alert6) {
-        this.alert6 = alert6;
+    public void setAlert6(String alertId) {
+        this.alarmModelList.get(6).setAlarmId(alertId);
         setAlertCount(7);
     }
 
-    public String getAlert7() {
-        return alert7;
-    }
-
-    public void setAlert7(String alert7) {
-        this.alert7 = alert7;
+    public void setAlert7(String alertId) {
+        this.alarmModelList.get(7).setAlarmId(alertId);
         setAlertCount(8);
     }
 
-    public String getAlert8() {
-        return alert8;
-    }
-
-    public void setAlert8(String alert8) {
-        this.alert8 = alert8;
+    public void setAlert8(String alertId) {
+        this.alarmModelList.get(8).setAlarmId(alertId);
         setAlertCount(9);
     }
 
-    public String getAlert9() {
-        return alert9;
-    }
-
-    public void setAlert9(String alert9) {
-        this.alert9 = alert9;
+    public void setAlert9(String alertId) {
+        this.alarmModelList.get(9).setAlarmId(alertId);
         setAlertCount(10);
     }
 
@@ -107,20 +75,21 @@ public class AlertListCommand extends BaseSerialMessage {
         }
     }
 
-    private String alert0;
-    private String alert1;
-    private String alert2;
-    private String alert3;
-    private String alert4;
-    private String alert5;
-    private String alert6;
-    private String alert7;
-    private String alert8;
-    private String alert9;
+    public List<AlarmModel> getAlertList() {
+        return alarmModelList;
+    }
+
+    private List<AlarmModel> alarmModelList;
     private int alertCount;
 
+    @Inject
     public AlertListCommand() {
         alertCount = 0;
+        alarmModelList = new ArrayList<>();
+        for (int index = 0; index < 10; index++) {
+            AlarmModel alarmModel = new AlarmModel();
+            alarmModelList.add(alarmModel);
+        }
     }
 
     @Override

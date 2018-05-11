@@ -2,6 +2,7 @@ package com.david.incubator.ui.main;
 
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
+import android.util.Log;
 
 import com.david.common.alert.AlarmControl;
 import com.david.common.control.AutomationControl;
@@ -56,13 +57,19 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                 boolean status = enableAlertList.get();
                 if (status) {
                     messageSender.addAlarmList((aBoolean, serialMessage) -> {
-                        if (aBoolean) {
+                        if (aBoolean && enableAlertList.get()) {
                             AlertListCommand alertListCommand = (AlertListCommand) serialMessage;
-                            showAlertList.set(alertListCommand.getAlertCount() > 0);
+                            if (alertListCommand.getAlertCount() > 0) {
+                                showAlertList.set(true);
+                                alarmControl.alarmListUpdated.notifyChange();
+                            } else {
+                                showAlertList.set(false);
+                            }
                         }
                     });
                 } else {
                     messageSender.removeAlarmList();
+                    showAlertList.set(false);
                 }
             }
         });

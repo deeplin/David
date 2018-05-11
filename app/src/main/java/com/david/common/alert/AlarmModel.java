@@ -10,32 +10,16 @@ public class AlarmModel extends Object {
 
     private String alarmId;
 
-    private int alertPriority;
-
-    private AlarmPriorityMode alarmPriorityMode;
-
     public void setAlarmId(String alarmId){
         this.alarmId = alarmId;
     }
 
-    public void setAlertPriority(int alertPriority) {
-        this.alertPriority = alertPriority;
-    }
-
-    public void setAlarmPriorityMode(AlarmPriorityMode alarmPriorityMode) {
-        this.alarmPriorityMode = alarmPriorityMode;
-    }
-
-    public String getAlarmId() {
-        return alarmId;
-    }
-
-    public int getAlertPriority() {
-        return alertPriority;
-    }
-
     public AlarmPriorityMode getAlarmPriorityMode() {
-        return alarmPriorityMode;
+        return AlarmControl.getPriorityMode(alarmId);
+    }
+
+    public int getAlarmPriority() {
+        return 1;
     }
 
     public AlarmModel() {

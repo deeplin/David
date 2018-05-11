@@ -7,13 +7,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
 import com.david.R;
 import com.david.common.alert.AlarmControl;
 import com.david.common.control.MainApplication;
+import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.ui.IViewModel;
 
 import javax.inject.Inject;
@@ -22,6 +22,8 @@ public class AlarmView extends FrameLayout implements IViewModel {
 
     @Inject
     AlarmControl alarmControl;
+    @Inject
+    AlertListCommand alertListCommand;
 
     Observable.OnPropertyChangedCallback alarmCallback;
 
@@ -33,7 +35,7 @@ public class AlarmView extends FrameLayout implements IViewModel {
 
         RecyclerView recyclerView = findViewById(R.id.rvAlarm);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        AlarmAdapter alarmAdapter = new AlarmAdapter(alarmControl.alarmModelList);
+        AlarmAdapter alarmAdapter = new AlarmAdapter(alertListCommand);
         recyclerView.setAdapter(alarmAdapter);
 
         //        recyclerView.addItemDecoration(new DividerItemDecoration(context,
@@ -50,11 +52,11 @@ public class AlarmView extends FrameLayout implements IViewModel {
 
     @Override
     public void attach() {
-        alarmControl.alarmUpdated.addOnPropertyChangedCallback(alarmCallback);
+        alarmControl.alarmListUpdated.addOnPropertyChangedCallback(alarmCallback);
     }
 
     @Override
     public void detach() {
-        alarmControl.alarmUpdated.removeOnPropertyChangedCallback(alarmCallback);
+        alarmControl.alarmListUpdated.removeOnPropertyChangedCallback(alarmCallback);
     }
 }

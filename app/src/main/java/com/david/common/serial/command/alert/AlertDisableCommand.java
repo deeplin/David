@@ -12,18 +12,14 @@ import com.david.common.util.CommandChar;
 
 public class AlertDisableCommand extends BaseSerialMessage {
 
-    public static final String COMMAND = "~ALERT DISABLE %s" + CommandChar.ENTER;
+    public static final byte[] COMMAND = ("~ALERT DISABLE ALL 30" + CommandChar.ENTER).getBytes();
 
-    private String alertId;
-
-    public AlertDisableCommand(String alertId) {
-        this.alertId = alertId;
+    public AlertDisableCommand() {
     }
 
     @Override
     public byte[] getRequest() {
-        return (String.format(COMMAND, alertId)).getBytes();
+        return COMMAND;
     }
-
 }
 

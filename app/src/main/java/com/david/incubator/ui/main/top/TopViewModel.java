@@ -9,6 +9,7 @@ import com.david.R;
 import com.david.common.alert.AlarmControl;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
+import com.david.common.control.MessageSender;
 import com.david.common.dao.UserModel;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.BatteryMode;
@@ -16,13 +17,16 @@ import com.david.common.mode.SystemMode;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
-import com.david.incubator.ui.main.side.SideViewModel;
 
 import java.util.Locale;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 @Singleton
 public class TopViewModel implements IViewModel {
@@ -32,9 +36,9 @@ public class TopViewModel implements IViewModel {
     @Inject
     public ShareMemory shareMemory;
     @Inject
-    SideViewModel sideViewModel;
-    @Inject
     DaoControl daoControl;
+    @Inject
+    MessageSender messageSender;
 
     public ObservableField<String> userId = new ObservableField<>();
     public ObservableField<String> alarmField = new ObservableField<>();
@@ -45,8 +49,13 @@ public class TopViewModel implements IViewModel {
     private ObservableField<BatteryMode> batteryModeCallback = new ObservableField<>();
     private Observable.OnPropertyChangedCallback vuCallback;
 
+    public ObservableBoolean muteAlarmImage = new ObservableBoolean(false);
+    public ObservableField<String> muteAlarmField = new ObservableField<>();
+
     private boolean batteryAlert = false;
     private long batteryStartTime;
+
+    private Disposable muteDisposable = null;
 
     @Inject
     public TopViewModel() {
@@ -59,20 +68,17 @@ public class TopViewModel implements IViewModel {
                 String alarmId = alarmControl.topAlarmId.get();
                 if (alarmControl.isAlert()) {
                     alarmField.set(AlarmControl.getAlertField(alarmId));
-                } else {
-                    alarmField.set(null);
-                }
-                if (alarmId != null) {
-                    if (alarmId.equals("SYS.UPS") || alarmId.equals("SYS.BAT")) {
+
+                    if (Objects.equals(alarmId, "SYS.UPS") || Objects.equals(alarmId, "SYS.BAT")) {
                         batteryAlert = true;
                     } else {
                         batteryAlert = false;
                     }
-
-                    if (alarmId.equals("SYS.TANK")) {
-                        sideViewModel.muteAlarm();
+                    if (Objects.equals(alarmId, "SYS.TANK")) {
+                        muteAlarm();
                     }
                 } else {
+                    alarmField.set(null);
                     batteryAlert = false;
                 }
             }
@@ -197,5 +203,36 @@ public class TopViewModel implements IViewModel {
                 break;
         }
         batteryImageId.set(imageId);
+    }
+
+    public void muteAlarm() {
+        if (muteDisposable != null) {
+            muteDisposable.dispose();
+        }
+        muteAlarmImage.set(false);
+        muteAlarmField.set(null);
+        if (alarmControl.isAlert()) {
+            String alarmId = alarmControl.topAlarmId.get();
+            int alarmTime = AlarmControl.getMuteTime(alarmId);
+            messageSender.setMute(alarmId, alarmTime, (aBoolean, baseSerialMessage) -> {
+                if (aBoolean) {
+                    /*静音成功*/
+                    muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
+                    muteAlarmImage.set(true);
+                    muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(aLong -> {
+                                long remaining = alarmTime - aLong;
+                                if (remaining > 0) {
+                                    muteAlarmField.set(String.format(Locale.US, "%ds", remaining));
+                                } else {
+                                    muteDisposable.dispose();
+                                    muteAlarmImage.set(false);
+                                    muteAlarmField.set(null);
+                                }
+                            });
+                }
+            });
+        }
     }
 }

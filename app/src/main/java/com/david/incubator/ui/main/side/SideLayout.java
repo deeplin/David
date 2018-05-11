@@ -2,20 +2,17 @@ package com.david.incubator.ui.main.side;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.LayoutInflater;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
-import com.david.common.mode.SystemMode;
 import com.david.common.ui.AutoAttachConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.IncubatorLayoutSideBinding;
+import com.david.incubator.ui.main.top.TopViewModel;
 import com.jakewharton.rxbinding2.view.RxView;
 
-import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -32,6 +29,8 @@ public class SideLayout extends AutoAttachConstraintLayout<IncubatorLayoutSideBi
     SideViewModel viewModel;
     @Inject
     ShareMemory shareMemory;
+    @Inject
+    TopViewModel topViewModel;
 
     public SideLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -51,8 +50,7 @@ public class SideLayout extends AutoAttachConstraintLayout<IncubatorLayoutSideBi
         RxView.clicks(binding.btSideLockScreen)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object Void) -> {
-                    SystemMode systemMode = shareMemory.systemMode.get();
-                    if (!Objects.equals(systemMode, SystemMode.Transit)) {
+                    if (!shareMemory.isTransit()) {
                         shareMemory.lockScreen.set(!shareMemory.lockScreen.get());
                     }
                 });
@@ -60,8 +58,7 @@ public class SideLayout extends AutoAttachConstraintLayout<IncubatorLayoutSideBi
         RxView.clicks(binding.btSideClearAlarm)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object Void) -> {
-                    SystemMode systemMode = shareMemory.systemMode.get();
-                    if (!Objects.equals(systemMode, SystemMode.Transit)) {
+                    if (!shareMemory.isTransit()) {
                         viewModel.clearAlarm();
                     }
                 });
@@ -69,9 +66,8 @@ public class SideLayout extends AutoAttachConstraintLayout<IncubatorLayoutSideBi
         RxView.clicks(binding.btSideMuteAlarm)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object Void) -> {
-                    SystemMode systemMode = shareMemory.systemMode.get();
-                    if (!Objects.equals(systemMode, SystemMode.Transit)) {
-                        viewModel.muteAlarm();
+                    if (!shareMemory.isTransit()) {
+                        topViewModel.muteAlarm();
                     }
                 });
     }

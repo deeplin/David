@@ -4,19 +4,13 @@ import android.databinding.Observable;
 import android.databinding.ObservableInt;
 
 import com.david.R;
-import com.david.common.alert.AlarmControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.IViewModel;
 
-import java.util.concurrent.TimeUnit;
-
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 
 /**
  * author: Ling Lin
@@ -28,20 +22,13 @@ import io.reactivex.disposables.Disposable;
 public class SideViewModel implements IViewModel {
 
     @Inject
-    AlarmControl alarmControl;
-    @Inject
     public ShareMemory shareMemory;
     @Inject
     MessageSender messageSender;
 
     public ObservableInt lockScreenImage = new ObservableInt(R.mipmap.screen_unlocked);
-    public ObservableInt clearAlarmImage = new ObservableInt(R.mipmap.alarm_cleared);
-    public ObservableInt muteAlarmImage = new ObservableInt(R.mipmap.alarm_unmuted);
 
     private Observable.OnPropertyChangedCallback lockScreenCallback;
-    private Observable.OnPropertyChangedCallback clearAlarmCallback;
-
-    private Disposable muteDisposable = null;
 
     @Inject
     public SideViewModel() {
@@ -57,53 +44,19 @@ public class SideViewModel implements IViewModel {
                 }
             }
         };
-
-        clearAlarmCallback = new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable observable, int i) {
-                if (alarmControl.isAlert()) {
-                    clearAlarmImage.set(R.mipmap.alarm_started);
-                } else {
-                    clearAlarmImage.set(R.mipmap.alarm_cleared);
-                }
-            }
-        };
     }
 
     @Override
     public void attach() {
         shareMemory.lockScreen.addOnPropertyChangedCallback(lockScreenCallback);
-        alarmControl.topAlarmId.addOnPropertyChangedCallback(clearAlarmCallback);
     }
 
     @Override
     public void detach() {
-        alarmControl.topAlarmId.removeOnPropertyChangedCallback(clearAlarmCallback);
         shareMemory.lockScreen.removeOnPropertyChangedCallback(lockScreenCallback);
     }
 
     void clearAlarm() {
-        //send clear alarm command
-        clearAlarmImage.set(R.mipmap.alarm_cleared);
-    }
-
-    public void muteAlarm() {
-        String alarmId = alarmControl.topAlarmId.get();
-        String alarmModelField = AlarmControl.getAlertField(alarmId);
-        int alarmTime = AlarmControl.getMuteTime(alarmId);
-        if (alarmControl.isAlert()) {
-            messageSender.setMute(alarmModelField, alarmTime, (aBoolean, baseSerialMessage) -> {
-                if (aBoolean) {
-                    /*静音成功*/
-                    muteAlarmImage.set(R.mipmap.alarm_muted);
-                    if (muteDisposable != null) {
-                        muteDisposable.dispose();
-                    }
-                    muteDisposable = io.reactivex.Observable.timer(alarmTime, TimeUnit.SECONDS)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(aLong -> muteAlarmImage.set(R.mipmap.alarm_started));
-                }
-            });
-        }
+        messageSender.clearAlarm();
     }
 }

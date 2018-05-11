@@ -6,6 +6,7 @@ import com.david.common.mode.AlarmSettingMode;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
+import com.david.common.serial.command.alert.AlertDisableCommand;
 import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.serial.command.alert.AlertMuteCommand;
@@ -36,7 +37,8 @@ public class MessageSender {
     SerialControl serialControl;
     @Inject
     DaoControl daoControl;
-
+    @Inject
+    AlertListCommand alertListCommand;
 
     @Inject
     public MessageSender() {
@@ -153,13 +155,17 @@ public class MessageSender {
     }
 
     public void addAlarmList(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-        AlertListCommand alertListCommand = new AlertListCommand();
         alertListCommand.setOnCompleted(onComplete);
         serialControl.addRepeatSession(alertListCommand);
     }
 
     public void removeAlarmList(){
         serialControl.removeRepeatSession(AlertListCommand.class);
+    }
+
+    public void clearAlarm(){
+        AlertDisableCommand alertDisableCommand = new AlertDisableCommand();
+        serialControl.addSession(alertDisableCommand);
     }
 
 //
