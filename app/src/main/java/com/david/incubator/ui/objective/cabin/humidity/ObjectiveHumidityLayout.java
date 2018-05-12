@@ -1,13 +1,10 @@
 package com.david.incubator.ui.objective.cabin.humidity;
 
 import android.content.Context;
-import android.media.audiofx.LoudnessEnhancer;
-import android.util.Log;
-import android.view.LayoutInflater;
 
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.databinding.IncubatorLayoutObjectiveHumidityBinding;
+import com.david.databinding.LayoutObjectiveHumidityBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.david.R;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  * email: 10525677@qq.com
  * description:
  */
-public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<IncubatorLayoutObjectiveHumidityBinding> {
+public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<LayoutObjectiveHumidityBinding> {
 
     ObjectiveHumidityViewModel objectiveViewModel;
 
@@ -63,7 +60,7 @@ public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<Incuba
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_layout_objective_humidity;
+        return R.layout.layout_objective_humidity;
     }
 
     @Override

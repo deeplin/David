@@ -1,12 +1,11 @@
 package com.david.incubator.ui.objective.cabin.spo2;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.david.R;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.databinding.IncubatorLayoutObjectiveSpo2Binding;
+import com.david.databinding.LayoutObjectiveSpo2Binding;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -17,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * email: 10525677@qq.com
  * description:
  */
-public class ObjectiveSpo2Layout extends FastIncreaseConstraintLayout<IncubatorLayoutObjectiveSpo2Binding> {
+public class ObjectiveSpo2Layout extends FastIncreaseConstraintLayout<LayoutObjectiveSpo2Binding> {
     ObjectiveSpo2ViewModel objectiveViewModel;
 
     public ObjectiveSpo2Layout(Context context, ObjectiveSpo2ViewModel objectiveViewModel) {
@@ -90,7 +89,7 @@ public class ObjectiveSpo2Layout extends FastIncreaseConstraintLayout<IncubatorL
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_layout_objective_spo2;
+        return R.layout.layout_objective_spo2;
     }
 
     @Override

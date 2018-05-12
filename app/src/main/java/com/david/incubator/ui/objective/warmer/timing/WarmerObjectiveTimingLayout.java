@@ -62,13 +62,11 @@ public class WarmerObjectiveTimingLayout extends TabConstraintLayout<WarmerLayou
 
     @Override
     public void attach() {
-        Log.e("deeplin", "timing attach");
         binding.ibObjectiveApgar.setSelected(timingData.isApgarSelected());
         binding.ibObjectiveCpr.setSelected(!timingData.isApgarSelected());
     }
 
     @Override
     public void detach() {
-        Log.e("deeplin", "timging detach");
     }
 }

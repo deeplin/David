@@ -10,7 +10,7 @@ import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.ui.AutoAttachConstraintLayout;
 import com.david.common.util.AnimationUtil;
-import com.david.databinding.IncubatorLayoutSensorListBinding;
+import com.david.databinding.LayoutSensorListBinding;
 
 import javax.inject.Inject;
 
@@ -23,7 +23,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * description:
  */
 
-public class SensorListLayout extends AutoAttachConstraintLayout<IncubatorLayoutSensorListBinding> implements SensorListNavigator {
+public class SensorListLayout extends AutoAttachConstraintLayout<LayoutSensorListBinding> implements SensorListNavigator {
 
     @Inject
     SensorListViewModel viewModel;
@@ -38,7 +38,7 @@ public class SensorListLayout extends AutoAttachConstraintLayout<IncubatorLayout
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_layout_sensor_list;
+        return R.layout.layout_sensor_list;
     }
 
     @Override

@@ -7,7 +7,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.mode.CtrlMode;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.databinding.IncubatorLayoutObjectiveTempBinding;
+import com.david.databinding.LayoutObjectiveTempBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -20,7 +20,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<IncubatorLayoutObjectiveTempBinding> {
+public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<LayoutObjectiveTempBinding> {
 
     @Inject
     ObjectiveTempViewModel viewModel;
@@ -74,7 +74,7 @@ public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<IncubatorL
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_layout_objective_temp;
+        return R.layout.layout_objective_temp;
     }
 
     @Override

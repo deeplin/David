@@ -6,7 +6,6 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
-import android.support.constraint.ConstraintLayout;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,15 +16,15 @@ import android.widget.DatePicker;
 import android.widget.NumberPicker;
 
 import com.apkfuns.logutils.LogUtils;
-
+import com.david.R;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
 import com.david.common.mode.BloodTypeMode;
-import com.david.common.ui.IViewModel;
+import com.david.common.ui.TabConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
-import com.david.databinding.IncubatorLayoutSettingAddPatientBinding;
+import com.david.databinding.LayoutSettingAddPatientBinding;
 import com.david.incubator.ui.common.KeyEditTextViewModel;
 import com.david.incubator.ui.common.KeyValueViewModel;
 import com.david.incubator.ui.main.top.TopViewModel;
@@ -34,7 +33,7 @@ import com.jakewharton.rxbinding2.view.RxView;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
-import com.david.R;
+
 import javax.inject.Inject;
 
 /**
@@ -44,14 +43,12 @@ import javax.inject.Inject;
  * description:
  */
 
-public class SettingAddPatientLayout extends ConstraintLayout implements IViewModel {
+public class SettingAddPatientLayout extends TabConstraintLayout<LayoutSettingAddPatientBinding> {
 
     @Inject
     DaoControl daoControl;
     @Inject
     TopViewModel topViewModel;
-
-    IncubatorLayoutSettingAddPatientBinding binding;
 
     KeyEditTextViewModel nameKeyEditTextViewModel;
     KeyEditTextViewModel idKeyEditTextViewModel;
@@ -73,11 +70,10 @@ public class SettingAddPatientLayout extends ConstraintLayout implements IViewMo
         super(context);
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
-        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        binding = IncubatorLayoutSettingAddPatientBinding.inflate(layoutInflater, this, true);
         binding.setViewModel(this);
 
         init();
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         sex.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
@@ -140,7 +136,7 @@ public class SettingAddPatientLayout extends ConstraintLayout implements IViewMo
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.dialog);
             builder.setTitle(ResourceUtil.getString(R.string.birthday));
 
-            View view = layoutInflater.inflate(R.layout.dialog_birth, null);
+            View view = inflater.inflate(R.layout.dialog_birth, null);
             builder.setView(view);
 
             final DatePicker datePicker = view.findViewById(R.id.dpDate);
@@ -168,7 +164,7 @@ public class SettingAddPatientLayout extends ConstraintLayout implements IViewMo
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.dialog);
             builder.setTitle(ResourceUtil.getString(R.string.birth_weight));
 
-            View view = layoutInflater.inflate(R.layout.dialog_weight, null);
+            View view = inflater.inflate(R.layout.dialog_weight, null);
             builder.setView(view);
 
             NumberPicker numberPicker1 = view.findViewById(R.id.numberPicker1);
@@ -211,7 +207,7 @@ public class SettingAddPatientLayout extends ConstraintLayout implements IViewMo
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.dialog);
             builder.setTitle(ResourceUtil.getString(R.string.gestation));
 
-            View view = layoutInflater.inflate(R.layout.dialog_gestation, null);
+            View view = inflater.inflate(R.layout.dialog_gestation, null);
             builder.setView(view);
 
             NumberPicker numberPicker1 = view.findViewById(R.id.numberPicker1);
@@ -267,6 +263,11 @@ public class SettingAddPatientLayout extends ConstraintLayout implements IViewMo
                         LogUtils.e(e);
                     }
                 });
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.layout_setting_add_patient;
     }
 
     private void init() {

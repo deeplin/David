@@ -12,7 +12,7 @@ import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
-import com.david.databinding.IncubatorLayoutMenuBinding;
+import com.david.databinding.LayoutMenuBinding;
 import com.david.incubator.ui.main.MainViewModel;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -29,7 +29,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * description:
  */
 
-public class MenuLayout extends AutoAttachConstraintLayout<IncubatorLayoutMenuBinding> {
+public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
 
     @Inject
     MenuViewModel menuViewModel;
@@ -137,7 +137,7 @@ public class MenuLayout extends AutoAttachConstraintLayout<IncubatorLayoutMenuBi
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_layout_menu;
+        return R.layout.layout_menu;
     }
 
     @Override

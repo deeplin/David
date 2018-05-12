@@ -9,7 +9,7 @@ import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
-import com.david.databinding.IncubatorLayoutSideBinding;
+import com.david.databinding.LayoutSideBinding;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -23,7 +23,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SideLayout extends AutoAttachConstraintLayout<IncubatorLayoutSideBinding> {
+public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
 
     @Inject
     SideViewModel viewModel;
@@ -74,7 +74,7 @@ public class SideLayout extends AutoAttachConstraintLayout<IncubatorLayoutSideBi
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_layout_side;
+        return R.layout.layout_side;
     }
 
     @Override

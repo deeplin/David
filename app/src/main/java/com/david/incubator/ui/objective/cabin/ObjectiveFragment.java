@@ -7,11 +7,11 @@ import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabFragment;
-import com.david.databinding.IncubatorFragmentObjectiveBinding;
+import com.david.databinding.FragmentObjectiveBinding;
 
 import javax.inject.Inject;
 
-public class ObjectiveFragment extends TabFragment<IncubatorFragmentObjectiveBinding> {
+public class ObjectiveFragment extends TabFragment<FragmentObjectiveBinding> {
     @Inject
     ShareMemory shareMemory;
     @Inject
@@ -19,7 +19,7 @@ public class ObjectiveFragment extends TabFragment<IncubatorFragmentObjectiveBin
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_fragment_objective;
+        return R.layout.fragment_objective;
     }
 
     @Override

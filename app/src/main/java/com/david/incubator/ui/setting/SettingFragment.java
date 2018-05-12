@@ -4,7 +4,7 @@ import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.UserModelData;
 import com.david.common.ui.TabFragment;
-import com.david.databinding.IncubatorFragmentSettingBinding;
+import com.david.databinding.FragmentSettingBinding;
 
 import javax.inject.Inject;
 
@@ -15,7 +15,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SettingFragment extends TabFragment<IncubatorFragmentSettingBinding> {
+public class SettingFragment extends TabFragment<FragmentSettingBinding> {
 
     @Inject
     UserModelData userModelData;
@@ -29,7 +29,7 @@ public class SettingFragment extends TabFragment<IncubatorFragmentSettingBinding
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_fragment_setting;
+        return R.layout.fragment_setting;
     }
 
     @Override

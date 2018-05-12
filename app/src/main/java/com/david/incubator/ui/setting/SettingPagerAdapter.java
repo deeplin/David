@@ -35,9 +35,9 @@ public class SettingPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         View view;
         switch (position) {
-//            case 0:
-//                view = new SettingAddPatientLayout(container.getContext());
-//                break;
+            case 0:
+                view = new SettingAddPatientLayout(container.getContext());
+                break;
 //            case 1:
 //                view = new SettingComfortZoneLayout(container.getContext());
 //                break;
