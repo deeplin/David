@@ -57,18 +57,23 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                 if (status) {
                     messageSender.addAlarmList((aBoolean, serialMessage) -> {
                         if (aBoolean && enableAlertList.get()) {
+
                             AlertListCommand alertListCommand = (AlertListCommand) serialMessage;
                             if (alertListCommand.getAlertCount() > 0) {
-                                showAlertList.set(true);
-                                alarmControl.alarmListUpdated.notifyChange();
+                                synchronized (this) {
+                                    showAlertList.set(true);
+                                    alarmControl.alarmListUpdated.notifyChange();
+                                }
                             } else {
                                 showAlertList.set(false);
                             }
                         }
                     });
                 } else {
-                    messageSender.removeAlarmList();
-                    showAlertList.set(false);
+                    synchronized (this) {
+                        messageSender.removeAlarmList();
+                        showAlertList.set(false);
+                    }
                 }
             }
         });

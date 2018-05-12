@@ -106,8 +106,14 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
                 inc.set(statusCommand.getInc());
                 warm.set(statusCommand.getWarm());
-                //todo
-                alarmControl.topAlarmId.set("I" + statusCommand.getAlert());
+
+                if (Objects.equals(statusCommand.getAlert(), Constant.SENSOR_NA_STRING)) {
+                    alarmControl.topAlarmId.set(null);
+                } else {
+                    //todo
+                    alarmControl.topAlarmId.set("I" + statusCommand.getAlert());
+                }
+
                 ohTest.set(statusCommand.getOhtest());
             } else if (baseSerialMessage instanceof AnalogCommand) {
                 AnalogCommand analogCommand = (AnalogCommand) baseSerialMessage;

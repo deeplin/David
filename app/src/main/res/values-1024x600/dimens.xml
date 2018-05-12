@@ -18,6 +18,10 @@
     <dimen name="f54">42px</dimen>
     <dimen name="f60">48px</dimen>
 
+    <!--dimen x-->
+    <dimen name="c1">60dp</dimen>
+    <dimen name="c2">260dp</dimen>
+
     <!--dimen y-->
     <!--0.78125-->
     <dimen name="y10">8px</dimen>
@@ -28,6 +32,7 @@
     <dimen name="y40">32px</dimen>
     <dimen name="y48">38px</dimen>
     <dimen name="y60">46px</dimen>
+    <dimen name="y80">62px</dimen>
     <dimen name="y88">68px</dimen>
     <dimen name="y100">78px</dimen>
     <dimen name="y470">366px</dimen>

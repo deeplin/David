@@ -38,21 +38,21 @@ public class SettingPagerAdapter extends PagerAdapter {
             case 0:
                 view = new SettingAddPatientLayout(container.getContext());
                 break;
-//            case 1:
-//                view = new SettingComfortZoneLayout(container.getContext());
-//                break;
-//            case 2:
-//                view = new SettingCalibrationLayout(container.getContext());
-//                break;
-//            case 3:
-//                view = new SettingIntroductionLayout(container.getContext());
-//                break;
-//            case 4:
-//                view = new SettingDeviceLayout(container.getContext());
-//                break;
-//            case 5:
-//                view = new SettingHomeLayout(container.getContext());
-//                break;
+            case 1:
+                view = new SettingComfortZoneLayout(container.getContext());
+                break;
+            case 2:
+                view = new SettingCalibrationLayout(container.getContext());
+                break;
+            case 3:
+                view = new SettingIntroductionLayout(container.getContext());
+                break;
+            case 4:
+                view = new SettingDeviceLayout(container.getContext());
+                break;
+            case 5:
+                view = new SettingHomeLayout(container.getContext());
+                break;
             default:
                 view = new View(container.getContext());
                 break;

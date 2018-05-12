@@ -33,7 +33,10 @@ import com.david.incubator.ui.objective.warmer.temp.WarmerObjectiveTempLayout;
 import com.david.incubator.ui.objective.warmer.temp.WarmerObjectiveTempViewModel;
 import com.david.incubator.ui.objective.warmer.timing.WarmerObjectiveTimingLayout;
 import com.david.incubator.ui.setting.SettingAddPatientLayout;
+import com.david.incubator.ui.setting.SettingCalibrationLayout;
+import com.david.incubator.ui.setting.SettingDeviceLayout;
 import com.david.incubator.ui.setting.SettingFragment;
+import com.david.incubator.ui.setting.SettingIntroductionLayout;
 
 import javax.inject.Singleton;
 
@@ -124,4 +127,10 @@ public interface ApplicationComponent {
     void inject(ShareMemory shareMemory);
 
     void inject(SettingAddPatientLayout settingAddPatientLayout);
+
+    void inject(SettingCalibrationLayout settingCalibrationLayout);
+
+    void inject(SettingIntroductionLayout settingIntroductionLayout);
+
+    void inject(SettingDeviceLayout settingDeviceLayout);
 }

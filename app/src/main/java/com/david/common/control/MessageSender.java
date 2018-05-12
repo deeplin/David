@@ -6,11 +6,14 @@ import com.david.common.mode.AlarmSettingMode;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.LEDCommand;
+import com.david.common.serial.command.VersionCommand;
 import com.david.common.serial.command.alert.AlertDisableCommand;
 import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.serial.command.alert.AlertMuteCommand;
 import com.david.common.serial.command.alert.AlertSetCommand;
+import com.david.common.serial.command.calibration.CalibrateOxygenCommand;
+import com.david.common.serial.command.calibration.CalibrateScaleCommand;
 import com.david.common.serial.command.ctrl.CtrlModeCommand;
 import com.david.common.serial.command.ctrl.CtrlSetCommand;
 import com.david.common.serial.command.module.ModuleGetHardwareCommand;
@@ -159,14 +162,33 @@ public class MessageSender {
         serialControl.addRepeatSession(alertListCommand);
     }
 
-    public void removeAlarmList(){
+    public void removeAlarmList() {
         serialControl.removeRepeatSession(AlertListCommand.class);
     }
 
-    public void clearAlarm(){
+    public void clearAlarm() {
         AlertDisableCommand alertDisableCommand = new AlertDisableCommand();
         serialControl.addSession(alertDisableCommand);
     }
+
+    public void setOxygen(int value, int id, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        CalibrateOxygenCommand calibrateO2Command = new CalibrateOxygenCommand(id, value);
+        calibrateO2Command.setOnCompleted(onComplete);
+        serialControl.addSession(calibrateO2Command);
+    }
+
+    public void setScale(int value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        CalibrateScaleCommand calibrateScaleCommand = new CalibrateScaleCommand(value);
+        calibrateScaleCommand.setOnCompleted(onComplete);
+        serialControl.addSession(calibrateScaleCommand);
+    }
+
+    public void getVersion(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        VersionCommand versionCommand = new VersionCommand();
+        versionCommand.setOnCompleted(onComplete);
+        serialControl.addSession(versionCommand);
+    }
+
 
 //
 //    public void getCalibration(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
@@ -181,12 +203,7 @@ public class MessageSender {
 //        serialControl.addSession(alertGetCommand);
 //    }
 //
-//    public void getVersion(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        VersionCommand versionCommand = new VersionCommand();
-//        versionCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(versionCommand);
-//    }
-//
+
 
 
 //
@@ -197,10 +214,6 @@ public class MessageSender {
 //
 
 
-
-
-
-
 //    public void setAlertConfig(String alertSetting, int value1, int value2, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        AlertSetCommand alertSetCommand = new AlertSetCommand(alertSetting, value1, value2);
 //        alertSetCommand.setOnCompleted(onComplete);
@@ -208,17 +221,7 @@ public class MessageSender {
 //    }
 //
 //
-//    public void setOxygen(int value, int id, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        CalibrateOxygenCommand calibrateO2Command = new CalibrateOxygenCommand(id, value);
-//        calibrateO2Command.setOnCompleted(onComplete);
-//        serialControl.addSession(calibrateO2Command);
-//    }
-//
-//    public void setScale(int value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        CalibrateScaleCommand calibrateScaleCommand = new CalibrateScaleCommand(value);
-//        calibrateScaleCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(calibrateScaleCommand);
-//    }
+
 //
 //    public void setTempCalibration(String id, String value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
 //        CalibrateTempCommand calibrateTempCommand = new CalibrateTempCommand(id, value);

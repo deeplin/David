@@ -44,6 +44,7 @@ public class SettingFragment extends TabFragment<FragmentSettingBinding> {
         binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.cal));
         binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.introduction));
         binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.device));
+        binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.login));
         binding.vpSetting.addOnPageChangeListener(super.getPageChangeListener(binding.vpSetting));
         binding.tlSetting.getTabAt(0).select();
     }
