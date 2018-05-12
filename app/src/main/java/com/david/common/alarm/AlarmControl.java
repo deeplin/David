@@ -1,21 +1,15 @@
-package com.david.common.alert;
+package com.david.common.alarm;
 
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
-import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.util.ReflectionUtil;
 import com.david.common.util.ResourceUtil;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * author: Ling Lin

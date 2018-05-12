@@ -6,7 +6,7 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
 import com.david.R;
-import com.david.common.alert.AlarmControl;
+import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.CtrlGetCommand;
@@ -23,7 +23,6 @@ import com.david.common.util.CommandChar;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
-import com.david.incubator.ui.main.MainViewModel;
 
 import java.util.Objects;
 

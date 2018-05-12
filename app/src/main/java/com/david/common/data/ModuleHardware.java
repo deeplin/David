@@ -7,6 +7,7 @@ import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 
 import java.net.InetAddress;
+import java.util.Objects;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -69,16 +70,21 @@ public class ModuleHardware extends ModuleSoftware {
             ModuleGetSoftwareCommand moduleGetSoftwareCommand = (ModuleGetSoftwareCommand) baseSerialMessage;
             cameraInstalled = moduleGetSoftwareCommand.getCAMERA() == 1;
             jaundiceInstalled = moduleGetSoftwareCommand.getBLUE() == 1;
-            deviceModel = moduleGetSoftwareCommand.getMODEL();
+            //todo
+            if(Constant.RELEASE_TO_DAVID) {
+                deviceModel = moduleGetSoftwareCommand.getMODEL();
+            }else{
+                deviceModel = Constant.HKN93S;
+            }
             super.accept(true, baseSerialMessage);
         }
     }
 
-    public boolean showLED37() {
-        if (deviceModel.equals(Constant.HKN93S)) {
-            return false;
-        } else {
+    public boolean is93S() {
+        if (Objects.equals(deviceModel, Constant.HKN93S)) {
             return true;
+        } else {
+            return false;
         }
     }
 }

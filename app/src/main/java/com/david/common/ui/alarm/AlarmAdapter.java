@@ -7,8 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.david.R;
-import com.david.common.alert.AlarmModel;
-import com.david.common.alert.AlarmPriorityMode;
+import com.david.common.alarm.AlarmModel;
+import com.david.common.alarm.AlarmPriorityMode;
 import com.david.common.serial.command.alert.AlertListCommand;
 
 import java.util.List;

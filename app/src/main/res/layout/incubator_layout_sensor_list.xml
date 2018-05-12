@@ -171,7 +171,7 @@
             android:layout_height="0dp"
             android:fontFamily="monospace"
             android:gravity="center_vertical"
-            android:textColor="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? @color/oxygen:@color/scale_in_sensor_list}"
+            android:textColor="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? @color/oxygen:@color/blue}"
             android:textSize="@dimen/f54"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

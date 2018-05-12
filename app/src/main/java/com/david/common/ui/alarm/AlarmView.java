@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
 import com.david.R;
-import com.david.common.alert.AlarmControl;
+import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
 import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.ui.IViewModel;

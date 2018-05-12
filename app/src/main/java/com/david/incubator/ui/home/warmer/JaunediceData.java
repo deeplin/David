@@ -102,10 +102,6 @@ public class JaunediceData implements Consumer<Long> {
         return textString;
     }
 
-    public int getCount() {
-        return count;
-    }
-
     @Override
     public synchronized void accept(@NonNull Long o) throws Exception {
         count++;

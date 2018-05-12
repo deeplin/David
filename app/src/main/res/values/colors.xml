@@ -22,7 +22,7 @@
     <color name="oxygen">#00FF00</color>
     <color name="spo2">#91F6FF</color>
     <color name="scale">#FFFFFF</color>
-    <color name="scale_in_sensor_list">#F7B03F</color>
+    <color name="blue">#FFFFFF</color>
     <color name="warmer">#FD4545</color>
 
     <color name="alarm_text">#000000</color>

@@ -70,7 +70,7 @@ public class AutomationControl implements IViewModel {
             if (aBoolean) {
                 moduleHardware.accept(true, baseSerialMessage);
                 /*配置37度灯*/
-                if (moduleHardware.showLED37()) {
+                if (!moduleHardware.is93S()) {
                     shareMemory.above37.addOnPropertyChangedCallback(new android.databinding.Observable.OnPropertyChangedCallback() {
                         @Override
                         public void onPropertyChanged(android.databinding.Observable observable, int i) {
@@ -120,21 +120,21 @@ public class AutomationControl implements IViewModel {
 
         //todo
 //        if (Constant.RELEASE_TO_DAVID) {
-            /*读取传感器*/
-            if (ioDisposable == null) {
-                Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
-                ioDisposable = observable
-                        .observeOn(Schedulers.io())
-                        .subscribe((aLong) -> {
-                            serialControl.refresh();
-                            checkLockScreen();
-                            long currentTime = TimeUtil.getCurrentTimeInSecond();
-                            if (currentTime % 60 == 0) {
-                                daoControl.deleteStale();
-                                topViewModel.displayCurrentTime();
-                            }
-                        }, LogUtils::e);
-            }
+        /*读取传感器*/
+        if (ioDisposable == null) {
+            Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
+            ioDisposable = observable
+                    .observeOn(Schedulers.io())
+                    .subscribe((aLong) -> {
+                        serialControl.refresh();
+                        checkLockScreen();
+                        long currentTime = TimeUtil.getCurrentTimeInSecond();
+                        if (currentTime % 60 == 0) {
+                            daoControl.deleteStale();
+                            topViewModel.displayCurrentTime();
+                        }
+                    }, LogUtils::e);
+        }
 //        }
     }
 

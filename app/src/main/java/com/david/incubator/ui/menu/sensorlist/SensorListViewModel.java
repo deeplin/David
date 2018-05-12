@@ -10,6 +10,7 @@ import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.ui.BaseNavigatorModel;
+import com.david.incubator.ui.home.warmer.JaunediceData;
 import com.david.incubator.util.TimingData;
 import com.david.incubator.util.ViewUtil;
 
@@ -37,6 +38,8 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
     @Inject
     TimingData timingData;
     @Inject
+    JaunediceData jaunediceData;
+    @Inject
     MessageSender messageSender;
 
     public ObservableBoolean spo2Visible = new ObservableBoolean(true);
@@ -44,6 +47,8 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
     public ObservableBoolean humidityVisible = new ObservableBoolean(true);
 
     Observable.OnPropertyChangedCallback objectiveCallback;
+
+    Consumer<String> jaunediceConsumer;
 
     @Inject
     public SensorListViewModel() {
@@ -102,6 +107,17 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
             }
         });
 
+        shareMemory.H1.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if (navigator != null) {
+                    if (shareMemory.isCabin()) {
+                        navigator.displayHumidityValue(ViewUtil.formatHumidityValue(shareMemory.H1.get()));
+                    }
+                }
+            }
+        });
+
         objectiveCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
@@ -130,16 +146,11 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
             }
         };
 
-        shareMemory.H1.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable observable, int i) {
-                if (navigator != null) {
-                    if (shareMemory.isCabin()) {
-                        navigator.displayHumidityValue(ViewUtil.formatHumidityValue(shareMemory.H1.get()));
-                    }
-                }
+        jaunediceConsumer = s -> {
+            if (navigator != null) {
+                navigator.displayOxygenValue(s);
             }
-        });
+        };
 
 //        shareMemory.SC.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
 //            @Override
@@ -176,9 +187,14 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
         shareMemory.O2.notifyChange();
         shareMemory.H1.notifyChange();
         shareMemory.SC.notifyChange();
+
+        if (moduleHardware.is93S()) {
+            jaunediceData.setConsumer(jaunediceConsumer);
+        }
     }
 
     public void detach() {
+        jaunediceData.setConsumer(null);
         timingData.setConsumer(null);
 
         shareMemory.S2.removeOnPropertyChangedCallback(objectiveCallback);
@@ -202,8 +218,8 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
                         humidityVisible, navigator::humidityShowBorder);
             } else if (shareMemory.isWarmer()) {
                 navigator.setBackground(false);
-                ViewUtil.displaySensor(moduleHardware.isSCALE(), moduleSoftware.isSCALE(),
-                        oxygenVisible, navigator::scaleShowBorder);
+                ViewUtil.displaySensor(true, true,
+                        oxygenVisible, navigator::oxygenShowBorder);
                 ViewUtil.displaySensor(true, true,
                         humidityVisible, navigator::humidityShowBorder);
 
@@ -221,7 +237,7 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
     }
 
     @Override
-    public void accept(String timing){
+    public void accept(String timing) {
         if (navigator != null && timing != null)
             navigator.displayHumidityValue(timing);
     }

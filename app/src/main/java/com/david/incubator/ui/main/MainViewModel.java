@@ -2,9 +2,8 @@ package com.david.incubator.ui.main;
 
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
-import android.util.Log;
 
-import com.david.common.alert.AlarmControl;
+import com.david.common.alarm.AlarmControl;
 import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;

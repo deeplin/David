@@ -1,6 +1,6 @@
 package com.david.common.serial.command.alert;
 
-import com.david.common.alert.AlarmModel;
+import com.david.common.alarm.AlarmModel;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.util.CommandChar;
 

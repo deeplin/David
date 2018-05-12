@@ -1,4 +1,4 @@
-package com.david.common.alert;
+package com.david.common.alarm;
 
 /**
  * author: Ling Lin
