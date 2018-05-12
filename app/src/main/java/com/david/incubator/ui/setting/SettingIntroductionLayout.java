@@ -1,7 +1,6 @@
 package com.david.incubator.ui.setting;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;

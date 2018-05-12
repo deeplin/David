@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.user.UserLanguageLayout" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--第一行-->
+
+        <com.david.incubator.ui.common.TitleView
+            android:id="@+id/title"
+            android:layout_width="464dp"
+            android:layout_height="@dimen/y60"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/language_chinese_button"
+            style="@style/large_button_style"
+            android:isSelected="@{viewModel.chineseSelected}"
+            android:text="中文"
+            app:layout_constraintBottom_toTopOf="@id/divider"
+            app:layout_constraintEnd_toStartOf="@+id/language_english_button"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <Button
+            android:id="@+id/language_english_button"
+            style="@style/large_button_style"
+            android:isSelected="@{viewModel.englishSelected}"
+            android:text="English"
+            app:layout_constraintBottom_toBottomOf="@id/language_chinese_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/language_chinese_button"
+            app:layout_constraintTop_toTopOf="@id/language_chinese_button" />
+
+        <ImageView
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y40"
+            android:src="@mipmap/horizontal"
+            app:layout_constraintBottom_toTopOf="@id/buttonControl"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.david.incubator.ui.common.ButtonControlView
+            android:id="@+id/buttonControl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/space"
+            app:layout_constraintHeight_percent="0.1667" />
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y10"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

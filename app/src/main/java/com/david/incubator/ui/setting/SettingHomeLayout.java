@@ -13,6 +13,11 @@ import com.david.common.ui.TabConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutSettingHomeBinding;
+import com.david.incubator.ui.user.UserHomeLayout;
+import com.david.incubator.ui.user.UserLanguageLayout;
+import com.david.incubator.ui.user.UserScreenLuminanceLayout;
+import com.david.incubator.ui.user.UserTimeLayout;
+import com.david.incubator.ui.user.UserWarningVolumeLayout;
 
 /**
  * author: Ling Lin
@@ -51,27 +56,27 @@ public class SettingHomeLayout extends TabConstraintLayout<LayoutSettingHomeBind
                     case (FragmentPage.SETTING_LOGIN):
                         view = new SettingLoginLayout(MainApplication.getInstance(), navigationView);
                         break;
-//                    case (FragmentPage.USER_HOME):
-//                        view = new UserHomeLayout(MainApplication.getInstance(), navigationView);
-//                        break;
+                    case (FragmentPage.USER_HOME):
+                        view = new UserHomeLayout(MainApplication.getInstance(), navigationView);
+                        break;
 //                    case (FragmentPage.USER_MODEL):
 //                        view = new UserModelLayout(MainApplication.getInstance(), navigationView);
 //                        break;
 //                    case (FragmentPage.USER_MODEL_DETAIL):
 //                        view = new UserModelDetailLayout(MainApplication.getInstance(), navigationView);
 //                        break;
-//                    case (FragmentPage.USER_TIME_SETUP):
-//                        view = new UserTimeLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.USER_LANGUAGE_SETUP):
-//                        view = new UserLanguageLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.USER_WARNING_VOLUME):
-//                        view = new UserWarningVolumeLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.USER_SCREEN_LUMINANCE):
-//                        view = new UserScreenLuminanceLayout(MainApplication.getInstance(), navigationView);
-//                        break;
+                    case (FragmentPage.USER_TIME_SETUP):
+                        view = new UserTimeLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.USER_LANGUAGE_SETUP):
+                        view = new UserLanguageLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.USER_WARNING_VOLUME):
+                        view = new UserWarningVolumeLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.USER_SCREEN_LUMINANCE):
+                        view = new UserScreenLuminanceLayout(MainApplication.getInstance(), navigationView);
+                        break;
 //                    case (FragmentPage.SYSTEM_HOME):
 //                        view = new SystemHomeLayout(MainApplication.getInstance(), navigationView);
 //                        break;
@@ -122,7 +127,6 @@ public class SettingHomeLayout extends TabConstraintLayout<LayoutSettingHomeBind
         } else {
             navigationView.set(FragmentPage.USER_HOME);
         }
-        navigationView.set(FragmentPage.SETTING_LOGIN);
         navigationView.addOnPropertyChangedCallback(settingViewCallback);
         navigationView.notifyChange();
     }

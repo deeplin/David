@@ -134,8 +134,8 @@
     <string name="image_data">Image Data</string>
 
     <!--告警-->
-    <string name="ISYS.PWR">Power failure</string>
     <string name="ISYS.CON">No Serial Connection</string>
+    <string name="ISYS.PWR">Power failure</string>
     <string name="ISYS.HA">MCU Communication Fault</string>
     <string name="ISYS.HOOD">Canopy Fault</string>
     <string name="ISYS.MOTOR">Lift System Fault</string>

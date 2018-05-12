@@ -123,13 +123,9 @@ public class SettingLoginLayout extends TabConstraintLayout<LayoutSettingLoginBi
 
     @Override
     public void attach() {
-
-        Log.e("deeplin", "login attach");
-
     }
 
     @Override
     public void detach() {
-        Log.e("deeplin", "login detach");
     }
 }

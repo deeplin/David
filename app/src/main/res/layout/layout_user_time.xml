@@ -1,0 +1,96 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.user.UserTimeLayout" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.david.incubator.ui.common.TitleView
+            android:id="@+id/title"
+            android:layout_width="464dp"
+            android:layout_height="@dimen/y60"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTimeDate"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@{viewModel.dateString}"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f28"
+            app:layout_constraintBottom_toTopOf="@+id/dpTimer"
+            app:layout_constraintEnd_toStartOf="@+id/tvTime"
+            app:layout_constraintHeight_percent="0.125"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@{viewModel.timeString}"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f28"
+            app:layout_constraintBottom_toBottomOf="@id/tvTimeDate"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.1667"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tvTimeDate"
+            app:layout_constraintTop_toTopOf="@id/tvTimeDate" />
+
+        <DatePicker
+            android:id="@+id/dpTimer"
+            android:layout_width="260dp"
+            android:layout_height="0dp"
+            android:calendarViewShown="false"
+            android:theme="@style/time_style"
+            app:layout_constraintBottom_toTopOf="@+id/divider"
+            app:layout_constraintEnd_toStartOf="@+id/tpTimer"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvTimeDate"
+            app:layout_constraintVertical_weight="3" />
+
+        <TimePicker
+            android:id="@+id/tpTimer"
+            android:layout_width="260dp"
+            android:layout_height="0dp"
+            android:theme="@style/time_style"
+            app:layout_constraintBottom_toBottomOf="@id/dpTimer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/dpTimer"
+            app:layout_constraintTop_toTopOf="@id/dpTimer" />
+
+        <ImageView
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y40"
+            android:src="@mipmap/horizontal"
+            app:layout_constraintBottom_toTopOf="@id/buttonControl"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/dpTimer" />
+
+        <com.david.incubator.ui.common.ButtonControlView
+            android:id="@+id/buttonControl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider"
+            app:layout_constraintVertical_weight="1" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -37,6 +37,9 @@ import com.david.incubator.ui.setting.SettingCalibrationLayout;
 import com.david.incubator.ui.setting.SettingDeviceLayout;
 import com.david.incubator.ui.setting.SettingFragment;
 import com.david.incubator.ui.setting.SettingIntroductionLayout;
+import com.david.incubator.ui.user.UserLanguageLayout;
+import com.david.incubator.ui.user.UserScreenLuminanceLayout;
+import com.david.incubator.ui.user.UserWarningVolumeLayout;
 
 import javax.inject.Singleton;
 
@@ -133,4 +136,10 @@ public interface ApplicationComponent {
     void inject(SettingIntroductionLayout settingIntroductionLayout);
 
     void inject(SettingDeviceLayout settingDeviceLayout);
+
+    void inject(UserLanguageLayout userLanguageLayout);
+
+    void inject(UserWarningVolumeLayout userWarningVolumeLayout);
+
+    void inject(UserScreenLuminanceLayout userScreenLuminanceLayout);
 }

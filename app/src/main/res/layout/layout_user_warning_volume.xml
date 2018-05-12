@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.user.UserWarningVolumeLayout" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--第一行-->
+
+        <com.david.incubator.ui.common.TitleView
+            android:id="@+id/title"
+            android:layout_width="464dp"
+            android:layout_height="@dimen/y60"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ibVolumeSet"
+            android:layout_width="77dp"
+            android:layout_height="0dp"
+            android:src="@mipmap/set"
+            app:layout_constraintBottom_toBottomOf="@id/divider"
+            app:layout_constraintHeight_percent="0.077"
+            app:layout_constraintHorizontal_bias="0.141442716"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <TextView
+            android:layout_width="88dp"
+            android:layout_height="0dp"
+            android:background="@color/border"
+            android:gravity="center"
+            android:text="@{String.valueOf(viewModel.valueField)}"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f42"
+            app:layout_constraintBottom_toBottomOf="@id/ibVolumeSet"
+            app:layout_constraintHeight_percent="0.12"
+            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibVolumeSet" />
+
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="%"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f30"
+            app:layout_constraintBottom_toBottomOf="@id/ibVolumeSet"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibVolumeSet" />
+
+        <ImageView
+            android:id="@+id/divider"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y40"
+            android:src="@mipmap/horizontal"
+            app:layout_constraintBottom_toTopOf="@id/buttonControl"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.david.incubator.ui.common.ButtonControlView
+            android:id="@+id/buttonControl"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/space"
+            app:layout_constraintHeight_percent="0.1667"
+            app:layout_constraintVertical_weight="1" />
+
+        <Space
+            android:id="@+id/space"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y10"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

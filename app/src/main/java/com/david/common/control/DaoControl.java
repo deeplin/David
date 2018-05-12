@@ -110,6 +110,11 @@ public class DaoControl {
                 .unique();
     }
 
+    public void saveSystemSetting(SystemSetting systemSetting) {
+        SystemSettingDao sensorRangeDao = daoSession.getSystemSettingDao();
+        sensorRangeDao.save(systemSetting);
+    }
+
     public void saveCommand(AnalogCommand analogCommand) {
         long currentTime = TimeUtil.getCurrentTimeInSecond();
         /*每分钟记录一次*/
