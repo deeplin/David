@@ -273,6 +273,9 @@ public class SettingAddPatientLayout extends TabConstraintLayout<LayoutSettingAd
     private void init() {
         binding.title.setTitle(R.string.patient_information);
 
+        medicalHistoryKeyEditTextViewModel = new KeyEditTextViewModel(R.string.medical_history);
+        binding.addPatientBirthMedicalHistory.setViewModel(medicalHistoryKeyEditTextViewModel);
+
         nameKeyEditTextViewModel = new KeyEditTextViewModel(R.string.name);
         binding.addPatientName.setViewModel(nameKeyEditTextViewModel);
 
@@ -302,8 +305,7 @@ public class SettingAddPatientLayout extends TabConstraintLayout<LayoutSettingAd
         gestationKeyValueViewModel.setUnitText(R.string.week);
         binding.addPatientGestation.setViewModel(gestationKeyValueViewModel);
 
-        medicalHistoryKeyEditTextViewModel = new KeyEditTextViewModel(R.string.medical_history);
-        binding.addPatientBirthMedicalHistory.setViewModel(medicalHistoryKeyEditTextViewModel);
+
     }
 
     @Override

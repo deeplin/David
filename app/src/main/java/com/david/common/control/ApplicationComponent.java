@@ -40,6 +40,8 @@ import com.david.incubator.ui.setting.SettingIntroductionLayout;
 import com.david.incubator.ui.user.UserLanguageLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
+import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
+import com.david.incubator.ui.user.usermodel.UserModelLayout;
 
 import javax.inject.Singleton;
 
@@ -142,4 +144,8 @@ public interface ApplicationComponent {
     void inject(UserWarningVolumeLayout userWarningVolumeLayout);
 
     void inject(UserScreenLuminanceLayout userScreenLuminanceLayout);
+
+    void inject(UserModelLayout userModelLayout);
+
+    void inject(UserModelDetailLayout userModelDetailLayout);
 }

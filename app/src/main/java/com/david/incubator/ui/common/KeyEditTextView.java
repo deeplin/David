@@ -22,6 +22,7 @@ public class KeyEditTextView extends LinearLayout {
         super(context, attrs);
         LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         binding = LayoutKeyEditTextBinding.inflate(layoutInflater, this, true);
+        binding.tvValue.setCursorVisible(false);
     }
 
     public void setViewModel(KeyEditTextViewModel keyEditTextViewModel) {

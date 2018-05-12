@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.david.incubator.ui.setting.SettingAddPatientLayout" />
+            type="com.david.incubator.ui.user.usermodel.UserModelDetailLayout" />
     </data>
 
     <!--584*480-->
@@ -24,7 +24,7 @@
 
         <!--第一行-->
 
-        <com.david.incubator.ui.common.KeyEditTextView
+        <com.david.incubator.ui.common.KeyValueView
             android:id="@+id/addPatientName"
             android:layout_width="260dp"
             android:layout_height="0dp"
@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title" />
 
-        <com.david.incubator.ui.common.KeyEditTextView
+        <com.david.incubator.ui.common.KeyValueView
             android:id="@+id/addPatientId"
             android:layout_width="260dp"
             android:layout_height="0dp"
@@ -45,6 +45,7 @@
             app:layout_constraintTop_toTopOf="@id/addPatientName" />
 
         <!--第二行-->
+
         <com.david.incubator.ui.common.KeyValueView
             android:id="@+id/addPatientSex"
             android:layout_width="260dp"
@@ -94,7 +95,7 @@
             app:layout_constraintRight_toRightOf="@+id/addPatientName"
             app:layout_constraintTop_toBottomOf="@+id/addPatientBirthday" />
 
-        <com.david.incubator.ui.common.KeyEditTextView
+        <com.david.incubator.ui.common.KeyValueView
             android:id="@+id/addPatientBirthMedicalHistory"
             android:layout_width="260dp"
             android:layout_height="0dp"
@@ -107,27 +108,81 @@
             android:id="@+id/space2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y10"
-            app:layout_constraintBottom_toTopOf="@id/btOK"
+            app:layout_constraintBottom_toTopOf="@id/btDeletePatient"
             app:layout_constraintTop_toBottomOf="@id/addPatientGestation" />
 
         <!--第五行-->
 
         <Button
-            android:id="@+id/btOK"
+            android:id="@+id/btDeletePatient"
             style="@style/large_button_style"
             android:background="@drawable/confirm_button"
-            android:text="@string/add_patient"
+            android:text="@string/delete_user"
             android:textSize="@dimen/f18"
             app:layout_constraintBottom_toTopOf="@id/space"
-            app:layout_constraintLeft_toLeftOf="@+id/addPatientName"
+            app:layout_constraintEnd_toStartOf="@+id/btSignsOfData"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/space2" />
+
+
+        <Button
+            android:id="@+id/btSignsOfData"
+            style="@style/large_button_style"
+            android:background="@drawable/confirm_button"
+            android:text="@string/signs_data"
+            android:textSize="@dimen/f18"
+            app:layout_constraintBottom_toTopOf="@id/space"
+            app:layout_constraintEnd_toStartOf="@+id/btVideoData"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btDeletePatient"
+            app:layout_constraintTop_toBottomOf="@+id/space2" />
+
+        <Button
+            android:id="@+id/btVideoData"
+            style="@style/large_button_style"
+            android:background="@drawable/confirm_button"
+            android:text="@string/video_data"
+            android:textSize="@dimen/f18"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/space"
+            app:layout_constraintEnd_toStartOf="@+id/btImageData"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btSignsOfData"
+            app:layout_constraintTop_toBottomOf="@+id/space2" />
+
+        <Button
+            android:id="@+id/btImageData"
+            style="@style/large_button_style"
+            android:background="@drawable/confirm_button"
+            android:text="@string/image_data"
+            android:textSize="@dimen/f18"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@id/space"
+            app:layout_constraintEnd_toStartOf="@+id/btReturn"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btVideoData"
+            app:layout_constraintTop_toBottomOf="@+id/space2" />
+
+        <Button
+            android:id="@+id/btReturn"
+            style="@style/large_button_style"
+            android:background="@drawable/confirm_button"
+            android:text="@string/exit"
+            android:textSize="@dimen/f18"
+            app:layout_constraintBottom_toTopOf="@id/space"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btImageData"
+            app:layout_constraintTop_toBottomOf="@+id/space2" />
+
 
         <Space
             android:id="@+id/space"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y20"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btOK" />
+            app:layout_constraintTop_toBottomOf="@id/btDeletePatient" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

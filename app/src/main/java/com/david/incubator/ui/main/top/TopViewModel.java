@@ -156,7 +156,7 @@ public class TopViewModel implements IViewModel {
         UserModel userModel = daoControl.getLastUserModel();
         String userString;
         if (userModel != null && userModel.getEndTimeStamp() == 0) {
-            userString = String.format("No. %s", userModel.getName());
+            userString = String.format("%s", userModel.getName());
         } else {
             userString = ResourceUtil.getString(R.string.default_user);
         }

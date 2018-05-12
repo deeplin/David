@@ -18,6 +18,8 @@ import com.david.incubator.ui.user.UserLanguageLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
 import com.david.incubator.ui.user.UserTimeLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
+import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
+import com.david.incubator.ui.user.usermodel.UserModelLayout;
 
 /**
  * author: Ling Lin
@@ -59,12 +61,12 @@ public class SettingHomeLayout extends TabConstraintLayout<LayoutSettingHomeBind
                     case (FragmentPage.USER_HOME):
                         view = new UserHomeLayout(MainApplication.getInstance(), navigationView);
                         break;
-//                    case (FragmentPage.USER_MODEL):
-//                        view = new UserModelLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.USER_MODEL_DETAIL):
-//                        view = new UserModelDetailLayout(MainApplication.getInstance(), navigationView);
-//                        break;
+                    case (FragmentPage.USER_MODEL):
+                        view = new UserModelLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.USER_MODEL_DETAIL):
+                        view = new UserModelDetailLayout(MainApplication.getInstance(), navigationView);
+                        break;
                     case (FragmentPage.USER_TIME_SETUP):
                         view = new UserTimeLayout(MainApplication.getInstance(), navigationView);
                         break;
