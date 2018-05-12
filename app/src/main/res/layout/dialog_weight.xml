@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <NumberPicker
+        android:id="@+id/numberPicker1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/numberPicker2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/numberPicker1"
+        app:layout_constraintEnd_toStartOf="@+id/numberPicker3"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/numberPicker1"
+        app:layout_constraintTop_toTopOf="@+id/numberPicker1" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/numberPicker2"
+        app:layout_constraintEnd_toStartOf="@+id/numberPicker4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/numberPicker2"
+        app:layout_constraintTop_toTopOf="@+id/numberPicker2" />
+
+    <NumberPicker
+        android:id="@+id/numberPicker4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/numberPicker3"
+        app:layout_constraintEnd_toStartOf="@+id/tvUnit"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/numberPicker3"
+        app:layout_constraintTop_toTopOf="@+id/numberPicker3" />
+
+    <TextView
+        android:id="@+id/tvUnit"
+        android:layout_width="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="g"
+        app:layout_constraintBottom_toBottomOf="@+id/numberPicker4"
+        app:layout_constraintEnd_toStartOf="@+id/numberPicker4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/numberPicker4"
+        app:layout_constraintTop_toTopOf="@+id/numberPicker4" />
+
+</android.support.constraint.ConstraintLayout>

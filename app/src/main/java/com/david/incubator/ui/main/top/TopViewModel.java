@@ -152,7 +152,7 @@ public class TopViewModel implements IViewModel {
         shareMemory.VU.removeOnPropertyChangedCallback(vuCallback);
     }
 
-    private void loadUserId() {
+    public void loadUserId() {
         UserModel userModel = daoControl.getLastUserModel();
         String userString;
         if (userModel != null && userModel.getEndTimeStamp() == 0) {

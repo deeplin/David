@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.common.KeyValueViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btKeyValue"
+            style="@style/large_button_style"
+            android:isSelected="@{viewModel.isSelected}"
+            android:text="@{viewModel.buttonText}"
+            android:textSize="@dimen/f18" />
+
+        <TextView
+            android:id="@+id/tvValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@{viewModel.isSelected ? @color/border : @color/transparent}"
+            android:gravity="center"
+            android:text="@{viewModel.valueField}"
+            android:textColor="@{viewModel.valueChanged ? @color/info : @color/info_white}"
+            android:textSize="@dimen/f28" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@{viewModel.unitText}"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f24"
+            android:visibility="@{viewModel.unitTextVisibility? View.VISIBLE : View.GONE}" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="@dimen/y20"
+            android:imageSrc="@{viewModel.unitFigure}"
+            android:visibility="@{viewModel.unitTextVisibility? View.GONE : View.VISIBLE}" />
+
+    </LinearLayout>
+</layout>

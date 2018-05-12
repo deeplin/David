@@ -16,7 +16,7 @@ import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AnimationUtil;
 import com.david.common.util.AutoUtil;
 import com.david.common.util.FragmentPage;
-import com.david.databinding.IncubatorFragmentHomeBinding;
+import com.david.databinding.FragmentHomeBinding;
 
 import javax.inject.Inject;
 
@@ -29,7 +29,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * email: 10525677@qq.com
  * description:
  */
-public class HomeFragment extends AutoAttachFragment<IncubatorFragmentHomeBinding> implements HomeNavigator {
+public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implements HomeNavigator {
 
     @Inject
     HomeViewModel homeViewModel;
@@ -42,7 +42,7 @@ public class HomeFragment extends AutoAttachFragment<IncubatorFragmentHomeBindin
 
     @Override
     protected int getLayoutId() {
-        return R.layout.incubator_fragment_home;
+        return R.layout.fragment_home;
     }
 
     @Override

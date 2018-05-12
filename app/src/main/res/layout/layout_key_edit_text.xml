@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.common.KeyEditTextViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btKeyValue"
+            style="@style/large_button_style"
+            android:isSelected="@{viewModel.isSelected}"
+            android:text="@{viewModel.buttonText}"
+            android:textSize="@dimen/f18" />
+
+        <EditText
+            android:id="@+id/tvValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLength="@{viewModel.maxLength}"
+            android:singleLine="true"
+            android:text="@{viewModel.valueField}"
+            android:textColor="@{viewModel.valueChanged ? @color/info : @color/info_background}"
+            android:textSize="@dimen/f22" />
+
+    </LinearLayout>
+</layout>

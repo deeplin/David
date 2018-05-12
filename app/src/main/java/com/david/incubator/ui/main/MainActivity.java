@@ -16,7 +16,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AutoUtil;
 import com.david.common.util.FragmentPage;
-import com.david.databinding.IncubatorActivityMainBinding;
+import com.david.databinding.ActivityMainBinding;
 import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
 import com.david.incubator.ui.menu.MenuViewModel;
@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     @Inject
     AutomationControl automationControl;
 
-    IncubatorActivityMainBinding binding;
+    ActivityMainBinding binding;
     private AutoAttachFragment[] fragmentArray;
     private AutoAttachFragment currentFragment;
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         MainApplication.getInstance().getApplicationComponent().inject(this);
         AutoUtil.setSize(this, 1024, 768);
 
-        binding = DataBindingUtil.setContentView(this, R.layout.incubator_activity_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setViewModel(mainViewModel);
 
         mainViewModel.setNavigator(this);
