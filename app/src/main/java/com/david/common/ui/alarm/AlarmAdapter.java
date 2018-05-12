@@ -7,21 +7,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.david.R;
+import com.david.common.alarm.AlarmControl;
 import com.david.common.alarm.AlarmModel;
 import com.david.common.alarm.AlarmPriorityMode;
 import com.david.common.serial.command.alert.AlertListCommand;
 
-import java.util.List;
 import java.util.Objects;
 
 public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
 
     private final AlertListCommand alertListCommand;
-    private final List<AlarmModel> alarmModelList;
+    private final String[] alarmArray;
 
     public AlarmAdapter(AlertListCommand alertListCommand) {
         this.alertListCommand = alertListCommand;
-        this.alarmModelList = alertListCommand.getAlertList();
+        this.alarmArray = alertListCommand.getAlarmArray();
     }
 
     @NonNull
@@ -33,7 +33,9 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AlarmViewHolder holder, int position) {
-        AlarmModel alarmModel = alarmModelList.get(position);
+        // todo
+        String alarmId = "I"+ alarmArray[position];
+        AlarmModel alarmModel = AlarmControl.getPriorityMode(alarmId);
         holder.tvAlarm.setText(alarmModel.toString());
         if (Objects.equals(alarmModel.getAlarmPriorityMode(), AlarmPriorityMode.High)) {
             holder.tvAlarm.setBackgroundResource(R.color.alarm_high);

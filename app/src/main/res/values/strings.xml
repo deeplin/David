@@ -149,74 +149,74 @@
     <string name="image_data">照片数据</string>
 
     <!--告警-->
-    <string name="SYS.CON">串口通讯故障</string>
-    <string name="SYS.HA">主从机通讯故障报警</string>
-    <string name="SYS.HOOD">箱篷故障报警</string>
-    <string name="SYS.MOTOR">升降系统故障</string>
-    <string name="SYS.DOOR">辐射门故障报警</string>
-    <string name="SYS.WARM1">温度加热系统故障</string>
-    <string name="SYS.WARM2">辐射加热系统故障</string>
-    <string name="SEN.A1">箱温传感器故障报警</string>
-    <string name="SEN.A2">独立温度传感器故障报警</string>
-    <string name="SEN.ADIF">箱温传感器差异故障报警</string>
-    <string name="SEN.F1">风道温度传感器故障报警</string>
-    <string name="SEN.S1A">肤温传感器1故障报警</string>
-    <string name="SEN.S1B">独立肤温传感器故障报警</string>
-    <string name="SEN.S2">肤温传感器2故障报警</string>
-    <string name="SEN.SDIF">肤温传感器差异故障报警</string>
+    <string name="ISYS.PWR">电源故障</string>
+    <string name="ISYS.CON">串口通讯故障</string>
+    <string name="ISYS.HA">主从机通讯故障报警</string>
+    <string name="ISYS.HOOD">箱篷故障报警</string>
+    <string name="ISYS.MOTOR">升降系统故障</string>
+    <string name="ISYS.DOOR">辐射门故障报警</string>
+    <string name="ISYS.WARM1">温度加热系统故障</string>
+    <string name="ISYS.WARM2">辐射加热系统故障</string>
+    <string name="ISEN.A1">箱温传感器故障报警</string>
+    <string name="ISEN.A2">独立温度传感器故障报警</string>
+    <string name="ISEN.ADIF">箱温传感器差异故障报警</string>
+    <string name="ISEN.F1">风道温度传感器故障报警</string>
+    <string name="ISEN.S1A">肤温传感器1故障报警</string>
+    <string name="ISEN.S1B">独立肤温传感器故障报警</string>
+    <string name="ISEN.S2">肤温传感器2故障报警</string>
+    <string name="ISEN.SDIF">肤温传感器差异故障报警</string>
 
-    <string name="AIR.OVH">箱温超温报警</string>
-    <string name="SKIN.OVH">肤温超温报警</string>
-    <string name="FLOW.OVH">风道超温报警</string>
+    <string name="IAIR.OVH">箱温超温报警</string>
+    <string name="ISKIN.OVH">肤温超温报警</string>
+    <string name="IFLOW.OVH">风道超温报警</string>
 
-    <string name="CTRL.SEN">肤温传感器放置错误报警</string>
-    <string name="SYS.FAN">风机故障报警</string>
-    <string name="TEMP.DEVH">温度上偏差报警</string>
-    <string name="TEMP.DEVL">温度下偏差报警</string>
+    <string name="ICTRL.SEN">肤温传感器放置错误报警</string>
+    <string name="ISYS.FAN">风机故障报警</string>
+    <string name="ITEMP.DEVH">温度上偏差报警</string>
+    <string name="ITEMP.DEVL">温度下偏差报警</string>
 
-    <string name="CTRL.ERR1">设置报警A</string>
-    <string name="CTRL.ERR2">设置报警C</string>
-    <string name="CTRL.MAN">手控检查报警</string>
-    <string name="SEN.O2_1">O2传感器1故障报警</string>
-    <string name="SEN.O2_2">O2传感器2故障报警</string>
-    <string name="SEN.O2DIF">O2传感器差异报警</string>
+    <string name="ICTRL.ERR1">设置报警A</string>
+    <string name="ICTRL.ERR2">设置报警C</string>
+    <string name="ICTRL.MAN">手控检查报警</string>
+    <string name="ISEN.O2_1">O2传感器1故障报警</string>
+    <string name="ISEN.O2_2">O2传感器2故障报警</string>
+    <string name="ISEN.O2DIF">O2传感器差异报警</string>
 
-    <string name="O2.DEVH">O2上偏差报警</string>
-    <string name="O2.DEVL">O2下偏差报警</string>
-    <string name="SEN.SPO2">血氧模块故障报警</string>
-    <string name="SPO2.ERR">血氧系统报警</string>
+    <string name="IO2.DEVH">O2上偏差报警</string>
+    <string name="IO2.DEVL">O2下偏差报警</string>
+    <string name="ISEN.SPO2">血氧模块故障报警</string>
+    <string name="ISPO2.ERR">血氧系统报警</string>
 
-    <string name="SPO2.BIT12">导电线未连接</string>
-    <string name="SPO2.BIT0">血氧传感器连接错误</string>
-    <string name="SPO2.BIT1">血氧传感器故障</string>
-    <string name="SPO2.BIT7">血氧传感器无法识别</string>
-    <string name="SPO2.BIT5">血氧传感器脱落</string>
-    <string name="SPO2.BIT13">未连接粘黏探头</string>
+    <string name="ISPO2.BIT12">导电线未连接</string>
+    <string name="ISPO2.BIT0">血氧传感器连接错误</string>
+    <string name="ISPO2.BIT1">血氧传感器故障</string>
+    <string name="ISPO2.BIT7">血氧传感器无法识别</string>
+    <string name="ISPO2.BIT5">血氧传感器脱落</string>
+    <string name="ISPO2.BIT13">未连接粘黏探头</string>
 
-    <string name="SYS.HUMC">湿度加热系统故障报警</string>
-    <string name="SEN.HUM">湿度传感器故障报警</string>
-    <string name="HUM.DEVH">湿度上偏差报警</string>
-    <string name="HUM.DEVL">湿度下偏差报警</string>
+    <string name="ISYS.HUMC">湿度加热系统故障报警</string>
+    <string name="ISEN.HUM">湿度传感器故障报警</string>
+    <string name="IHUM.DEVH">湿度上偏差报警</string>
+    <string name="IHUM.DEVL">湿度下偏差报警</string>
 
-    <string name="SYS.UPS">镍氢电池报警</string>
-    <string name="SYS.BAT">扣式电池报警</string>
-    <string name="SPO2.OVH">SpO2上限报警</string>
-    <string name="SPO2.OVL">SpO2下限报警</string>
-    <string name="PR.OVH">脉搏上限报警</string>
-    <string name="PR.OVL">脉搏下限报警</string>
+    <string name="ISYS.UPS">镍氢电池报警</string>
+    <string name="ISYS.BAT">扣式电池报警</string>
+    <string name="ISPO2.OVH">SpO2上限报警</string>
+    <string name="ISPO2.OVL">SpO2下限报警</string>
+    <string name="IPR.OVH">脉搏上限报警</string>
+    <string name="IPR.OVL">脉搏下限报警</string>
 
-    <string name="SYS.TANK">水箱放置错误报警</string>
-    <string name="SYS.WATER">缺水报警</string>
-    <string name="SYS.CFG">备份配置数据损坏</string>
+    <string name="ISYS.TANK">水箱放置错误报警</string>
+    <string name="ISYS.WATER">缺水报警</string>
+    <string name="ISYS.CFG">备份配置数据损坏</string>
 
-    <string name="SPO2.BIT2">低血流灌注</string>
-    <string name="SPO2.LOW">血氧饱和度低于85%</string>
-    <string name="SPO2.BIT3">搜寻脉搏</string>
-    <string name="SPO2.BIT4">探测到干扰</string>
-    <string name="SPO2.BIT6">太多环境光</string>
-    <string name="SPO2.BIT10">低信号质量</string>
+    <string name="ISPO2.BIT2">低血流灌注</string>
+    <string name="ISPO2.LOW">血氧饱和度低于85%</string>
+    <string name="ISPO2.BIT3">搜寻脉搏</string>
+    <string name="ISPO2.BIT4">探测到干扰</string>
+    <string name="ISPO2.BIT6">太多环境光</string>
+    <string name="ISPO2.BIT10">低信号质量</string>
 
-    <string name="SYS.PWR">电源故障</string>
 
     <!--监护仪-->
     <!--Menu-->

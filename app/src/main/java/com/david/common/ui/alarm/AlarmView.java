@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.david.R;
@@ -17,6 +19,8 @@ import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.ui.IViewModel;
 
 import javax.inject.Inject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class AlarmView extends FrameLayout implements IViewModel {
 
@@ -45,7 +49,9 @@ public class AlarmView extends FrameLayout implements IViewModel {
         alarmCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                alarmAdapter.notifyDataSetChanged();
+                io.reactivex.Observable.just(this)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe((o) -> alarmAdapter.notifyDataSetChanged());
             }
         };
     }

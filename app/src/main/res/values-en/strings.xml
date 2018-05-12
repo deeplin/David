@@ -133,76 +133,73 @@
     <string name="video_data">Video Data</string>
     <string name="image_data">Image Data</string>
 
-
-
     <!--告警-->
-    <string name="SYS.CON">No Serial Connection</string>
-    <string name="SYS.HA">MCU Communication Fault</string>
-    <string name="SYS.HOOD">Canopy Fault</string>
-    <string name="SYS.MOTOR">Lift System Fault</string>
-    <string name="SYS.DOOR">Radiant Door Fault</string>
-    <string name="SYS.WARM1">TEMP. Heater System Fault</string>
-    <string name="SYS.WARM2">Radiant Heater System Fault</string>
-    <string name="SEN.A1">Air Sensor Fault</string>
-    <string name="SEN.A2">Isolated Sensor Fault</string>
-    <string name="SEN.ADIF">Air Sensor DIFF. Fault</string>
-    <string name="SEN.F1">Air Flow Sensor Fault</string>
-    <string name="SEN.S1A">Skin Sensor 1 Fault</string>
-    <string name="SEN.S1B">Isolated Skin Sensor Fault</string>
-    <string name="SEN.S2">Skin Sensor 2 Fault</string>
-    <string name="SEN.SDIF">Skin Sensor DIFF. Fault</string>
+    <string name="ISYS.PWR">Power failure</string>
+    <string name="ISYS.CON">No Serial Connection</string>
+    <string name="ISYS.HA">MCU Communication Fault</string>
+    <string name="ISYS.HOOD">Canopy Fault</string>
+    <string name="ISYS.MOTOR">Lift System Fault</string>
+    <string name="ISYS.DOOR">Radiant Door Fault</string>
+    <string name="ISYS.WARM1">TEMP. Heater System Fault</string>
+    <string name="ISYS.WARM2">Radiant Heater System Fault</string>
+    <string name="ISEN.A1">Air Sensor Fault</string>
+    <string name="ISEN.A2">Isolated Sensor Fault</string>
+    <string name="ISEN.ADIF">Air Sensor DIFF. Fault</string>
+    <string name="ISEN.F1">Air Flow Sensor Fault</string>
+    <string name="ISEN.S1A">Skin Sensor 1 Fault</string>
+    <string name="ISEN.S1B">Isolated Skin Sensor Fault</string>
+    <string name="ISEN.S2">Skin Sensor 2 Fault</string>
+    <string name="ISEN.SDIF">Skin Sensor DIFF. Fault</string>
 
-    <string name="AIR.OVH">Air Overheat Alarm</string>
-    <string name="SKIN.OVH">Skin Overheat Alarm</string>
-    <string name="FLOW.OVH">Air flow Overheat Alarm</string>
+    <string name="IAIR.OVH">Air Overheat Alarm</string>
+    <string name="ISKIN.OVH">Skin Overheat Alarm</string>
+    <string name="IFLOW.OVH">Air flow Overheat Alarm</string>
 
-    <string name="CTRL.SEN">Skin Sensor Position Error</string>
-    <string name="SYS.FAN">Motor Fault</string>
-    <string name="TEMP.DEVH">Temp. Upper Deviation Alarm</string>
-    <string name="TEMP.DEVL">Temp. Lower Deviation Alarm</string>
+    <string name="ICTRL.SEN">Skin Sensor Position Error</string>
+    <string name="ISYS.FAN">Motor Fault</string>
+    <string name="ITEMP.DEVH">Temp. Upper Deviation Alarm</string>
+    <string name="ITEMP.DEVL">Temp. Lower Deviation Alarm</string>
 
-    <string name="CTRL.ERR1">Check Skin Sensor A</string>
-    <string name="CTRL.ERR2">Check Skin Sensor C</string>
-    <string name="CTRL.MAN">Check Manual Mode</string>
-    <string name="SEN.O2_1">O2 Sensor 1 Fault</string>
-    <string name="SEN.O2_2">O2 Sensor 2 Fault</string>
-    <string name="SEN.O2DIF">O2 Sensor DIFF. Fault</string>
+    <string name="ICTRL.ERR1">Check Skin Sensor A</string>
+    <string name="ICTRL.ERR2">Check Skin Sensor C</string>
+    <string name="ICTRL.MAN">Check Manual Mode</string>
+    <string name="ISEN.O2_1">O2 Sensor 1 Fault</string>
+    <string name="ISEN.O2_2">O2 Sensor 2 Fault</string>
+    <string name="ISEN.O2DIF">O2 Sensor DIFF. Fault</string>
 
-    <string name="O2.DEVH">O2 Sensor Upper Deviation Alarm</string>
-    <string name="O2.DEVL">O2 Sensor Lower Deviation Alarm</string>
-    <string name="SEN.SPO2">Pulse Oximeter Moudle Fault</string>
-    <string name="SPO2.ERR">Pulse Oximeter System Fault</string>
+    <string name="IO2.DEVH">O2 Sensor Upper Deviation Alarm</string>
+    <string name="IO2.DEVL">O2 Sensor Lower Deviation Alarm</string>
+    <string name="ISEN.SPO2">Pulse Oximeter Moudle Fault</string>
+    <string name="ISPO2.ERR">Pulse Oximeter System Fault</string>
 
-    <string name="SPO2.BIT12">Conductive Wire Not Connected</string>
-    <string name="SPO2.BIT0">SpO2 Sensor Connection Error</string>
-    <string name="SPO2.BIT1">Pulse Oximeter Sensor Fault</string>
-    <string name="SPO2.BIT7">Unable To Identify Pulse Oximeter Sensor</string>
-    <string name="SPO2.BIT5">Pulse oximeter Sensor Not Fixed Well</string>
-    <string name="SPO2.BIT13">Adhesive Sensor Not Connected</string>
+    <string name="ISPO2.BIT12">Conductive Wire Not Connected</string>
+    <string name="ISPO2.BIT0">SpO2 Sensor Connection Error</string>
+    <string name="ISPO2.BIT1">Pulse Oximeter Sensor Fault</string>
+    <string name="ISPO2.BIT7">Unable To Identify Pulse Oximeter Sensor</string>
+    <string name="ISPO2.BIT5">Pulse oximeter Sensor Not Fixed Well</string>
+    <string name="ISPO2.BIT13">Adhesive Sensor Not Connected</string>
 
-    <string name="SYS.HUMC">HUM. Heater System Fault</string>
-    <string name="SEN.HUM">HUM. Sensor Fault</string>
+    <string name="ISYS.HUMC">HUM. Heater System Fault</string>
+    <string name="ISEN.HUM">HUM. Sensor Fault</string>
 
-    <string name="HUM.DEVH">HUM. Sensor Upper Deviation Alarm</string>
-    <string name="HUM.DEVL">HUM. Sensor Lower Deviation Alarm</string>
-    <string name="SYS.UPS">Ni-MH Battery Fault</string>
-    <string name="SYS.BAT">Button Cell Fault</string>
+    <string name="IHUM.DEVH">HUM. Sensor Upper Deviation Alarm</string>
+    <string name="IHUM.DEVL">HUM. Sensor Lower Deviation Alarm</string>
+    <string name="ISYS.UPS">Ni-MH Battery Fault</string>
+    <string name="ISYS.BAT">Button Cell Fault</string>
 
-    <string name="SPO2.OVH">SpO2 High Alarm Limit</string>
-    <string name="SPO2.OVL">SpO2 Low Alarm Limit</string>
-    <string name="PR.OVH">Pulse Rate High Alarm Limit</string>
-    <string name="PR.OVL">Pulse Rate Low Alarm Limit</string>
+    <string name="ISPO2.OVH">SpO2 High Alarm Limit</string>
+    <string name="ISPO2.OVL">SpO2 Low Alarm Limit</string>
+    <string name="IPR.OVH">Pulse Rate High Alarm Limit</string>
+    <string name="IPR.OVL">Pulse Rate Low Alarm Limit</string>
 
-    <string name="SYS.TANK">Tank Position Error</string>
-    <string name="SYS.WATER">Water Shortage</string>
-    <string name="SYS.CFG">Backup configuration data is corrupted</string>
+    <string name="ISYS.TANK">Tank Position Error</string>
+    <string name="ISYS.WATER">Water Shortage</string>
+    <string name="ISYS.CFG">Backup configuration data is corrupted</string>
 
-    <string name="SPO2.BIT2">Low PI</string>
-    <string name="SPO2.LOW">SpO2 Less Than 85%</string>
-    <string name="SPO2.BIT3">Search pulse</string>
-    <string name="SPO2.BIT4">Interference Is Detected</string>
-    <string name="SPO2.BIT6">Too Much Ambient Light</string>
-    <string name="SPO2.BIT10">Low Signal Quality</string>
-
-    <string name="SYS.PWR">Power failure</string>
+    <string name="ISPO2.BIT2">Low PI</string>
+    <string name="ISPO2.LOW">SpO2 Less Than 85%</string>
+    <string name="ISPO2.BIT3">Search pulse</string>
+    <string name="ISPO2.BIT4">Interference Is Detected</string>
+    <string name="ISPO2.BIT6">Too Much Ambient Light</string>
+    <string name="ISPO2.BIT10">Low Signal Quality</string>
 </resources>

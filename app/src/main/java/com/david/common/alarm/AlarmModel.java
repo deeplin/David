@@ -6,23 +6,28 @@ package com.david.common.alarm;
  * email: 10525677@qq.com
  * description:
  */
-public class AlarmModel extends Object {
+public class AlarmModel {
 
-    private String alarmId;
+    public int getAlarmNo() {
+        return alarmNo;
+    }
 
-    public void setAlarmId(String alarmId){
-        this.alarmId = alarmId;
+    public String getAlarmId() {
+        return alarmId;
     }
 
     public AlarmPriorityMode getAlarmPriorityMode() {
-        return AlarmControl.getPriorityMode(alarmId);
+        return alarmPriorityMode;
     }
 
-    public int getAlarmPriority() {
-        return 1;
-    }
+    private final int alarmNo;
+    private String alarmId;
+    private final AlarmPriorityMode alarmPriorityMode;
 
-    public AlarmModel() {
+    public AlarmModel(int alarmNo, String alarmId, AlarmPriorityMode alarmPriorityMode) {
+        this.alarmNo = alarmNo;
+        this.alarmId = alarmId;
+        this.alarmPriorityMode = alarmPriorityMode;
     }
 
     @Override

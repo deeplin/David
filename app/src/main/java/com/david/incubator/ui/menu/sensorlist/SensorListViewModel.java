@@ -189,6 +189,7 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
         shareMemory.SC.notifyChange();
 
         if (moduleHardware.is93S()) {
+            navigator.displayOxygenValue("--:--");
             jaunediceData.setConsumer(jaunediceConsumer);
         }
     }

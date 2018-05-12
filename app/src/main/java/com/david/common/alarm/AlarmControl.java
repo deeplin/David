@@ -3,9 +3,14 @@ package com.david.common.alarm;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
+import com.apkfuns.logutils.LogUtils;
+import com.david.common.control.MainApplication;
+import com.david.common.util.FileUtil;
 import com.david.common.util.ReflectionUtil;
 import com.david.common.util.ResourceUtil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -21,12 +26,41 @@ import javax.inject.Singleton;
 @Singleton
 public class AlarmControl {
 
-    public ObservableField<String> topAlarmId = new ObservableField<>();
+    private static Map<String, AlarmModel> alarmMap = new HashMap<>();
 
+    public ObservableField<String> topAlarmId = new ObservableField<>();
     public ObservableInt alarmListUpdated = new ObservableInt(0);
 
     @Inject
     public AlarmControl() {
+        loadAssets();
+    }
+
+    private void loadAssets() {
+        try {
+            String GESTATION_DATA_FILE = "Alarm.txt";
+            String alarmString = FileUtil.readTextFileFromAssets(
+                    MainApplication.getInstance(), GESTATION_DATA_FILE);
+
+            String[] alarmArray = alarmString.split("\t");
+            for (int index = 0; index < alarmArray.length; ) {
+                int no = Integer.parseInt(alarmArray[index++]);
+                String id = alarmArray[index++];
+                String priorityString = alarmArray[index++];
+                AlarmPriorityMode priorityMode;
+                if (Objects.equals(priorityString, "2")) {
+                    priorityMode = AlarmPriorityMode.High;
+                } else if (Objects.equals(priorityString, "1")) {
+                    priorityMode = AlarmPriorityMode.Middle;
+                } else {
+                    priorityMode = AlarmPriorityMode.Low;
+                }
+                AlarmModel alarmModel = new AlarmModel(no, id, priorityMode);
+                alarmMap.put(id, alarmModel);
+            }
+        } catch (Exception e) {
+            LogUtils.e(e);
+        }
     }
 
     public static String getAlertField(String alarmId) {
@@ -39,20 +73,21 @@ public class AlarmControl {
         }
         return alertDetail;
     }
-    public static int getMuteTime(String alarmId){
-        if (Objects.equals(alarmId, "SEN.O2DIF")
-                || Objects.equals(alarmId, "SEN.O2_1")
-                || Objects.equals(alarmId, "SEN.O2_2")
-                || Objects.equals(alarmId, "O2.DEVH")
-                || Objects.equals(alarmId, "O2.DEVL")) {
+
+    public static int getMuteTime(String alarmId) {
+        if (Objects.equals(alarmId, "ISEN.O2DIF")
+                || Objects.equals(alarmId, "ISEN.O2_1")
+                || Objects.equals(alarmId, "ISEN.O2_2")
+                || Objects.equals(alarmId, "IO2.DEVH")
+                || Objects.equals(alarmId, "IO2.DEVL")) {
             return 115;
         } else {
             return 240;
         }
     }
 
-    public static AlarmPriorityMode getPriorityMode(String alertId){
-        return AlarmPriorityMode.High;
+    public static AlarmModel getPriorityMode(String alarmId) {
+        return alarmMap.get(alarmId);
     }
 
     public boolean isAlert() {
