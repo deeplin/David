@@ -37,6 +37,14 @@ import com.david.incubator.ui.setting.SettingCalibrationLayout;
 import com.david.incubator.ui.setting.SettingDeviceLayout;
 import com.david.incubator.ui.setting.SettingFragment;
 import com.david.incubator.ui.setting.SettingIntroductionLayout;
+import com.david.incubator.ui.system.calibration.SystemCalibrationViewModel;
+import com.david.incubator.ui.system.deviation.SystemDeviationViewModel;
+import com.david.incubator.ui.system.factory.SystemFactoryLayout;
+import com.david.incubator.ui.system.otherparameter.SystemOtherParameterLayout;
+import com.david.incubator.ui.system.overheat.SystemOverheatViewModel;
+import com.david.incubator.ui.system.overheatexperiment.SystemOverheatExperimentLayout;
+import com.david.incubator.ui.system.print.SystemPrintViewModel;
+import com.david.incubator.ui.system.range.SystemRangeViewModel;
 import com.david.incubator.ui.user.UserLanguageLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
@@ -148,4 +156,20 @@ public interface ApplicationComponent {
     void inject(UserModelLayout userModelLayout);
 
     void inject(UserModelDetailLayout userModelDetailLayout);
+
+    void inject(SystemCalibrationViewModel systemCalibrationViewModel);
+
+    void inject(SystemDeviationViewModel systemDeviationViewModel);
+
+    void inject(SystemOtherParameterLayout systemOtherParameterLayout);
+
+    void inject(SystemOverheatViewModel systemOverheatViewModel);
+
+    void inject(SystemOverheatExperimentLayout systemOverheatExperimentLayout);
+
+    void inject(SystemPrintViewModel systemPrintViewModel);
+
+    void inject(SystemRangeViewModel systemRangeViewModel);
+
+    void inject(SystemFactoryLayout systemFactoryLayout);
 }

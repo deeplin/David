@@ -13,6 +13,15 @@ import com.david.common.ui.TabConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutSettingHomeBinding;
+import com.david.incubator.ui.system.SystemHomeLayout;
+import com.david.incubator.ui.system.calibration.SystemCalibrationLayout;
+import com.david.incubator.ui.system.deviation.SystemDeviationWarningLayout;
+import com.david.incubator.ui.system.factory.SystemFactoryLayout;
+import com.david.incubator.ui.system.otherparameter.SystemOtherParameterLayout;
+import com.david.incubator.ui.system.overheat.SystemOverheatWarningLayout;
+import com.david.incubator.ui.system.overheatexperiment.SystemOverheatExperimentLayout;
+import com.david.incubator.ui.system.print.SystemPrintLayout;
+import com.david.incubator.ui.system.range.SystemRangeLayout;
 import com.david.incubator.ui.user.UserHomeLayout;
 import com.david.incubator.ui.user.UserLanguageLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
@@ -79,30 +88,33 @@ public class SettingHomeLayout extends TabConstraintLayout<LayoutSettingHomeBind
                     case (FragmentPage.USER_SCREEN_LUMINANCE):
                         view = new UserScreenLuminanceLayout(MainApplication.getInstance(), navigationView);
                         break;
-//                    case (FragmentPage.SYSTEM_HOME):
-//                        view = new SystemHomeLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.SYSTEM_DEVIATION_WARNING):
-//                        view = new SystemDeviationWarningLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.SYSTEM_OVERHEAT_WARNING):
-//                        view = new SystemOverheatWarningLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.SYSTEM_RANGE):
-//                        view = new SystemRangeLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.SYSTEM_CALIBRATION):
-//                        view = new SystemCalibrationLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.SYSTEM_OTHER_PARAMETER):
-//                        view = new SystemOtherParameterLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.SYSTEM_OVERHEAT_EXPERIMENT):
-//                        view = new SystemOverheatExperimentLayout(MainApplication.getInstance(), navigationView);
-//                        break;
-//                    case (FragmentPage.SYSTEM_DATA_PRINT):
-//                        view = new SystemPrintLayout(MainApplication.getInstance(), navigationView);
-//                        break;
+                    case (FragmentPage.SYSTEM_HOME):
+                        view = new SystemHomeLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.SYSTEM_DEVIATION_WARNING):
+                        view = new SystemDeviationWarningLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.SYSTEM_OVERHEAT_WARNING):
+                        view = new SystemOverheatWarningLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.SYSTEM_RANGE):
+                        view = new SystemRangeLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.SYSTEM_CALIBRATION):
+                        view = new SystemCalibrationLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.SYSTEM_OTHER_PARAMETER):
+                        view = new SystemOtherParameterLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.SYSTEM_OVERHEAT_EXPERIMENT):
+                        view = new SystemOverheatExperimentLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.SYSTEM_DATA_PRINT):
+                        view = new SystemPrintLayout(MainApplication.getInstance(), navigationView);
+                        break;
+                    case (FragmentPage.SYSTEM_FACTORY):
+                        view = new SystemFactoryLayout(MainApplication.getInstance(), navigationView);
+                        break;
                 }
                 if (view != null) {
                     previousViewModel = view;
@@ -127,7 +139,7 @@ public class SettingHomeLayout extends TabConstraintLayout<LayoutSettingHomeBind
         if (Constant.RELEASE_TO_DAVID) {
             navigationView.set(FragmentPage.SETTING_LOGIN);
         } else {
-            navigationView.set(FragmentPage.USER_HOME);
+            navigationView.set(FragmentPage.SYSTEM_HOME);
         }
         navigationView.addOnPropertyChangedCallback(settingViewCallback);
         navigationView.notifyChange();

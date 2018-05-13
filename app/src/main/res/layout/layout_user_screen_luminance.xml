@@ -77,14 +77,7 @@
         <com.david.incubator.ui.common.ButtonControlView
             android:id="@+id/buttonControl"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/space"
-            app:layout_constraintHeight_percent="0.1667" />
-
-        <Space
-            android:id="@+id/space"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y10"
+            android:layout_height="@dimen/y80"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

@@ -88,15 +88,19 @@ public class SerialControl extends BaseSerialControl {
         }
     }
 
-    public synchronized void addRepeatSession(BaseSerialMessage serialMessage) {
+    public void addRepeatSession(BaseSerialMessage serialMessage) {
         addRepeatSession(serialMessage.getClass().getSimpleName(), serialMessage);
     }
 
-    public synchronized void removeRepeatSession(Class clazz){
-        repeatSessionMap.remove(clazz.getClass().getSimpleName());
+    public void removeRepeatSession(Class clazz) {
+        removeRepeatSession(clazz.getClass().getSimpleName());
     }
 
-    private void addRepeatSession(String key, BaseSerialMessage serialMessage) {
+    public synchronized void removeRepeatSession(String name) {
+        repeatSessionMap.remove(name);
+    }
+
+    public synchronized void addRepeatSession(String key, BaseSerialMessage serialMessage) {
         repeatSessionMap.put(key, serialMessage);
         MessageMode messageMode = serialMessage.getMessageMode();
         if (messageMode.equals(MessageMode.Start)) {

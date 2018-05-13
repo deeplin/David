@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.david.incubator.util.ViewUtil" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.system.deviation.SystemDeviationViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.david.incubator.ui.common.TitleView
+            android:id="@+id/title"
+            android:layout_width="464dp"
+            android:layout_height="@dimen/y60"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Space
+            android:id="@+id/space2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y10"
+            app:layout_constraintBottom_toTopOf="@id/ibDeviationTopLimit"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <ImageButton
+            android:id="@+id/ibDeviationTopLimit"
+            style="@style/large_image_button_style"
+            android:isSelected="@{viewModel.upperSelected}"
+            android:src="@mipmap/upper_limit"
+            app:layout_constraintBottom_toTopOf="@+id/topDivider"
+            app:layout_constraintLeft_toLeftOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@+id/space2" />
+
+        <ImageButton
+            android:id="@+id/ibDeviationBottomLimit"
+            style="@style/large_image_button_style"
+            android:isSelected="@{!viewModel.upperSelected}"
+            android:src="@mipmap/lower_limit"
+            app:layout_constraintBottom_toBottomOf="@id/ibDeviationTopLimit"
+            app:layout_constraintHorizontal_bias="0.5794"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/ibDeviationTopLimit" />
+
+        <ImageView
+            android:id="@+id/topDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y40"
+            android:src="@mipmap/horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/deviationAir"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ibDeviationTopLimit" />
+
+        <!--第二行-->
+
+        <com.david.incubator.ui.common.KeyValueView
+            android:id="@+id/deviationAir"
+            android:layout_width="210dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/deviationHumidity"
+            app:layout_constraintLeft_toLeftOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@id/topDivider" />
+
+        <com.david.incubator.ui.common.KeyValueView
+            android:id="@+id/deviationSkin"
+            android:layout_width="210dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/deviationAir"
+            app:layout_constraintLeft_toLeftOf="@id/ibDeviationBottomLimit"
+            app:layout_constraintTop_toTopOf="@id/deviationAir" />
+
+        <!--第三行-->
+        <com.david.incubator.ui.common.KeyValueView
+            android:id="@+id/deviationHumidity"
+            android:layout_width="210dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
+            app:layout_constraintLeft_toLeftOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@+id/deviationAir" />
+
+        <com.david.incubator.ui.common.KeyValueView
+            android:id="@+id/deviationOxygen"
+            android:layout_width="210dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/deviationHumidity"
+            app:layout_constraintLeft_toLeftOf="@id/ibDeviationBottomLimit"
+            app:layout_constraintTop_toTopOf="@id/deviationHumidity" />
+
+        <!--地四行-->
+
+        <ImageView
+            android:id="@+id/bottomDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y40"
+            android:src="@mipmap/horizontal"
+            app:layout_constraintBottom_toTopOf="@id/buttonControl"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/deviationHumidity" />
+
+        <!--第五行-->
+
+        <com.david.incubator.ui.common.ButtonControlView
+            android:id="@+id/buttonControl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y80"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

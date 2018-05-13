@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
-import com.david.common.serial.command.LEDCommand;
+import com.david.common.serial.command.other.LEDCommand;
 import com.david.incubator.util.ViewUtil;
 
 import java.util.concurrent.TimeUnit;

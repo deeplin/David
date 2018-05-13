@@ -6,7 +6,7 @@ import android.databinding.ObservableField;
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
-import com.david.common.serial.command.VersionCommand;
+import com.david.common.serial.command.other.VersionCommand;
 import com.david.common.ui.TabConstraintLayout;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.UuidUtil;

@@ -133,6 +133,10 @@
     <string name="video_data">Video Data</string>
     <string name="image_data">Image Data</string>
 
+    <!--User -->
+    <string name="reset_lower">Reset</string>
+    <string name="reset_upper">Reset Upper</string>
+
     <!--告警-->
     <string name="ISYS.CON">No Serial Connection</string>
     <string name="ISYS.PWR">Power failure</string>

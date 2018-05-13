@@ -148,7 +148,11 @@
     <string name="video_data">视频数据</string>
     <string name="image_data">照片数据</string>
 
-    <!--告警-->
+    <!--User -->
+    <string name="reset_lower">重置</string>
+    <string name="reset_upper">重置上位机</string>
+
+    <!--Alarm-->
     <string name="ISYS.CON">串口通讯故障</string>
     <string name="ISYS.PWR">电源故障</string>
     <string name="ISYS.HA">主从机通讯故障报警</string>

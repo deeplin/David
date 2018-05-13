@@ -5,16 +5,21 @@ import com.david.common.dao.Spo2GetCommand;
 import com.david.common.mode.AlarmSettingMode;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
-import com.david.common.serial.command.LEDCommand;
-import com.david.common.serial.command.VersionCommand;
+import com.david.common.serial.command.other.FactoryCommand;
+import com.david.common.serial.command.other.LEDCommand;
+import com.david.common.serial.command.other.VersionCommand;
 import com.david.common.serial.command.alert.AlertDisableCommand;
 import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.serial.command.alert.AlertMuteCommand;
 import com.david.common.serial.command.alert.AlertSetCommand;
+import com.david.common.serial.command.calibration.CalibrateHumCommand;
 import com.david.common.serial.command.calibration.CalibrateOxygenCommand;
 import com.david.common.serial.command.calibration.CalibrateScaleCommand;
+import com.david.common.serial.command.calibration.CalibrateTempCommand;
+import com.david.common.serial.command.calibration.ShowCalibrationCommand;
 import com.david.common.serial.command.ctrl.CtrlModeCommand;
+import com.david.common.serial.command.ctrl.CtrlOverrideCommand;
 import com.david.common.serial.command.ctrl.CtrlSetCommand;
 import com.david.common.serial.command.module.ModuleGetHardwareCommand;
 import com.david.common.serial.command.module.ModuleGetSoftwareCommand;
@@ -157,6 +162,12 @@ public class MessageSender {
         serialControl.addSession(alertSetCommand);
     }
 
+    public void setAlarmConfig(String alertSetting, int value1, int value2, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        AlertSetCommand alertSetCommand = new AlertSetCommand(alertSetting, value1, value2);
+        alertSetCommand.setOnCompleted(onComplete);
+        serialControl.addSession(alertSetCommand);
+    }
+
     public void addAlarmList(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         alertListCommand.setOnCompleted(onComplete);
         serialControl.addRepeatSession(alertListCommand);
@@ -189,24 +200,42 @@ public class MessageSender {
         serialControl.addSession(versionCommand);
     }
 
+    public void setTempCalibration(String id, String value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        CalibrateTempCommand calibrateTempCommand = new CalibrateTempCommand(id, value);
+        calibrateTempCommand.setOnCompleted(onComplete);
+        serialControl.addSession(calibrateTempCommand);
+    }
 
-//
-//    public void getCalibration(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        ShowCalibrationCommand showCalibrationCommand = new ShowCalibrationCommand();
-//        showCalibrationCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(showCalibrationCommand);
-//    }
-//
-//    public void getAlert(AlarmSettingMode alertSettingMode, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        AlertGetCommand alertGetCommand = new AlertGetCommand(alertSettingMode);
-//        alertGetCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(alertGetCommand);
-//    }
-//
+    public void setHumCalibration(int value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        CalibrateHumCommand calibrateHumCommand = new CalibrateHumCommand(value);
+        calibrateHumCommand.setOnCompleted(onComplete);
+        serialControl.addSession(calibrateHumCommand);
+    }
 
+    public void getCalibration(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        ShowCalibrationCommand showCalibrationCommand = new ShowCalibrationCommand();
+        showCalibrationCommand.setOnCompleted(onComplete);
+        serialControl.addSession(showCalibrationCommand);
+    }
 
+    public void getAlert(AlarmSettingMode alertSettingMode, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        AlertGetCommand alertGetCommand = new AlertGetCommand(alertSettingMode);
+        alertGetCommand.setOnCompleted(onComplete);
+        serialControl.addSession(alertGetCommand);
+    }
 
-//
+    public void setCtrlOverride(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        CtrlOverrideCommand ctrlOverrideCommand = new CtrlOverrideCommand();
+        ctrlOverrideCommand.setOnCompleted(onComplete);
+        serialControl.addSession(ctrlOverrideCommand);
+    }
+
+    public void Factory(BiConsumer<Boolean, BaseSerialMessage> onComplete){
+        FactoryCommand factoryCommand = new FactoryCommand();
+        factoryCommand.setOnCompleted(onComplete);
+        serialControl.addSession(factoryCommand);
+    }
+
 //    public void resumeMuteAll() {
 //        AlertResumeAllCommand alertResumeAllCommand = new AlertResumeAllCommand();
 //        serialControl.addSession(alertResumeAllCommand);
@@ -214,31 +243,5 @@ public class MessageSender {
 //
 
 
-//    public void setAlertConfig(String alertSetting, int value1, int value2, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        AlertSetCommand alertSetCommand = new AlertSetCommand(alertSetting, value1, value2);
-//        alertSetCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(alertSetCommand);
-//    }
-//
-//
-
-//
-//    public void setTempCalibration(String id, String value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        CalibrateTempCommand calibrateTempCommand = new CalibrateTempCommand(id, value);
-//        calibrateTempCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(calibrateTempCommand);
-//    }
-//
-//    public void setHumCalibration(int value, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        CalibrateHumCommand calibrateHumCommand = new CalibrateHumCommand(value);
-//        calibrateHumCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(calibrateHumCommand);
-//    }
-//
-//    public void setCtrlOverride(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
-//        CtrlOverrideCommand ctrlOverrideCommand = new CtrlOverrideCommand();
-//        ctrlOverrideCommand.setOnCompleted(onComplete);
-//        serialControl.addSession(ctrlOverrideCommand);
-//    }
 }
 

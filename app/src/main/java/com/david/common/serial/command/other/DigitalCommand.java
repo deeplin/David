@@ -1,4 +1,4 @@
-package com.david.common.serial.command;
+package com.david.common.serial.command.other;
 
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.util.CommandChar;

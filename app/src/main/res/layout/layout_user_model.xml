@@ -127,16 +127,8 @@
         <com.david.incubator.ui.common.ButtonControlView
             android:id="@+id/buttonControl"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/space"
-            app:layout_constraintTop_toBottomOf="@id/divider" />
-
-        <Space
-            android:id="@+id/space"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/y10"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/buttonControl" />
+            android:layout_height="@dimen/y80"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

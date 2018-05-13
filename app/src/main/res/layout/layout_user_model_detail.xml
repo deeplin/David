@@ -176,7 +176,6 @@
             app:layout_constraintStart_toEndOf="@+id/btImageData"
             app:layout_constraintTop_toBottomOf="@+id/space2" />
 
-
         <Space
             android:id="@+id/space"
             android:layout_width="match_parent"

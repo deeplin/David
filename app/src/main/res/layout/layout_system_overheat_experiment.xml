@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.david.common.mode.SystemMode" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.system.overheatexperiment.SystemOverheatExperimentLayout" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--60 to left-->
+        <android.support.constraint.Guideline
+            android:id="@+id/leftVerticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1027" />
+
+        <!--292 to left-->
+        <android.support.constraint.Guideline
+            android:id="@+id/rightVerticalGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <!--第一行-->
+
+        <com.david.incubator.ui.common.TitleView
+            android:id="@+id/title"
+            android:layout_width="464dp"
+            android:layout_height="@dimen/y60"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Space
+            android:id="@+id/space2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y20"
+            app:layout_constraintBottom_toTopOf="@+id/overheatAirBelow37"
+            app:layout_constraintTop_toBottomOf="@+id/title" />
+
+        <!--第二行-->
+
+        <Button
+            android:id="@+id/overheatAirAbove37"
+            style="@style/large_button_style"
+            android:isSelected="@{viewModel.airAbove37Selected}"
+            android:text="@string/overheat_air_above_37"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/space3"
+            app:layout_constraintLeft_toLeftOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@+id/space2" />
+
+        <Button
+            android:id="@+id/overheatAirBelow37"
+            style="@style/large_button_style"
+            android:isSelected="@{viewModel.airBelow37Selected}"
+            android:text="@string/overheat_air_below_37"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/overheatAirAbove37"
+            app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
+            app:layout_constraintTop_toTopOf="@+id/ibObjectiveAbove37" />
+
+        <!--第三行-->
+
+        <Space
+            android:id="@+id/space3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y20"
+            app:layout_constraintBottom_toTopOf="@+id/overheatSkinAbove37"
+            app:layout_constraintTop_toBottomOf="@+id/overheatAirAbove37" />
+
+        <Button
+            android:id="@+id/overheatSkinAbove37"
+            style="@style/large_button_style"
+            android:isSelected="@{viewModel.skinAbove37Selected}"
+            android:text="@string/overheat_skin_above_37"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/topDivider"
+            app:layout_constraintLeft_toLeftOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@+id/overheatAirBelow37" />
+
+        <ImageView
+            android:id="@+id/topDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y20"
+            android:src="@mipmap/horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/overheatStableState"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overheatSkinAbove37" />
+
+
+        <Button
+            android:id="@+id/overheatStableState"
+            style="@style/large_button_style"
+            android:isSelected="@{viewModel.stableStateSelected}"
+            android:text="@string/stable_state"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Warmer) ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
+            app:layout_constraintLeft_toLeftOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@+id/topDivider" />
+
+        <!--第四行-->
+
+        <ImageView
+            android:id="@+id/bottomDivider"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y20"
+            android:src="@mipmap/horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/buttonControl"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/overheatStableState" />
+
+        <!--第五行-->
+
+        <com.david.incubator.ui.common.ButtonControlView
+            android:id="@+id/buttonControl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/y80"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
