@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.menu.chart.BaseChartViewModel" />
+    </data>
+
+    <!--584*480-->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvChartCycleValue"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:background="@color/border"
+            android:gravity="center"
+            android:text='@{viewModel.cycleValue + " h"}'
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.0833"
+            app:layout_constraintHorizontal_bias="0.9802"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.02273" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/cycle"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="@id/tvChartCycleValue"
+            app:layout_constraintRight_toLeftOf="@id/tvChartCycleValue"
+            app:layout_constraintTop_toTopOf="@id/tvChartCycleValue" />
+
+        <ImageButton
+            android:id="@+id/ibChartCycleUp"
+            style="@style/button_style"
+            android:src="@mipmap/up"
+            app:layout_constraintBottom_toBottomOf="@id/tvChartCycleValue"
+            app:layout_constraintHorizontal_bias="0.0198"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvChartCycleValue" />
+
+        <ImageButton
+            android:id="@+id/ibChartCycleDown"
+            style="@style/button_style"
+            android:src="@mipmap/down"
+            app:layout_constraintBottom_toBottomOf="@id/tvChartCycleValue"
+            app:layout_constraintHorizontal_bias="0.2183"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvChartCycleValue" />
+
+        <ImageView
+            android:id="@+id/ivChartYAxisTitle"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:imageSrc="@{viewModel.yAxisTitle}"
+            android:visibility="@{viewModel.tableSelected? View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.0417"
+            app:layout_constraintLeft_toLeftOf="@id/ibChartCycleUp"
+            app:layout_constraintRight_toRightOf="@id/ibChartCycleDown"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1739" />
+
+        <Button
+            android:id="@+id/btChartPrevious"
+            style="@style/button_style"
+            android:text="@string/previous_page"
+            android:visibility="@{viewModel.tableSelected? View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.0198"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9772" />
+
+        <Button
+            android:id="@+id/btChartNext"
+            style="@style/button_style"
+            android:text="@string/next_page"
+            android:visibility="@{viewModel.tableSelected? View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/btChartPrevious"
+            app:layout_constraintLeft_toLeftOf="@id/ibChartCycleDown"
+            app:layout_constraintRight_toRightOf="@id/ibChartCycleDown"
+            app:layout_constraintTop_toTopOf="@id/btChartPrevious" />
+
+        <Switch
+            android:id="@+id/switchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@={viewModel.tableSelected}"
+            android:showText="false"
+            android:thumb="@drawable/thumb_switch"
+            android:track="@drawable/track_switch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="@id/tvChartCycleValue"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9762" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

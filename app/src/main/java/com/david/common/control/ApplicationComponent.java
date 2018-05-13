@@ -18,6 +18,11 @@ import com.david.incubator.ui.main.top.TopLayout;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
+import com.david.incubator.ui.menu.chart.ChartFragment;
+import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;
+import com.david.incubator.ui.menu.chart.chartview.StatusChartWriter;
+import com.david.incubator.ui.menu.chart.table.AnalogDataRetriever;
+import com.david.incubator.ui.menu.chart.table.StatusDataRetriever;
 import com.david.incubator.ui.menu.sensorlist.SensorListLayout;
 import com.david.incubator.ui.menu.sensorlist.SensorListViewModel;
 import com.david.incubator.ui.objective.cabin.ObjectiveFragment;
@@ -172,4 +177,14 @@ public interface ApplicationComponent {
     void inject(SystemRangeViewModel systemRangeViewModel);
 
     void inject(SystemFactoryLayout systemFactoryLayout);
+
+    void inject(ChartFragment chartFragment);
+
+    void inject(AnalogChartWriter analogChartWriter);
+
+    void inject(StatusChartWriter statusChartWriter);
+
+    void inject(AnalogDataRetriever analogDataRetriever);
+
+    void inject(StatusDataRetriever statusDataRetriever);
 }

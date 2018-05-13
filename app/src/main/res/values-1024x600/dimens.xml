@@ -35,6 +35,7 @@
     <dimen name="y80">62px</dimen>
     <dimen name="y88">68px</dimen>
     <dimen name="y100">78px</dimen>
+    <dimen name="y360">280px</dimen>
     <dimen name="y470">366px</dimen>
     <dimen name="y480">375px</dimen>
     <dimen name="y620">484px</dimen>

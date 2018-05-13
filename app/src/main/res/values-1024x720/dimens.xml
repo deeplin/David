@@ -29,6 +29,7 @@
     <dimen name="y80">80px</dimen>
     <dimen name="y88">88px</dimen>
     <dimen name="y100">100px</dimen>
+    <dimen name="y360">360px</dimen>
     <dimen name="y470">470px</dimen>
     <dimen name="y480">480px</dimen>
     <dimen name="y620">620px</dimen>

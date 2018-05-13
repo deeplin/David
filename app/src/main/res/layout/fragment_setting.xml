@@ -55,12 +55,5 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!--654*620-->
-        <!--<com.async.davidconsole.ui.user.usermodel.ChartLayout-->
-        <!--android:layout_width="654dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:visibility="@{viewModel.showSignsOfData?View.VISIBLE: View.GONE}"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/sllLeft" />-->
-
     </android.support.constraint.ConstraintLayout>
 </layout>
