@@ -53,6 +53,7 @@ import com.david.incubator.ui.system.range.SystemRangeViewModel;
 import com.david.incubator.ui.user.UserLanguageLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
+import com.david.incubator.ui.user.usermodel.ChartLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
 import com.david.incubator.ui.user.usermodel.UserModelLayout;
 
@@ -187,4 +188,6 @@ public interface ApplicationComponent {
     void inject(AnalogDataRetriever analogDataRetriever);
 
     void inject(StatusDataRetriever statusDataRetriever);
+
+    void inject(ChartLayout chartLayout);
 }

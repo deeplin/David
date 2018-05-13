@@ -8,7 +8,14 @@ import com.david.common.control.DaoControl;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
+import com.david.incubator.ui.menu.chart.heating.HeatingChartViewModel;
+import com.david.incubator.ui.menu.chart.humidity.HumidityChartViewModel;
+import com.david.incubator.ui.menu.chart.oxygen.OxygenChartViewModel;
+import com.david.incubator.ui.menu.chart.pr.PrChartViewModel;
+import com.david.incubator.ui.menu.chart.spo2.Spo2ChartViewModel;
 import com.david.incubator.ui.menu.chart.table.PageTurnTable;
+import com.david.incubator.ui.menu.chart.temp.ChartTempLayout;
+import com.david.incubator.ui.menu.chart.temp.TempChartViewModel;
 
 /**
  * author: Ling Lin
@@ -29,9 +36,9 @@ public class ChartPagerAdapter extends PagerAdapter {
     private final int[] tabArray;
 
     public ChartPagerAdapter(boolean isCabin, SensorChartView sensorChartView,
-                      PageTurnTable pageTurnTable, ModuleHardware moduleHardware,
-                      ShareMemory shareMemory, ModuleSoftware moduleSoftware,
-                      DaoControl daoControl) {
+                             PageTurnTable pageTurnTable, ModuleHardware moduleHardware,
+                             ShareMemory shareMemory, ModuleSoftware moduleSoftware,
+                             DaoControl daoControl) {
         this.sensorChartView = sensorChartView;
         this.pageTurnTable = pageTurnTable;
         this.shareMemory = shareMemory;
@@ -87,34 +94,34 @@ public class ChartPagerAdapter extends PagerAdapter {
         View view;
         int tabId = tabArray[position];
         switch (tabId) {
-//            case 0:
-//                TempChartViewModel chartTempViewModel = new TempChartViewModel(
-//                        sensorChartView, pageTurnTable, shareMemory, daoControl);
-//                view = new ChartTempLayout(container.getContext(), chartTempViewModel);
-//                break;
-//            case 1:
-//                BaseChartViewModel heatingViewModel = new HeatingChartViewModel(
-//                        sensorChartView, pageTurnTable, shareMemory);
-//                view = new ChartBaseLayout(container.getContext(), heatingViewModel);
-//                break;
-//            case 2:
-//                BaseChartViewModel humidityViewModel = new HumidityChartViewModel(
-//                        sensorChartView, pageTurnTable, shareMemory, moduleSoftware);
-//                view = new ChartBaseLayout(container.getContext(), humidityViewModel);
-//                break;
-//            case 3:
-//                BaseChartViewModel oxygenViewModel = new OxygenChartViewModel(
-//                        sensorChartView, pageTurnTable, shareMemory, moduleSoftware);
-//                view = new ChartBaseLayout(container.getContext(), oxygenViewModel);
-//                break;
-//            case 4:
-//                BaseChartViewModel spo2ViewModel = new Spo2ChartViewModel(sensorChartView, pageTurnTable);
-//                view = new ChartBaseLayout(container.getContext(), spo2ViewModel);
-//                break;
-//            case 5:
-//                BaseChartViewModel prViewModel = new PrChartViewModel(sensorChartView, pageTurnTable);
-//                view = new ChartBaseLayout(container.getContext(), prViewModel);
-//                break;
+            case 0:
+                TempChartViewModel chartTempViewModel = new TempChartViewModel(
+                        sensorChartView, pageTurnTable, shareMemory, daoControl);
+                view = new ChartTempLayout(container.getContext(), chartTempViewModel);
+                break;
+            case 1:
+                BaseChartViewModel heatingViewModel = new HeatingChartViewModel(
+                        sensorChartView, pageTurnTable, shareMemory);
+                view = new ChartBaseLayout(container.getContext(), heatingViewModel);
+                break;
+            case 2:
+                BaseChartViewModel humidityViewModel = new HumidityChartViewModel(
+                        sensorChartView, pageTurnTable, shareMemory, moduleSoftware);
+                view = new ChartBaseLayout(container.getContext(), humidityViewModel);
+                break;
+            case 3:
+                BaseChartViewModel oxygenViewModel = new OxygenChartViewModel(
+                        sensorChartView, pageTurnTable, shareMemory, moduleSoftware);
+                view = new ChartBaseLayout(container.getContext(), oxygenViewModel);
+                break;
+            case 4:
+                BaseChartViewModel spo2ViewModel = new Spo2ChartViewModel(sensorChartView, pageTurnTable);
+                view = new ChartBaseLayout(container.getContext(), spo2ViewModel);
+                break;
+            case 5:
+                BaseChartViewModel prViewModel = new PrChartViewModel(sensorChartView, pageTurnTable);
+                view = new ChartBaseLayout(container.getContext(), prViewModel);
+                break;
             default:
                 view = new View(container.getContext());
                 break;
