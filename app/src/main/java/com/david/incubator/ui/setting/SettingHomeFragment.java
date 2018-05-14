@@ -3,7 +3,7 @@ package com.david.incubator.ui.setting;
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.UserModelData;
-import com.david.common.ui.TabFragment;
+import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentSettingBinding;
 
 import javax.inject.Inject;
@@ -15,7 +15,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SettingFragment extends TabFragment<FragmentSettingBinding> {
+public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding> {
 
     @Inject
     UserModelData userModelData;

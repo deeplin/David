@@ -15,7 +15,7 @@ import com.david.common.util.Constant;
  * description:
  */
 
-public abstract class TabFragment<U extends ViewDataBinding> extends AutoAttachFragment<U> {
+public abstract class TabHomeFragment<U extends ViewDataBinding> extends AutoAttachFragment<U> {
 
     protected int currentPosition = 0;
     protected IViewModel currentView = null;

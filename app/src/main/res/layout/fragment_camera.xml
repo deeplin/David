@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--250*620-->
+        <com.david.incubator.ui.menu.sensorlist.SensorListLayout
+            android:id="@+id/sllLeft"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/menu_background"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/frCameraRight"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="260dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvCameraError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_no_connection"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f30"
+            app:layout_constraintBottom_toBottomOf="@+id/frCameraRight"
+            app:layout_constraintEnd_toEndOf="@+id/frCameraRight"
+            app:layout_constraintStart_toStartOf="@+id/frCameraRight"
+            app:layout_constraintTop_toTopOf="@+id/frCameraRight" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

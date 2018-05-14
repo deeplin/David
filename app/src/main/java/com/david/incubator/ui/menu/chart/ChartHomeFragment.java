@@ -8,7 +8,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
-import com.david.common.ui.TabFragment;
+import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentChartBinding;
 import com.david.incubator.ui.main.IFragmentLockable;
 
@@ -25,7 +25,7 @@ import io.reactivex.disposables.Disposable;
  * email: 10525677@qq.com
  * description:
  */
-public class ChartFragment extends TabFragment<FragmentChartBinding> implements IFragmentLockable {
+public class ChartHomeFragment extends TabHomeFragment<FragmentChartBinding> implements IFragmentLockable {
 
     @Inject
     ShareMemory shareMemory;

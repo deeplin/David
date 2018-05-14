@@ -18,20 +18,20 @@ import com.david.incubator.ui.main.top.TopLayout;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
-import com.david.incubator.ui.menu.chart.ChartFragment;
+import com.david.incubator.ui.menu.chart.ChartHomeFragment;
 import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;
 import com.david.incubator.ui.menu.chart.chartview.StatusChartWriter;
 import com.david.incubator.ui.menu.chart.table.AnalogDataRetriever;
 import com.david.incubator.ui.menu.chart.table.StatusDataRetriever;
 import com.david.incubator.ui.menu.sensorlist.SensorListLayout;
 import com.david.incubator.ui.menu.sensorlist.SensorListViewModel;
-import com.david.incubator.ui.objective.cabin.ObjectiveFragment;
+import com.david.incubator.ui.objective.cabin.ObjectiveHomeFragment;
 import com.david.incubator.ui.objective.cabin.ObjectivePagerAdapter;
 import com.david.incubator.ui.objective.cabin.humidity.ObjectiveHumidityViewModel;
 import com.david.incubator.ui.objective.cabin.spo2.ObjectiveSpo2ViewModel;
 import com.david.incubator.ui.objective.cabin.temp.ObjectiveTempLayout;
 import com.david.incubator.ui.objective.cabin.temp.ObjectiveTempViewModel;
-import com.david.incubator.ui.objective.warmer.WarmerObjectiveFragment;
+import com.david.incubator.ui.objective.warmer.WarmerObjectiveHomeFragment;
 import com.david.incubator.ui.objective.warmer.WarmerObjectivePagerAdapter;
 import com.david.incubator.ui.objective.warmer.jaundice.WarmerObjectiveJaundiceViewModel;
 import com.david.incubator.ui.objective.warmer.temp.WarmerObjectiveTempLayout;
@@ -40,7 +40,7 @@ import com.david.incubator.ui.objective.warmer.timing.WarmerObjectiveTimingLayou
 import com.david.incubator.ui.setting.SettingAddPatientLayout;
 import com.david.incubator.ui.setting.SettingCalibrationLayout;
 import com.david.incubator.ui.setting.SettingDeviceLayout;
-import com.david.incubator.ui.setting.SettingFragment;
+import com.david.incubator.ui.setting.SettingHomeFragment;
 import com.david.incubator.ui.setting.SettingIntroductionLayout;
 import com.david.incubator.ui.system.calibration.SystemCalibrationViewModel;
 import com.david.incubator.ui.system.deviation.SystemDeviationViewModel;
@@ -103,7 +103,7 @@ public interface ApplicationComponent {
 
     void inject(HomeViewModel homeViewModel);
 
-    void inject(ObjectiveFragment objectiveFragment);
+    void inject(ObjectiveHomeFragment objectiveFragment);
 
     void inject(ObjectivePagerAdapter objectivePagerAdapter);
 
@@ -127,7 +127,7 @@ public interface ApplicationComponent {
 
     void inject(WarmerObjectivePagerAdapter warmerObjectivePagerAdapter);
 
-    void inject(WarmerObjectiveFragment warmerObjectiveFragment);
+    void inject(WarmerObjectiveHomeFragment warmerObjectiveFragment);
 
     void inject(WarmerObjectiveTempViewModel warmerObjectiveTempViewModel);
 
@@ -137,7 +137,7 @@ public interface ApplicationComponent {
 
     void inject(WarmerObjectiveTimingLayout warmerObjectiveTimingLayout);
 
-    void inject(SettingFragment settingFragment);
+    void inject(SettingHomeFragment settingFragment);
 
     void inject(SensorListViewModel sensorListViewModel);
 
@@ -179,7 +179,7 @@ public interface ApplicationComponent {
 
     void inject(SystemFactoryLayout systemFactoryLayout);
 
-    void inject(ChartFragment chartFragment);
+    void inject(ChartHomeFragment chartFragment);
 
     void inject(AnalogChartWriter analogChartWriter);
 

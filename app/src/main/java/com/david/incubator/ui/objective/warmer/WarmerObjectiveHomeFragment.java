@@ -6,7 +6,7 @@ import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
-import com.david.common.ui.TabFragment;
+import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentObjectiveBinding;
 
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class WarmerObjectiveFragment extends TabFragment<FragmentObjectiveBinding> {
+public class WarmerObjectiveHomeFragment extends TabHomeFragment<FragmentObjectiveBinding> {
 
     @Inject
     ShareMemory shareMemory;
