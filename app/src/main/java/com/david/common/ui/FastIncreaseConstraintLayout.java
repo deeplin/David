@@ -90,9 +90,4 @@ public abstract class FastIncreaseConstraintLayout<U extends ViewDataBinding> ex
     protected abstract void increaseValue();
 
     protected abstract void decreaseValue();
-
-    @Override
-    public void detach() {
-        stopDisposable();
-    }
 }

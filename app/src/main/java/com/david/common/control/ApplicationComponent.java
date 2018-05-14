@@ -12,6 +12,8 @@ import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
 import com.david.incubator.ui.home.warmer.WarmerViewModel;
 import com.david.incubator.ui.main.MainActivity;
 import com.david.incubator.ui.main.MainViewModel;
+import com.david.incubator.ui.menu.scale.ScaleFragment;
+import com.david.incubator.ui.menu.scale.ScaleViewModel;
 import com.david.incubator.ui.main.side.SideLayout;
 import com.david.incubator.ui.main.side.SideViewModel;
 import com.david.incubator.ui.main.top.TopLayout;
@@ -23,6 +25,9 @@ import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;
 import com.david.incubator.ui.menu.chart.chartview.StatusChartWriter;
 import com.david.incubator.ui.menu.chart.table.AnalogDataRetriever;
 import com.david.incubator.ui.menu.chart.table.StatusDataRetriever;
+import com.david.incubator.ui.menu.scale.chart.ScaleChartLayout;
+import com.david.incubator.ui.menu.scale.chart.ScaleChartWriter;
+import com.david.incubator.ui.menu.scale.chart.ScaleDataRetriever;
 import com.david.incubator.ui.menu.sensorlist.SensorListLayout;
 import com.david.incubator.ui.menu.sensorlist.SensorListViewModel;
 import com.david.incubator.ui.objective.cabin.ObjectiveHomeFragment;
@@ -190,4 +195,14 @@ public interface ApplicationComponent {
     void inject(StatusDataRetriever statusDataRetriever);
 
     void inject(ChartLayout chartLayout);
+
+    void inject(ScaleViewModel scaleViewModel);
+
+    void inject(ScaleFragment scaleFragment);
+
+    void inject(ScaleDataRetriever scaleDataRetriever);
+
+    void inject(ScaleChartWriter scaleChartWriter);
+
+    void inject(ScaleChartLayout scaleChartLayout);
 }

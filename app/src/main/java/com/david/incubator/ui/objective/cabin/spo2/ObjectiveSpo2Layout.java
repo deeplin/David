@@ -99,7 +99,7 @@ public class ObjectiveSpo2Layout extends FastIncreaseConstraintLayout<LayoutObje
 
     @Override
     public void detach() {
-        super.detach();
+        super.stopDisposable();
         objectiveViewModel.detach();
     }
 }

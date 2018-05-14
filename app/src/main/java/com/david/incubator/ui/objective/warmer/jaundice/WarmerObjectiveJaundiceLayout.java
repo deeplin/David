@@ -72,7 +72,7 @@ public class WarmerObjectiveJaundiceLayout extends FastIncreaseConstraintLayout<
 
     @Override
     public void detach() {
-        super.detach();
+        super.stopDisposable();
         viewModel.detach();
     }
 }

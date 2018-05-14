@@ -84,7 +84,7 @@ public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<LayoutObje
 
     @Override
     public void detach() {
-        super.detach();
+        super.stopDisposable();
         viewModel.detach();
     }
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.menu.scale.chart.ScaleChartViewModel" />
+    </data>
+
+    <!--584*480-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvScaleWeight"
+            android:layout_width="200dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/text_weight"
+            android:gravity="center"
+            android:text="@{viewModel.lastWeight}"
+            android:textColor="@color/button"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.0833"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.02273" />
+
+        <TextView
+            android:id="@+id/ivChartYAxisTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="g"
+            android:textSize="@dimen/f22"
+            android:visibility="@{viewModel.tableSelected? View.GONE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/btScale"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1739" />
+
+        <Button
+            android:id="@+id/btScalePrevious"
+            style="@style/button_style"
+            android:text="@string/previous_page"
+            android:visibility="@{viewModel.tableSelected? View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.0833"
+            app:layout_constraintHorizontal_bias="0.0198"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9772"
+            app:layout_constraintWidth_percent="0.1370" />
+
+        <Button
+            android:id="@+id/btScaleNext"
+            style="@style/button_style"
+            android:layout_margin="20dp"
+            android:text="@string/next_page"
+            android:visibility="@{viewModel.tableSelected? View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/btScalePrevious"
+            app:layout_constraintHeight_percent="0.0833"
+            app:layout_constraintLeft_toRightOf="@id/btScalePrevious"
+            app:layout_constraintTop_toTopOf="@id/btScalePrevious"
+            app:layout_constraintWidth_percent="0.1370" />
+
+        <Button
+            android:id="@+id/btScale"
+            style="@style/button_style"
+            android:text="@string/rescale"
+            android:visibility="@{viewModel.tableSelected? View.INVISIBLE:View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.0833"
+            app:layout_constraintHorizontal_bias="0.0198"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9772"
+            app:layout_constraintWidth_percent="0.1370" />
+        <!--android:visibility="@{viewModel.tableSelected? View.INVISIBLE:View.VISIBLE}"-->
+        <Button
+            android:id="@+id/btScale2"
+            style="@style/button_style"
+            android:text="@string/scale"
+            app:layout_constraintBottom_toBottomOf="@id/btScale"
+            app:layout_constraintHeight_percent="0.0833"
+            app:layout_constraintHorizontal_bias="0.2183"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btScale"
+            app:layout_constraintWidth_percent="0.1370" />
+
+        <Switch
+            android:id="@+id/switchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@={viewModel.tableSelected}"
+            android:showText="false"
+            android:thumb="@drawable/thumb_switch"
+            android:track="@drawable/track_switch"
+            app:layout_constraintBottom_toBottomOf="@id/btScale"
+            app:layout_constraintRight_toRightOf="@id/tvScaleWeight"
+            app:layout_constraintTop_toTopOf="@id/btScale" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

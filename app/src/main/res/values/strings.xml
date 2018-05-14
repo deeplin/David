@@ -47,6 +47,7 @@
     <string name="camera_no_connection">请连接摄像头</string>
 
     <!--Scale-->
+    <string name="rescale">重新称重</string>
     <string name="scale">称重</string>
     <string name="raise_baby">请抬起婴儿...</string>
     <string name="put_down_baby">请放下婴儿...</string>

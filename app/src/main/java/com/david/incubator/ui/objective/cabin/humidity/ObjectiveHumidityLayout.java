@@ -70,7 +70,7 @@ public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<Layout
 
     @Override
     public void detach() {
-        super.detach();
+        super.stopDisposable();
         objectiveViewModel.detach();
     }
 }

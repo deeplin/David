@@ -27,7 +27,7 @@ public class Constant {
     public static final String HKN93S = "HKN-93S";
 
     public static final int AXIS_COLOR = Color.parseColor("#999999");
-    public static final int AXIS_X_DOT_PER_STEP = 10;
+    public static int AXIS_X_DOT_PER_STEP = 10;
 
     public static final int SENSOR_NA_VALUE = -2;
     public static final String SENSOR_NA_STRING = "NA";

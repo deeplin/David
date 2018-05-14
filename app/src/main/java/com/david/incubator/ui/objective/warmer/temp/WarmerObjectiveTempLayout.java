@@ -91,7 +91,7 @@ public class WarmerObjectiveTempLayout extends FastIncreaseConstraintLayout<Warm
 
     @Override
     public void detach() {
-        super.detach();
+        super.stopDisposable();
         viewModel.detach();
     }
 }
