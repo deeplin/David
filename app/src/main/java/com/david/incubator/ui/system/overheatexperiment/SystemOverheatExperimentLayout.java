@@ -10,7 +10,7 @@ import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.mode.SystemMode;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutSystemOverheatExperimentBinding;
@@ -27,7 +27,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SystemOverheatExperimentLayout extends TabConstraintLayout<LayoutSystemOverheatExperimentBinding> {
+public class SystemOverheatExperimentLayout extends BindingConstraintLayout<LayoutSystemOverheatExperimentBinding> {
 
     @Inject
     MessageSender messageSender;

@@ -2,7 +2,6 @@ package com.david.incubator.ui.setting;
 
 import android.content.Context;
 import android.databinding.ObservableInt;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +10,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 import com.david.R;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutSettingLoginBinding;
@@ -23,7 +22,7 @@ import com.david.databinding.LayoutSettingLoginBinding;
  * description:
  */
 
-public class SettingLoginLayout extends TabConstraintLayout<LayoutSettingLoginBinding> implements View.OnClickListener {
+public class SettingLoginLayout extends BindingConstraintLayout<LayoutSettingLoginBinding> implements View.OnClickListener {
 
     ObservableInt navigationView;
 

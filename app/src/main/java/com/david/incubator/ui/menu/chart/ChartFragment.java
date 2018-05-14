@@ -25,7 +25,7 @@ import io.reactivex.disposables.Disposable;
  * email: 10525677@qq.com
  * description:
  */
-public class ChartHomeFragment extends TabHomeFragment<FragmentChartBinding> implements IFragmentLockable {
+public class ChartFragment extends TabHomeFragment<FragmentChartBinding> implements IFragmentLockable {
 
     @Inject
     ShareMemory shareMemory;

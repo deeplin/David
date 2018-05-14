@@ -7,7 +7,7 @@ import com.david.R;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
@@ -26,7 +26,7 @@ import javax.inject.Inject;
  * description:
  */
 
-public class UserModelDetailLayout extends TabConstraintLayout<LayoutUserModelDetailBinding> {
+public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserModelDetailBinding> {
 
     @Inject
     UserModelDetailViewModel userModelDetailViewModel;

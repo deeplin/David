@@ -3,7 +3,7 @@ package com.david.incubator.ui.menu.chart;
 import android.content.Context;
 
 import com.david.R;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.LayoutChartBaseBinding;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * description:
  */
 
-public class ChartBaseLayout extends TabConstraintLayout<LayoutChartBaseBinding> implements IRefreshableViewModel {
+public class ChartBaseLayout extends BindingConstraintLayout<LayoutChartBaseBinding> implements IRefreshableViewModel {
 
     BaseChartViewModel viewModel;
 

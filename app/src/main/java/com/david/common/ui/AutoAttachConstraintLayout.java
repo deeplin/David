@@ -1,11 +1,8 @@
 package com.david.common.ui;
 
 import android.content.Context;
-import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.View;
 
 /**
@@ -15,7 +12,7 @@ import android.view.View;
  * description:
  */
 
-public abstract class AutoAttachConstraintLayout<U extends ViewDataBinding> extends TabConstraintLayout<U> {
+public abstract class AutoAttachConstraintLayout<U extends ViewDataBinding> extends BindingConstraintLayout<U> {
 
     public AutoAttachConstraintLayout(Context context) {
         super(context);

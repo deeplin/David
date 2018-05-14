@@ -20,7 +20,7 @@ import com.david.incubator.ui.main.top.TopLayout;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
-import com.david.incubator.ui.menu.chart.ChartHomeFragment;
+import com.david.incubator.ui.menu.chart.ChartFragment;
 import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;
 import com.david.incubator.ui.menu.chart.chartview.StatusChartWriter;
 import com.david.incubator.ui.menu.chart.table.AnalogDataRetriever;
@@ -30,6 +30,13 @@ import com.david.incubator.ui.menu.scale.chart.ScaleChartWriter;
 import com.david.incubator.ui.menu.scale.chart.ScaleDataRetriever;
 import com.david.incubator.ui.menu.sensorlist.SensorListLayout;
 import com.david.incubator.ui.menu.sensorlist.SensorListViewModel;
+import com.david.incubator.ui.menu.spo2.Spo2Fragment;
+import com.david.incubator.ui.menu.spo2.chart.Spo2ChartSurfaceView;
+import com.david.incubator.ui.menu.spo2.setting.Spo2SettingAverageTimeLayout;
+import com.david.incubator.ui.menu.spo2.setting.Spo2SettingFastSATLayout;
+import com.david.incubator.ui.menu.spo2.setting.Spo2SettingLayout;
+import com.david.incubator.ui.menu.spo2.setting.Spo2SettingSensLayout;
+import com.david.incubator.ui.menu.spo2.view.Spo2ViewLayout;
 import com.david.incubator.ui.objective.cabin.ObjectiveHomeFragment;
 import com.david.incubator.ui.objective.cabin.ObjectivePagerAdapter;
 import com.david.incubator.ui.objective.cabin.humidity.ObjectiveHumidityViewModel;
@@ -184,7 +191,7 @@ public interface ApplicationComponent {
 
     void inject(SystemFactoryLayout systemFactoryLayout);
 
-    void inject(ChartHomeFragment chartFragment);
+    void inject(ChartFragment chartFragment);
 
     void inject(AnalogChartWriter analogChartWriter);
 
@@ -205,4 +212,18 @@ public interface ApplicationComponent {
     void inject(ScaleChartWriter scaleChartWriter);
 
     void inject(ScaleChartLayout scaleChartLayout);
+
+    void inject(Spo2Fragment spo2Fragment);
+
+    void inject(Spo2ViewLayout spo2ViewLayout);
+
+    void inject(Spo2SettingLayout spo2SettingLayout);
+
+    void inject(Spo2SettingAverageTimeLayout spo2SettingAverageTimeLayout);
+
+    void inject(Spo2SettingFastSATLayout spo2SettingFastSATLayout);
+
+    void inject(Spo2SettingSensLayout spo2SettingSensLayout);
+
+    void inject(Spo2ChartSurfaceView spo2ChartSurfaceView);
 }

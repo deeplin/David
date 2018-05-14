@@ -3,13 +3,12 @@ package com.david.incubator.ui.user;
 import android.content.Context;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
-import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutUserTimeBinding;
@@ -28,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * description:
  */
 
-public class UserTimeLayout extends TabConstraintLayout<LayoutUserTimeBinding>
+public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBinding>
         implements DatePicker.OnDateChangedListener, TimePicker.OnTimeChangedListener {
 
     public ObservableField<String> dateString = new ObservableField<>();

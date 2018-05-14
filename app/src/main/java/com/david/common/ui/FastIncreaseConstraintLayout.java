@@ -19,7 +19,7 @@ import io.reactivex.disposables.Disposable;
  * email: 10525677@qq.com
  * description:
  */
-public abstract class FastIncreaseConstraintLayout<U extends ViewDataBinding> extends TabConstraintLayout<U> implements ITabConstraintLayout {
+public abstract class FastIncreaseConstraintLayout<U extends ViewDataBinding> extends BindingConstraintLayout<U> implements ITabConstraintLayout {
 
     private volatile Disposable increaseDisposable;
     private volatile Disposable decreaseDisposable;

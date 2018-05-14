@@ -4,7 +4,7 @@ import android.content.Context;
 import android.databinding.ObservableInt;
 
 import com.david.R;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutSystemHomeBinding;
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * description:
  */
 
-public class SystemHomeLayout extends TabConstraintLayout<LayoutSystemHomeBinding> {
+public class SystemHomeLayout extends BindingConstraintLayout<LayoutSystemHomeBinding> {
 
     ObservableInt navigationView;
 

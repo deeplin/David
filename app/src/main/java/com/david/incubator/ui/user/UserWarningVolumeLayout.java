@@ -5,15 +5,11 @@ import android.databinding.Observable;
 import android.databinding.ObservableByte;
 import android.databinding.ObservableInt;
 import android.media.AudioManager;
-import android.util.Log;
-import android.view.LayoutInflater;
 
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.SystemSetting;
-import com.david.common.dao.gen.DaoSession;
-import com.david.common.dao.gen.SystemSettingDao;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.incubator.ui.common.ButtonControlViewModel;
@@ -32,7 +28,7 @@ import javax.inject.Inject;
  * description:
  */
 
-public class UserWarningVolumeLayout extends TabConstraintLayout<LayoutUserWarningVolumeBinding> {
+public class UserWarningVolumeLayout extends BindingConstraintLayout<LayoutUserWarningVolumeBinding> {
 
     private final byte MAXIMUM = 100;
     private final byte MINIMUM = 30;

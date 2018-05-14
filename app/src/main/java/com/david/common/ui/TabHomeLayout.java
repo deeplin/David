@@ -57,6 +57,7 @@ public abstract class TabHomeLayout<U extends ViewDataBinding> extends AutoAttac
                         currentView = null;
                     }
                     attachView(viewPager, position);
+                    pageSelected();
                 }
             }
 
@@ -98,5 +99,8 @@ public abstract class TabHomeLayout<U extends ViewDataBinding> extends AutoAttac
         imageView.setImageResource(icon);
         tab.setCustomView(imageView);
         return tab;
+    }
+
+    protected void pageSelected(){
     }
 }

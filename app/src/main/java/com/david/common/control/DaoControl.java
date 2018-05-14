@@ -326,14 +326,14 @@ public class DaoControl {
                 .limit(limit);
 
         if (userModel != null) {
-            queryBuilder.where(AnalogCommandDao.Properties.TimeStamp.ge(userModel.getStartTimeStamp()));
+            queryBuilder.where(WeightModelDao.Properties.TimeStamp.ge(userModel.getStartTimeStamp()));
             if (userModel.getEndTimeStamp() > 0) {
-                queryBuilder.where(AnalogCommandDao.Properties.TimeStamp.le(userModel.getEndTimeStamp()));
+                queryBuilder.where(WeightModelDao.Properties.TimeStamp.le(userModel.getEndTimeStamp()));
             }
         }
 
         if (currentId > 0) {
-            queryBuilder.where(AnalogCommandDao.Properties.Id.le(currentId));
+            queryBuilder.where(WeightModelDao.Properties.Id.le(currentId));
         }
 
         return queryBuilder.build().list();

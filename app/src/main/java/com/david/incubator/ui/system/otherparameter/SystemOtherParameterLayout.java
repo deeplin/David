@@ -11,7 +11,7 @@ import com.david.common.dao.StatusCommand;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.other.DigitalCommand;
 import com.david.common.ui.ITabConstraintLayout;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.incubator.ui.common.ButtonControlViewModel;
@@ -27,7 +27,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SystemOtherParameterLayout extends TabConstraintLayout<LayoutSystemOtherParameterBinding> implements ITabConstraintLayout {
+public class SystemOtherParameterLayout extends BindingConstraintLayout<LayoutSystemOtherParameterBinding> implements ITabConstraintLayout {
 
     @Inject
     SerialControl serialControl;

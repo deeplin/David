@@ -2,13 +2,11 @@ package com.david.incubator.ui.menu.scale.chart;
 
 import android.content.Context;
 import android.databinding.Observable;
-import android.support.constraint.ConstraintLayout;
-import android.view.LayoutInflater;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.ui.IViewModel;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
 import com.david.incubator.ui.menu.scale.ScaleViewModel;
@@ -19,14 +17,12 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-public class ScaleChartLayout extends TabConstraintLayout<LayoutScaleChartBinding> implements IViewModel, IRefreshableViewModel {
+public class ScaleChartLayout extends BindingConstraintLayout<LayoutScaleChartBinding> implements IViewModel, IRefreshableViewModel {
 
     @Inject
     ScaleViewModel scaleViewModel;
 
     ScaleChartViewModel scaleChartViewModel;
-
-    LayoutScaleChartBinding binding;
 
     public ScaleChartLayout(Context context, ScaleChartViewModel scaleChartViewModel) {
         super(context);

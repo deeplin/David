@@ -5,10 +5,9 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 
 import com.david.R;
-import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutSystemFactoryBinding;
@@ -19,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-public class SystemFactoryLayout extends TabConstraintLayout<LayoutSystemFactoryBinding> {
+public class SystemFactoryLayout extends BindingConstraintLayout<LayoutSystemFactoryBinding> {
 
     @Inject
     MessageSender messageSender;

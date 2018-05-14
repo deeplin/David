@@ -15,7 +15,7 @@ import com.david.common.data.ShareMemory;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSettingCalibrationBinding;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -33,7 +33,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * email: 10525677@qq.com
  * description:
  */
-public class SettingCalibrationLayout extends TabConstraintLayout<LayoutSettingCalibrationBinding> {
+public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSettingCalibrationBinding> {
 
     @Inject
     MessageSender messageSender;

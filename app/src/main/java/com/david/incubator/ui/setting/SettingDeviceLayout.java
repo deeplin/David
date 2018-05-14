@@ -7,7 +7,7 @@ import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.serial.command.other.VersionCommand;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.UuidUtil;
 import com.david.databinding.LayoutSettingDeviceBinding;
@@ -21,7 +21,7 @@ import javax.inject.Inject;
  * description:
  */
 
-public class SettingDeviceLayout extends TabConstraintLayout<LayoutSettingDeviceBinding> {
+public class SettingDeviceLayout extends BindingConstraintLayout<LayoutSettingDeviceBinding> {
 
     @Inject
     MessageSender messageSender;

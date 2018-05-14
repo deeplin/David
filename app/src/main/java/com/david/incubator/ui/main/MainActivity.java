@@ -21,7 +21,9 @@ import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
 import com.david.incubator.ui.menu.MenuViewModel;
 import com.david.incubator.ui.menu.camera.CameraFragment;
-import com.david.incubator.ui.menu.chart.ChartHomeFragment;
+import com.david.incubator.ui.menu.chart.ChartFragment;
+import com.david.incubator.ui.menu.scale.ScaleFragment;
+import com.david.incubator.ui.menu.spo2.Spo2Fragment;
 import com.david.incubator.ui.objective.cabin.ObjectiveHomeFragment;
 import com.david.incubator.ui.objective.warmer.WarmerObjectiveHomeFragment;
 import com.david.incubator.ui.setting.SettingHomeFragment;
@@ -135,7 +137,9 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         fragmentArray[FragmentPage.HOME_FRAGMENT] = new HomeFragment();
         fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT] = new ObjectiveHomeFragment();
         fragmentArray[FragmentPage.SETTING_FRAGMENT] = new SettingHomeFragment();
-        fragmentArray[FragmentPage.CHART_FRAGMENT] = new ChartHomeFragment();
+        fragmentArray[FragmentPage.CHART_FRAGMENT] = new ChartFragment();
+        fragmentArray[FragmentPage.SPO2_FRAGMENT] = new Spo2Fragment();
+        fragmentArray[FragmentPage.SCALE_FRAGMENT] = new ScaleFragment();
         fragmentArray[FragmentPage.CAMERA_FRAGMENT] = new CameraFragment();
 
         fragmentArray[FragmentPage.WARMER_HOME_FRAGMENT] = new WarmerHomeFragment();

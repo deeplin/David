@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 
 import com.david.incubator.ui.menu.chart.SensorChartView;
 import com.david.incubator.ui.menu.chart.table.PageTurnTable;
+import com.david.incubator.ui.menu.scale.chart.ScaleChartLayout;
+import com.david.incubator.ui.menu.scale.chart.ScaleChartViewModel;
 
 /**
  * author: Ling Lin
@@ -46,11 +48,11 @@ public class ScalePagerAdapter extends PagerAdapter {
         View view;
 
         switch (position) {
-//            case 0:
-//                ScaleChartViewModel scaleChartViewModel = new ScaleChartViewModel(
-//                        this.sensorChartView, this.pageTurnTable);
-//                view = new ScaleChartLayout(container.getContext(), scaleChartViewModel);
-//                break;
+            case 0:
+                ScaleChartViewModel scaleChartViewModel = new ScaleChartViewModel(
+                        this.sensorChartView, this.pageTurnTable);
+                view = new ScaleChartLayout(container.getContext(), scaleChartViewModel);
+                break;
             default:
                 view = new View(container.getContext());
                 break;

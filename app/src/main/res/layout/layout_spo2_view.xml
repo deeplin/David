@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.david.incubator.util.ViewUtil" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.menu.spo2.view.Spo2ViewLayout" />
+    </data>
+
+    <!--204*200-->
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/spo2_view_pi"
+            android:layout_width="120dp"
+            android:layout_height="0dp"
+            android:gravity="left|center_vertical"
+            android:text="PI"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/spo2_view_pi_value"
+            android:layout_width="84dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@{ViewUtil.formatPiValue(viewModel.shareMemory.PI)}"
+            android:textColor="@color/skin1"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <TextView
+            android:id="@+id/spo2_view_sens"
+            android:layout_width="120dp"
+            android:layout_height="0dp"
+            android:gravity="left|center_vertical"
+            android:text="@string/sens"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3333" />
+
+        <TextView
+            android:id="@+id/spo2_view_sens_value"
+            android:layout_width="84dp"
+            android:layout_height="0dp"
+            android:background="@{viewModel.shareMemory.functionTag == 0 ? @color/border : @color/transparent}"
+            android:gravity="center"
+            android:text="@{viewModel.shareMemory.sensMode.display}"
+            android:textColor="@{viewModel.shareMemory.functionTag == 0 ? @color/info_white : @color/skin1}"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3333" />
+
+        <TextView
+            android:id="@+id/spo2_view_average_time"
+            android:layout_width="120dp"
+            android:layout_height="0dp"
+            android:gravity="left|center_vertical"
+            android:text="@string/avg_time"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6667" />
+
+        <TextView
+            android:id="@+id/spo2_view_average_time_value"
+            android:layout_width="84dp"
+            android:layout_height="0dp"
+            android:background="@{viewModel.shareMemory.functionTag == 1 ? @color/border : @color/transparent}"
+            android:gravity="center"
+            android:text="@{viewModel.shareMemory.averageTimeMode.name}"
+            android:textColor="@{viewModel.shareMemory.functionTag == 1 ? @color/info_white : @color/skin1}"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6667" />
+
+        <TextView
+            android:id="@+id/spo2_view_fast_sat"
+            android:layout_width="120dp"
+            android:layout_height="0dp"
+            android:gravity="left|center_vertical"
+            android:text="@string/fast_sat"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1" />
+
+        <TextView
+            android:id="@+id/spo2_view_fast_sat_value"
+            android:layout_width="84dp"
+            android:layout_height="0dp"
+            android:background="@{viewModel.shareMemory.functionTag == 2 ? @color/border : @color/transparent}"
+            android:gravity="center"
+            android:text="@{viewModel.shareMemory.fastsatValue}"
+            android:textColor="@{viewModel.shareMemory.functionTag == 2 ? @color/info_white : @color/skin1}"
+            android:textSize="@dimen/f24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.25"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

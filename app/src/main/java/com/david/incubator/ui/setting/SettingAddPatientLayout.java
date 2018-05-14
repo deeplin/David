@@ -21,7 +21,7 @@ import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
 import com.david.common.mode.BloodTypeMode;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSettingAddPatientBinding;
@@ -43,7 +43,7 @@ import javax.inject.Inject;
  * description:
  */
 
-public class SettingAddPatientLayout extends TabConstraintLayout<LayoutSettingAddPatientBinding> {
+public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSettingAddPatientBinding> {
 
     @Inject
     DaoControl daoControl;

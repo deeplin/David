@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--314 * 180-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btSpo2SettingAverageTime0"
+            style="@style/button_style"
+            android:text="2-4"
+            app:layout_constraintBottom_toTopOf="@id/btSpo2SettingAverageTime3"
+            app:layout_constraintEnd_toStartOf="@id/btSpo2SettingAverageTime1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btSpo2SettingAverageTime1"
+            style="@style/button_style"
+            android:text="4-6"
+            app:layout_constraintBottom_toBottomOf="@id/btSpo2SettingAverageTime0"
+            app:layout_constraintEnd_toStartOf="@id/btSpo2SettingAverageTime2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/btSpo2SettingAverageTime0"
+            app:layout_constraintTop_toTopOf="@id/btSpo2SettingAverageTime0" />
+
+        <Button
+            android:id="@+id/btSpo2SettingAverageTime2"
+            style="@style/button_style"
+            android:text="8"
+            app:layout_constraintBottom_toBottomOf="@id/btSpo2SettingAverageTime0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/btSpo2SettingAverageTime1"
+            app:layout_constraintTop_toTopOf="@id/btSpo2SettingAverageTime0" />
+
+        <Button
+            android:id="@+id/btSpo2SettingAverageTime3"
+            style="@style/button_style"
+            android:text="10"
+            app:layout_constraintBottom_toTopOf="@id/btSpo2SettingAverageTime6"
+            app:layout_constraintEnd_toStartOf="@id/btSpo2SettingAverageTime4"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btSpo2SettingAverageTime0" />
+
+        <Button
+            android:id="@+id/btSpo2SettingAverageTime4"
+            style="@style/button_style"
+            android:text="12"
+            app:layout_constraintBottom_toBottomOf="@id/btSpo2SettingAverageTime3"
+            app:layout_constraintEnd_toStartOf="@id/btSpo2SettingAverageTime5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/btSpo2SettingAverageTime3"
+            app:layout_constraintTop_toTopOf="@id/btSpo2SettingAverageTime3" />
+
+        <Button
+            android:id="@+id/btSpo2SettingAverageTime5"
+            style="@style/button_style"
+            android:text="14"
+            app:layout_constraintBottom_toBottomOf="@id/btSpo2SettingAverageTime3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/btSpo2SettingAverageTime4"
+            app:layout_constraintTop_toTopOf="@id/btSpo2SettingAverageTime3" />
+
+        <Button
+            android:id="@+id/btSpo2SettingAverageTime6"
+            style="@style/button_style"
+            android:text="16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/btSpo2SettingAverageTime3"
+            app:layout_constraintStart_toStartOf="@id/btSpo2SettingAverageTime3"
+            app:layout_constraintTop_toBottomOf="@id/btSpo2SettingAverageTime3" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

@@ -6,7 +6,7 @@ import com.apkfuns.logutils.LogUtils;
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.databinding.LayoutSettingIntroductionBinding;
 import com.github.barteksc.pdfviewer.PDFView;
 
@@ -18,7 +18,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SettingIntroductionLayout extends TabConstraintLayout<LayoutSettingIntroductionBinding> {
+public class SettingIntroductionLayout extends BindingConstraintLayout<LayoutSettingIntroductionBinding> {
 
     @Inject
     ModuleHardware moduleHardware;

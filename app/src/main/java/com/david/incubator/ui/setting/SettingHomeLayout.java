@@ -9,7 +9,7 @@ import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.ui.ITabConstraintLayout;
 import com.david.common.ui.IViewModel;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutSettingHomeBinding;
@@ -37,7 +37,7 @@ import com.david.incubator.ui.user.usermodel.UserModelLayout;
  * description:
  */
 
-public class SettingHomeLayout extends TabConstraintLayout<LayoutSettingHomeBinding> {
+public class SettingHomeLayout extends BindingConstraintLayout<LayoutSettingHomeBinding> {
 
     ObservableInt navigationView = new ObservableInt();
 

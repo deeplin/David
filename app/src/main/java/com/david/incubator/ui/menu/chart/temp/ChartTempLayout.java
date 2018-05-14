@@ -5,7 +5,7 @@ import android.content.Context;
 
 import com.david.R;
 import com.david.common.ui.IViewModel;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutChartTempBinding;
@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
  * description:
  */
 
-public class ChartTempLayout extends TabConstraintLayout<LayoutChartTempBinding> implements IRefreshableViewModel, IViewModel {
+public class ChartTempLayout extends BindingConstraintLayout<LayoutChartTempBinding> implements IRefreshableViewModel, IViewModel {
 
     TempChartViewModel chartTempViewModel;
     private AlertDialog alertDialog;

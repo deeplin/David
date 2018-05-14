@@ -3,17 +3,14 @@ package com.david.incubator.ui.user;
 import android.content.Context;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
-import android.util.Log;
 import android.widget.Button;
 
 import com.david.R;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.SystemSetting;
-import com.david.common.dao.gen.DaoSession;
-import com.david.common.dao.gen.SystemSettingDao;
 import com.david.common.mode.LanguageMode;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
@@ -33,7 +30,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class UserLanguageLayout extends TabConstraintLayout<LayoutUserLanguageBinding> {
+public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLanguageBinding> {
 
     @Inject
     DaoControl daoControl;

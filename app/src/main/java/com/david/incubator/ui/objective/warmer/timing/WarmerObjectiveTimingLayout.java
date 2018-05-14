@@ -1,11 +1,10 @@
 package com.david.incubator.ui.objective.warmer.timing;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
-import com.david.common.ui.TabConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.WarmerLayoutObjectiveTimingBinding;
 import com.david.incubator.util.TimingData;
@@ -21,7 +20,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class WarmerObjectiveTimingLayout extends TabConstraintLayout<WarmerLayoutObjectiveTimingBinding> {
+public class WarmerObjectiveTimingLayout extends BindingConstraintLayout<WarmerLayoutObjectiveTimingBinding> {
 
     @Inject
     TimingData timingData;
