@@ -353,4 +353,9 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
     }
+
+//    private void showKeyboard(){
+//        InputMethodManager imm = (InputMethodManager) getContext( ).getSystemService(Context.INPUT_METHOD_SERVICE);
+//           imm.showSoftInput(editText,InputMethodManager.SHOW_FORCED);
+//    }
 }

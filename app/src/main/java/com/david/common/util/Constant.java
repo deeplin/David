@@ -11,15 +11,15 @@ import android.graphics.Color;
 
 public class Constant {
 
-    public static final boolean RELEASE_TO_DAVID = true;
+    public static final boolean RELEASE_TO_DAVID = false;
     public static final boolean ENABLE_DEBUG = true;
 
     public static final int SCREEN_LOCK_SECOND = 30; //second
     public static final int BUTTON_CLICK_TIMEOUT = 500; //millisecond
     public static final int LONG_CLICK_DELAY = 100; //millisecond
 
-    public static final int SENSOR_SAVED_IN_DATABASE = 86400; //43200 per month 存储二月，秒为单位
-    public static final int SCALE_SAVED_IN_DATABASE = 1440; //720 per month 存储二月
+    public static final int SENSOR_SAVED_IN_DATABASE = 43200; //43200 per month 存储一月，秒为单位
+    public static final int SCALE_SAVED_IN_DATABASE = 720; //720 per month 存储一月
 
     public static final String SYSTEM_PASSWORD = "121212";
     public static final String USER_PASSWORD = "898989";
