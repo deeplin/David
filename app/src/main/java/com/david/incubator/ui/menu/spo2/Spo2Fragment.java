@@ -1,5 +1,7 @@
 package com.david.incubator.ui.menu.spo2;
 
+import android.util.Log;
+
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
@@ -36,10 +38,12 @@ public class Spo2Fragment extends AutoAttachFragment<FragmentSpo2Binding> implem
 
     @Override
     public void attach() {
+        binding.spo2SurfaceView.attach();
         messageSender.getSpo2(false, shareMemory);
     }
 
     @Override
     public void detach() {
+        binding.spo2SurfaceView.detach();
     }
 }

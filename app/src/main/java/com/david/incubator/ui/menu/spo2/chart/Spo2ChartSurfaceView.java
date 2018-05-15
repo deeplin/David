@@ -9,14 +9,16 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.spo2.Spo2WaveCommand;
-import com.david.common.ui.AutoAttachSurfaceView;
+import com.david.common.ui.IViewModel;
 import com.david.common.util.AutoUtil;
 import com.david.common.util.Pair;
 import com.david.common.util.StringUtil;
@@ -38,7 +40,7 @@ import io.reactivex.schedulers.Schedulers;
  * email: 10525677@qq.com
  * description:
  */
-public class Spo2ChartSurfaceView extends AutoAttachSurfaceView {
+public class Spo2ChartSurfaceView extends SurfaceView implements IViewModel {
 
     @Inject
     Spo2WaveCommand spo2WaveCommand;
@@ -72,7 +74,6 @@ public class Spo2ChartSurfaceView extends AutoAttachSurfaceView {
         START_SIQ_Y = AutoUtil.getHeight(178);
 
         bufferAvailable = 0;
-        running = false;
         previousCyPpg = START_PPG_Y;
         bufferList = new ArrayList<>();
 
@@ -117,14 +118,24 @@ public class Spo2ChartSurfaceView extends AutoAttachSurfaceView {
         }
     }
 
-
+    private int reSend = 32;
+    private
     void draw(@NonNull Long aLong) {
         if (!running)
             return;
 
         /*读数据*/
         if (bufferAvailable == 60 || bufferAvailable == 30 || bufferAvailable == 0) {
-            serialControl.sendAsync(spo2WaveCommand);
+            if (reSend <= 0) {
+                serialControl.sendAsync(spo2WaveCommand);
+                reSend = 64;
+            }else{
+                reSend --;
+            }
+        }else{
+            if (reSend > 0) {
+                reSend--;
+            }
         }
 
         if (bufferAvailable <= 0) {

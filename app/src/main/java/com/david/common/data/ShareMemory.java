@@ -93,7 +93,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
                 //todo to be removed
                 if (!Constant.RELEASE_TO_DAVID)
-                    system = SystemMode.Cabin;
+                    system = SystemMode.Warmer;
                 systemMode.set(system);
 
                 CtrlMode ctrl = ctrlMode.get();

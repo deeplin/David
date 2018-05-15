@@ -49,17 +49,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.07894" />
 
-        <!--&lt;!&ndash;508*180&ndash;&gt;-->
-        <!--<com.david.incubator.ui.menu.spo2.chart.Spo2ChartSurfaceView-->
-            <!--android:layout_width="508dp"-->
-            <!--android:layout_height="0dp"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintHeight_percent="0.2903"-->
-            <!--app:layout_constraintHorizontal_bias="0.8081"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintVertical_bias="0.7955" />-->
+        <!--508*180-->
+        <com.david.incubator.ui.menu.spo2.chart.Spo2ChartSurfaceView
+            android:id="@+id/spo2SurfaceView"
+            android:layout_width="508dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.2903"
+            app:layout_constraintHorizontal_bias="0.8081"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.7955" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
