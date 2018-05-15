@@ -88,7 +88,8 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                     shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
                     shareMemory.lockScreen.set(false);
                 } else if (shareMemory.isTransit()) {
-                    shareMemory.currentFragmentID.set(FragmentPage.MENU_NONE);
+                    //todo
+//                    shareMemory.currentFragmentID.set(FragmentPage.MENU_NONE);
                     shareMemory.lockScreen.set(true);
                 }
                 automationControl.initializeTimeOut();

@@ -11,7 +11,7 @@ import android.graphics.Color;
 
 public class Constant {
 
-    public static final boolean RELEASE_TO_DAVID = false;
+    public static final boolean RELEASE_TO_DAVID = true;
     public static final boolean ENABLE_DEBUG = true;
 
     public static final int SCREEN_LOCK_SECOND = 30; //second
