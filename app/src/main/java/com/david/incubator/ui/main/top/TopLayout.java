@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
+import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.LayoutTopBinding;
@@ -35,7 +36,9 @@ public class TopLayout extends AutoAttachConstraintLayout<LayoutTopBinding> {
 
         RxView.clicks(binding.tvTopAlarm)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((Object Void) -> mainViewModel.enableAlertList.set(!mainViewModel.enableAlertList.get()));
+                .subscribe((Object Void) -> {
+                    mainViewModel.enableAlertList.set(!mainViewModel.enableAlertList.get());
+                });
     }
 
     @Override

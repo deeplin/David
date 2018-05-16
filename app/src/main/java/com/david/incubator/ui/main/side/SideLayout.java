@@ -10,6 +10,7 @@ import com.david.common.ui.AutoAttachConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutSideBinding;
+import com.david.incubator.ui.main.MainViewModel;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -31,6 +32,8 @@ public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
     ShareMemory shareMemory;
     @Inject
     TopViewModel topViewModel;
+    @Inject
+    MainViewModel mainViewModel;
 
     public SideLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -60,6 +63,7 @@ public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
                 .subscribe((Object Void) -> {
                     if (!shareMemory.isTransit()) {
                         viewModel.clearAlarm();
+                        mainViewModel.enableAlertList.set(false);
                     }
                 });
 
