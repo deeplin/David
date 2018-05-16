@@ -97,7 +97,7 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
                     break;
                 }
             }
-            return true;
+            return false;
         });
     }
 

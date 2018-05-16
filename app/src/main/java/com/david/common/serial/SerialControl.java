@@ -10,6 +10,7 @@ import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -121,7 +122,7 @@ public class SerialControl extends BaseSerialControl {
             BaseSerialMessage serialMessage = entry.getValue();
             MessageMode messageMode = serialMessage.getMessageMode();
 
-            if (messageMode.equals(MessageMode.Error)) {
+            if (Objects.equals(messageMode, MessageMode.Error)) {
                 if (serialMessage.getRepeatTime() == BaseSerialMessage.CRITICAL_COMMAND) {
                     serialMessage.setMessageMode(MessageMode.InProcess);
                     sendAsync(serialMessage);
@@ -129,7 +130,7 @@ public class SerialControl extends BaseSerialControl {
                     serialMessage.setOnCompleted(null);
                     iterator.remove();
                 }
-            } else if (messageMode.equals(MessageMode.Completed)) {
+            } else if (Objects.equals(messageMode, MessageMode.Completed)) {
                 serialMessage.setOnCompleted(null);
                 iterator.remove();
             }

@@ -241,7 +241,5 @@ public class MessageSender {
 //        serialControl.addSession(alertResumeAllCommand);
 //    }
 //
-
-
 }
 

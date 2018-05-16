@@ -99,7 +99,7 @@ public class WarmerHomeFragment extends AutoAttachFragment<WarmerFragmentHomeBin
                     }
                 }
             }
-            return true;
+            return false;
         });
     }
 
