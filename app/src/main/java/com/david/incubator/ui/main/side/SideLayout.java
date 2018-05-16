@@ -32,8 +32,6 @@ public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
     ShareMemory shareMemory;
     @Inject
     TopViewModel topViewModel;
-    @Inject
-    MainViewModel mainViewModel;
 
     public SideLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -63,7 +61,7 @@ public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
                 .subscribe((Object Void) -> {
                     if (!shareMemory.isTransit()) {
                         viewModel.clearAlarm();
-                        mainViewModel.enableAlertList.set(false);
+                        shareMemory.enableAlertList.set(false);
                     }
                 });
 

@@ -63,7 +63,7 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
                     int functionTab = CtrlMode.None.getIndex();
                     if (x < 30) {
                     } else if (x < 580) {
-                        if (y < 10) {
+                        if (y < 100) {
                         } else if (y < 190) {
                             functionTab = CtrlMode.Air.getIndex();
                         } else if (y < 230) {

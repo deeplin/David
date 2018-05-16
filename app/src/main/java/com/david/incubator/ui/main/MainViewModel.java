@@ -1,18 +1,14 @@
 package com.david.incubator.ui.main;
 
 import android.databinding.Observable;
-import android.databinding.ObservableBoolean;
 
-import com.david.common.alarm.AlarmControl;
 import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
-import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.ui.BaseNavigatorModel;
 import com.david.common.util.FragmentPage;
-import com.david.incubator.ui.menu.MenuViewModel;
 
 import java.util.Objects;
 
@@ -29,18 +25,11 @@ import javax.inject.Singleton;
 public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
 
     @Inject
-    MenuViewModel menuViewModel;
-    @Inject
     public ShareMemory shareMemory;
-    @Inject
-    AlarmControl alarmControl;
     @Inject
     MessageSender messageSender;
     @Inject
     AutomationControl automationControl;
-
-    public ObservableBoolean enableAlertList = new ObservableBoolean(false);
-    public ObservableBoolean showAlertList = new ObservableBoolean(false);
 
     private Observable.OnPropertyChangedCallback systemModeCallback;
     private Observable.OnPropertyChangedCallback lockScreenCallback;
@@ -49,34 +38,6 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
     @Inject
     public MainViewModel() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
-
-        enableAlertList.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable sender, int propertyId) {
-                boolean status = enableAlertList.get();
-                if (status) {
-                    messageSender.addAlarmList((aBoolean, serialMessage) -> {
-                        if (aBoolean && enableAlertList.get()) {
-
-                            AlertListCommand alertListCommand = (AlertListCommand) serialMessage;
-                            if (alertListCommand.getAlertCount() > 0) {
-                                synchronized (this) {
-                                    showAlertList.set(true);
-                                    alarmControl.alarmListUpdated.notifyChange();
-                                }
-                            } else {
-                                showAlertList.set(false);
-                            }
-                        }
-                    });
-                } else {
-                    synchronized (this) {
-                        messageSender.removeAlarmList();
-                        showAlertList.set(false);
-                    }
-                }
-            }
-        });
 
         systemModeCallback = new Observable.OnPropertyChangedCallback() {
             @Override
@@ -88,8 +49,6 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                     shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
                     shareMemory.lockScreen.set(false);
                 } else if (shareMemory.isTransit()) {
-                    //todo
-//                    shareMemory.currentFragmentID.set(FragmentPage.MENU_NONE);
                     shareMemory.lockScreen.set(true);
                 }
                 automationControl.initializeTimeOut();
@@ -118,7 +77,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                 }
 
                 if (status) {
-                    enableAlertList.set(false);
+                    shareMemory.enableAlertList.set(false);
                 } else {
                     automationControl.initializeTimeOut();
                 }

@@ -69,7 +69,7 @@
             android:layout_width="616dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/y48"
-            android:visibility="@{viewModel.showAlertList?View.VISIBLE: View.GONE}"
+            android:visibility="@{viewModel.shareMemory.showAlertList?View.VISIBLE: View.GONE}"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.david.incubator.ui.main.top.TopLayout

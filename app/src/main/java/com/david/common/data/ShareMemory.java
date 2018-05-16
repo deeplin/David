@@ -1,5 +1,6 @@
 package com.david.common.data;
 
+import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableByte;
 import android.databinding.ObservableField;
@@ -8,6 +9,7 @@ import android.databinding.ObservableInt;
 import com.david.R;
 import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
+import com.david.common.control.MessageSender;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.CtrlGetCommand;
 import com.david.common.dao.Spo2GetCommand;
@@ -19,6 +21,7 @@ import com.david.common.mode.Spo2SensMode;
 import com.david.common.mode.SystemMode;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.command.alert.AlertGetCommand;
+import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.util.CommandChar;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
@@ -36,6 +39,8 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
     @Inject
     AlarmControl alarmControl;
+    @Inject
+    MessageSender messageSender;
 
     /*Status Command*/
     public ObservableField<SystemMode> systemMode = new ObservableField<>(SystemMode.Init);
@@ -76,11 +81,42 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     public ObservableField<AverageTimeMode> averageTimeMode = new ObservableField<>(AverageTimeMode.Zero);
     public ObservableField<String> fastsatValue = new ObservableField<>();
 
+    /*Alarm*/
+    public ObservableBoolean enableAlertList = new ObservableBoolean(false);
+    public ObservableBoolean showAlertList = new ObservableBoolean(false);
+
     public ObservableInt functionTag = new ObservableInt(0);
 
     @Inject
     public ShareMemory() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
+
+        enableAlertList.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                boolean status = enableAlertList.get();
+                if (status) {
+                    messageSender.addAlarmList((aBoolean, serialMessage) -> {
+                        if (aBoolean && enableAlertList.get()) {
+                            AlertListCommand alertListCommand = (AlertListCommand) serialMessage;
+                            if (alertListCommand.getAlertCount() > 0) {
+                                synchronized (this) {
+                                    showAlertList.set(true);
+                                    alarmControl.alarmListUpdated.notifyChange();
+                                }
+                            } else {
+                                showAlertList.set(false);
+                            }
+                        }
+                    });
+                } else {
+                    synchronized (this) {
+                        messageSender.removeAlarmList();
+                        showAlertList.set(false);
+                    }
+                }
+            }
+        });
     }
 
     @Override

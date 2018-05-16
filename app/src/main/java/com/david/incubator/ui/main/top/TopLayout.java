@@ -26,19 +26,11 @@ public class TopLayout extends AutoAttachConstraintLayout<LayoutTopBinding> {
 
     @Inject
     TopViewModel topViewModel;
-    @Inject
-    MainViewModel mainViewModel;
 
     public TopLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         MainApplication.getInstance().getApplicationComponent().inject(this);
         binding.setViewModel(topViewModel);
-
-        RxView.clicks(binding.tvTopAlarm)
-                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((Object Void) -> {
-                    mainViewModel.enableAlertList.set(!mainViewModel.enableAlertList.get());
-                });
     }
 
     @Override

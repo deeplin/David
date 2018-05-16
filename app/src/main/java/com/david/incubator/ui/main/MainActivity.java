@@ -13,6 +13,9 @@ import android.view.WindowManager;
 import com.david.R;
 import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
+import com.david.common.data.ShareMemory;
+import com.david.common.mode.CtrlMode;
+import com.david.common.mode.FunctionMode;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AutoUtil;
 import com.david.common.util.FragmentPage;
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     MenuViewModel menuViewModel;
     @Inject
     AutomationControl automationControl;
+    @Inject
+    ShareMemory shareMemory;
 
     ActivityMainBinding binding;
     private AutoAttachFragment[] fragmentArray;
@@ -63,6 +68,22 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         binding.setViewModel(mainViewModel);
 
         mainViewModel.setNavigator(this);
+
+        binding.getRoot().setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    double x = event.getX();
+                    double y = event.getY() / AutoUtil.heightRadio + 0.5f;
+                    if (x < 616 && y < 80) {
+                        shareMemory.enableAlertList.set(!shareMemory.enableAlertList.get());
+                    }else{
+                        shareMemory.enableAlertList.set(false);
+                    }
+                    break;
+                }
+            }
+            return true;
+        });
     }
 
     @Override
@@ -126,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 
     @Override
     public void changeFragment(byte position) {
-        mainViewModel.showAlertList.set(false);
         Observable.just(position)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::rotate);
