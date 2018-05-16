@@ -29,6 +29,7 @@ public class CameraFragment extends AutoAttachFragment<FragmentCameraBinding> im
 
     @Override
     public synchronized void attach() {
+        binding.sllLeft.attach();
         try {
             if (cameraPreview == null) {
                 cameraPreview = new CameraPreview(getView().getContext());
@@ -50,5 +51,6 @@ public class CameraFragment extends AutoAttachFragment<FragmentCameraBinding> im
             cameraPreview = null;
             binding.frCameraRight.removeAllViews();
         }
+        binding.sllLeft.detach();
     }
 }

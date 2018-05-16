@@ -3,12 +3,13 @@ package com.david.incubator.ui.menu.sensorlist;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
-import com.david.common.ui.AutoAttachConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.AnimationUtil;
 import com.david.databinding.LayoutSensorListBinding;
 
@@ -23,7 +24,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * description:
  */
 
-public class SensorListLayout extends AutoAttachConstraintLayout<LayoutSensorListBinding> implements SensorListNavigator {
+public class SensorListLayout extends BindingConstraintLayout<LayoutSensorListBinding> implements SensorListNavigator {
 
     @Inject
     SensorListViewModel viewModel;

@@ -34,6 +34,8 @@ public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding>
 
     @Override
     public void attach() {
+        binding.sllLeft.attach();
+
         SettingPagerAdapter pagerAdapter = new SettingPagerAdapter();
         binding.vpSetting.setAdapter(pagerAdapter);
         binding.tlSetting.setupWithViewPager(binding.vpSetting);
@@ -47,5 +49,11 @@ public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding>
         binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.login));
         binding.vpSetting.addOnPageChangeListener(super.getPageChangeListener(binding.vpSetting));
         binding.tlSetting.getTabAt(0).select();
+    }
+
+    @Override
+    public void detach(){
+        super.detach();
+        binding.sllLeft.detach();
     }
 }

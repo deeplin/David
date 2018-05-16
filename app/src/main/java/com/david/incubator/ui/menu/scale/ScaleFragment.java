@@ -32,6 +32,7 @@ public class ScaleFragment extends TabHomeFragment<FragmentScaleBinding> {
 
     @Override
     public void attach() {
+        binding.sllLeft.attach();
         scaleViewModel.attach();
 
         ScalePagerAdapter pagerAdapter = new ScalePagerAdapter(binding.scvScale, binding.pttScale);
@@ -48,5 +49,6 @@ public class ScaleFragment extends TabHomeFragment<FragmentScaleBinding> {
     public void detach() {
         super.detach();
         scaleViewModel.detach();
+        binding.sllLeft.detach();
     }
 }

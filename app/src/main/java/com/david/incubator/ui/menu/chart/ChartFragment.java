@@ -50,6 +50,7 @@ public class ChartFragment extends TabHomeFragment<FragmentChartBinding> impleme
 
     @Override
     public void attach() {
+        binding.sllLeft.attach();
         boolean isCabin = shareMemory.isCabin();
 
         ChartPagerAdapter pagerAdapter = new ChartPagerAdapter(isCabin,
@@ -98,5 +99,6 @@ public class ChartFragment extends TabHomeFragment<FragmentChartBinding> impleme
             refreshDisposable.dispose();
             refreshDisposable = null;
         }
+        binding.sllLeft.detach();
     }
 }

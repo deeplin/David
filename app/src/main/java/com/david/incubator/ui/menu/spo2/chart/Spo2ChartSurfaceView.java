@@ -62,7 +62,7 @@ public class Spo2ChartSurfaceView extends SurfaceView implements IViewModel {
     private Paint ppgPaint;
     private Paint siqPaint;
 
-    private int xIndex = 0;
+    private int xIndex;
 
     private SurfaceHolder holder;
 
@@ -95,6 +95,7 @@ public class Spo2ChartSurfaceView extends SurfaceView implements IViewModel {
 
     @Override
     public void attach() {
+        xIndex = 0;
         synchronized (this) {
             if (disposable == null) {
                 Observable<Long> observable = Observable.interval(500 * 1000, INTERVAL, TimeUnit.MICROSECONDS)
