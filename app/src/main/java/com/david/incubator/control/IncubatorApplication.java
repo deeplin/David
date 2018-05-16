@@ -34,8 +34,8 @@ public class IncubatorApplication extends MainApplication {
         try {
             LogUtil.EnableLog();
             //todo
-//            if (SystemConfig.RELEASE_TO_DAVID)
-//                LogUtil.EnableLogToFile();
+            if (Constant.RELEASE_TO_DAVID)
+                LogUtil.EnableLogToFile();
 
             moduleHardware.load();
             daoControl.start(this);

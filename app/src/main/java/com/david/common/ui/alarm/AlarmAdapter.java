@@ -33,8 +33,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull AlarmViewHolder holder, int position) {
-        // todo
-        String alarmId = "I"+ alarmArray[position];
+        String alarmId = alarmArray[position];
         AlarmModel alarmModel = AlarmControl.getPriorityMode(alarmId);
         holder.tvAlarm.setText(alarmModel.toString());
         if (Objects.equals(alarmModel.getAlarmPriorityMode(), AlarmPriorityMode.High)) {
