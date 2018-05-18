@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
                 case MotionEvent.ACTION_DOWN: {
                     double x = event.getX();
                     double y = event.getY() / AutoUtil.heightRadio + 0.5f;
-                    if (x < 616 && y < 80) {
+                    if (x < 616 && y < 120) {
                         shareMemory.enableAlertList.set(!shareMemory.enableAlertList.get());
                     }else{
                         shareMemory.enableAlertList.set(false);

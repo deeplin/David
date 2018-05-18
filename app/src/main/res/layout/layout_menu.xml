@@ -18,7 +18,7 @@
         <ImageButton
             android:id="@+id/btMenuSetting"
             android:layout_width="170dp"
-            android:layout_height="@dimen/y48"
+            android:layout_height="@dimen/z48"
             android:layout_marginStart="6dp"
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuSetting}"
@@ -31,7 +31,7 @@
         <ImageButton
             android:id="@+id/btMenuChart"
             android:layout_width="170dp"
-            android:layout_height="@dimen/y48"
+            android:layout_height="@dimen/z48"
             android:layout_marginStart="6dp"
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuChart}"
@@ -44,7 +44,7 @@
         <ImageButton
             android:id="@+id/btMenuSpo2"
             android:layout_width="170dp"
-            android:layout_height="@dimen/y48"
+            android:layout_height="@dimen/z48"
             android:layout_marginStart="6dp"
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuSpo2}"
@@ -57,7 +57,7 @@
         <ImageButton
             android:id="@+id/btMenuScale"
             android:layout_width="170dp"
-            android:layout_height="@dimen/y48"
+            android:layout_height="@dimen/z48"
             android:layout_marginStart="6dp"
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuScale}"
@@ -70,7 +70,7 @@
         <ImageButton
             android:id="@+id/btMenuCamera"
             android:layout_width="170dp"
-            android:layout_height="@dimen/y48"
+            android:layout_height="@dimen/z48"
             android:layout_marginStart="6dp"
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuCamera}"

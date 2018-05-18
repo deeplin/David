@@ -30,9 +30,9 @@ public class ScaleViewModel implements IViewModel {
     @Inject
     DaoControl daoControl;
 
-    private final int BABY_WEIGHT_THRESHOLD = 200;
-    private final int PUT_DOWN_VIBRATE = 10;
-    private final int RAISE_VIBRATE = 500;
+    private static final int BABY_WEIGHT_THRESHOLD = 200;
+    private static final int PUT_DOWN_VIBRATE = 10;
+    private static final int RAISE_VIBRATE = 500;
 
     public ObservableInt recordedWeight = new ObservableInt();
     public ObservableBoolean resetMode = new ObservableBoolean(false);

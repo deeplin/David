@@ -69,12 +69,12 @@ public class TopViewModel implements IViewModel {
                 if (alarmControl.isAlert()) {
                     alarmField.set(AlarmControl.getAlertField(alarmId));
 
-                    if (Objects.equals(alarmId, "ISYS.UPS") || Objects.equals(alarmId, "ISYS.BAT")) {
+                    if (Objects.equals(alarmId, "SYS.UPS") || Objects.equals(alarmId, "SYS.BAT")) {
                         batteryAlert = true;
                     } else {
                         batteryAlert = false;
                     }
-                    if (Objects.equals(alarmId, "ISYS.TANK")) {
+                    if (Objects.equals(alarmId, "SYS.TANK")) {
                         muteAlarm();
                     }
                 } else {

@@ -75,11 +75,11 @@ public class AlarmControl {
     }
 
     public static int getMuteTime(String alarmId) {
-        if (Objects.equals(alarmId, "ISEN.O2DIF")
-                || Objects.equals(alarmId, "ISEN.O2_1")
-                || Objects.equals(alarmId, "ISEN.O2_2")
-                || Objects.equals(alarmId, "IO2.DEVH")
-                || Objects.equals(alarmId, "IO2.DEVL")) {
+        if (Objects.equals(alarmId, "SEN.O2DIF")
+                || Objects.equals(alarmId, "SEN.O2_1")
+                || Objects.equals(alarmId, "SEN.O2_2")
+                || Objects.equals(alarmId, "O2.DEVH")
+                || Objects.equals(alarmId, "O2.DEVL")) {
             return 115;
         } else {
             return 240;

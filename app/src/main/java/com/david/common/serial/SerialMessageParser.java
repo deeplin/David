@@ -140,7 +140,7 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
             System.arraycopy(filteredInputBuffer, 0, filteredInput, 0, filterIndex);
             return filteredInput;
         }
-        throw new Exception("No detach char.");
+        throw new Exception("No ending char.");
     }
 
     /*检查返回指令状态，返回指令数据段*/

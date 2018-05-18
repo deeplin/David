@@ -19,7 +19,7 @@
         <TextView
             android:id="@+id/tvScaleWeight"
             android:layout_width="200dp"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/y40"
             android:layout_marginEnd="30dp"
             android:background="@drawable/text_weight"
             android:gravity="center"
@@ -27,7 +27,6 @@
             android:textColor="@color/button"
             android:textSize="@dimen/f24"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.0833"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.02273" />
@@ -51,13 +50,11 @@
             android:text="@string/previous_page"
             android:visibility="@{viewModel.tableSelected? View.VISIBLE:View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.0833"
             app:layout_constraintHorizontal_bias="0.0198"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9772"
-            app:layout_constraintWidth_percent="0.1370" />
+            app:layout_constraintVertical_bias="0.9772" />
 
         <Button
             android:id="@+id/btScaleNext"
@@ -66,10 +63,8 @@
             android:text="@string/next_page"
             android:visibility="@{viewModel.tableSelected? View.VISIBLE:View.GONE}"
             app:layout_constraintBottom_toBottomOf="@id/btScalePrevious"
-            app:layout_constraintHeight_percent="0.0833"
             app:layout_constraintLeft_toRightOf="@id/btScalePrevious"
-            app:layout_constraintTop_toTopOf="@id/btScalePrevious"
-            app:layout_constraintWidth_percent="0.1370" />
+            app:layout_constraintTop_toTopOf="@id/btScalePrevious" />
 
         <Button
             android:id="@+id/btScale"
@@ -77,13 +72,11 @@
             android:text="@string/rescale"
             android:visibility="@{viewModel.tableSelected? View.INVISIBLE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.0833"
             app:layout_constraintHorizontal_bias="0.0198"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9772"
-            app:layout_constraintWidth_percent="0.1370" />
+            app:layout_constraintVertical_bias="0.9772" />
 
         <Button
             android:id="@+id/btScale2"
@@ -91,12 +84,10 @@
             android:text="@string/scale"
             android:visibility="@{viewModel.tableSelected? View.INVISIBLE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/btScale"
-            app:layout_constraintHeight_percent="0.0833"
             app:layout_constraintHorizontal_bias="0.2183"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/btScale"
-            app:layout_constraintWidth_percent="0.1370" />
+            app:layout_constraintTop_toTopOf="@id/btScale" />
 
         <Switch
             android:id="@+id/switchButton"

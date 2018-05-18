@@ -13,7 +13,7 @@ public class AlertListCommand extends BaseSerialMessage {
 
     public void setAlert0(String alertId) {
         this.alarmArray[0] = alertId;
-        setAlertCount(1);
+        this.alertCount = 0;
     }
 
     public void setAlert1(String alertId) {
@@ -66,9 +66,7 @@ public class AlertListCommand extends BaseSerialMessage {
     }
 
     private void setAlertCount(int count) {
-        if (alertCount < count) {
-            alertCount = count;
-        }
+        alertCount = count;
     }
 
     public String[] getAlarmArray() {

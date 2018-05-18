@@ -41,5 +41,6 @@
     <dimen name="y620">484px</dimen>
 
     <!--For Animation-->
+    <dimen name="z48">48px</dimen>
     <dimen name="z100">86px</dimen>
 </resources>
