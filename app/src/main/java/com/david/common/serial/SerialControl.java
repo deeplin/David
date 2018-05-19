@@ -1,5 +1,7 @@
 package com.david.common.serial;
 
+import android.util.Log;
+
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.mode.MessageMode;
 import com.david.common.util.Constant;
@@ -117,20 +119,19 @@ public class SerialControl extends BaseSerialControl {
 
     private void startSession() {
         Iterator<Map.Entry<Class, BaseSerialMessage>> iterator = sessionMap.entrySet().iterator();
+        Log.e("deeplin", "n " + sessionMap.size());
         while (iterator.hasNext()) {
             Map.Entry<Class, BaseSerialMessage> entry = iterator.next();
             BaseSerialMessage serialMessage = entry.getValue();
             MessageMode messageMode = serialMessage.getMessageMode();
 
-            if (Objects.equals(messageMode, MessageMode.Error)) {
-                if (serialMessage.getRepeatTime() == BaseSerialMessage.CRITICAL_COMMAND) {
-                    serialMessage.setMessageMode(MessageMode.InProcess);
-                    sendAsync(serialMessage);
-                } else {
-                    serialMessage.setOnCompleted(null);
-                    iterator.remove();
-                }
+            if (Objects.equals(messageMode, MessageMode.Resend)) {
+                serialMessage.setMessageMode(MessageMode.InProcess);
+                sendAsync(serialMessage);
             } else if (Objects.equals(messageMode, MessageMode.Completed)) {
+                serialMessage.setOnCompleted(null);
+                iterator.remove();
+            } else if (Objects.equals(messageMode, MessageMode.Fail)) {
                 serialMessage.setOnCompleted(null);
                 iterator.remove();
             }

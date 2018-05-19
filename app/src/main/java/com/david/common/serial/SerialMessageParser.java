@@ -66,20 +66,25 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
                 onCompleted.accept(true, serialMessage);
             }
         } catch (Exception e) {
-            serialMessage.setMessageMode(MessageMode.Error);
+
             String response = serialMessage.getResponse() == null ? "" : new String(serialMessage.getResponse());
-            LogUtils.e(String.format(Locale.US, "Serial connection: %s%s%s", e.getMessage(),
+            LogUtils.e(String.format(Locale.US, "Serial connection: %s %s %s", e.getMessage(),
                     new String(serialMessage.getRequest()), response));
 
             if (serialMessage.getRepeatTime() != BaseSerialMessage.CRITICAL_COMMAND) {
                 serialMessage.decreaseRepeatTime();
-                if (serialMessage.getRepeatTime() <= 0){
+                if (serialMessage.getRepeatTime() <= 0) {
+                    serialMessage.setMessageMode(MessageMode.Fail);
                     //todo
 //                alarmControl.setAlert(AlarmPriorityMode.Sys_Con, "SYS.CON");
                     if (onCompleted != null) {
                         onCompleted.accept(false, serialMessage);
                     }
+                } else {
+                    serialMessage.setMessageMode(MessageMode.Resend);
                 }
+            } else {
+                serialMessage.setMessageMode(MessageMode.Resend);
             }
         }
     }

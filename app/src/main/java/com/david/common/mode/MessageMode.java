@@ -9,5 +9,5 @@ package com.david.common.mode;
 
 
 public enum MessageMode {
-    Start, InProcess, Error, Resend, Completed
+    Start, InProcess, Error, Resend, Fail, Completed
 }

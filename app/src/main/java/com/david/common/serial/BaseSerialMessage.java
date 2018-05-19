@@ -13,7 +13,7 @@ import io.reactivex.functions.BiConsumer;
 
 public abstract class BaseSerialMessage {
 
-    public static final int CRITICAL_COMMAND = -100;
+    public static final int CRITICAL_COMMAND = Integer.MAX_VALUE;
 
     private MessageMode messageMode;
     private byte[] response;
