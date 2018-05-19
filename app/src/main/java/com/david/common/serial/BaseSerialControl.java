@@ -53,7 +53,7 @@ public abstract class BaseSerialControl {
         InputStream inputStream = getInputStream();
         int index = 0;
         Thread.sleep(20);
-        for (int inputCount = 6; inputCount > 0; inputCount--) {
+        for (int inputCount = 8; inputCount > 0; inputCount--) {
             int inputLength = inputStream.read(this.inputBuffer, index, this.inputBuffer.length - index);
             if (inputLength > 0) {
                 LogUtil.i(this, String.format(Locale.US, "%d: %d: %d", inputCount, inputLength, index));

@@ -221,17 +221,4 @@
     <string name="SPO2.BIT4">探测到干扰</string>
     <string name="SPO2.BIT6">太多环境光</string>
     <string name="SPO2.BIT10">低信号质量</string>
-
-    <!--监护仪-->
-    <!--Menu-->
-    <string name="alarm_reset">报警复位</string>
-    <string name="alarm_pause">报警暂停</string>
-    <string name="patience_manager">病人管理</string>
-    <string name="NIBP">NIBP</string>
-    <string name="record">记录</string>
-    <string name="switch_screen">屏幕切换</string>
-    <string name="home">主页</string>
-    <string name="menu">菜单</string>
-    <string name="switch_mode">模式切换</string>
-    <string name="lock_screen">锁键</string>
 </resources>

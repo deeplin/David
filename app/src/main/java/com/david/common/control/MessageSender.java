@@ -235,11 +235,5 @@ public class MessageSender {
         factoryCommand.setOnCompleted(onComplete);
         serialControl.addSession(factoryCommand);
     }
-
-//    public void resumeMuteAll() {
-//        AlertResumeAllCommand alertResumeAllCommand = new AlertResumeAllCommand();
-//        serialControl.addSession(alertResumeAllCommand);
-//    }
-//
 }
 

@@ -106,7 +106,7 @@ public class AutomationControl implements IViewModel {
                 daoControl.saveCommand(analogCommand);
             }
         });
-        serialControl.addRepeatSession(analogCommand);
+//        serialControl.addRepeatSession(analogCommand);
 
         /*连续发送StatusCommand*/
         StatusCommand statusCommand = new StatusCommand();
@@ -116,9 +116,8 @@ public class AutomationControl implements IViewModel {
                 daoControl.saveCommand(statusCommand);
             }
         });
-        serialControl.addRepeatSession(statusCommand);
+//        serialControl.addRepeatSession(statusCommand);
 
-        //todo
 //        if (Constant.RELEASE_TO_DAVID) {
         /*读取传感器*/
         if (ioDisposable == null) {

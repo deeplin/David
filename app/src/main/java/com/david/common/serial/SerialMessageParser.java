@@ -70,7 +70,6 @@ public class SerialMessageParser implements Consumer<BaseSerialMessage> {
             String response = serialMessage.getResponse() == null ? "" : new String(serialMessage.getResponse());
             LogUtils.e(String.format(Locale.US, "Serial connection: %s%s%s", e.getMessage(),
                     new String(serialMessage.getRequest()), response));
-            LogUtils.e(e);
 
             if (serialMessage.getRepeatTime() != BaseSerialMessage.CRITICAL_COMMAND) {
                 serialMessage.decreaseRepeatTime();

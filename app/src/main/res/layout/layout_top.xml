@@ -55,23 +55,22 @@
             android:id="@+id/tvTopMuteTime"
             android:layout_width="60dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="616dp"
             android:gravity="center"
             android:text="@{viewModel.muteAlarmField}"
             android:textColor="@color/alarm_middle"
             android:textSize="@dimen/f22"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/ivTopMute"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivTopMute"
             android:layout_width="40dp"
-            android:layout_height="@dimen/y26"
+            android:layout_height="@dimen/y32"
             android:src="@mipmap/alarm_muted"
             android:visibility="@{viewModel.muteAlarmImage? View.VISIBLE: View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/tvTopMuteTime"
+            app:layout_constraintEnd_toStartOf="@id/ivTopNetwork"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -81,18 +80,17 @@
             android:src="@mipmap/n3g"
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivTopMute"
+            app:layout_constraintEnd_toStartOf="@id/ivTopTemp37"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/ivTopTemp37"
             android:layout_width="60dp"
             android:layout_height="@dimen/y26"
-            android:layout_marginEnd="146dp"
             android:src="@mipmap/alarm_above_37"
             android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || (!viewModel.shareMemory.above37)? View.INVISIBLE: View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivTopNetwork"
+            app:layout_constraintEnd_toStartOf="@id/ivTopBattery"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
@@ -102,19 +100,19 @@
             android:imageSrc="@{viewModel.batteryImageId}"
             android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit)? View.INVISIBLE: View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivTopTemp37"
+            app:layout_constraintEnd_toStartOf="@id/tvTopTime"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/tvTopTime"
+            android:layout_width="120dp"
             android:layout_height="match_parent"
             android:fontFamily="monospace"
             android:gravity="center"
             android:text="@{viewModel.dateTime}"
             android:textColor="@color/info_dark"
             android:textSize="@dimen/f18"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/ivTopBattery" />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>
