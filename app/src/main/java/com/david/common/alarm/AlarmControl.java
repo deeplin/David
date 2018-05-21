@@ -29,6 +29,7 @@ public class AlarmControl {
     private static Map<String, AlarmModel> alarmMap = new HashMap<>();
 
     public ObservableField<String> topAlarmId = new ObservableField<>();
+    public ObservableInt alarmCount = new ObservableInt(0);
     public ObservableInt alarmListUpdated = new ObservableInt(0);
 
     @Inject

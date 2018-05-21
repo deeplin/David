@@ -65,22 +65,14 @@ public class TopViewModel implements IViewModel {
         alarmControl.topAlarmId.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                String alarmId = alarmControl.topAlarmId.get();
-                if (alarmControl.isAlert()) {
-                    alarmField.set(String .format("%s (%d)",AlarmControl.getAlertField(alarmId), alarmControl));
+                updateAlarm();
+            }
+        });
 
-                    if (Objects.equals(alarmId, "SYS.UPS") || Objects.equals(alarmId, "SYS.BAT")) {
-                        batteryAlert = true;
-                    } else {
-                        batteryAlert = false;
-                    }
-                    if (Objects.equals(alarmId, "SYS.TANK")) {
-                        muteAlarm();
-                    }
-                } else {
-                    alarmField.set(null);
-                    batteryAlert = false;
-                }
+        alarmControl.alarmCount.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                updateAlarm();
             }
         });
 
@@ -233,6 +225,25 @@ public class TopViewModel implements IViewModel {
                             });
                 }
             });
+        }
+    }
+
+    private void updateAlarm(){
+        String alarmId = alarmControl.topAlarmId.get();
+        if (alarmControl.isAlert()) {
+            alarmField.set(String .format(Locale.US, "%s (%d)",AlarmControl.getAlertField(alarmId), alarmControl.alarmCount.get()));
+
+            if (Objects.equals(alarmId, "SYS.UPS") || Objects.equals(alarmId, "SYS.BAT")) {
+                batteryAlert = true;
+            } else {
+                batteryAlert = false;
+            }
+            if (Objects.equals(alarmId, "SYS.TANK")) {
+                muteAlarm();
+            }
+        } else {
+            alarmField.set(null);
+            batteryAlert = false;
         }
     }
 }
