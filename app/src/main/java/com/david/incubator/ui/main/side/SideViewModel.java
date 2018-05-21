@@ -8,6 +8,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.IViewModel;
+import com.david.incubator.ui.main.top.TopViewModel;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -25,6 +26,8 @@ public class SideViewModel implements IViewModel {
     public ShareMemory shareMemory;
     @Inject
     MessageSender messageSender;
+    @Inject
+    TopViewModel topViewModel;
 
     public ObservableInt lockScreenImage = new ObservableInt(R.mipmap.screen_unlocked);
 
@@ -57,6 +60,12 @@ public class SideViewModel implements IViewModel {
     }
 
     void clearAlarm() {
-        messageSender.clearAlarm();
+        messageSender.clearAlarm((aBoolean, baseSerialMessage) -> {
+            topViewModel.clearAlarm();
+        });
+    }
+
+    void muteAlarm() {
+        topViewModel.muteAlarm();
     }
 }

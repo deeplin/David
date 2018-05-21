@@ -6,7 +6,6 @@ import android.databinding.ObservableByte;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
-import com.david.R;
 import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
@@ -25,7 +24,6 @@ import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.util.CommandChar;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
-import com.david.common.util.ResourceUtil;
 
 import java.util.Objects;
 
@@ -79,7 +77,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     /*Spo2 Get*/
     public ObservableField<Spo2SensMode> sensMode = new ObservableField<>(Spo2SensMode.Normal);
     public ObservableField<AverageTimeMode> averageTimeMode = new ObservableField<>(AverageTimeMode.Zero);
-    public ObservableField<String> fastsatValue = new ObservableField<>();
+    public ObservableBoolean fastsatValue = new ObservableBoolean();
 
     /*Alarm*/
     public ObservableBoolean enableAlertList = new ObservableBoolean(false);
@@ -252,10 +250,10 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
                     averageTimeMode.set(spo2AverageTimeMode);
                 }
 
-                if (spo2GetCommand.getFastsat().equals(CommandChar.ON)) {
-                    fastsatValue.set(ResourceUtil.getString(R.string.on));
+                if (Objects.equals(spo2GetCommand.getFastsat(), CommandChar.ON)) {
+                    fastsatValue.set(true);
                 } else {
-                    fastsatValue.set(ResourceUtil.getString(R.string.off));
+                    fastsatValue.set(false);
                 }
             }
         }

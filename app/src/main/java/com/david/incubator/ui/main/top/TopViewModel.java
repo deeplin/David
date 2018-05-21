@@ -197,6 +197,14 @@ public class TopViewModel implements IViewModel {
         batteryImageId.set(imageId);
     }
 
+    public void clearAlarm(){
+        if (muteDisposable != null) {
+            muteDisposable.dispose();
+        }
+        muteAlarmImage.set(false);
+        muteAlarmField.set(null);
+    }
+
     public void muteAlarm() {
         if (muteDisposable != null) {
             muteDisposable.dispose();

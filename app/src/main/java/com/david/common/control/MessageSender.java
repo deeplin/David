@@ -177,8 +177,9 @@ public class MessageSender {
         serialControl.removeRepeatSession(AlertListCommand.class);
     }
 
-    public void clearAlarm() {
+    public void clearAlarm(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         AlertDisableCommand alertDisableCommand = new AlertDisableCommand();
+        alertDisableCommand.setOnCompleted(onComplete);
         serialControl.addSession(alertDisableCommand);
     }
 

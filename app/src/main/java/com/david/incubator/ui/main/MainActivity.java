@@ -180,6 +180,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
      * 碎片换页
      * */
     private synchronized void rotate(byte position) {
+        shareMemory.enableAlertList.set(false);
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         AutoAttachFragment toFragment = fragmentArray[position];
         if (currentFragment == null) {

@@ -10,8 +10,6 @@ import com.david.common.ui.AutoAttachConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutSideBinding;
-import com.david.incubator.ui.main.MainViewModel;
-import com.david.incubator.ui.main.top.TopViewModel;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -30,8 +28,6 @@ public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
     SideViewModel viewModel;
     @Inject
     ShareMemory shareMemory;
-    @Inject
-    TopViewModel topViewModel;
 
     public SideLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -46,6 +42,7 @@ public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
                     } else if (shareMemory.isWarmer()) {
                         shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
                     }
+                    shareMemory.enableAlertList.set(false);
                 });
 
         RxView.clicks(binding.btSideLockScreen)
@@ -54,6 +51,7 @@ public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
                     if (!shareMemory.isTransit()) {
                         shareMemory.lockScreen.set(!shareMemory.lockScreen.get());
                     }
+                    shareMemory.enableAlertList.set(false);
                 });
 
         RxView.clicks(binding.btSideClearAlarm)
@@ -69,7 +67,7 @@ public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object Void) -> {
                     if (!shareMemory.isTransit()) {
-                        topViewModel.muteAlarm();
+                        viewModel.muteAlarm();
                     }
                 });
     }

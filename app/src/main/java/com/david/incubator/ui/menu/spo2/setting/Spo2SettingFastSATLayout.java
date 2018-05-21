@@ -1,7 +1,6 @@
 package com.david.incubator.ui.menu.spo2.setting;
 
 import android.content.Context;
-import android.databinding.ObservableField;
 import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,6 @@ import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
-import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.CommandChar;
 import com.david.common.util.Constant;
@@ -55,14 +53,14 @@ public class Spo2SettingFastSATLayout extends ConstraintLayout implements IViewM
         fastSATCallback = new android.databinding.Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(android.databinding.Observable observable, int i) {
-                String fastSAT = ((ObservableField<String>) observable).get();
+                boolean fastSAT = shareMemory.fastsatValue.get();
                 Observable.just(fastSAT)
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe((text -> {
-                            if (text.equals(CommandChar.ON)) {
+                        .subscribe((status -> {
+                            if (status) {
                                 fastSATOn.setSelected(true);
                                 fastSATOff.setSelected(false);
-                            } else if (text.equals(CommandChar.OFF)) {
+                            } else {
                                 fastSATOn.setSelected(false);
                                 fastSATOff.setSelected(true);
                             }

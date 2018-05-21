@@ -137,7 +137,7 @@
             android:layout_height="0dp"
             android:background="@{viewModel.shareMemory.functionTag == 2 ? @color/border : @color/transparent}"
             android:gravity="center"
-            android:text="@{viewModel.shareMemory.fastsatValue}"
+            android:text="@{viewModel.shareMemory.fastsatValue ? @string/on: @string/off}"
             android:textColor="@{viewModel.shareMemory.functionTag == 2 ? @color/info_white : @color/skin1}"
             android:textSize="@dimen/f24"
             app:layout_constraintBottom_toBottomOf="parent"

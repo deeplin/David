@@ -9,6 +9,8 @@ import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.ui.BaseNavigatorModel;
 import com.david.common.util.FragmentPage;
+import com.david.common.util.TimeUtil;
+import com.david.incubator.util.TimingData;
 
 import java.util.Objects;
 
@@ -30,6 +32,8 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
     MessageSender messageSender;
     @Inject
     AutomationControl automationControl;
+    @Inject
+    TimingData timingData;
 
     private Observable.OnPropertyChangedCallback systemModeCallback;
     private Observable.OnPropertyChangedCallback lockScreenCallback;
@@ -45,10 +49,12 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                 if (shareMemory.isCabin()) {
                     shareMemory.currentFragmentID.set(FragmentPage.HOME_FRAGMENT);
                     shareMemory.lockScreen.set(false);
+                    timingData.stop();
                 } else if (shareMemory.isWarmer()) {
                     shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
                     shareMemory.lockScreen.set(false);
                 } else if (shareMemory.isTransit()) {
+                    shareMemory.currentFragmentID.set(FragmentPage.MENU_NONE);
                     shareMemory.lockScreen.set(true);
                 }
                 automationControl.initializeTimeOut();
