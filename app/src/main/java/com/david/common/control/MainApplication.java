@@ -32,8 +32,6 @@ public abstract class MainApplication extends Application{
         super.onCreate();
         application = this;
         applicationComponent = DaggerApplicationComponent.builder().build();
-        applicationComponent.inject(this);
-
         start();
     }
 

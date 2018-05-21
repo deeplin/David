@@ -60,7 +60,7 @@ public class WarmerHomeFragment extends AutoAttachFragment<WarmerFragmentHomeBin
                         int functionTab = CtrlMode.None.getIndex();
                         if (x < 30) {
                         } else if (x < 580) {
-                            if (y < 160) {
+                            if (y < 60) {
                             } else if (y < 190) {
                                 functionTab = CtrlMode.Skin.getIndex();
                             } else if (y < 230) {

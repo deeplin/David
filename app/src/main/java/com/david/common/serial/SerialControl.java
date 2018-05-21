@@ -119,7 +119,6 @@ public class SerialControl extends BaseSerialControl {
 
     private void startSession() {
         Iterator<Map.Entry<Class, BaseSerialMessage>> iterator = sessionMap.entrySet().iterator();
-        Log.e("deeplin", "n " + sessionMap.size());
         while (iterator.hasNext()) {
             Map.Entry<Class, BaseSerialMessage> entry = iterator.next();
             BaseSerialMessage serialMessage = entry.getValue();

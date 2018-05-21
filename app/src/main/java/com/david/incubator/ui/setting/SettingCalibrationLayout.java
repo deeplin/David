@@ -228,7 +228,8 @@ public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSett
     }
 
     public void updateEnable() {
-        String text = alarmControl.topAlarmId.get();
+//        String text = alarmControl.topAlarmId.get();
+        String text = null;
         io.reactivex.Observable.just(this)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(o -> {

@@ -40,12 +40,14 @@ public class StatusCommand extends BaseSerialMessage {
     private int o2;
     private String alert;
 
+    private int ACount;
+
     @Transient
     private int ohtest;
 
-    @Generated(hash = 377142358)
+    @Generated(hash = 1823528336)
     public StatusCommand(Long id, long timeStamp, String mode, String ctrl, int warm, int inc, int hum,
-            int o2, String alert) {
+            int o2, String alert, int ACount) {
         this.id = id;
         this.timeStamp = timeStamp;
         this.mode = mode;
@@ -55,11 +57,13 @@ public class StatusCommand extends BaseSerialMessage {
         this.hum = hum;
         this.o2 = o2;
         this.alert = alert;
+        this.ACount = ACount;
     }
 
     @Generated(hash = 1692704117)
     public StatusCommand() {
     }
+
 
     @Override
     public byte[] getRequest() {
@@ -164,6 +168,14 @@ public class StatusCommand extends BaseSerialMessage {
 
     public void setOhtest(int ohtest) {
         this.ohtest = ohtest;
+    }
+
+    public int getACount() {
+        return ACount;
+    }
+
+    public void setACount(int ACount) {
+        this.ACount = ACount;
     }
 }
 

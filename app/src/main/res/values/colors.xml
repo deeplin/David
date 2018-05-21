@@ -29,10 +29,4 @@
     <color name="alarm_high">#FF0000</color>
     <color name="alarm_middle">#FFFF00</color>
     <color name="alarm_low">#00FFFF</color>
-
-    <!--Monitor-->
-    <color name="main_foreground">#164088</color>
-
-    <color name="ecg">#00FF00</color>
-    <color name="resp">#FFFF00</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.david.incubator.ui.home.cabin;
 
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,13 +58,12 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
         view.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: {
-
                     double x = event.getX();
                     double y = event.getY() / AutoUtil.heightRadio + 0.5f;
                     int functionTab = CtrlMode.None.getIndex();
                     if (x < 30) {
                     } else if (x < 580) {
-                        if (y < 160) {
+                        if (y < 60) {
                         } else if (y < 190) {
                             functionTab = CtrlMode.Air.getIndex();
                         } else if (y < 230) {

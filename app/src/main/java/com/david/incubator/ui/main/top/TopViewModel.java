@@ -67,7 +67,7 @@ public class TopViewModel implements IViewModel {
             public void onPropertyChanged(Observable sender, int propertyId) {
                 String alarmId = alarmControl.topAlarmId.get();
                 if (alarmControl.isAlert()) {
-                    alarmField.set(AlarmControl.getAlertField(alarmId));
+                    alarmField.set(String .format("%s (%d)",AlarmControl.getAlertField(alarmId), alarmControl));
 
                     if (Objects.equals(alarmId, "SYS.UPS") || Objects.equals(alarmId, "SYS.BAT")) {
                         batteryAlert = true;

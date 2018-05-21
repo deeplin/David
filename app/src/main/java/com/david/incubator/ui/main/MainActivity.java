@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
@@ -15,8 +14,6 @@ import com.david.R;
 import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
-import com.david.common.mode.CtrlMode;
-import com.david.common.mode.FunctionMode;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AutoUtil;
 import com.david.common.util.FragmentPage;
@@ -77,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
                     double y = event.getY() / AutoUtil.heightRadio + 0.5f;
                     if (x < 616 && y < 120) {
                         shareMemory.enableAlertList.set(!shareMemory.enableAlertList.get());
-                    }else{
+                    } else {
                         shareMemory.enableAlertList.set(false);
                     }
                     break;
