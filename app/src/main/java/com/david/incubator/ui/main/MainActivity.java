@@ -183,34 +183,36 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         shareMemory.enableAlertList.set(false);
 
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        if (currentFragment != null) {
+            transaction.hide(currentFragment);
+            currentFragment = null;
+        }
         AutoAttachFragment toFragment = fragmentArray[position];
-        if (currentFragment == null) {
+        if (toFragment != null) {
             transaction.show(toFragment);
             transaction.commit();
-        } else if (toFragment != currentFragment) {
-            transaction.hide(currentFragment).show(toFragment);
-            transaction.commit();
-
-            switch (position) {
-                case FragmentPage.HOME_FRAGMENT: {
-                    menuViewModel.clearButtonBorder();
-                }
-                break;
-                case FragmentPage.OBJECTIVE_FRAGMENT: {
-                    menuViewModel.clearButtonBorder();
-                }
-                break;
-                case FragmentPage.WARMER_HOME_FRAGMENT: {
-                    menuViewModel.clearButtonBorder();
-                }
-                break;
-                case FragmentPage.WARMER_OBJECTIVE_FRAGMENT: {
-                    menuViewModel.clearButtonBorder();
-                }
-                break;
-            }
+            currentFragment = toFragment;
         }
-        currentFragment = toFragment;
+
+        switch (position) {
+            case FragmentPage.HOME_FRAGMENT: {
+                menuViewModel.clearButtonBorder();
+            }
+            break;
+            case FragmentPage.OBJECTIVE_FRAGMENT: {
+                menuViewModel.clearButtonBorder();
+            }
+            break;
+            case FragmentPage.WARMER_HOME_FRAGMENT: {
+                menuViewModel.clearButtonBorder();
+            }
+            break;
+            case FragmentPage.WARMER_OBJECTIVE_FRAGMENT: {
+                menuViewModel.clearButtonBorder();
+            }
+            break;
+        }
     }
 
     @Override

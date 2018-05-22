@@ -28,7 +28,7 @@
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="dialog" parent="@android:style/Theme.Dialog">
+    <style name="dialog" parent="@android:style/Theme.Holo.Light">
         <item name="android:windowFrame">@null</item>
         //Dialog的windowFrame框为无
         <item name="android:windowIsFloating">true</item>
