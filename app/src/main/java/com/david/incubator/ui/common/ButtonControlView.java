@@ -5,6 +5,8 @@ import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
+import com.david.R;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.databinding.LayoutButtonControlBinding;
 
 
@@ -15,17 +17,26 @@ import com.david.databinding.LayoutButtonControlBinding;
  * description: 主活动
  */
 
-public class ButtonControlView extends ConstraintLayout {
-
-    LayoutButtonControlBinding layoutButtonControlBinding;
+public class ButtonControlView extends BindingConstraintLayout<LayoutButtonControlBinding> {
 
     public ButtonControlView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater layoutInflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        layoutButtonControlBinding = LayoutButtonControlBinding.inflate(layoutInflater, this, true);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.layout_button_control;
     }
 
     public void setViewModel(ButtonControlViewModel buttonControlViewModel) {
-        layoutButtonControlBinding.setViewModel(buttonControlViewModel);
+        binding.setViewModel(buttonControlViewModel);
+    }
+
+    @Override
+    public void attach() {
+    }
+
+    @Override
+    public void detach() {
     }
 }

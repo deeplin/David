@@ -95,10 +95,6 @@ public class SerialControl extends BaseSerialControl {
         addRepeatSession(serialMessage.getClass().getSimpleName(), serialMessage);
     }
 
-    public void removeRepeatSession(Class clazz) {
-        removeRepeatSession(clazz.getClass().getSimpleName());
-    }
-
     public synchronized void removeRepeatSession(String name) {
         repeatSessionMap.remove(name);
     }

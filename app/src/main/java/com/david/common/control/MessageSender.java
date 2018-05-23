@@ -174,7 +174,7 @@ public class MessageSender {
     }
 
     public void removeAlarmList() {
-        serialControl.removeRepeatSession(AlertListCommand.class);
+        serialControl.removeRepeatSession(AlertListCommand.class.getSimpleName());
     }
 
     public void clearAlarm(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
