@@ -153,7 +153,7 @@ public class Spo2ChartSurfaceView extends SurfaceView implements IViewModel {
 
         int yPpg;
         if (pair.getKey().length() > 0) {
-            yPpg = StringUtil.hexToInteger(pair.getKey());
+            yPpg = - StringUtil.hexToInteger(pair.getKey());
         } else {
             yPpg = 0;
         }
@@ -164,7 +164,6 @@ public class Spo2ChartSurfaceView extends SurfaceView implements IViewModel {
         } else {
             ySiq = 0;
         }
-
         int cyPpg = (int) (yPpg * (-0.5)) + START_PPG_Y;
         int cySiq = (int) (ySiq * (-0.3)) + START_SIQ_Y;
 
@@ -175,6 +174,7 @@ public class Spo2ChartSurfaceView extends SurfaceView implements IViewModel {
                 if (canvas != null) {
                     canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
                     canvas.drawLine(xIndex, previousCyPpg, xIndex + 1, cyPpg, ppgPaint);
+
                     previousCyPpg = cyPpg;
                     if (cySiq == START_SIQ_Y)
                         canvas.drawPoint(xIndex, cySiq, siqPaint);
