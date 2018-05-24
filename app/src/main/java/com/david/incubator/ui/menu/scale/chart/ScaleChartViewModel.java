@@ -57,6 +57,7 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
         baseChartViewWriter.attach();
         initialize();
         initializePageTurnTable();
+        this.tableSelected.set(false);
         setVisiblePage(false);
         refresh();
     }
@@ -95,7 +96,6 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
     }
 
     private void setVisiblePage(boolean checked) {
-        this.tableSelected.set(checked);
         baseChartViewWriter.setVisibility(!checked);
         if (checked) {
             pageTurnTable.setVisibility(View.VISIBLE);
