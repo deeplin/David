@@ -4,6 +4,7 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
+import android.util.Log;
 
 import com.david.R;
 import com.david.common.alarm.AlarmControl;

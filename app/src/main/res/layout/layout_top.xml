@@ -51,6 +51,16 @@
             android:visibility="@{viewModel.alarmField != null? View.VISIBLE: View.INVISIBLE}"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <ImageView
+            android:id="@+id/ivTopMute"
+            android:layout_width="40dp"
+            android:layout_height="@dimen/y32"
+            android:src="@mipmap/alarm_muted"
+            android:visibility="@{viewModel.showMute? View.VISIBLE: View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvTopMuteTime"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvTopMuteTime"
             android:layout_width="60dp"
@@ -60,17 +70,7 @@
             android:textColor="@color/alarm_middle"
             android:textSize="@dimen/f22"
             android:visibility="@{viewModel.showMute? View.VISIBLE: View.INVISIBLE}"
-            app:layout_constraintEnd_toStartOf="@id/ivTopMute" />
-
-        <ImageView
-            android:id="@+id/ivTopMute"
-            android:layout_width="40dp"
-            android:layout_height="@dimen/y32"
-            android:src="@mipmap/alarm_muted"
-            android:visibility="@{viewModel.showMute? View.VISIBLE: View.INVISIBLE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/ivTopNetwork"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toStartOf="@id/ivTopNetwork" />
 
         <ImageView
             android:id="@+id/ivTopNetwork"

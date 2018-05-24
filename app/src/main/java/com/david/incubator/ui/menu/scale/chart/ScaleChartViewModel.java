@@ -102,7 +102,7 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
             pageTurnTable.start();
         } else {
             pageTurnTable.stop();
-            pageTurnTable.setVisibility(View.GONE);
+            pageTurnTable.setVisibility(View.INVISIBLE);
         }
     }
 

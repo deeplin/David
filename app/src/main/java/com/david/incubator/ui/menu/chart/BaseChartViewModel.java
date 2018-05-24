@@ -95,6 +95,7 @@ public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableV
         cycleValue.set(CYCLE_VALUE_ARRAY[cycleIndex.get()]);
         initialize();
         initializePageTurnTable();
+        tableSelected.set(false);
         setVisiblePage(false);
         refresh();
     }
@@ -117,7 +118,6 @@ public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableV
     }
 
     private void setVisiblePage(boolean checked) {
-        this.tableSelected.set(checked);
         baseChartViewWriter.setVisibility(!checked);
         if (checked) {
             yAxisTitle.set(0);
@@ -126,7 +126,7 @@ public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableV
         } else {
             yAxisTitle.set(getYAxisTitle());
             pageTurnTable.stop();
-            pageTurnTable.setVisibility(View.GONE);
+            pageTurnTable.setVisibility(View.INVISIBLE);
         }
     }
 

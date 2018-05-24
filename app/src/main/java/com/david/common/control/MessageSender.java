@@ -239,4 +239,3 @@ public class MessageSender {
         serialControl.addSession(factoryCommand);
     }
 }
-

@@ -37,7 +37,7 @@
             android:layout_width="584dp"
             android:layout_height="@dimen/y360"
             android:layout_marginStart="280dp"
-            android:visibility="gone"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
