@@ -59,6 +59,7 @@
             android:text="@{viewModel.muteAlarmField}"
             android:textColor="@color/alarm_middle"
             android:textSize="@dimen/f22"
+            android:visibility="@{viewModel.showMute? View.VISIBLE: View.INVISIBLE}"
             app:layout_constraintEnd_toStartOf="@id/ivTopMute" />
 
         <ImageView
@@ -66,7 +67,7 @@
             android:layout_width="40dp"
             android:layout_height="@dimen/y32"
             android:src="@mipmap/alarm_muted"
-            android:visibility="@{viewModel.muteAlarmImage? View.VISIBLE: View.INVISIBLE}"
+            android:visibility="@{viewModel.showMute? View.VISIBLE: View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/ivTopNetwork"
             app:layout_constraintTop_toTopOf="parent" />

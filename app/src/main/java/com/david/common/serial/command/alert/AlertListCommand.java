@@ -13,68 +13,61 @@ public class AlertListCommand extends BaseSerialMessage {
 
     public void setAlert0(String alertId) {
         this.alarmArray[0] = alertId;
-        this.alertCount = 1;
     }
 
     public void setAlert1(String alertId) {
         this.alarmArray[1] = alertId;
-        this.alertCount = 2;
     }
 
     public void setAlert2(String alertId) {
         this.alarmArray[2] = alertId;
-        this.alertCount = 3;
     }
 
     public void setAlert3(String alertId) {
         this.alarmArray[3] = alertId;
-        this.alertCount = 4;
     }
 
     public void setAlert4(String alertId) {
         this.alarmArray[4] = alertId;
-        this.alertCount = 5;
     }
 
     public void setAlert5(String alertId) {
         this.alarmArray[5] = alertId;
-        this.alertCount = 6;
     }
 
     public void setAlert6(String alertId) {
         this.alarmArray[6] = alertId;
-        this.alertCount = 7;
     }
 
     public void setAlert7(String alertId) {
         this.alarmArray[7] = alertId;
-        this.alertCount = 8;
     }
 
     public void setAlert8(String alertId) {
         this.alarmArray[8] = alertId;
-        this.alertCount = 9;
     }
 
     public void setAlert9(String alertId) {
         this.alarmArray[9] = alertId;
-        this.alertCount = 10;
-    }
-
-    public int getAlertCount() {
-        return alertCount;
     }
 
     public String[] getAlarmArray() {
         return alarmArray;
     }
 
+    public int getACount() {
+        return ACount;
+    }
+
+    public void setACount(int ACount) {
+        this.ACount = ACount;
+    }
+
     private String[] alarmArray;
-    private int alertCount;
+    private int ACount;
 
     @Inject
     public AlertListCommand() {
-        alertCount = 0;
         alarmArray = new String[10];
     }
 

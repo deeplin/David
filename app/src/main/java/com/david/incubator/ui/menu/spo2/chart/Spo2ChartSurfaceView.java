@@ -120,8 +120,8 @@ public class Spo2ChartSurfaceView extends SurfaceView implements IViewModel {
     }
 
     private int reSend = 32;
-    private
-    void draw(@NonNull Long aLong) {
+
+    private void draw(@NonNull Long aLong) {
         if (!running)
             return;
 
@@ -130,10 +130,10 @@ public class Spo2ChartSurfaceView extends SurfaceView implements IViewModel {
             if (reSend <= 0) {
                 serialControl.sendAsync(spo2WaveCommand);
                 reSend = 64;
-            }else{
-                reSend --;
+            } else {
+                reSend--;
             }
-        }else{
+        } else {
             if (reSend > 0) {
                 reSend--;
             }
@@ -188,8 +188,7 @@ public class Spo2ChartSurfaceView extends SurfaceView implements IViewModel {
             if (canvas != null)
                 holder.unlockCanvasAndPost(canvas);
         }
-
-        xIndex = xIndex % POINT_MAXIMUM;
         xIndex++;
+        xIndex = xIndex % POINT_MAXIMUM;
     }
 }

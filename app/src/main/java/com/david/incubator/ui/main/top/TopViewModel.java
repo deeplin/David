@@ -49,7 +49,7 @@ public class TopViewModel implements IViewModel {
     private ObservableField<BatteryMode> batteryModeCallback = new ObservableField<>();
     private Observable.OnPropertyChangedCallback vuCallback;
 
-    public ObservableBoolean muteAlarmImage = new ObservableBoolean(false);
+    public ObservableBoolean showMute = new ObservableBoolean(false);
     public ObservableField<String> muteAlarmField = new ObservableField<>();
 
     private boolean batteryAlert = false;
@@ -65,6 +65,7 @@ public class TopViewModel implements IViewModel {
         alarmControl.topAlarmId.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
+                stopAlarm();
                 updateAlarm();
             }
         });
@@ -129,6 +130,15 @@ public class TopViewModel implements IViewModel {
                 }
             }
         };
+
+        showMute.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                if (showMute.get()) {
+                    muteAlarm();
+                }
+            }
+        });
 
         displayCurrentTime();
     }
@@ -197,20 +207,21 @@ public class TopViewModel implements IViewModel {
         batteryImageId.set(imageId);
     }
 
-    public void clearAlarm(){
+    public void stopAlarm(){
+        showMute.set(false);
+        clearAlarm();
+    }
+
+    private synchronized void clearAlarm() {
         if (muteDisposable != null) {
             muteDisposable.dispose();
+            muteDisposable = null;
         }
-        muteAlarmImage.set(false);
         muteAlarmField.set(null);
     }
 
-    public void muteAlarm() {
-        if (muteDisposable != null) {
-            muteDisposable.dispose();
-        }
-        muteAlarmImage.set(false);
-        muteAlarmField.set(null);
+    private void muteAlarm() {
+        clearAlarm();
         if (alarmControl.isAlert()) {
             String alarmId = alarmControl.topAlarmId.get();
             int alarmTime = AlarmControl.getMuteTime(alarmId);
@@ -218,7 +229,6 @@ public class TopViewModel implements IViewModel {
                 if (aBoolean) {
                     /*静音成功*/
                     muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
-                    muteAlarmImage.set(true);
                     muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe(aLong -> {
@@ -226,9 +236,7 @@ public class TopViewModel implements IViewModel {
                                 if (remaining > 0) {
                                     muteAlarmField.set(String.format(Locale.US, "%ds", remaining));
                                 } else {
-                                    muteDisposable.dispose();
-                                    muteAlarmImage.set(false);
-                                    muteAlarmField.set(null);
+                                    stopAlarm();
                                 }
                             });
                 }
@@ -236,10 +244,10 @@ public class TopViewModel implements IViewModel {
         }
     }
 
-    private void updateAlarm(){
+    private void updateAlarm() {
         String alarmId = alarmControl.topAlarmId.get();
         if (alarmControl.isAlert()) {
-            alarmField.set(String .format(Locale.US, "%s (%d)",AlarmControl.getAlertField(alarmId), alarmControl.alarmCount.get()));
+            alarmField.set(String.format(Locale.US, "%s (%d)", AlarmControl.getAlertField(alarmId), alarmControl.alarmCount.get()));
 
             if (Objects.equals(alarmId, "SYS.UPS") || Objects.equals(alarmId, "SYS.BAT")) {
                 batteryAlert = true;
@@ -247,7 +255,7 @@ public class TopViewModel implements IViewModel {
                 batteryAlert = false;
             }
             if (Objects.equals(alarmId, "SYS.TANK")) {
-                muteAlarm();
+                showMute.set(true);
             }
         } else {
             alarmField.set(null);

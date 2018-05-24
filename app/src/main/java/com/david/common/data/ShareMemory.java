@@ -5,6 +5,7 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableByte;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
+import android.util.Log;
 
 import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
@@ -97,7 +98,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
                     messageSender.addAlarmList((aBoolean, serialMessage) -> {
                         if (aBoolean && enableAlertList.get()) {
                             AlertListCommand alertListCommand = (AlertListCommand) serialMessage;
-                            if (alertListCommand.getAlertCount() > 0) {
+                            if (alertListCommand.getACount() > 0) {
                                 synchronized (this) {
                                     showAlertList.set(true);
                                     alarmControl.alarmListUpdated.notifyChange();

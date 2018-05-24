@@ -22,7 +22,7 @@ public class BootBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (Objects.requireNonNull(intent.getAction()).endsWith(ACTION_BOOT)) {
-            Intent bootIntent = new Intent(context, MainApplication.class);
+            Intent bootIntent = new Intent(context, MainActivity.class);
             bootIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(bootIntent);
         }

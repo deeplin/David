@@ -60,10 +60,12 @@ public class SideViewModel implements IViewModel {
     }
 
     void clearAlarm() {
-        messageSender.clearAlarm((aBoolean, baseSerialMessage) -> topViewModel.clearAlarm());
+        messageSender.clearAlarm((aBoolean, baseSerialMessage) -> {
+            topViewModel.stopAlarm();
+        });
     }
 
     void muteAlarm() {
-        topViewModel.muteAlarm();
+        topViewModel.showMute.set(true);
     }
 }

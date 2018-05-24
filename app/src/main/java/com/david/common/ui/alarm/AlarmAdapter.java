@@ -34,7 +34,7 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull AlarmViewHolder holder, int position) {
         String alarmId = alarmArray[position];
-        AlarmModel alarmModel = AlarmControl.getAlermMode(alarmId);
+        AlarmModel alarmModel = AlarmControl.getAlarmMode(alarmId);
         holder.tvAlarm.setText(alarmModel.toString());
         if (Objects.equals(alarmModel.getAlarmPriorityMode(), AlarmPriorityMode.High)) {
             holder.tvAlarm.setBackgroundResource(R.color.alarm_high);
@@ -47,6 +47,6 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
 
     @Override
     public int getItemCount() {
-        return alertListCommand.getAlertCount();
+        return alertListCommand.getACount();
     }
 }

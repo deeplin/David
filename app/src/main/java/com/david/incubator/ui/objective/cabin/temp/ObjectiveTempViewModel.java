@@ -16,6 +16,8 @@ import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.incubator.ui.objective.cabin.BaseObjectiveViewModel;
 
+import java.util.Objects;
+
 import javax.inject.Inject;
 
 /**
@@ -55,13 +57,13 @@ public class ObjectiveTempViewModel extends BaseObjectiveViewModel implements IV
             @Override
             public void onPropertyChanged(Observable observable, int i) {
                 CtrlMode status = ((ObservableField<CtrlMode>) observable).get();
-                if (status.equals(CtrlMode.Air)) {
+                if (Objects.equals(status, CtrlMode.Air)) {
                     selectFirst.set(true);
                     valueChanged.set(false);
                     valueField.set(shareMemory.airObjective.get());
                     upperLimit = systemSetting.getAirUpper();
                     lowerLimit = systemSetting.getAirLower();
-                } else if (status.equals(CtrlMode.Skin)) {
+                } else if (Objects.equals(status, CtrlMode.Skin)) {
                     selectFirst.set(false);
                     valueChanged.set(false);
                     valueField.set(shareMemory.skinObjective.get());

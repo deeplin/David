@@ -69,32 +69,52 @@ public class AutomationControl implements IViewModel {
         messageSender.getHardwareModule((aBoolean, baseSerialMessage) -> {
             if (aBoolean) {
                 moduleHardware.accept(true, baseSerialMessage);
-                /*配置37度灯*/
-                if (!moduleHardware.is93S()) {
-                    shareMemory.above37.addOnPropertyChangedCallback(new android.databinding.Observable.OnPropertyChangedCallback() {
-                        @Override
-                        public void onPropertyChanged(android.databinding.Observable observable, int i) {
-                            messageSender.setLED(LEDCommand.LED37, shareMemory.above37.get(), null);
-                        }
-                    });
-                    shareMemory.above37.notifyChange();
-                }
-
-                /*如果Spo2开机时灵敏度设置是Max，需要改成normal*/
-                if (moduleHardware.isSPO2()) {
-                    messageSender.getSpo2(true, (bBoolean, serialMessage) -> {
-                        if (bBoolean) {
-                            Spo2GetCommand spo2GetCommand = (Spo2GetCommand) serialMessage;
-                            Spo2SensMode spo2SensMode = Spo2SensMode.getMode(spo2GetCommand.getSens());
-                            if (spo2SensMode != null && spo2SensMode.equals(Spo2SensMode.MAX)) {
-                                messageSender.setSpo2(true, "SENS",
-                                        Spo2SensMode.Normal.getName(), null);
-                            }
-                        }
-                    });
-                }
+                startRefresh();
             }
         });
+
+        /*读取传感器*/
+        if (ioDisposable == null) {
+            Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
+            ioDisposable = observable
+                    .observeOn(Schedulers.io())
+                    .subscribe((aLong) -> {
+                        serialControl.refresh();
+                        checkLockScreen();
+                        long currentTime = TimeUtil.getCurrentTimeInSecond();
+                        if (currentTime % 60 == 0) {
+                            daoControl.deleteStale();
+                            topViewModel.displayCurrentTime();
+                        }
+                    }, LogUtils::e);
+        }
+    }
+
+    private void startRefresh() {
+        /*配置37度灯*/
+        if (!moduleHardware.is93S()) {
+            shareMemory.above37.addOnPropertyChangedCallback(new android.databinding.Observable.OnPropertyChangedCallback() {
+                @Override
+                public void onPropertyChanged(android.databinding.Observable observable, int i) {
+                    messageSender.setLED(LEDCommand.LED37, shareMemory.above37.get(), null);
+                }
+            });
+            shareMemory.above37.notifyChange();
+        }
+
+        /*如果Spo2开机时灵敏度设置是Max，需要改成normal*/
+        if (moduleHardware.isSPO2()) {
+            messageSender.getSpo2(true, (bBoolean, serialMessage) -> {
+                if (bBoolean) {
+                    Spo2GetCommand spo2GetCommand = (Spo2GetCommand) serialMessage;
+                    Spo2SensMode spo2SensMode = Spo2SensMode.getMode(spo2GetCommand.getSens());
+                    if (spo2SensMode != null && spo2SensMode.equals(Spo2SensMode.MAX)) {
+                        messageSender.setSpo2(true, "SENS",
+                                Spo2SensMode.Normal.getName(), null);
+                    }
+                }
+            });
+        }
 
         messageSender.getSoftwareModule(moduleSoftware);
 
@@ -117,24 +137,6 @@ public class AutomationControl implements IViewModel {
             }
         });
         serialControl.addRepeatSession(statusCommand);
-
-//        if (Constant.RELEASE_TO_DAVID) {
-        /*读取传感器*/
-        if (ioDisposable == null) {
-            Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
-            ioDisposable = observable
-                    .observeOn(Schedulers.io())
-                    .subscribe((aLong) -> {
-                        serialControl.refresh();
-                        checkLockScreen();
-                        long currentTime = TimeUtil.getCurrentTimeInSecond();
-                        if (currentTime % 60 == 0) {
-                            daoControl.deleteStale();
-                            topViewModel.displayCurrentTime();
-                        }
-                    }, LogUtils::e);
-        }
-//        }
     }
 
     @Override
@@ -157,6 +159,11 @@ public class AutomationControl implements IViewModel {
             lockTimeOut++;
             if (lockTimeOut == Constant.SCREEN_LOCK_SECOND) {
                 shareMemory.lockScreen.set(true);
+            }
+        } else {
+            lockTimeOut++;
+            if (lockTimeOut == Constant.SCREEN_LOCK_SECOND) {
+                shareMemory.enableAlertList.set(false);
             }
         }
     }

@@ -56,12 +56,14 @@ public class MessageSender {
     //    //读取下位机配置信息
     public void getHardwareModule(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         ModuleGetHardwareCommand moduleGetHardwareCommand = new ModuleGetHardwareCommand();
+        moduleGetHardwareCommand.setCritical();
         moduleGetHardwareCommand.setOnCompleted(onComplete);
         serialControl.addSession(moduleGetHardwareCommand);
     }
 
     public void getSoftwareModule(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         ModuleGetSoftwareCommand moduleSoftwareGetCommand = new ModuleGetSoftwareCommand();
+        moduleSoftwareGetCommand.setCritical();
         moduleSoftwareGetCommand.setOnCompleted(onComplete);
         serialControl.addSession(moduleSoftwareGetCommand);
     }

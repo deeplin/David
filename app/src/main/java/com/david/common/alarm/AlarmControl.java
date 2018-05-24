@@ -87,7 +87,7 @@ public class AlarmControl {
         }
     }
 
-    public static AlarmModel getAlermMode(String alarmId) {
+    public static AlarmModel getAlarmMode(String alarmId) {
         return alarmMap.get(alarmId);
     }
 
