@@ -1,12 +1,12 @@
 package com.david.common.control;
 
 import android.app.Application;
-import android.util.Log;
 
-import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.SystemSetting;
 import com.david.common.mode.LanguageMode;
 import com.david.common.util.ResourceUtil;
+import com.david.incubator.control.ApplicationComponent;
+import com.david.incubator.control.DaggerApplicationComponent;
 
 import java.util.Locale;
 
@@ -17,7 +17,7 @@ import java.util.Locale;
  * description:
  */
 
-public abstract class MainApplication extends Application{
+public abstract class MainApplication extends Application {
 
     private static MainApplication application;
 
