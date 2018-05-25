@@ -66,7 +66,7 @@ public class TopViewModel implements IViewModel {
         alarmControl.topAlarmId.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                stopAlarm();
+                clearAlarm();
                 updateAlarm();
             }
         });
@@ -131,15 +131,6 @@ public class TopViewModel implements IViewModel {
                 }
             }
         };
-
-        showMute.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable sender, int propertyId) {
-                if (showMute.get()) {
-                    muteAlarm();
-                }
-            }
-        });
 
         displayCurrentTime();
     }
@@ -208,20 +199,16 @@ public class TopViewModel implements IViewModel {
         batteryImageId.set(imageId);
     }
 
-    public void stopAlarm(){
-        showMute.set(false);
-        clearAlarm();
-    }
-
-    private synchronized void clearAlarm() {
+    public synchronized void clearAlarm() {
         if (muteDisposable != null) {
             muteDisposable.dispose();
             muteDisposable = null;
         }
+        showMute.set(false);
         muteAlarmField.set(null);
     }
 
-    private void muteAlarm() {
+    public void muteAlarm() {
         clearAlarm();
         if (alarmControl.isAlert()) {
             String alarmId = alarmControl.topAlarmId.get();
@@ -229,6 +216,7 @@ public class TopViewModel implements IViewModel {
             messageSender.setMute(alarmId, alarmTime, (aBoolean, baseSerialMessage) -> {
                 if (aBoolean) {
                     /*静音成功*/
+                    showMute.set(true);
                     muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
                     muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
                             .observeOn(AndroidSchedulers.mainThread())
@@ -237,7 +225,7 @@ public class TopViewModel implements IViewModel {
                                 if (remaining > 0) {
                                     muteAlarmField.set(String.format(Locale.US, "%ds", remaining));
                                 } else {
-                                    stopAlarm();
+                                    clearAlarm();
                                 }
                             });
                 }
