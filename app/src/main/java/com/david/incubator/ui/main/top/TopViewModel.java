@@ -244,7 +244,7 @@ public class TopViewModel implements IViewModel {
                 batteryAlert = false;
             }
             if (Objects.equals(alarmId, "SYS.TANK")) {
-                showMute.set(true);
+                muteAlarm();
             }
         } else {
             alarmField.set(null);
