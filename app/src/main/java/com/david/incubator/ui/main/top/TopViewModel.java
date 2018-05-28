@@ -245,6 +245,7 @@ public class TopViewModel implements IViewModel {
             }
             if (Objects.equals(alarmId, "SYS.TANK")) {
                 muteAlarm();
+                Log.e("deeplin", "alarm: " + alarmId + " " );
             }
         } else {
             alarmField.set(null);

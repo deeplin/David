@@ -169,6 +169,7 @@ public class DaoControl {
     }
 
     public void deleteStale() {
+        daoSession.clear();
         long staleTime = TimeUtil.getCurrentTimeInSecond() - Constant.SENSOR_SAVED_IN_DATABASE;
         //delete old analog records
         AnalogCommandDao analogCommandDao = daoSession.getAnalogCommandDao();
