@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.menu.sensorlist.SensorListSpo2View" />
+    </data>
+
+    <!--250*100-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="70dp"
+            android:fontFamily="monospace"
+            android:text="@{viewModel.value}"
+            android:textColor="@color/spo2"
+            android:textSize="@dimen/f60"
+            android:textStyle="bold"
+            android:visibility="@{viewModel.showView ? View.VISIBLE :View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sensorListUpperLimit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/y32"
+            android:text="@{viewModel.upperLimit}"
+            android:textColor="@color/spo2"
+            android:textSize="@dimen/f16"
+            android:visibility="@{viewModel.showView ? View.VISIBLE :View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.lowerLimit}"
+            android:textColor="@color/spo2"
+            android:textSize="@dimen/f16"
+            android:visibility="@{viewModel.showView ? View.VISIBLE :View.GONE}"
+            app:layout_constraintStart_toStartOf="@id/sensorListUpperLimit"
+            app:layout_constraintTop_toBottomOf="@id/sensorListUpperLimit" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

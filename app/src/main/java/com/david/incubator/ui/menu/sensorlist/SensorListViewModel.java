@@ -114,6 +114,46 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
             }
         });
 
+        shareMemory.manObjective.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if (navigator != null) {
+                    if (shareMemory.isWarmer()) {
+                        navigator.setManObjective(shareMemory.manObjective.get());
+                    }
+                }
+            }
+        });
+
+        shareMemory.warm.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if (navigator != null) {
+                    if (shareMemory.isWarmer()) {
+                        navigator.displaySecondValue(String.valueOf(shareMemory.warm.get()));
+                    }
+                }
+            }
+        });
+
+        shareMemory.SPO2.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if (navigator != null) {
+                    navigator.displaySpo2Value(ViewUtil.formatSpo2Value(shareMemory.SPO2.get()));
+                }
+            }
+        });
+
+        shareMemory.PR.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                if (navigator != null) {
+                    navigator.displayPrValue(ViewUtil.formatPrValue(shareMemory.PR.get()));
+                }
+            }
+        });
+
         objectiveCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
@@ -154,7 +194,9 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
         shareMemory.S2.notifyChange();
         shareMemory.O2.notifyChange();
         shareMemory.H1.notifyChange();
-        shareMemory.SC.notifyChange();
+        shareMemory.warm.notifyChange();
+        shareMemory.SPO2.notifyChange();
+        shareMemory.PR.notifyChange();
 
         if (moduleHardware.is93S()) {
             navigator.displayForthValue("--:--");
@@ -177,8 +219,6 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
      * */
     private void setSensorConfig() {
         if (moduleHardware != null && moduleSoftware != null && navigator != null) {
-//            ViewUtil.displaySensor(moduleHardware.isSPO2(), moduleSoftware.isSPO2(), spo2Visible, navigator::spo2ShowBorder);
-
             if (shareMemory.isCabin()) {
                 navigator.setSystemMode(true, shareMemory.humidityObjective.get(), shareMemory.oxygenObjective.get(), null);
                 navigator.showHumidity(moduleHardware.isHUM(), moduleSoftware.isHUM());
@@ -195,6 +235,9 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
                 timingData.setConsumer(this);
                 navigator.showOxygen(false, false);
             }
+            navigator.showSpo2(moduleHardware.isSPO2(), moduleSoftware.isSPO2());
+            navigator.setSpo2Limit(ViewUtil.formatSpo2Value(shareMemory.spo2UpperLimit.get()), ViewUtil.formatSpo2Value(shareMemory.spo2LowerLimit.get()));
+            navigator.setPrLimit(ViewUtil.formatPrValue(shareMemory.prUpperLimit.get()), ViewUtil.formatPrValue(shareMemory.prLowerLimit.get()));
         }
     }
 

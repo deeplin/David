@@ -141,20 +141,16 @@ public class SensorListLayout extends BindingConstraintLayout<LayoutSensorListBi
     }
 
     @Override
-    public void spo2ShowBorder(boolean status) {
-//        io.reactivex.Observable.just(status)
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe((st) -> {
-//                    if (st) {
-//                        binding.ivSensorListSpo2Hide
-//                                .setSystemMode(ContextCompat.getDrawable(binding.getRoot().getContext(), R.color.border));
-//                    } else {
-//                        binding.ivSensorListSpo2Hide
-//                                .setSystemMode(ContextCompat.getDrawable(binding.getRoot().getContext(), R.mipmap.sensor_list_spo2_hide));
-//                    }
-//                });
+    public void setSpo2Limit(String upperLimit, String lowerLimit) {
+        binding.sensorListSpo2.upperLimit.set(upperLimit);
+        binding.sensorListSpo2.lowerLimit.set(lowerLimit);
     }
 
+    @Override
+    public void setPrLimit(String upperLimit, String lowerLimit) {
+        binding.sensorListPr.upperLimit.set(upperLimit);
+        binding.sensorListPr.lowerLimit.set(lowerLimit);
+    }
 
     @Override
     public void displayFirstValue(String value) {
@@ -177,11 +173,26 @@ public class SensorListLayout extends BindingConstraintLayout<LayoutSensorListBi
     }
 
     @Override
+    public void displaySpo2Value(String value) {
+        binding.sensorListSpo2.value.set(value);
+    }
+
+    @Override
+    public void displayPrValue(String value) {
+        binding.sensorListPr.value.set(value);
+    }
+
+    @Override
+    public void setManObjective(int manObjective){
+        binding.sensorListSecond.objective.set(String.valueOf(manObjective));
+    }
+
+    @Override
     public void showHumidity(boolean isHardware, boolean isSoftware) {
         if (isHardware) {
             if (isSoftware) {
                 binding.sensorListThird.showView.set(true);
-                binding.sensorListForth.setBackground(0);
+                binding.sensorListThird.setBackground(0);
             } else {
                 binding.sensorListThird.showView.set(false);
                 binding.sensorListThird.setBackground(R.mipmap.sensor_list_humidity_hide);
@@ -205,6 +216,31 @@ public class SensorListLayout extends BindingConstraintLayout<LayoutSensorListBi
         } else {
             binding.sensorListForth.showView.set(false);
             binding.sensorListForth.setBackground(0);
+        }
+    }
+
+    @Override
+    public void showSpo2(boolean isHardware, boolean isSoftware) {
+        if (isHardware) {
+            if (isSoftware) {
+                binding.sensorListSpo2.showView.set(true);
+                binding.sensorListSpo2.setBackground(R.mipmap.sensor_list_spo2);
+
+                binding.sensorListPr.showView.set(true);
+                binding.sensorListPr.setBackground(R.mipmap.sensor_list_pr);
+            } else {
+                binding.sensorListSpo2.showView.set(false);
+                binding.sensorListSpo2.setBackground(R.mipmap.sensor_list_spo2_hide);
+
+                binding.sensorListPr.showView.set(false);
+                binding.sensorListPr.setBackground(R.mipmap.sensor_list_pr_hide);
+            }
+        } else {
+            binding.sensorListSpo2.showView.set(false);
+            binding.sensorListSpo2.setBackground(0);
+
+            binding.sensorListPr.showView.set(false);
+            binding.sensorListPr.setBackground(0);
         }
     }
 }

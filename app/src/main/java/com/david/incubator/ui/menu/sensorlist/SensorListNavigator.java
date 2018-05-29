@@ -14,17 +14,27 @@ public interface SensorListNavigator {
 
     void setCtrlMode(SystemMode systemMode, CtrlMode ctrlMode, int airObjective, int skinObjective, int manObjective);
 
-    void spo2ShowBorder(boolean status);
+    void displayFirstValue(String value);
+
+    void displaySecondValue(String value);
+
+    void displayThirdValue(String value);
+
+    void displayForthValue(String value);
+
+    void displaySpo2Value(String value);
+
+    void displayPrValue(String value);
+
+    void setManObjective(int manObjective);
+
+    void setSpo2Limit(String upperLimit, String lowerLimit);
+
+    void setPrLimit(String upperLimit, String lowerLimit);
+
+    void showSpo2(boolean isHardware, boolean isSoftware);
 
     void showHumidity(boolean isHardware, boolean isSoftware);
 
     void showOxygen(boolean isHardware, boolean isSoftware);
-
-    void displayForthValue(String value);
-
-    void displayThirdValue(String value);
-
-    void displayFirstValue(String value);
-
-    void displaySecondValue(String value);
 }
