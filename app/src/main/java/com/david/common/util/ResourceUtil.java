@@ -30,6 +30,10 @@ public class ResourceUtil {
         return MainApplication.getInstance().getResources().getString(resourceId);
     }
 
+    public static int getColor(int resourceId) {
+        return MainApplication.getInstance().getResources().getColor(resourceId);
+    }
+
     public static void setLocalLanguage(Context context, Locale locale) {
         Resources resources = context.getResources();
         Configuration configuration = context.getResources().getConfiguration();

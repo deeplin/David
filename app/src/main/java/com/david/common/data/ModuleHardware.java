@@ -74,7 +74,7 @@ public class ModuleHardware extends ModuleSoftware {
             if(Constant.RELEASE_TO_DAVID) {
                 deviceModel = moduleGetSoftwareCommand.getMODEL();
             }else{
-                deviceModel = Constant.HKN93S;
+                deviceModel = ResourceUtil.getString(R.string.device_model);
             }
             super.accept(true, baseSerialMessage);
         }

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.david.incubator.ui.menu.sensorlist.SensorListView" />
+    </data>
+
+    <!--250*100-->
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/sensorListAnimation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/sensorListValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:fontFamily="monospace"
+            android:text="@{viewModel.value}"
+            android:textColor="@{viewModel.valueColor}"
+            android:textSize="@dimen/f60"
+            android:textStyle="bold"
+            android:visibility="@{viewModel.showView ? View.VISIBLE :View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/sensorListSet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:imageSrc="@{viewModel.setImageIcon}"
+            android:visibility="@{viewModel.showView &amp;&amp; viewModel.objective != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/sensorListValue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/sensorListValue" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.objective}"
+            android:textColor="@{viewModel.valueColor}"
+            android:textSize="@dimen/f18"
+            android:visibility="@{viewModel.showView &amp;&amp; viewModel.objective != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="@id/sensorListSet"
+            app:layout_constraintStart_toStartOf="@id/sensorListSet"
+            app:layout_constraintTop_toBottomOf="@id/sensorListSet" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y20"
+            android:imageSrc="@{viewModel.rightTopIcon}"
+            android:visibility="@{viewModel.showView &amp;&amp; viewModel.rightTopIcon != 0 ? View.VISIBLE: View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/sensorListValue"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/y20"
+            android:text="@{viewModel.rightTopText}"
+            android:textColor="@{viewModel.valueColor}"
+            android:textSize="@dimen/f16"
+            android:visibility="@{viewModel.showView ? View.VISIBLE :View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/sensorListValue"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y20"
+            android:text="@{viewModel.rightBottom}"
+            android:textColor="@{viewModel.valueColor}"
+            android:textSize="@dimen/f22"
+            android:visibility="@{viewModel.showView ? View.VISIBLE :View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/sensorListValue" />
+
+    </android.support.constraint.ConstraintLayout>
+</layout>

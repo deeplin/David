@@ -1,21 +1,22 @@
 package com.david.incubator.ui.menu.sensorlist;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
 import android.view.animation.AlphaAnimation;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
+import com.david.common.mode.CtrlMode;
+import com.david.common.mode.SystemMode;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.AnimationUtil;
+import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSensorListBinding;
+import com.david.incubator.util.ViewUtil;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
-
-import io.reactivex.android.schedulers.AndroidSchedulers;
 
 /**
  * author: Ling Lin
@@ -55,206 +56,155 @@ public class SensorListLayout extends BindingConstraintLayout<LayoutSensorListBi
     }
 
     @Override
-    public void setBackground(boolean isCabin) {
-        io.reactivex.Observable.just(isCabin)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((st) -> {
-                    if (st) {
-                        this.setBackgroundResource(R.mipmap.sensor_list_background);
-                        binding.tvSensorListOxygenObjective.setVisibility(View.VISIBLE);
-                        binding.tvSensorListHumidityObjective.setVisibility(View.VISIBLE);
+    public void setSystemMode(boolean isCabin, int humidityObjective, int oxygenObjective, String timingMode) {
+        if (isCabin) {
+            binding.sensorListFirst.valueColor.set(ResourceUtil.getColor(R.color.c_air));
+            binding.sensorListFirst.rightTopIcon.set(R.mipmap.color_air);
+            binding.sensorListFirst.rightBottom.set("℃");
+            binding.sensorListFirst.setImageIcon.set(R.mipmap.set_air);
 
-                        binding.ivSensorListTemp1Set.setImageResource(R.mipmap.set_air);
-                    } else {
-                        this.setBackgroundResource(R.mipmap.heating_sensor_list_background);
-                        binding.tvSensorListOxygenObjective.setVisibility(View.GONE);
-                        binding.tvSensorListHumidityObjective.setVisibility(View.GONE);
+            binding.sensorListSecond.valueColor.set(ResourceUtil.getColor(R.color.skin1));
+            binding.sensorListSecond.rightBottom.set("℃");
+            binding.sensorListSecond.setImageIcon.set(R.mipmap.set_skin1);
 
-                        binding.ivSensorListTemp1Set.setImageResource(R.mipmap.set_skin1);
-                    }
-                });
+            binding.sensorListThird.valueColor.set(ResourceUtil.getColor(R.color.humidity));
+            binding.sensorListThird.rightTopIcon.set(R.mipmap.color_humidity);
+            binding.sensorListThird.rightTopText.set(null);
+            binding.sensorListThird.rightBottom.set("%");
+            binding.sensorListThird.setImageIcon.set(R.mipmap.set_humidity);
+            binding.sensorListThird.objective.set(ViewUtil.formatHumidityValue(humidityObjective));
+
+            binding.sensorListForth.valueColor.set(ResourceUtil.getColor(R.color.oxygen));
+            binding.sensorListForth.rightTopIcon.set(R.mipmap.color_o2);
+            binding.sensorListForth.rightBottom.set("%");
+            binding.sensorListForth.setImageIcon.set(R.mipmap.set_o2);
+            binding.sensorListForth.objective.set(ViewUtil.formatOxygenValue(oxygenObjective));
+
+        } else {
+            binding.sensorListFirst.valueColor.set(ResourceUtil.getColor(R.color.skin1));
+            binding.sensorListFirst.rightTopIcon.set(R.mipmap.color_skin);
+            binding.sensorListFirst.rightBottom.set("℃");
+            binding.sensorListFirst.setImageIcon.set(R.mipmap.set_skin1);
+
+            binding.sensorListSecond.valueColor.set(ResourceUtil.getColor(R.color.warmer));
+            binding.sensorListSecond.rightBottom.set("%");
+            binding.sensorListSecond.setImageIcon.set(R.mipmap.set_manual);
+
+            binding.sensorListThird.valueColor.set(ResourceUtil.getColor(R.color.humidity));
+            binding.sensorListThird.rightTopIcon.set(0);
+            binding.sensorListThird.rightTopText.set(timingMode);
+            binding.sensorListThird.rightBottom.set(null);
+            binding.sensorListThird.objective.set(null);
+        }
+    }
+
+    @Override
+    public void setCtrlMode(SystemMode systemMode, CtrlMode ctrlMode, int airObjective, int skinObjective, int manObjective) {
+        if (Objects.equals(ctrlMode, CtrlMode.Skin)) {
+            if (Objects.equals(systemMode, SystemMode.Cabin)) {
+                binding.sensorListFirst.showAnimation(false, 0, null);
+                binding.sensorListFirst.objective.set(null);
+
+                binding.sensorListSecond.showAnimation(true, R.mipmap.animation_skin, animation);
+                binding.sensorListSecond.objective.set(ViewUtil.formatTempValue(skinObjective));
+                binding.sensorListSecond.rightTopIcon.set(R.mipmap.color_skin);
+            } else if (Objects.equals(systemMode, SystemMode.Warmer)) {
+                binding.sensorListFirst.showAnimation(true, R.mipmap.animation_skin, animation);
+                binding.sensorListFirst.objective.set(ViewUtil.formatTempValue(skinObjective));
+
+                binding.sensorListSecond.showAnimation(false, 0, null);
+                binding.sensorListSecond.objective.set(null);
+                binding.sensorListSecond.rightTopIcon.set(0);
+            }
+        } else if (Objects.equals(ctrlMode, CtrlMode.Air)) {
+            binding.sensorListFirst.showAnimation(true, R.mipmap.animation_air, animation);
+            binding.sensorListFirst.objective.set(ViewUtil.formatTempValue(airObjective));
+
+            binding.sensorListSecond.showAnimation(false, 0, null);
+            binding.sensorListSecond.objective.set(null);
+            binding.sensorListSecond.rightTopIcon.set(R.mipmap.color_skin);
+        } else if (Objects.equals(ctrlMode, CtrlMode.Manual)) {
+            binding.sensorListFirst.showAnimation(false, 0, null);
+            binding.sensorListFirst.objective.set(null);
+
+            binding.sensorListSecond.showAnimation(true, R.mipmap.animation_manual, animation);
+            binding.sensorListSecond.objective.set(String.valueOf(manObjective));
+            binding.sensorListSecond.rightTopIcon.set(R.mipmap.color_manual);
+        } else if (Objects.equals(ctrlMode, CtrlMode.Prewarm)) {
+            binding.sensorListFirst.showAnimation(false, 0, null);
+            binding.sensorListFirst.objective.set(null);
+
+            binding.sensorListSecond.showAnimation(true, R.mipmap.animation_manual, animation);
+            binding.sensorListSecond.objective.set(null);
+            binding.sensorListSecond.rightTopIcon.set(R.mipmap.color_prewarm);
+        }
     }
 
     @Override
     public void spo2ShowBorder(boolean status) {
-        io.reactivex.Observable.just(status)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((st) -> {
-                    if (st) {
-                        binding.ivSensorListSpo2Hide
-                                .setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.color.border));
-                    } else {
-                        binding.ivSensorListSpo2Hide
-                                .setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.mipmap.sensor_list_spo2_hide));
-                    }
-                });
-    }
-
-    @Override
-    public void oxygenShowBorder(boolean status) {
-        io.reactivex.Observable.just(status)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((st) -> {
-                    if (st) {
-                        binding.ivSensorListOxygenHide
-                                .setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.color.border));
-                    } else {
-                        binding.ivSensorListOxygenHide
-                                .setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.mipmap.sensor_list_o2_hide));
-                    }
-                });
-    }
-
-    @Override
-    public void scaleShowBorder(boolean status) {
 //        io.reactivex.Observable.just(status)
 //                .observeOn(AndroidSchedulers.mainThread())
 //                .subscribe((st) -> {
 //                    if (st) {
-//                        binding.ivSensorListOxygenHide
-//                                .setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.color.border));
+//                        binding.ivSensorListSpo2Hide
+//                                .setSystemMode(ContextCompat.getDrawable(binding.getRoot().getContext(), R.color.border));
 //                    } else {
-//                        binding.ivSensorListOxygenHide
-//                                .setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.mipmap.sensor_list_scale_hide));
+//                        binding.ivSensorListSpo2Hide
+//                                .setSystemMode(ContextCompat.getDrawable(binding.getRoot().getContext(), R.mipmap.sensor_list_spo2_hide));
 //                    }
 //                });
     }
 
+
     @Override
-    public void humidityShowBorder(boolean status) {
-        io.reactivex.Observable.just(status)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((st) -> {
-                    if (st) {
-                        binding.ivSensorListHumidityHide
-                                .setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.color.border));
-                    } else {
-                        binding.ivSensorListHumidityHide
-                                .setBackground(ContextCompat.getDrawable(binding.getRoot().getContext(), R.mipmap.sensor_list_humidity_hide));
-                    }
-                });
+    public void displayFirstValue(String value) {
+        binding.sensorListFirst.value.set(value);
     }
 
     @Override
-    public void displayOxygenValue(String value) {
-        io.reactivex.Observable.just(value)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((text) -> binding.tvSensorListOxygen.setText(text));
+    public void displaySecondValue(String value) {
+        binding.sensorListSecond.value.set(value);
     }
 
     @Override
-    public void displayHumidityValue(String value) {
-        io.reactivex.Observable.just(value)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((text) -> binding.tvSensorListHumidity.setText(text));
+    public void displayThirdValue(String value) {
+        binding.sensorListThird.value.set(value);
     }
 
     @Override
-    public void setTimingValue(String value) {
-        io.reactivex.Observable.just(value)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((text) -> binding.tvSensorListTiming.setText(text));
+    public void displayForthValue(String value) {
+        binding.sensorListForth.value.set(value);
     }
 
     @Override
-    public void displayTemp1Value(String value) {
-        io.reactivex.Observable.just(value)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((text) -> binding.tvSensorListTemp1.setText(text));
-    }
-
-    @Override
-    public void displayTemp1Objective(String value) {
-        int visibility;
-        String text;
-        if (value != null) {
-            visibility = View.VISIBLE;
-            text = value;
+    public void showHumidity(boolean isHardware, boolean isSoftware) {
+        if (isHardware) {
+            if (isSoftware) {
+                binding.sensorListThird.showView.set(true);
+                binding.sensorListForth.setBackground(0);
+            } else {
+                binding.sensorListThird.showView.set(false);
+                binding.sensorListThird.setBackground(R.mipmap.sensor_list_humidity_hide);
+            }
         } else {
-            visibility = View.INVISIBLE;
-            text = "";
+            binding.sensorListThird.showView.set(false);
+            binding.sensorListThird.setBackground(0);
         }
-        io.reactivex.Observable.just(this)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((o) -> {
-                    binding.ivSensorListTemp1Set.setVisibility(visibility);
-                    binding.tvSensorListTemp1Objective.setText(text);
-                });
     }
 
     @Override
-    public void displayTemp2Value(String value) {
-        io.reactivex.Observable.just(value)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((text) -> binding.tvSensorListTemp2.setText(text));
-    }
-
-    @Override
-    public void displayTemp2Objective(String value) {
-        int visibility;
-        String text;
-        if (value != null) {
-            visibility = View.VISIBLE;
-            text = value;
+    public void showOxygen(boolean isHardware, boolean isSoftware) {
+        if (isHardware) {
+            if (isSoftware) {
+                binding.sensorListForth.showView.set(true);
+                binding.sensorListForth.setBackground(0);
+            } else {
+                binding.sensorListForth.showView.set(false);
+                binding.sensorListForth.setBackground(R.mipmap.sensor_list_o2_hide);
+            }
         } else {
-            visibility = View.INVISIBLE;
-            text = "";
+            binding.sensorListForth.showView.set(false);
+            binding.sensorListForth.setBackground(0);
         }
-        io.reactivex.Observable.just(this)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((o) -> {
-                    binding.ivSensorListTemp2Set.setVisibility(visibility);
-                    binding.tvSensorListTemp2Objective.setText(text);
-                });
-    }
-
-    @Override
-    public void displayAirAnimation(boolean isCabin) {
-        io.reactivex.Observable.just(this)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((obj) -> {
-                    synchronized (this) {
-                        binding.ivSkinAnimation.clearAnimation();
-                        binding.ivSkinAnimation.setVisibility(View.GONE);
-
-                        if (isCabin) {
-                            binding.ivAirAnimation.setImageResource(R.mipmap.animation_air);
-                            binding.ivAirAnimation.startAnimation(animation);
-                            binding.ivAirAnimation.setVisibility(View.VISIBLE);
-                        } else {
-                            binding.ivAirAnimation.setImageResource(R.mipmap.animation_skin);
-                            binding.ivAirAnimation.startAnimation(animation);
-                            binding.ivAirAnimation.setVisibility(View.VISIBLE);
-                        }
-                    }
-                });
-    }
-
-    @Override
-    public void displaySkinAnimation() {
-        io.reactivex.Observable.just(this)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((obj) -> {
-                    synchronized (this) {
-                        binding.ivAirAnimation.clearAnimation();
-                        binding.ivAirAnimation.setVisibility(View.GONE);
-                        binding.ivSkinAnimation.startAnimation(animation);
-                        binding.ivSkinAnimation.setVisibility(View.VISIBLE);
-                    }
-                });
-    }
-
-    @Override
-    public void clearSkinAnimation() {
-        io.reactivex.Observable.just(this)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((obj) -> {
-                    synchronized (this) {
-                        binding.ivAirAnimation.clearAnimation();
-                        binding.ivAirAnimation.setVisibility(View.GONE);
-                        binding.ivSkinAnimation.clearAnimation();
-                        binding.ivSkinAnimation.setVisibility(View.GONE);
-                    }
-                });
     }
 }

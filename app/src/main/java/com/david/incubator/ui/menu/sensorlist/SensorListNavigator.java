@@ -1,5 +1,8 @@
 package com.david.incubator.ui.menu.sensorlist;
 
+import com.david.common.mode.CtrlMode;
+import com.david.common.mode.SystemMode;
+
 /**
  * author: Ling Lin
  * created on: 2017/12/31 17:59
@@ -7,33 +10,21 @@ package com.david.incubator.ui.menu.sensorlist;
  * description:
  */
 public interface SensorListNavigator {
-    void setBackground(boolean isCabin);
+    void setSystemMode(boolean isCabin, int humidityObjective, int oxygenObjective, String timingMode);
+
+    void setCtrlMode(SystemMode systemMode, CtrlMode ctrlMode, int airObjective, int skinObjective, int manObjective);
 
     void spo2ShowBorder(boolean status);
 
-    void oxygenShowBorder(boolean status);
+    void showHumidity(boolean isHardware, boolean isSoftware);
 
-    void scaleShowBorder(boolean status);
+    void showOxygen(boolean isHardware, boolean isSoftware);
 
-    void humidityShowBorder(boolean status);
+    void displayForthValue(String value);
 
-    void displayOxygenValue(String value);
+    void displayThirdValue(String value);
 
-    void displayHumidityValue(String value);
+    void displayFirstValue(String value);
 
-    void setTimingValue(String value);
-
-    void displayTemp1Value(String value);
-
-    void displayTemp1Objective(String value);
-
-    void displayTemp2Value(String value);
-
-    void displayTemp2Objective(String value);
-
-    void displayAirAnimation(boolean isCabin);
-
-    void displaySkinAnimation();
-
-    void clearSkinAnimation();
+    void displaySecondValue(String value);
 }

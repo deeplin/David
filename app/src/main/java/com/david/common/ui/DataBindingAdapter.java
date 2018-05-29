@@ -20,11 +20,6 @@ public class DataBindingAdapter {
 
     @BindingAdapter("android:imageSrc")
     public static void setImageSrc(ImageView imageView, int resource) {
-        if (resource > 0) {
-            imageView.setImageResource(resource);
-            imageView.setVisibility(View.VISIBLE);
-        } else {
-            imageView.setVisibility(View.INVISIBLE);
-        }
+        imageView.setImageResource(resource);
     }
 }

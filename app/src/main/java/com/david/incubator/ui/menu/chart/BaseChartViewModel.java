@@ -19,8 +19,8 @@ import io.reactivex.schedulers.Schedulers;
  */
 public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableViewModel, IChartViewModel<T> {
 
-    protected final int[] CYCLE_VALUE_ARRAY = {4, 8, 12, 24, 48};
-    protected final int[] CYCLE_VALUE_TIME = {2, 4, 6, 12, 24};
+    protected final int[] CYCLE_VALUE_ARRAY = {2, 4, 8, 12, 24, 48};
+    protected final int[] CYCLE_VALUE_TIME = {1, 2, 4, 6, 12, 24};
 
     protected BaseChartViewWriter baseChartViewWriter;
     protected PageTurnTable pageTurnTable;

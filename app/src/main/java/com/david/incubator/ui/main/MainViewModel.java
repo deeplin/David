@@ -73,13 +73,6 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                     } else if (shareMemory.isWarmer()) {
                         shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
                     }
-                } else {
-                    CtrlMode ctrlMode = shareMemory.ctrlMode.get();
-                    if (shareMemory.currentFragmentID.get() == FragmentPage.CHART_FRAGMENT) {
-                        if (shareMemory.isWarmer() && (!Objects.equals(ctrlMode, CtrlMode.Skin))) {
-                            shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
-                        }
-                    }
                 }
 
                 if (status) {
