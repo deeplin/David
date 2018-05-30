@@ -95,6 +95,11 @@ public class SensorListLayout extends BindingConstraintLayout<LayoutSensorListBi
             binding.sensorListThird.rightTopText.set(timingMode);
             binding.sensorListThird.rightBottom.set(null);
             binding.sensorListThird.objective.set(null);
+
+            binding.sensorListForth.valueColor.set(ResourceUtil.getColor(R.color.oxygen));
+            binding.sensorListForth.rightTopIcon.set(R.mipmap.color_jaunedice);
+            binding.sensorListForth.rightBottom.set(null);
+            binding.sensorListForth.objective.set(null);
         }
     }
 

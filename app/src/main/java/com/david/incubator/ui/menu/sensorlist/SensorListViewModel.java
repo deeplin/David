@@ -219,7 +219,10 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
                 navigator.setSystemMode(false, 0, 0, timingMode);
 
                 timingData.setConsumer(this);
-                navigator.showOxygen(false, false);
+
+                if (!moduleHardware.is93S()) {
+                    navigator.showOxygen(false, false);
+                }
             }
             navigator.showSpo2(moduleHardware.isSPO2(), moduleSoftware.isSPO2());
             navigator.setSpo2Limit(ViewUtil.formatSpo2Value(shareMemory.spo2UpperLimit.get()), ViewUtil.formatSpo2Value(shareMemory.spo2LowerLimit.get()));
