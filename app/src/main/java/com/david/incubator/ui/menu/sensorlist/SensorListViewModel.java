@@ -81,17 +81,6 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
             }
         });
 
-        shareMemory.S2.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable observable, int i) {
-                if (navigator != null) {
-                    if (shareMemory.isWarmer()) {
-                        navigator.displaySecondValue(ViewUtil.formatTempValue(shareMemory.S2.get()));
-                    }
-                }
-            }
-        });
-
         shareMemory.O2.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
@@ -186,12 +175,10 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
         shareMemory.ctrlMode.addOnPropertyChangedCallback(objectiveCallback);
         shareMemory.A2.addOnPropertyChangedCallback(objectiveCallback);
         shareMemory.S1B.addOnPropertyChangedCallback(objectiveCallback);
-        shareMemory.S2.addOnPropertyChangedCallback(objectiveCallback);
 
         shareMemory.ctrlMode.notifyChange();
         shareMemory.A2.notifyChange();
         shareMemory.S1B.notifyChange();
-        shareMemory.S2.notifyChange();
         shareMemory.O2.notifyChange();
         shareMemory.H1.notifyChange();
         shareMemory.warm.notifyChange();
@@ -208,7 +195,6 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
         jaunediceData.setConsumer(null);
         timingData.setConsumer(null);
 
-        shareMemory.S2.removeOnPropertyChangedCallback(objectiveCallback);
         shareMemory.S1B.removeOnPropertyChangedCallback(objectiveCallback);
         shareMemory.A2.removeOnPropertyChangedCallback(objectiveCallback);
         shareMemory.ctrlMode.removeOnPropertyChangedCallback(objectiveCallback);

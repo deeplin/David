@@ -43,17 +43,18 @@ public class TopViewModel implements IViewModel {
 
     public ObservableField<String> userId = new ObservableField<>();
     public ObservableField<String> alarmField = new ObservableField<>();
-    public ObservableInt batteryImageId = new ObservableInt();
+
+
     public ObservableBoolean overheatExperimentMode = new ObservableBoolean(false);
     public ObservableField<String> dateTime = new ObservableField<>();
 
-    private ObservableField<BatteryMode> batteryModeCallback = new ObservableField<>();
+    public ObservableInt batteryImageId = new ObservableInt(R.mipmap.battery5);
+    private ObservableField<BatteryMode> batteryModeCallback = new ObservableField<>(BatteryMode.Full);
     private Observable.OnPropertyChangedCallback vuCallback;
 
     public ObservableBoolean showMute = new ObservableBoolean(false);
     public ObservableField<String> muteAlarmField = new ObservableField<>();
 
-    private boolean batteryAlert = false;
     private long batteryStartTime;
 
     private Disposable muteDisposable = null;
@@ -112,21 +113,22 @@ public class TopViewModel implements IViewModel {
                     return;
                 }
 
-                if (batteryAlert) {
+                if (isBatteryAlert()) {
                     batteryModeCallback.set(BatteryMode.Failure);
                     return;
                 }
 
                 int vu = ((ObservableInt) observable).get();
-
                 if (vu < 9000) {
                     batteryModeCallback.set(BatteryMode.Charging);
                     setBatteryCharging();
                 } else if (vu > 9400) {
                     batteryModeCallback.set(BatteryMode.Full);
                 } else {
-                    if (Objects.equals(batteryModeCallback.get(), BatteryMode.Failure)) {
-                        batteryModeCallback.set(BatteryMode.Failure);
+                    if (Objects.equals(batteryModeCallback.get(), BatteryMode.Charging)) {
+                        setBatteryCharging();
+                    }else if (Objects.equals(batteryModeCallback.get(), BatteryMode.Failure)) {
+                        batteryModeCallback.set(BatteryMode.Full);
                     }
                 }
             }
@@ -240,18 +242,20 @@ public class TopViewModel implements IViewModel {
         String alarmId = alarmControl.topAlarmId.get();
         if (alarmControl.isAlert()) {
             alarmField.set(String.format(Locale.US, "%s (%d)", AlarmControl.getAlertField(alarmId), alarmControl.alarmCount.get()));
-
-            if (Objects.equals(alarmId, "SYS.UPS") || Objects.equals(alarmId, "SYS.BAT")) {
-                batteryAlert = true;
-            } else {
-                batteryAlert = false;
-            }
             if (Objects.equals(alarmId, "SYS.TANK")) {
                 muteAlarm();
             }
         } else {
             alarmField.set(null);
-            batteryAlert = false;
+        }
+    }
+
+    private boolean isBatteryAlert(){
+        String alarmId = alarmControl.topAlarmId.get();
+        if (Objects.equals(alarmId, "SYS.UPS") || Objects.equals(alarmId, "SYS.BAT")) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

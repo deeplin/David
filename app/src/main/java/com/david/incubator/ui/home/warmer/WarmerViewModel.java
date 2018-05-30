@@ -3,14 +3,13 @@ package com.david.incubator.ui.home.warmer;
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
-import android.databinding.ObservableInt;
+import android.util.Log;
 
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
-import com.david.common.mode.CtrlMode;
 import com.david.common.ui.BaseNavigatorModel;
 import com.david.common.util.Constant;
 import com.david.incubator.util.ViewUtil;
@@ -54,45 +53,40 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
         warmCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                int warm = ((ObservableInt) observable).get();
-                if (navigator != null) {
-                    navigator.setHeatStep(warm);
-                }
+            int warm = shareMemory.warm.get();
+            if (navigator != null) {
+                navigator.setHeatStep(warm);
+            }
             }
         };
 
         manObjectiveCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                int manObjective = ((ObservableInt) observable).get();
-                if (shareMemory.ctrlMode.get().equals(CtrlMode.Manual)) {
-                    manualValue.set(String.valueOf(manObjective));
-                }
+            int manObjective = shareMemory.manObjective.get();
+            if (shareMemory.isManual()) {
+                manualValue.set(String.valueOf(manObjective));
+            }
             }
         };
 
         ctrlModeCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                CtrlMode ctrlMode = ((ObservableField<CtrlMode>) observable).get();
-                if (ctrlMode != null) {
-                    if (ctrlMode.equals(CtrlMode.Skin)) {
-                        shareMemory.cTime.removeOnPropertyChangedCallback(preWarmCallback);
-
-                        if (navigator != null)
-                            navigator.showSkin();
-                    } else if (ctrlMode.equals(CtrlMode.Prewarm)) {
-                        shareMemory.cTime.addOnPropertyChangedCallback(preWarmCallback);
-                        shareMemory.cTime.notifyChange();
-
-                        if (navigator != null)
-                            navigator.showManual();
-                    } else if (ctrlMode.equals(CtrlMode.Manual)) {
-                        shareMemory.cTime.removeOnPropertyChangedCallback(preWarmCallback);
-                        manualValue.set(String.valueOf(shareMemory.manObjective.get()));
-                        if (navigator != null) {
-                            navigator.showManual();
-                        }
+                if (shareMemory.isSkin()) {
+                    shareMemory.cTime.removeOnPropertyChangedCallback(preWarmCallback);
+                    if (navigator != null)
+                        navigator.showSkin();
+                } else if (shareMemory.isPrewarm()) {
+                    shareMemory.cTime.addOnPropertyChangedCallback(preWarmCallback);
+                    shareMemory.cTime.notifyChange();
+                    if (navigator != null)
+                        navigator.showManual();
+                } else if (shareMemory.isManual()) {
+                    shareMemory.cTime.removeOnPropertyChangedCallback(preWarmCallback);
+                    manualValue.set(String.valueOf(shareMemory.manObjective.get()));
+                    if (navigator != null) {
+                        navigator.showManual();
                     }
                 }
             }
@@ -101,7 +95,7 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
         preWarmCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                int heatValue = ((ObservableInt) observable).get();
+                int heatValue = shareMemory.cTime.get();
                 String heatString = String.format(Locale.US, "%02d:%02d ", (heatValue / 60) % 60, heatValue % 60);
                 manualValue.set(heatString);
             }

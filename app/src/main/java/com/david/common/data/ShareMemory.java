@@ -133,7 +133,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
                 CtrlMode ctrl = ctrlMode.get();
                 //设置预热控制模式时间
-                if (Objects.equals(ctrl, CtrlMode.Prewarm) && lockScreen.get()) {
+                if (Objects.equals(ctrl, CtrlMode.Prewarm)) {
                     cTime.set(statusCommand.getCTime());
                 } else {
                     cTime.set(0);
@@ -219,13 +219,13 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
                 airObjective.set(ctrlGetCommand.getC_air());
 
-                if (Objects.equals(ctrl, CtrlMode.Skin)) {
+                if (isSkin()) {
                     if (Objects.equals(system, SystemMode.Cabin)) {
                         setAbove37(ctrlGetCommand.getC_skin());
                     } else if (Objects.equals(system, SystemMode.Warmer)) {
                         setAbove37(ctrlGetCommand.getW_skin());
                     }
-                } else if (Objects.equals(ctrl, CtrlMode.Air)) {
+                } else if (isAir()) {
                     setAbove37(ctrlGetCommand.getC_air());
                 } else {
                     above37.set(false);
@@ -284,4 +284,21 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     public boolean isTransit() {
         return Objects.equals(systemMode.get(), SystemMode.Transit);
     }
+
+    public boolean isAir(){
+        return Objects.equals(ctrlMode.get(), CtrlMode.Air);
+    }
+
+    public boolean isSkin(){
+        return Objects.equals(ctrlMode.get(), CtrlMode.Skin);
+    }
+
+    public boolean isManual(){
+        return Objects.equals(ctrlMode.get(), CtrlMode.Manual);
+    }
+
+    public boolean isPrewarm(){
+        return Objects.equals(ctrlMode.get(), CtrlMode.Prewarm);
+    }
+
 }
