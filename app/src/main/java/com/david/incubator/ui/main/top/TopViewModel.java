@@ -126,7 +126,7 @@ public class TopViewModel implements IViewModel {
                     batteryModeCallback.set(BatteryMode.Full);
                 } else {
                     if (Objects.equals(batteryModeCallback.get(), BatteryMode.Failure)) {
-                        batteryModeCallback.set(BatteryMode.Charging);
+                        batteryModeCallback.set(BatteryMode.Failure);
                     }
                 }
             }
@@ -199,7 +199,7 @@ public class TopViewModel implements IViewModel {
         batteryImageId.set(imageId);
     }
 
-    public synchronized void clearAlarm() {
+    public void clearAlarm() {
         if (muteDisposable != null) {
             muteDisposable.dispose();
             muteDisposable = null;
@@ -209,25 +209,28 @@ public class TopViewModel implements IViewModel {
     }
 
     public void muteAlarm() {
-        clearAlarm();
         if (alarmControl.isAlert()) {
             String alarmId = alarmControl.topAlarmId.get();
             int alarmTime = AlarmControl.getMuteTime(alarmId);
             messageSender.setMute(alarmId, alarmTime, (aBoolean, baseSerialMessage) -> {
                 if (aBoolean) {
                     /*静音成功*/
-                    showMute.set(true);
-                    muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
-                    muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(aLong -> {
-                                long remaining = alarmTime - aLong;
-                                if (remaining > 0) {
-                                    muteAlarmField.set(String.format(Locale.US, "%ds", remaining));
-                                } else {
-                                    clearAlarm();
-                                }
-                            });
+                    synchronized (this) {
+                        clearAlarm();
+                        showMute.set(true);
+                        muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
+
+                        muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(aLong -> {
+                                    long remaining = alarmTime - aLong;
+                                    if (remaining > 0) {
+                                        muteAlarmField.set(String.format(Locale.US, "%ds", remaining));
+                                    } else {
+                                        clearAlarm();
+                                    }
+                                });
+                    }
                 }
             });
         }
@@ -245,7 +248,6 @@ public class TopViewModel implements IViewModel {
             }
             if (Objects.equals(alarmId, "SYS.TANK")) {
                 muteAlarm();
-                Log.e("deeplin", "alarm: " + alarmId + " " );
             }
         } else {
             alarmField.set(null);
