@@ -8,6 +8,8 @@ import android.widget.TimePicker;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
+import com.david.common.control.DaoControl;
+import com.david.common.control.MainApplication;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
@@ -20,6 +22,8 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 /**
  * author: Ling Lin
  * created on: 2018/1/3 20:10
@@ -30,6 +34,9 @@ import java.util.concurrent.TimeUnit;
 public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBinding>
         implements DatePicker.OnDateChangedListener, TimePicker.OnTimeChangedListener {
 
+    @Inject
+    DaoControl daoControl;
+
     public ObservableField<String> dateString = new ObservableField<>();
     public ObservableField<String> timeString = new ObservableField<>();
 
@@ -38,6 +45,7 @@ public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBindin
 
     public UserTimeLayout(Context context, ObservableInt navigationView) {
         super(context);
+        MainApplication.getInstance().getApplicationComponent().inject(this);
         this.navigationView = navigationView;
 
         binding.setViewModel(this);
@@ -49,7 +57,10 @@ public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBindin
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibOK))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> setTime());
+                .subscribe((aVoid) -> {
+                    setTime();
+                    daoControl.deleteTables();
+                });
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibReturn))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)

@@ -5,6 +5,7 @@ import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
+import com.david.common.ui.alarm.AlarmAdapter;
 import com.david.common.ui.alarm.AlarmView;
 import com.david.incubator.control.IncubatorApplication;
 import com.david.incubator.ui.home.cabin.HomeFragment;
@@ -68,6 +69,7 @@ import com.david.incubator.ui.system.print.SystemPrintViewModel;
 import com.david.incubator.ui.system.range.SystemRangeViewModel;
 import com.david.incubator.ui.user.UserLanguageLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
+import com.david.incubator.ui.user.UserTimeLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
 import com.david.incubator.ui.user.usermodel.ChartLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
@@ -230,4 +232,8 @@ public interface ApplicationComponent {
     void inject(Spo2SettingSensLayout spo2SettingSensLayout);
 
     void inject(Spo2ChartSurfaceView spo2ChartSurfaceView);
+
+    void inject(AlarmAdapter alarmAdapter);
+
+    void inject(UserTimeLayout userTimeLayout);
 }

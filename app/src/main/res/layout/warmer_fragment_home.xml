@@ -162,7 +162,7 @@
             android:layout_width="146dp"
             android:layout_height="wrap_content"
             android:background="@mipmap/manual_set_celsius"
-            android:visibility="@{viewModel.shareMemory.ctrlMode.equals(CtrlMode.Manual)?View.VISIBLE: View.INVISIBLE}"
+            android:visibility="@{viewModel.shareMemory.ctrlMode.equals(CtrlMode.Manual)? View.VISIBLE: View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/ivManualAnimation"
             app:layout_constraintLeft_toLeftOf="@id/leftVerticalGuideline"
             app:layout_constraintRight_toRightOf="@id/middleVerticalGuideline"

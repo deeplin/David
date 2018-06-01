@@ -26,8 +26,9 @@ public class AlarmView extends FrameLayout implements IViewModel {
 
     @Inject
     AlarmControl alarmControl;
+
     @Inject
-    AlertListCommand alertListCommand;
+    AlarmAdapter alarmAdapter;
 
     Observable.OnPropertyChangedCallback alarmCallback;
 
@@ -39,7 +40,6 @@ public class AlarmView extends FrameLayout implements IViewModel {
 
         RecyclerView recyclerView = findViewById(R.id.rvAlarm);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
-        AlarmAdapter alarmAdapter = new AlarmAdapter(alertListCommand);
         recyclerView.setAdapter(alarmAdapter);
 
         //        recyclerView.addItemDecoration(new DividerItemDecoration(context,

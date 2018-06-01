@@ -10,17 +10,26 @@ import com.david.R;
 import com.david.common.alarm.AlarmControl;
 import com.david.common.alarm.AlarmModel;
 import com.david.common.alarm.AlarmPriorityMode;
+import com.david.common.control.MainApplication;
 import com.david.common.serial.command.alert.AlertListCommand;
+import com.david.incubator.ui.main.MainActivity;
 
 import java.util.Objects;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
+@Singleton
 public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
 
-    private final AlertListCommand alertListCommand;
+    @Inject
+    AlertListCommand alertListCommand;
+
     private final String[] alarmArray;
 
-    public AlarmAdapter(AlertListCommand alertListCommand) {
-        this.alertListCommand = alertListCommand;
+    @Inject
+    public AlarmAdapter() {
+        MainApplication.getInstance().getApplicationComponent().inject(this);
         this.alarmArray = alertListCommand.getAlarmArray();
     }
 

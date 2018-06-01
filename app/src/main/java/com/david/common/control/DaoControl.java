@@ -92,6 +92,15 @@ public class DaoControl {
         }
     }
 
+    public void deleteTables(){
+        database.execSQL("DELETE FROM ANALOG_COMMAND");
+        database.execSQL("DELETE FROM STATUS_COMMAND");
+        database.execSQL("DELETE FROM WEIGHT_MODEL");
+        database.execSQL("DELETE FROM SPO2_GET_COMMAND");
+        database.execSQL("DELETE FROM CTRL_GET_COMMAND");
+        database.execSQL("DELETE FROM USER_MODEL");
+    }
+
     public void increaseJaunediceTime() {
         SystemSetting systemSetting = getSystemSetting();
         systemSetting.setBlueTime(systemSetting.getBlueTime() + 10);
@@ -305,9 +314,9 @@ public class DaoControl {
             if (startTime < userModel.getStartTimeStamp()) {
                 startTime = userModel.getStartTimeStamp();
             }
-            queryBuilder.where(AnalogCommandDao.Properties.TimeStamp.ge(startTime));
+            queryBuilder.where(WeightModelDao.Properties.TimeStamp.ge(startTime));
             if (userModel.getEndTimeStamp() > 0) {
-                queryBuilder.where(AnalogCommandDao.Properties.TimeStamp.le(userModel.getEndTimeStamp()));
+                queryBuilder.where(WeightModelDao.Properties.TimeStamp.le(userModel.getEndTimeStamp()));
             }
         }
         /*后发生的在前*/

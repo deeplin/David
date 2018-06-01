@@ -75,7 +75,7 @@ public class ChartFragment extends TabHomeFragment<FragmentChartBinding> impleme
 
         if (moduleHardware.isSPO2()) {
             binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.spo2));
-            binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.o2));
+            binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.pr));
         }
         binding.vpChart.addOnPageChangeListener(super.getPageChangeListener(binding.vpChart));
         binding.tlChart.getTabAt(0).select();

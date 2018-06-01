@@ -53,20 +53,20 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
         warmCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-            int warm = shareMemory.warm.get();
-            if (navigator != null) {
-                navigator.setHeatStep(warm);
-            }
+                int warm = shareMemory.warm.get();
+                if (navigator != null) {
+                    navigator.setHeatStep(warm);
+                }
             }
         };
 
         manObjectiveCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-            int manObjective = shareMemory.manObjective.get();
-            if (shareMemory.isManual()) {
-                manualValue.set(String.valueOf(manObjective));
-            }
+                int manObjective = shareMemory.manObjective.get();
+                if (shareMemory.isManual()) {
+                    manualValue.set(String.valueOf(manObjective));
+                }
             }
         };
 

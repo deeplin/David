@@ -86,11 +86,15 @@ public class ChartTempLayout extends BindingConstraintLayout<LayoutChartTempBind
                     }
                 });
 
-        RxView.clicks(binding.btChartTempDelete)
-                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((Object aVoid) -> alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.delete,
-                        ResourceUtil.getString(R.string.delete_confirm),
-                        (dialog, which) -> chartTempViewModel.delete()));
+//        RxView.clicks(binding.btChartTempDelete)
+//                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+//                .subscribe((aVoid) -> {
+//                    alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.delete,
+//                            ResourceUtil.getString(R.string.delete_confirm),
+//                            (dialog, which) -> {
+//                                chartTempViewModel.delete();
+//                            });
+//                });
 
         binding.btChartTempSkin1.setSelected(chartTempViewModel.skin1Selected.get());
         binding.btChartTempSkin2.setSelected(chartTempViewModel.skin2Selected.get());

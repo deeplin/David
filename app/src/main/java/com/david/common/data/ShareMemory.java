@@ -149,7 +149,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
                     if (!Objects.equals(alarmControl.topAlarmId.get(), statusCommand.getAlert())) {
                         alarmControl.topAlarmId.set(statusCommand.getAlert());
                         if (Objects.equals(alarmControl.topAlarmId.get(), "CTRL.MAN")) {
-                            messageSender.getCtrlGet(this);
+                            manObjective.set(0);
                         }
                     }
                     alarmControl.alarmCount.set(statusCommand.getACount());

@@ -44,7 +44,6 @@ public class TopViewModel implements IViewModel {
     public ObservableField<String> userId = new ObservableField<>();
     public ObservableField<String> alarmField = new ObservableField<>();
 
-
     public ObservableBoolean overheatExperimentMode = new ObservableBoolean(false);
     public ObservableField<String> dateTime = new ObservableField<>();
 
@@ -238,7 +237,7 @@ public class TopViewModel implements IViewModel {
         }
     }
 
-    private void updateAlarm() {
+    public void updateAlarm() {
         String alarmId = alarmControl.topAlarmId.get();
         if (alarmControl.isAlert()) {
             alarmField.set(String.format(Locale.US, "%s (%d)", AlarmControl.getAlertField(alarmId), alarmControl.alarmCount.get()));

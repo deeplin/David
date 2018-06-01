@@ -1,5 +1,6 @@
 package com.david.incubator.ui.user.usermodel;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.databinding.ObservableInt;
 
@@ -13,6 +14,7 @@ import com.david.common.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutUserModelDetailBinding;
 import com.david.incubator.ui.common.KeyValueViewModel;
+import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -44,6 +46,8 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
 
     ObservableInt navigationView;
 
+    private AlertDialog alertDialog;
+
     public UserModelDetailLayout(Context context, ObservableInt navigationView) {
         super(context);
         this.navigationView = navigationView;
@@ -55,16 +59,16 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
 
         RxView.clicks(binding.btDeletePatient)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> {
-                    daoControl.deleteUserModel(userModelDetailViewModel.userModel);
-                    navigationView.set(FragmentPage.USER_MODEL);
-                });
+                .subscribe((aVoid) -> alertDialog = ViewUtil.buildConfirmDialog(MainApplication.getInstance(), R.string.delete,
+                        ResourceUtil.getString(R.string.delete_confirm),
+                        (dialog, which) -> {
+                            daoControl.deleteUserModel(userModelDetailViewModel.userModel);
+                            navigationView.set(FragmentPage.USER_MODEL);
+                        }));
 
         RxView.clicks(binding.btSignsOfData)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> {
-                    userModelDetailViewModel.showSignsOfData.set(true);
-                });
+                .subscribe((aVoid) -> userModelDetailViewModel.showSignsOfData.set(true));
 
         RxView.clicks(binding.btReturn)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
@@ -79,6 +83,10 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
     @Override
     public void detach() {
         userModelDetailViewModel.detach();
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+            alertDialog = null;
+        }
     }
 
     private void init() {

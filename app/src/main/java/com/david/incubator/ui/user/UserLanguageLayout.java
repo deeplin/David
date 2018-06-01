@@ -11,6 +11,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.dao.SystemSetting;
 import com.david.common.mode.LanguageMode;
 import com.david.common.ui.BindingConstraintLayout;
+import com.david.common.ui.alarm.AlarmAdapter;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
@@ -36,6 +37,8 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
     DaoControl daoControl;
     @Inject
     TopViewModel topViewModel;
+    @Inject
+    AlarmAdapter alarmAdapter;
 
     SystemSetting systemSetting;
     ObservableInt navigationView;
@@ -114,5 +117,8 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
         binding.title.setTitle(R.string.language_setup);
         Button button = binding.buttonControl.findViewById(R.id.ibReturn);
         button.setText(R.string.exit);
+
+        alarmAdapter.notifyDataSetChanged();
+        topViewModel.updateAlarm();
     }
 }
