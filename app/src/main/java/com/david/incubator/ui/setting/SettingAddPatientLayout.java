@@ -246,6 +246,8 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
                         String idString = binding.addPatientId.getValueField();
                         if (idString == null || idString.length() == 0) {
                             binding.addPatientId.requestFocus();
+                        }else{
+                            binding.addPatientId.clearValueField();
                         }
                         userModel.setUserId(idString);
                         userModel.setSex(sexKeyValueViewModel.valueField.get().equals(ResourceUtil.getString(R.string.male)));

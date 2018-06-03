@@ -32,4 +32,8 @@ public class KeyEditTextView extends LinearLayout {
     public String getValueField() {
         return binding.tvValue.getText().toString();
     }
+
+    public void clearValueField(){
+        binding.tvValue.setText("");
+    }
 }

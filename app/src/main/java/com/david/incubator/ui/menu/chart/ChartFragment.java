@@ -64,7 +64,7 @@ public class ChartFragment extends TabHomeFragment<FragmentChartBinding> impleme
 
         binding.tlChart.removeAllTabs();
         binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.celsius_small));
-        binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.heating));
+        binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.radiation));
 
         if (isCabin) {
             if (moduleHardware.isHUM())

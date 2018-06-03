@@ -28,7 +28,7 @@
             android:id="@+id/addPatientName"
             android:layout_width="260dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/addPatientSex"
+            app:layout_constraintBottom_toTopOf="@+id/addPatientBirthMedicalHistory"
             app:layout_constraintEnd_toStartOf="@+id/addPatientId"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,43 +45,43 @@
             app:layout_constraintTop_toTopOf="@id/addPatientName" />
 
         <!--第二行-->
-        <com.david.incubator.ui.common.KeyValueView
-            android:id="@+id/addPatientSex"
+        <com.david.incubator.ui.common.KeyEditTextView
+            android:id="@+id/addPatientBirthMedicalHistory"
             android:layout_width="260dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/addPatientBirthday"
+            app:layout_constraintBottom_toTopOf="@+id/addPatientBloodType"
             app:layout_constraintLeft_toLeftOf="@+id/addPatientName"
             app:layout_constraintRight_toRightOf="@+id/addPatientName"
             app:layout_constraintTop_toBottomOf="@+id/addPatientName" />
 
         <com.david.incubator.ui.common.KeyValueView
-            android:id="@+id/addPatientBloodType"
+            android:id="@+id/addPatientSex"
             android:layout_width="260dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/addPatientSex"
+            app:layout_constraintBottom_toBottomOf="@id/addPatientBirthMedicalHistory"
             app:layout_constraintLeft_toLeftOf="@+id/addPatientId"
             app:layout_constraintRight_toRightOf="@+id/addPatientId"
-            app:layout_constraintTop_toTopOf="@id/addPatientSex" />
+            app:layout_constraintTop_toTopOf="@id/addPatientBirthMedicalHistory" />
 
         <!--第三行-->
 
         <com.david.incubator.ui.common.KeyValueView
-            android:id="@+id/addPatientBirthday"
+            android:id="@+id/addPatientBloodType"
             android:layout_width="260dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@+id/addPatientGestation"
             app:layout_constraintLeft_toLeftOf="@+id/addPatientName"
             app:layout_constraintRight_toRightOf="@+id/addPatientName"
-            app:layout_constraintTop_toBottomOf="@+id/addPatientSex" />
+            app:layout_constraintTop_toBottomOf="@+id/addPatientBirthMedicalHistory" />
 
         <com.david.incubator.ui.common.KeyValueView
-            android:id="@+id/addPatientBirthWeight"
+            android:id="@+id/addPatientBirthday"
             android:layout_width="260dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="@id/addPatientBirthday"
+            app:layout_constraintBottom_toBottomOf="@id/addPatientBloodType"
             app:layout_constraintLeft_toLeftOf="@+id/addPatientId"
             app:layout_constraintRight_toRightOf="@+id/addPatientId"
-            app:layout_constraintTop_toTopOf="@id/addPatientBirthday" />
+            app:layout_constraintTop_toTopOf="@id/addPatientBloodType" />
 
         <!--第四行-->
 
@@ -92,10 +92,10 @@
             app:layout_constraintBottom_toTopOf="@+id/space2"
             app:layout_constraintLeft_toLeftOf="@+id/addPatientName"
             app:layout_constraintRight_toRightOf="@+id/addPatientName"
-            app:layout_constraintTop_toBottomOf="@+id/addPatientBirthday" />
+            app:layout_constraintTop_toBottomOf="@+id/addPatientBloodType" />
 
-        <com.david.incubator.ui.common.KeyEditTextView
-            android:id="@+id/addPatientBirthMedicalHistory"
+        <com.david.incubator.ui.common.KeyValueView
+            android:id="@+id/addPatientBirthWeight"
             android:layout_width="260dp"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="@id/addPatientGestation"
