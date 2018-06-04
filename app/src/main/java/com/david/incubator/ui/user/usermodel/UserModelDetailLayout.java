@@ -14,6 +14,7 @@ import com.david.common.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutUserModelDetailBinding;
 import com.david.incubator.ui.common.KeyValueViewModel;
+import com.david.incubator.ui.main.MainActivity;
 import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -59,9 +60,10 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
 
         RxView.clicks(binding.btDeletePatient)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> alertDialog = ViewUtil.buildConfirmDialog(MainApplication.getInstance(), R.string.delete,
+                .subscribe((aVoid) -> alertDialog = ViewUtil.buildConfirmDialog(context, R.string.delete,
                         ResourceUtil.getString(R.string.delete_confirm),
                         (dialog, which) -> {
+                            alertDialog = null;
                             daoControl.deleteUserModel(userModelDetailViewModel.userModel);
                             navigationView.set(FragmentPage.USER_MODEL);
                         }));
