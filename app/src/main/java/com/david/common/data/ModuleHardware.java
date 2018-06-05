@@ -87,4 +87,12 @@ public class ModuleHardware extends ModuleSoftware {
             return false;
         }
     }
+
+    public boolean is2000S(){
+        if (Objects.equals(deviceModel, Constant.YP2000S)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

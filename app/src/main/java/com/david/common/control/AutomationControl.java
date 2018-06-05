@@ -65,6 +65,8 @@ public class AutomationControl implements IViewModel {
 
     @Override
     public void attach() {
+        messageSender.setStandBy(false, true, null);
+
         /*读取配置文件*/
         messageSender.getHardwareModule((aBoolean, baseSerialMessage) -> {
             if (aBoolean) {

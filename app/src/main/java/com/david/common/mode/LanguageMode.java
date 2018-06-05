@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public enum LanguageMode {
 
-    English("ENGLISH", (byte) 1), Chinese("CHINESE", (byte) 2);
+    English("ENG", (byte) 0), Chinese("CHN", (byte) 1), Turkish("TUR", (byte) 2), Polish("POL", (byte) 3);
 
     private final String name;
     private final byte index;
@@ -21,7 +21,7 @@ public enum LanguageMode {
         this.index = index;
     }
 
-    public static LanguageMode getMode(String languageString){
+    public static LanguageMode getMode(String languageString) {
         String languageUpper = languageString.toUpperCase();
         for (LanguageMode mode : values()) {
             if (Objects.equals(mode.getName(), languageUpper)) {

@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">David Medical</string>
+
+    <!--Home-->
+    <string name="default_user">Użytkownik domyślny</string>
+
+    <!--Objective-->
+    <string name="ok">OK</string>
+    <string name="on">Wł.</string>
+    <string name="off">Wył.</string>
+    <string name="blue_time">Czas świecenia</string>
+    <string name="clockwise">Zgodnie ze wskazówkami zegara</string>
+    <string name="countdown">Odliczanie</string>
+
+    <!--Chart-->
+    <string name="cycle">Okres</string>
+    <string name="skin1">skóry 1</string>
+    <string name="skin2">skóry 2</string>
+    <string name="air">powietrza</string>
+    <string name="humidity">Wilgotność</string>
+    <string name="oxygen">O2</string>
+    <string name="spo2">SpO2</string>
+    <string name="pr">Puls</string>
+    <string name="heating_power">Moc grzewcza</string>
+    <string name="time">Czas</string>
+    <string name="previous_page">Do przodu</string>
+    <string name="next_page">Do tyłu</string>
+    <string name="delete">Usuń</string>
+    <string name="delete_confirm">Potwierdź usunięcie danych</string>
+
+    <!--Camera-->
+    <string name="camera_no_connection">Brak aparatu</string>
+
+    <!--Scale-->
+    <string name="rescale">Skaluj</string>
+    <string name="scale">Ważenie</string>
+    <string name="raise_baby">Proszę podnieś dziecko...</string>
+    <string name="put_down_baby">Proszę połóż dziecko ...</string>
+    <string name="no_record_added">Brak nowych danych</string>
+    <string name="current_weight">Waga</string>
+
+    <!--Setting-->
+
+    <!--Add User-->
+    <string name="name">Imię</string>
+    <string name="id">ID</string>
+    <string name="sex">Płeć</string>
+    <string name="blood_type">Grupa krwi</string>
+    <string name="birthday">Data urodzenia</string>
+    <string name="birth_weight">Waga urodzeniowa</string>
+    <string name="medical_history">Przypadek</string>
+    <string name="add_patient">Dodaj pacjenta</string>
+
+    <string name="male">Mężczyzna</string>
+    <string name="female">Kobieta</string>
+
+    <!--Comfort Zone-->
+    <string name="comfort_zone">Strefa komfortu</string>
+    <string name="age">Wiek</string>
+    <string name="day">Dzień</string>
+    <string name="gestation">Czas ciąży</string>
+    <string name="week">Tydzień</string>
+    <string name="weight">Waga</string>
+    <string name="proposed_setting_range">Zalecany zakres ustawień:</string>
+
+    <!--Calibration-->
+    <string name="calibration">Kalibracja</string>
+    <string name="calibration_o2">Kalibracja O2</string>
+    <string name="calibration_confirm_o2_21">Potwierdź, czy kalibracja O2 przy 21%</string>
+    <string name="calibration_confirm_o2_100">Potwierdź, czy kalibracja O2 przy 100%</string>
+    <string name="calibration_scale">Kalibracja wagi.</string>
+    <string name="calibration_confirm_scale_0">Aktualna waga % sg \ nProszę potwierdzić, czy waga została skalibrowana na 0g</string>
+    <string name="calibration_confirm_scale_5000">Aktualna waga % sg \ nProszę potwierdzić, czy waga została skalibrowana na 5000g</string>
+    <string name="cancel">Anuluj</string>
+    <string name="calibration_successful">Kalibracja pomyślna</string>
+    <string name="calibration_failed">Kalibracja niepomyślna</string>
+
+    <!--Device-->
+    <string name="software_information">Informacje o oprogramowaniu</string>
+    <string name="hardware_version">Wersja sprzętowa</string>
+    <string name="master_version">Wersja oprogramowania Master</string>
+    <string name="slave_version">Wersja oprogramowania Slave</string>
+    <string name="upper_version">Wersja oprogramowania Upper</string>
+    <string name="device_id">Numer urządzenia</string>
+
+    <!--Login-->
+    <string name="input_password">Wprowadź hasło</string>
+
+    <!--Admin-->
+    <string name="system_setting">Ustawienia systemowe</string>
+    <!--Home-->
+    <string name="deviation_warning">Alarm odchylenia</string>
+    <string name="overheat_warning">Alarm przegrzania</string>
+    <string name="setting_range">Zakres ustawień</string>
+    <string name="temp_calibration">Kalibracja temperatury</string>
+    <string name="other_parameter">Inne parametry</string>
+    <string name="data_print">Drukowanie danych</string>
+    <string name="factory_setting">Ustawienie fabryczne</string>
+    <string name="overheat_experiment">Test nadmiernej</string>
+
+    <!--Deviation Warning-->
+    <string name="skin">skóry</string>
+    <string name="exit">Powrót</string>
+
+    <!--Overheat Warning-->
+    <string name="overheat_air_above_37">powierza>37℃</string>
+    <string name="air_flow">Przepływ powietrza</string>
+    <string name="overheat_airflow_above_37">Przepływ powietrza>37℃</string>
+    <string name="fan_speed">Prędkość wentylatora</string>
+
+    <!--System Calibration-->
+    <string name="iso_air">ISO powietrza</string>
+    <string name="iso_skin1">ISO skóry 1</string>
+
+    <!--System Print-->
+    <string name="print_cycle">Cykl drukowania</string>
+
+    <!--Overheat Experiment-->
+    <string name="overheat_air_below_37">powietrza ≤37℃</string>
+    <string name="overheat_skin_above_37">skóry > 37℃</string>
+    <string name="stable_state">Stan stabilny</string>
+
+    <!--User -->
+    <string name="user_setting">Ustawienia użytkownika</string>
+    <string name="patient_information">Informacje o pacjencie</string>
+    <string name="time_setup">Ustawienie czasu</string>
+    <string name="language_setup">Ustawienia języka</string>
+    <string name="warning_volume">Głośność alarmu</string>
+    <string name="screen_luminance">Jasność ekranu</string>
+
+    <string name="delete_user">Usunięcie pacjenta</string>
+    <string name="signs_data">Znak danych</string>
+    <string name="video_data">Dane wideo</string>
+    <string name="image_data">Dane zdjęciowe</string>
+
+    <!--User -->
+    <string name="reset_lower">Nastawić</string>
+    <string name="reset_upper">Zresetuj górny</string>
+
+    <!--鍛婅-->
+    <string name="SYS.CON">Błąd komunikacji szeregowej</string>
+    <!--<string name="SYS.PWR">Power failure</string>-->
+    <string name="SYS.HA">Błąd komunikacji MCU</string>
+    <string name="SYS.HOOD">Awaria kopuły</string>
+    <string name="SYS.MOTOR">Awaria systemu podnoszenia</string>
+    <string name="SYS.DOOR">Awaria drzwi radiacyjnych</string>
+    <string name="SYS.WARM1">Awaria systemu grzewczego</string>
+    <string name="SYS.WARM2">Awaria promiennika</string>
+    <string name="SYS.BOX">Błąd podłączenia skrzynki czujnika</string>
+    <string name="SEN.A1">Awaria czujnika temperatury powietrza</string>
+    <string name="SEN.A2">Awaria czujnika temperatury zewnętrznej</string>
+    <string name="SEN.ADIF">Błąd czujnika temperatury powietrza - pomiar różnicowy</string>
+    <string name="SEN.F1">Błąd czujnika przepływu powietrza</string>
+    <string name="SEN.S1A">Alarm czujnika temperatury skóry 1</string>
+    <string name="SEN.S1B">ISO Błąd czujnika temperatury</string>
+    <string name="SEN.S2">Alarm czujnika temperatury skóry 2</string>
+    <string name="SEN.SDIF">Błąd czujnika temperatury skóry - pomiar różnicowy</string>
+
+    <string name="AIR.OVH">Alarm przegrzania powietrza</string>
+    <string name="SKIN.OVH">Alarm przegrzania skóry</string>
+    <string name="FLOW.OVH">Alarm przegrzania przepływu powietrza</string>
+
+    <string name="CTRL.SEN">Błąd umieszczenia czujnika temperatury skóry</string>
+    <string name="SYS.FAN">Błąd silnika</string>
+    <string name="TEMP.DEVH">Alarm odchylenia temperatury</string>
+    <string name="TEMP.DEVL">Alarm odchylenia temperatury</string>
+
+    <string name="CTRL.ERR1">Sprawdź czujnik skóry A</string>
+    <string name="CTRL.ERR2">Sprawdź czujnik skóry C</string>
+    <string name="CTRL.MAN">Sprawdź tryb ręczny</string>
+    <string name="SEN.O2_1">Błąd czujnika 1 O2</string>
+    <string name="SEN.O2_2">Błąd czujnika 2 O2</string>
+    <string name="SEN.O2DIF">Błąd czujników O2 - pomiar różnicowy</string>
+
+    <string name="O2.DEVH">Alarm odchylenia czujnika O2 - w górę</string>
+    <string name="O2.DEVL">Alarm odchylenia czujnika O2 - w dół</string>
+    <string name="SEN.SPO2">Awaria modułu pomiaru SpO2</string>
+    <string name="SPO2.ERR">Awaria systemu pomiaru SpO2</string>
+
+    <string name="SPO2.BIT12">Przewód przewodzący nie jest podłączony</string>
+    <string name="SPO2.BIT0">Błąd połączenia czujnika SpO2</string>
+    <string name="SPO2.BIT1">Awaria czujnika SpO2</string>
+    <string name="SPO2.BIT7">Niemożliwa identyfikacja czujnika SpO2</string>
+    <string name="SPO2.BIT5">Czujnik SpO2 podłączony niepoprawnie.</string>
+    <string name="SPO2.BIT13">Czujnik samoprzylepny niepodlączony</string>
+
+    <string name="SYS.HUMC">Awaria systemu ogrzewania nawilżacza</string>
+    <string name="SEN.HUM">Awaria czujnika wilgotności</string>
+
+    <string name="HUM.DEVH">Alarm odchylenia w górę pomiaru z czujnika wilgotności</string>
+    <string name="HUM.DEVL">Alarm odchylenia w dół+C165 pomiaru z czujnika wilgotności</string>
+    <string name="SYS.UPS">Błąd akumulatora Ni-MH</string>
+    <string name="SYS.BAT">Błąd przycisku</string>
+
+    <string name="SPO2.OVH">Górny limit alarmu SpO2</string>
+
+    <string name="SPO2.OVL">Dolny limit alarmu SpO2</string>
+    <string name="PR.OVH">Górny limit alarmu pulsu</string>
+    <string name="PR.OVL">Dolny limit alarmu pulsu</string>
+
+    <string name="SYS.TANK">Błąd umieszczenia zbiornika na wodę</string>
+    <string name="SYS.WATER">Alarm braku wody</string>
+    <string name="SYS.CFG">Dane konfiguracji kopii zapasowej są uszkodzone</string>
+
+    <string name="SPO2.BIT2">Niskie PI</string>
+    <string name="SPO2.LOW">SpO2 poniżej 85%</string>
+    <string name="SPO2.BIT3">Szukam tętna</string>
+    <string name="SPO2.BIT4">Wykryto zakłócenia</string>
+    <string name="SPO2.BIT6">Za dużo światła zewnętrznego</string>
+    <string name="SPO2.BIT10">Niska jakość sygnału</string>
+</resources>

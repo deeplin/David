@@ -4,7 +4,8 @@
     <string name="upper_version_id" translatable="false">1.0.0</string>
     <!--<string name="device_model" translatable="false">YP-2008S</string>-->
     <!--<string name="device_model" translatable="false">YP-3000S</string>-->
-    <string name="device_model" translatable="false">HKN-93S</string>
+    <string name="device_model" translatable="false">YP-2000S</string>
+    <!--<string name="device_model" translatable="false">HKN-93S</string>-->
 
     <!--网络设置-->
     <bool name="enable_cloud" translatable="false">false</bool>
@@ -165,6 +166,7 @@
     <string name="SYS.DOOR">辐射门故障报警</string>
     <string name="SYS.WARM1">温度加热系统故障</string>
     <string name="SYS.WARM2">辐射加热系统故障</string>
+    <string name="SYS.BOX">传感器盒连接错误</string>
     <string name="SEN.A1">箱温传感器故障报警</string>
     <string name="SEN.A2">独立温度传感器故障报警</string>
     <string name="SEN.ADIF">箱温传感器差异故障报警</string>

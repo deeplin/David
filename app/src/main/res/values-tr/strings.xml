@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">David Medical</string>
+
+    <!--Home-->
+    <string name="default_user">Kullanıcı</string>
+
+    <!--Objective-->
+    <string name="ok">OK</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="blue_time">Işık kaynağı miktar zamanlaması</string>
+    <string name="clockwise">Saat yönü</string>
+    <string name="countdown">Gerisayım</string>
+
+    <!--Chart-->
+    <string name="cycle">Dönem</string>
+    <string name="skin1">Cilt1</string>
+    <string name="skin2">Cilt2</string>
+    <string name="air">Hava</string>
+    <string name="humidity">Nem</string>
+    <string name="oxygen">O2</string>
+    <string name="spo2">SPO2</string>
+    <string name="pr">PR</string>
+    <string name="heating_power">Isıtma</string>
+    <string name="time">Zaman</string>
+    <string name="previous_page">Önceki</string>
+    <string name="next_page">Sonraki</string>
+    <string name="delete">Sil</string>
+    <string name="delete_confirm">Veri silinsin mi ?</string>
+
+    <!--Camera-->
+    <string name="camera_no_connection">Kamera yok</string>
+
+    <!--Scale-->
+    <string name="rescale">Tekrar ölçün</string>
+    <string name="scale">Terazi</string>
+    <string name="raise_baby">Lütfen bebeği kaldırın...</string>
+    <string name="put_down_baby">Lütfen bebeği yerine koyun...</string>
+    <string name="no_record_added">Kayıt eklenmedi</string>
+    <string name="current_weight">Ağırlık</string>
+
+    <!--Setting-->
+
+    <!--Add User-->
+    <string name="name">İsim</string>
+    <string name="id">ID</string>
+    <string name="sex">Cinsiyet</string>
+    <string name="blood_type">Kan grubu</string>
+    <string name="birthday">Doğum tarihi</string>
+    <string name="birth_weight">Doğum ağırlığı</string>
+    <string name="medical_history">Olay</string>
+    <string name="add_patient">Hasta ekle</string>
+
+    <string name="male">Erkek</string>
+    <string name="female">Kız</string>
+
+    <!--Comfort Zone-->
+    <string name="comfort_zone">Rahat Bölge</string>
+    <string name="age">Yaş</string>
+    <string name="day">Gün</string>
+    <string name="gestation">Gebelik süresi</string>
+    <string name="week">Hafta</string>
+    <string name="weight">Ağırlık</string>
+    <string name="proposed_setting_range">Önerilen ayarlar:</string>
+
+    <!--Calibration-->
+    <string name="calibration">Kalibrasyon</string>
+    <string name="calibration_o2">O2 Kalibrasyon</string>
+    <string name="calibration_confirm_o2_21">Lütfen O2'nin %21'de kalibre edildiğini onaylayın</string>
+    <string name="calibration_confirm_o2_100">Lütfen O2'nin % 100 'de kalibre edildiğini onaylayın</string>
+    <string name="calibration_scale">Terazi Kalibrasyonu</string>
+    <string name="calibration_confirm_scale_0">Mevcut ağırlık %sg\nLütfen terazi klb. 0g'da onaylayın</string>
+    <string name="calibration_confirm_scale_5000">Mevcut ağırlık %sg\nLütfen terazi klb. 5000g'da onaylayın</string>
+    <string name="cancel">İptal</string>
+    <string name="calibration_successful">Kalibrasyon başarılı</string>
+    <string name="calibration_failed">Kalibrasyon başarısız</string>
+
+    <!--Device-->
+    <string name="software_information">Yazılım bilgisi</string>
+    <string name="hardware_version">Donanım bilgisi</string>
+    <string name="master_version">Ana Sürüm</string>
+    <string name="slave_version">Yardımcı Sürüm</string>
+    <string name="upper_version">Üst Sürüm</string>
+    <string name="device_id">Cihaz ID'si</string>
+
+    <!--Login-->
+    <string name="input_password">Lütfen şifre girin</string>
+
+    <!--Admin-->
+    <string name="system_setting">Sistem ayarları</string>
+    <!--Home-->
+    <string name="deviation_warning">Sapma Uyarısı</string>
+    <string name="overheat_warning">Aşırı Isı Uyarısı</string>
+    <string name="setting_range">Ayar Aralığı</string>
+    <string name="temp_calibration">Isı Kalbirasyonu</string>
+    <string name="other_parameter">Diğer Parametreler</string>
+    <string name="data_print">Çıktı</string>
+    <string name="factory_setting">Fabrika ayarları</string>
+    <string name="overheat_experiment">Aşırı Isınma Testi</string>
+
+    <!--Deviation Warning-->
+    <string name="skin">Cilt</string>
+    <string name="exit">Geri dön</string>
+
+    <!--Overheat Warning-->
+    <string name="overheat_air_above_37">Hava>37℃</string>
+    <string name="air_flow">Hava Akış</string>
+    <string name="overheat_airflow_above_37">Hava Akış>37℃</string>
+    <string name="fan_speed">Fan Hızı</string>
+
+    <!--System Calibration-->
+    <string name="iso_air">ISO Hava</string>
+    <string name="iso_skin1">ISO Cilt1</string>
+
+    <!--System Print-->
+    <string name="print_cycle">Baskı döngüsü</string>
+
+    <!--Overheat Experiment-->
+    <string name="overheat_air_below_37">Hava ≤37℃</string>
+    <string name="overheat_skin_above_37">Cilt >37℃</string>
+    <string name="stable_state">Stabil</string>
+
+    <!--User -->
+    <string name="user_setting">Kull. Ayarı</string>
+    <string name="patient_information">Hasta Bilgisi</string>
+    <string name="time_setup">Zaman Ayarı</string>
+    <string name="language_setup">Dil Ayarı</string>
+    <string name="warning_volume">Ses Şiddeti</string>
+    <string name="screen_luminance">Ekran Parlaklığı</string>
+
+    <string name="delete_user">Hasta Sil</string>
+    <string name="signs_data">Veri belirtileri</string>
+    <string name="video_data">Video Verisi</string>
+    <string name="image_data">Imaj Verisi</string>
+
+    <!--User -->
+    <string name="reset_lower">Sıfırla</string>
+    <string name="reset_upper">Komple Sıfırla</string>
+
+    <!--鍛婅-->
+    <string name="SYS.CON">Seri Bağlantı Mevcut değil</string>
+    <string name="SYS.PWR">Power failure</string>
+    <string name="SYS.HA">MCU Bağlantı Hatası</string>
+    <string name="SYS.HOOD">Kanopi hatası</string>
+    <string name="SYS.MOTOR">Yükseklik hatası</string>
+    <string name="SYS.DOOR">Kapı hatası</string>
+    <string name="SYS.WARM1">Isıtıcı Sistem Hatası</string>
+    <string name="SYS.WARM2">Radyant Isıtıcı Sistem Hatası</string>
+    <string name="SYS.BOX">Sensör kutusu bağlantı hatası</string>
+    <string name="SEN.A1">Hava Sensörü Hatası</string>
+    <string name="SEN.A2">İzole Hava Sensörü Hatası</string>
+    <string name="SEN.ADIF">Hava Sensörleri Fark Hatası</string>
+    <string name="SEN.F1">Hava Akış Sensörü Hatası</string>
+    <string name="SEN.S1A">Cilt Sensörü 1 Hatası</string>
+    <string name="SEN.S1B">Izole Cilt Sensör Hatası</string>
+    <string name="SEN.S2">Cilt Sensörü 2 Hatası</string>
+    <string name="SEN.SDIF">Cilt Sensor Fark Hatası</string>
+
+    <string name="AIR.OVH">Aşırı Hava Sıcaklığı Alarmı</string>
+    <string name="SKIN.OVH">Aşırı Cilt Sıcaklığı Alarmı</string>
+    <string name="FLOW.OVH">Hava Sirkülasyon Arızası</string>
+
+    <string name="CTRL.SEN">Cilt Sensörü Pozisyon Hatası</string>
+    <string name="SYS.FAN">Motor Arızası</string>
+    <string name="TEMP.DEVH">Yüksek Isı Sapma Alarmı</string>
+    <string name="TEMP.DEVL">Düşük Isı Sapma Alarmı</string>
+
+    <string name="CTRL.ERR1">Cilt Sensörü A'yı Kontrol et</string>
+    <string name="CTRL.ERR2">Cilt Sensörü C'yi Kontrol et</string>
+    <string name="CTRL.MAN">Manuel Modu Kontrol et</string>
+    <string name="SEN.O2_1">O2 1. Sensörü Hatası</string>
+    <string name="SEN.O2_2">O2 2. Sensörü Hatası</string>
+    <string name="SEN.O2DIF">O2 Sensörleri Fark Hatası</string>
+
+    <string name="O2.DEVH">Yüksek Oksijen Alarmı</string>
+    <string name="O2.DEVL">Düşük Oksijen Alarmı</string>
+    <string name="SEN.SPO2">Pulse Oksimetre Modül Hatası</string>
+    <string name="SPO2.ERR">Pulse Oksimetre Sistem Hatası</string>
+
+    <string name="SPO2.BIT12">İletken Tel Bağlı Değil</string>
+    <string name="SPO2.BIT0">SopO2 Sensor Bağlantı Hatası</string>
+    <string name="SPO2.BIT1">Pulse Oksimetre Sensör Hatası</string>
+    <string name="SPO2.BIT7">Pulse Oksimetre Sensörü Tanımlanamadı</string>
+    <string name="SPO2.BIT5">Pulse Oksimetre Sensörü Takılı değil</string>
+    <string name="SPO2.BIT13">Yapışkan Sensör Bağlı Değil</string>
+
+    <string name="SYS.HUMC">Nem Isıtıcı Sistemi Hatası</string>
+    <string name="SEN.HUM">Nem Sensör Hatası</string>
+
+    <string name="HUM.DEVH">Yüksek Nem Alarmı</string>
+    <string name="HUM.DEVL">Düşük  Nem Alarmı</string>
+    <string name="SYS.UPS">Pil Hatası</string>
+    <string name="SYS.BAT">Tuş Hücresi Hatası</string>
+
+    <string name="SPO2.OVH">SpO2 Yüksek Alarm Limiti</string>
+    <string name="SPO2.OVL">SpO2 Düşük Alarm Limiti</string>
+    <string name="PR.OVH">Nabız Sayısı Yüksek Alarm Limiti</string>
+    <string name="PR.OVL">Nabız Sayısı Düşük Alarm Limiti</string>
+
+    <string name="SYS.TANK">Su Haznesi Pozisyon Hatası</string>
+    <string name="SYS.WATER">Su Az</string>
+    <string name="SYS.CFG">Yedekleme verileri bozuk</string>
+
+    <string name="SPO2.BIT2">Düşük PI</string>
+    <string name="SPO2.LOW">Spo2 % 85'in altında</string>
+    <string name="SPO2.BIT3">Nabız ara</string>
+    <string name="SPO2.BIT4">Müdahele algılandı</string>
+    <string name="SPO2.BIT6">Cok fazla ortam ışığı</string>
+    <string name="SPO2.BIT10">Düsük Sinyal Kalitesi</string>
+</resources>

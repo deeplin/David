@@ -12,7 +12,7 @@ import com.david.common.util.CommandChar;
 
 public class AlertDisableCommand extends BaseSerialMessage {
 
-    public static final byte[] COMMAND = ("~ALERT DISABLE ALL 30" + CommandChar.ENTER).getBytes();
+    public static final byte[] COMMAND = ("~ALERT DISABLE ALL 10" + CommandChar.ENTER).getBytes();
 
     public AlertDisableCommand() {
     }

@@ -9,7 +9,7 @@
     <string name="ok">OK</string>
     <string name="on">ON</string>
     <string name="off">OFF</string>
-    <string name="blue_time">Light total timing</string>
+    <string name="blue_time">Light Total Timing</string>
     <string name="clockwise">Clockwise</string>
     <string name="countdown">Countdown</string>
 
@@ -20,7 +20,7 @@
     <string name="air">Air</string>
     <string name="humidity">Hum.</string>
     <string name="oxygen">O2</string>
-    <string name="spo2">SPO2</string>
+    <string name="spo2">SpO2</string>
     <string name="pr">PR</string>
     <string name="heating_power">Heating</string>
     <string name="time">Time</string>
@@ -73,8 +73,8 @@
     <string name="calibration_confirm_scale_0">Current weight %sg\nPlease confirm if calibrate scale at 0g</string>
     <string name="calibration_confirm_scale_5000">Current weight %sg\nPlease confirm if calibrate scale at 5000g</string>
     <string name="cancel">Cancel</string>
-    <string name="calibration_successful">Calibration successful</string>
-    <string name="calibration_failed">Calibration failed</string>
+    <string name="calibration_successful">Calibration Successful</string>
+    <string name="calibration_failed">Calibration Failed</string>
 
     <!--Device-->
     <string name="software_information">Software Information</string>
@@ -140,13 +140,14 @@
 
     <!--告警-->
     <string name="SYS.CON">No Serial Connection</string>
-    <string name="SYS.PWR">Power failure</string>
+    <string name="SYS.PWR">Power Failure</string>
     <string name="SYS.HA">MCU Communication Fault</string>
     <string name="SYS.HOOD">Canopy Fault</string>
     <string name="SYS.MOTOR">Lift System Fault</string>
     <string name="SYS.DOOR">Radiant Door Fault</string>
     <string name="SYS.WARM1">TEMP. Heater System Fault</string>
     <string name="SYS.WARM2">Radiant Heater System Fault</string>
+    <string name="SYS.BOX">Sensor Box Connection Error</string>
     <string name="SEN.A1">Air Sensor Fault</string>
     <string name="SEN.A2">Isolated Sensor Fault</string>
     <string name="SEN.ADIF">Air Sensor DIFF. Fault</string>

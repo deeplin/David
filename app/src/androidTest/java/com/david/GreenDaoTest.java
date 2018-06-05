@@ -7,6 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.gen.DaoMaster;
 import com.david.common.dao.gen.DaoSession;
+import com.david.incubator.control.DaggerApplicationComponent;
 
 import org.greenrobot.greendao.database.Database;
 import org.junit.Test;
@@ -17,12 +18,15 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class GreenDaoTest {
 
+    TestApplication testApplication;
+
     private DaoMaster.DevOpenHelper devOpenHelper;
     private Database database;
     private DaoSession daoSession;
 
     public GreenDaoTest(){
-//        MainApplication.getInstance().getApplicationComponent().inject(this);
+//        TestApplication.getInstance().getApplicationComponent().inject(this);
+//        applicationComponent = DaggerApplicationComponent.builder().build();
     }
 
     @Test

@@ -8,7 +8,9 @@ import android.widget.Button;
 import com.david.R;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
+import com.david.common.control.MessageSender;
 import com.david.common.dao.SystemSetting;
+import com.david.common.data.ModuleHardware;
 import com.david.common.mode.LanguageMode;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.alarm.AlarmAdapter;
@@ -39,12 +41,18 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
     TopViewModel topViewModel;
     @Inject
     AlarmAdapter alarmAdapter;
+    @Inject
+    ModuleHardware moduleHardware;
+    @Inject
+    MessageSender messageSender;
 
     SystemSetting systemSetting;
     ObservableInt navigationView;
 
     public ObservableBoolean chineseSelected = new ObservableBoolean();
     public ObservableBoolean englishSelected = new ObservableBoolean();
+    public ObservableBoolean turkishSelected = new ObservableBoolean();
+    public ObservableBoolean polishSelected = new ObservableBoolean();
 
     public UserLanguageLayout(Context context, ObservableInt navigationView) {
         super(context);
@@ -63,8 +71,7 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
                     ResourceUtil.setLocalLanguage(getContext(), Locale.SIMPLIFIED_CHINESE);
-                    chineseSelected.set(true);
-                    englishSelected.set(false);
+                    setUI(LanguageMode.Chinese.getIndex());
                     saveLanguage(LanguageMode.Chinese.getIndex());
                     topViewModel.loadUserId();
                     refresh();
@@ -74,9 +81,30 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
                     ResourceUtil.setLocalLanguage(getContext(), Locale.ENGLISH);
-                    chineseSelected.set(false);
-                    englishSelected.set(true);
+                    setUI(LanguageMode.English.getIndex());
                     saveLanguage(LanguageMode.English.getIndex());
+                    topViewModel.loadUserId();
+                    invalidate();
+                    refresh();
+                });
+
+        RxView.clicks(binding.languageTurkishButton)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((aVoid) -> {
+                    ResourceUtil.setLocalLanguage(getContext(), new Locale("tr", "TR"));
+                    setUI(LanguageMode.Turkish.getIndex());
+                    saveLanguage(LanguageMode.Turkish.getIndex());
+                    topViewModel.loadUserId();
+                    invalidate();
+                    refresh();
+                });
+
+        RxView.clicks(binding.languagePolishButton)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((aVoid) -> {
+                    ResourceUtil.setLocalLanguage(getContext(), new Locale("pl", "PL"));
+                    setUI(LanguageMode.Polish.getIndex());
+                    saveLanguage(LanguageMode.Polish.getIndex());
                     topViewModel.loadUserId();
                     invalidate();
                     refresh();
@@ -95,12 +123,30 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
     @Override
     public void attach() {
         systemSetting = daoControl.getSystemSetting();
-        if (systemSetting.getLanguageIndex() == LanguageMode.English.getIndex()) {
+        setUI(systemSetting.getLanguageIndex());
+    }
+
+    private void setUI(int languageId) {
+        if (languageId == LanguageMode.English.getIndex()) {
             chineseSelected.set(false);
             englishSelected.set(true);
-        } else if (systemSetting.getLanguageIndex() == LanguageMode.Chinese.getIndex()) {
+            turkishSelected.set(false);
+            polishSelected.set(false);
+        } else if (languageId == LanguageMode.Chinese.getIndex()) {
             chineseSelected.set(true);
             englishSelected.set(false);
+            turkishSelected.set(false);
+            polishSelected.set(false);
+        } else if (languageId == LanguageMode.Turkish.getIndex()) {
+            chineseSelected.set(false);
+            englishSelected.set(false);
+            turkishSelected.set(true);
+            polishSelected.set(false);
+        } else if (languageId == LanguageMode.Polish.getIndex()) {
+            chineseSelected.set(false);
+            englishSelected.set(false);
+            turkishSelected.set(false);
+            polishSelected.set(true);
         }
     }
 
@@ -111,6 +157,9 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
     private void saveLanguage(byte languageId) {
         systemSetting.setLanguageIndex(languageId);
         daoControl.saveSystemSetting(systemSetting);
+        if (moduleHardware.is2000S()) {
+            messageSender.setLanguage(LanguageMode.values()[languageId].getName(), null);
+        }
     }
 
     private void refresh() {

@@ -5,9 +5,6 @@ import com.david.common.dao.Spo2GetCommand;
 import com.david.common.mode.AlarmSettingMode;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.SerialControl;
-import com.david.common.serial.command.other.FactoryCommand;
-import com.david.common.serial.command.other.LEDCommand;
-import com.david.common.serial.command.other.VersionCommand;
 import com.david.common.serial.command.alert.AlertDisableCommand;
 import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertListCommand;
@@ -21,9 +18,14 @@ import com.david.common.serial.command.calibration.ShowCalibrationCommand;
 import com.david.common.serial.command.ctrl.CtrlModeCommand;
 import com.david.common.serial.command.ctrl.CtrlOverrideCommand;
 import com.david.common.serial.command.ctrl.CtrlSetCommand;
+import com.david.common.serial.command.ctrl.CtrlStandByCommand;
 import com.david.common.serial.command.module.ModuleGetHardwareCommand;
 import com.david.common.serial.command.module.ModuleGetSoftwareCommand;
 import com.david.common.serial.command.module.ModuleSetCommand;
+import com.david.common.serial.command.other.FactoryCommand;
+import com.david.common.serial.command.other.LEDCommand;
+import com.david.common.serial.command.other.LanguageCommand;
+import com.david.common.serial.command.other.VersionCommand;
 import com.david.common.serial.command.spo2.Spo2SetCommand;
 
 import javax.inject.Inject;
@@ -183,6 +185,8 @@ public class MessageSender {
         AlertDisableCommand alertDisableCommand = new AlertDisableCommand();
         alertDisableCommand.setOnCompleted(onComplete);
         serialControl.addSession(alertDisableCommand);
+
+        setStandBy(true, true, null);
     }
 
     public void setOxygen(int value, int id, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
@@ -233,9 +237,24 @@ public class MessageSender {
         serialControl.addSession(ctrlOverrideCommand);
     }
 
-    public void Factory(BiConsumer<Boolean, BaseSerialMessage> onComplete){
+    public void Factory(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         FactoryCommand factoryCommand = new FactoryCommand();
         factoryCommand.setOnCompleted(onComplete);
         serialControl.addSession(factoryCommand);
+    }
+
+    public void setStandBy(boolean status, boolean critical, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        CtrlStandByCommand ctrlStandByCommand = new CtrlStandByCommand(status);
+        if (critical) {
+            ctrlStandByCommand.setCritical();
+        }
+        ctrlStandByCommand.setOnCompleted(onComplete);
+        serialControl.addSession(ctrlStandByCommand);
+    }
+
+    public void setLanguage(String language, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
+        LanguageCommand languageCommand = new LanguageCommand(language);
+        languageCommand.setOnCompleted(onComplete);
+        serialControl.addSession(languageCommand);
     }
 }
