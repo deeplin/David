@@ -4,9 +4,11 @@ import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.Spo2GetCommand;
 import com.david.common.dao.StatusCommand;
+import com.david.common.dao.SystemSetting;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
+import com.david.common.mode.LanguageMode;
 import com.david.common.mode.Spo2SensMode;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.other.LEDCommand;
@@ -93,6 +95,11 @@ public class AutomationControl implements IViewModel {
     }
 
     private void startRefresh() {
+        SystemSetting sensorRange = daoControl.getSystemSetting();
+        if (moduleHardware.is2000S()) {
+            messageSender.setLanguage(LanguageMode.values()[sensorRange.getLanguageIndex()].getName(), null);
+        }
+
         /*配置37度灯*/
         if (!moduleHardware.is93S()) {
             shareMemory.above37.addOnPropertyChangedCallback(new android.databinding.Observable.OnPropertyChangedCallback() {

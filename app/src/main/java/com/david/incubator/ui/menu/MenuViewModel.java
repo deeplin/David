@@ -3,6 +3,7 @@ package com.david.incubator.ui.menu;
 import android.databinding.ObservableBoolean;
 
 import com.david.common.control.MainApplication;
+import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.incubator.ui.main.MainViewModel;
 
@@ -21,14 +22,14 @@ public class MenuViewModel {
 
     @Inject
     public ShareMemory shareMemory;
+    @Inject
+    public ModuleHardware moduleHardware;
 
     public ObservableBoolean menuChart = new ObservableBoolean(false);
     public ObservableBoolean menuSpo2 = new ObservableBoolean(false);
     public ObservableBoolean menuScale = new ObservableBoolean(false);
     public ObservableBoolean menuCamera = new ObservableBoolean(false);
     public ObservableBoolean menuSetting = new ObservableBoolean(false);
-
-    public ObservableBoolean cameraVisible = new ObservableBoolean();
 
     @Inject
     public MenuViewModel() {

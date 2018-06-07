@@ -24,8 +24,8 @@ public class ModuleSoftware implements BiConsumer<Boolean, BaseSerialMessage> {
 
     private boolean O2;
     private boolean HUM;
-    private boolean SPO2;
-    private boolean SCALE;
+    protected boolean SPO2;
+    protected boolean SCALE;
 
     @Inject
     public ModuleSoftware() {

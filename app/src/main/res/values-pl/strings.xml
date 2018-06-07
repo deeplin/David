@@ -93,7 +93,7 @@
     <string name="deviation_warning">Alarm odchylenia</string>
     <string name="overheat_warning">Alarm przegrzania</string>
     <string name="setting_range">Zakres ustawień</string>
-    <string name="temp_calibration">Kalibracja temperatury</string>
+    <string name="temp_calibration">Kalibracja</string>
     <string name="other_parameter">Inne parametry</string>
     <string name="data_print">Drukowanie danych</string>
     <string name="factory_setting">Ustawienie fabryczne</string>

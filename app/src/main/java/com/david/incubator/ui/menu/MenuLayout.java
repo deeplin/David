@@ -42,7 +42,6 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
     @Inject
     ModuleSoftware moduleSoftware;
 
-    Observable.OnPropertyChangedCallback hardwareCallback;
     Observable.OnPropertyChangedCallback softwareCallback;
 
     public MenuLayout(Context context, AttributeSet attrs) {
@@ -57,13 +56,6 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(aObject ->
                                 binding.btMenuSpo2.setEnabled(moduleHardware.isSPO2() && moduleSoftware.isSPO2()));
-            }
-        };
-
-        hardwareCallback = new Observable.OnPropertyChangedCallback() {
-            @Override
-            public void onPropertyChanged(Observable sender, int propertyId) {
-                menuViewModel.cameraVisible.set(moduleHardware.isCameraInstalled());
             }
         };
 
@@ -103,11 +95,6 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
                     }
                 });
 
-        /*SpO2按钮切换到监护仪*/
-//        RxView.clicks(binding.btMenuSpo2)
-//                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-//                .subscribe((aVoid) -> mainViewModel.switchToMonitor());
-
         RxView.clicks(binding.btMenuScale)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
@@ -142,7 +129,6 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
 
     @Override
     public void attach() {
-        moduleHardware.updated.addOnPropertyChangedCallback(hardwareCallback);
         moduleSoftware.updated.addOnPropertyChangedCallback(softwareCallback);
         moduleHardware.updated.notifyChange();
         moduleSoftware.updated.notifyChange();
@@ -151,6 +137,5 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
     @Override
     public void detach() {
         moduleSoftware.updated.removeOnPropertyChangedCallback(softwareCallback);
-        moduleHardware.updated.removeOnPropertyChangedCallback(hardwareCallback);
     }
 }

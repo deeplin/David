@@ -44,6 +44,14 @@ public class ModuleHardware extends ModuleSoftware {
         return cameraInstalled;
     }
 
+    public boolean isSPO2() {
+        return super.SPO2;
+    }
+
+    public boolean isSCALE() {
+        return super.SCALE;
+    }
+
     public boolean isEnableCloud() {
         return enableCloud;
     }
