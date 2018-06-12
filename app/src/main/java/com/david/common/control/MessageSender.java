@@ -55,7 +55,7 @@ public class MessageSender {
         MainApplication.getInstance().getApplicationComponent().inject(this);
     }
 
-    //    //读取下位机配置信息
+    //读取下位机配置信息
     public void getHardwareModule(BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         ModuleGetHardwareCommand moduleGetHardwareCommand = new ModuleGetHardwareCommand();
         moduleGetHardwareCommand.setCritical();
@@ -76,7 +76,7 @@ public class MessageSender {
         serialControl.addSession(ledCommand);
     }
 
-    //    /*数据库相关命令*/
+    /*数据库相关命令*/
     public void getSpo2(boolean criticalCommand, BiConsumer<Boolean, BaseSerialMessage> onComplete) {
         Spo2GetCommand spo2GetCommand = new Spo2GetCommand();
         if (criticalCommand) {

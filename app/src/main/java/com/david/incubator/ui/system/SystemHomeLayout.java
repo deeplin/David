@@ -53,10 +53,6 @@ public class SystemHomeLayout extends BindingConstraintLayout<LayoutSystemHomeBi
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> navigationView.set(FragmentPage.SYSTEM_DATA_PRINT));
 
-        RxView.clicks(binding.systemOverheatExperiment)
-                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> navigationView.set(FragmentPage.SYSTEM_OVERHEAT_EXPERIMENT));
-
         RxView.clicks(binding.systemFactorySetting)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> navigationView.set(FragmentPage.SYSTEM_FACTORY));
@@ -69,11 +65,9 @@ public class SystemHomeLayout extends BindingConstraintLayout<LayoutSystemHomeBi
 
     @Override
     public void attach() {
-
     }
 
     @Override
     public void detach() {
-
     }
 }

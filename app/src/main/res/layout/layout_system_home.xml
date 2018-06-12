@@ -53,7 +53,7 @@
             style="@style/large_button_style"
             android:text="@string/temp_calibration"
             android:textSize="@dimen/f18"
-            app:layout_constraintBottom_toTopOf="@+id/systemOverheatExperiment"
+            app:layout_constraintBottom_toTopOf="@+id/systemFactorySetting"
             app:layout_constraintEnd_toStartOf="@+id/systemOverheatWarning"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,25 +80,15 @@
             app:layout_constraintTop_toTopOf="@id/systemCalibration" />
 
         <Button
-            android:id="@+id/systemOverheatExperiment"
+            android:id="@+id/systemFactorySetting"
             style="@style/large_button_style"
-            android:text="@string/overheat_experiment"
+            android:text="@string/factory_setting"
             android:textSize="@dimen/f18"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/systemOverheatWarning"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/systemCalibration" />
-
-        <Button
-            android:id="@+id/systemFactorySetting"
-            style="@style/large_button_style"
-            android:text="@string/factory_setting"
-            android:textSize="@dimen/f18"
-            app:layout_constraintBottom_toBottomOf="@id/systemOverheatExperiment"
-            app:layout_constraintLeft_toLeftOf="@id/systemOverheatWarning"
-            app:layout_constraintRight_toRightOf="@id/systemOverheatWarning"
-            app:layout_constraintTop_toTopOf="@id/systemOverheatExperiment" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

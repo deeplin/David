@@ -1,5 +1,6 @@
 package com.david.incubator.ui.user;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
@@ -13,8 +14,10 @@ import com.david.common.control.MainApplication;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
+import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutUserTimeBinding;
 import com.david.incubator.ui.common.ButtonControlViewModel;
+import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.io.DataOutputStream;
@@ -43,6 +46,8 @@ public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBindin
     ObservableInt navigationView;
     ButtonControlViewModel buttonControlViewModel;
 
+    private AlertDialog alertDialog;
+
     public UserTimeLayout(Context context, ObservableInt navigationView) {
         super(context);
         MainApplication.getInstance().getApplicationComponent().inject(this);
@@ -58,8 +63,12 @@ public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBindin
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibOK))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    setTime();
-                    daoControl.deleteTables();
+                    alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.calibration_o2,
+                            ResourceUtil.getString(R.string.calibration_confirm_o2_21),
+                            (dialog, which) -> {
+                                setTime();
+                                daoControl.deleteTables();
+                            });
                 });
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibReturn))
@@ -91,6 +100,10 @@ public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBindin
 
     @Override
     public void detach() {
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+            alertDialog = null;
+        }
     }
 
     @Override

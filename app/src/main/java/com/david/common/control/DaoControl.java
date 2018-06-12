@@ -78,6 +78,10 @@ public class DaoControl {
         }
     }
 
+    public DaoSession getDaoSession() {
+        return daoSession;
+    }
+
     private void initSystemSetting() {
         SystemSetting systemSetting = getSystemSetting();
         if (systemSetting == null) {
@@ -92,7 +96,19 @@ public class DaoControl {
         }
     }
 
-    public void deleteTables(){
+    public void saveSystemSetting(SystemSetting systemSetting) {
+        SystemSettingDao sensorRangeDao = daoSession.getSystemSettingDao();
+        sensorRangeDao.save(systemSetting);
+    }
+
+    public SystemSetting getSystemSetting() {
+        SystemSettingDao systemSettingDao = daoSession.getSystemSettingDao();
+        return systemSettingDao.queryBuilder()
+                .where(SystemSettingDao.Properties.Id.eq(0L))
+                .unique();
+    }
+
+    public void deleteTables() {
         database.execSQL("DELETE FROM ANALOG_COMMAND");
         database.execSQL("DELETE FROM STATUS_COMMAND");
         database.execSQL("DELETE FROM WEIGHT_MODEL");
@@ -104,27 +120,10 @@ public class DaoControl {
     public void increaseJaunediceTime() {
         SystemSetting systemSetting = getSystemSetting();
         systemSetting.setBlueTime(systemSetting.getBlueTime() + 10);
-        SystemSettingDao systemSettingDao = daoSession.getSystemSettingDao();
-        systemSettingDao.save(systemSetting);
+        saveSystemSetting(systemSetting);
     }
 
-    public DaoSession getDaoSession() {
-        return daoSession;
-    }
-
-    public SystemSetting getSystemSetting() {
-        SystemSettingDao systemSettingDao = daoSession.getSystemSettingDao();
-        return systemSettingDao.queryBuilder()
-                .where(SystemSettingDao.Properties.Id.eq(0L))
-                .unique();
-    }
-
-    public void saveSystemSetting(SystemSetting systemSetting) {
-        SystemSettingDao sensorRangeDao = daoSession.getSystemSettingDao();
-        sensorRangeDao.save(systemSetting);
-    }
-
-    public void saveCommand(AnalogCommand analogCommand) {
+    public synchronized void saveCommand(AnalogCommand analogCommand) {
         long currentTime = TimeUtil.getCurrentTimeInSecond();
         /*每分钟记录一次*/
         if (currentTime % 60 == 0) {
@@ -137,7 +136,7 @@ public class DaoControl {
         }
     }
 
-    public void saveCommand(StatusCommand statusCommand) {
+    public synchronized void saveCommand(StatusCommand statusCommand) {
         long currentTime = TimeUtil.getCurrentTimeInSecond();
         /*每分钟记录一次*/
         if (currentTime % 60 == 0) {
@@ -150,7 +149,7 @@ public class DaoControl {
         }
     }
 
-    public void saveCommand(CtrlGetCommand ctrlGetCommand) {
+    public synchronized void saveCommand(CtrlGetCommand ctrlGetCommand) {
         if (ctrlGetCommand.isChanged()) {
             long currentTime = TimeUtil.getCurrentTimeInSecond();
             ctrlGetCommand.setTimeStamp(currentTime);
@@ -163,7 +162,7 @@ public class DaoControl {
         }
     }
 
-    public void saveCommand(Spo2GetCommand spo2GetCommand) {
+    public synchronized void saveCommand(Spo2GetCommand spo2GetCommand) {
         if (spo2GetCommand.isChanged()) {
             long currentTime = TimeUtil.getCurrentTimeInSecond();
             spo2GetCommand.setTimeStamp(currentTime);
@@ -177,16 +176,17 @@ public class DaoControl {
         }
     }
 
-    public void deleteStale() {
+    public synchronized void deleteStale() {
         daoSession.clear();
+
         long staleTime = TimeUtil.getCurrentTimeInSecond() - Constant.SENSOR_SAVED_IN_DATABASE;
         //delete old analog records
         AnalogCommandDao analogCommandDao = daoSession.getAnalogCommandDao();
         List<AnalogCommand> analogModelsList = analogCommandDao.queryBuilder()
                 .where(AnalogCommandDao.Properties.TimeStamp.le(staleTime))
                 .build().list();
-        for (AnalogCommand oldAnalogCommand : analogModelsList) {
-            analogCommandDao.delete(oldAnalogCommand);
+        for (AnalogCommand analogCommand : analogModelsList) {
+            analogCommandDao.delete(analogCommand);
         }
 
         //delete old status records
@@ -217,28 +217,27 @@ public class DaoControl {
         }
 
         //delete old weight records
-        long weightStaleTime = TimeUtil.getCurrentTimeInSecond() - Constant.SCALE_SAVED_IN_DATABASE;
         WeightModelDao weightModelDao = daoSession.getWeightModelDao();
         List<WeightModel> weightModelList = weightModelDao.queryBuilder()
-                .where(WeightModelDao.Properties.TimeStamp.le(weightStaleTime))
+                .where(WeightModelDao.Properties.TimeStamp.le(staleTime))
                 .build().list();
-        for (WeightModel oldScaleCommand : weightModelList) {
-            weightModelDao.delete(oldScaleCommand);
+        for (WeightModel scaleCommand : weightModelList) {
+            weightModelDao.delete(scaleCommand);
         }
     }
 
-    /*Chart*/
     public List<AnalogCommand> getAnalogCommand(int limit) {
         return getAnalogCommand(limit, -1);
     }
 
     public List<AnalogCommand> getAnalogCommand(int limit, long currentId) {
+        daoSession.clear();
+
         UserModel userModel = userModelData.userModel;
         if (userModel == null) {
             userModel = getLastUserModel();
         }
 
-        daoSession.clear();
         AnalogCommandDao analogModelDao = daoSession.getAnalogCommandDao();
         QueryBuilder<AnalogCommand> queryBuilder = analogModelDao.queryBuilder()
                 .orderDesc(AnalogCommandDao.Properties.Id)
@@ -263,12 +262,13 @@ public class DaoControl {
     }
 
     public List<StatusCommand> getStatusCommand(int limit, long currentId) {
+        daoSession.clear();
+
         UserModel userModel = userModelData.userModel;
         if (userModel == null) {
             userModel = getLastUserModel();
         }
 
-        daoSession.clear();
         StatusCommandDao statusCommandDao = daoSession.getStatusCommandDao();
         QueryBuilder<StatusCommand> queryBuilder = statusCommandDao.queryBuilder()
                 .orderDesc(StatusCommandDao.Properties.Id)
@@ -284,6 +284,7 @@ public class DaoControl {
         if (currentId > 0) {
             queryBuilder.where(StatusCommandDao.Properties.Id.le(currentId));
         }
+
         return queryBuilder.build().list();
     }
 
@@ -324,12 +325,13 @@ public class DaoControl {
     }
 
     public List<WeightModel> getWeightModel(int limit, long currentId) {
+        daoSession.clear();
+
         UserModel userModel = userModelData.userModel;
         if (userModel == null) {
             userModel = getLastUserModel();
         }
 
-        daoSession.clear();
         WeightModelDao weightModelDao = daoSession.getWeightModelDao();
         QueryBuilder<WeightModel> queryBuilder = weightModelDao.queryBuilder()
                 .orderDesc(WeightModelDao.Properties.Id)
@@ -350,14 +352,17 @@ public class DaoControl {
     }
 
     /*User*/
-
     public UserModel getLastUserModel() {
+        daoSession.clear();
+
         UserModelDao userModelDao = daoSession.getUserModelDao();
         return userModelDao.queryBuilder()
                 .orderDesc(UserModelDao.Properties.Id).limit(1).unique();
     }
 
     public void addUserModel(UserModel userModel) {
+        daoSession.clear();
+
         UserModel lastUserModel = getLastUserModel();
         UserModelDao userModelDao = daoSession.getUserModelDao();
         if (lastUserModel != null) {

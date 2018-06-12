@@ -23,7 +23,7 @@
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuSetting}"
             android:src="@mipmap/setting"
-            android:visibility="@{viewModel.shareMemory.lockScreen?View.INVISIBLE:View.VISIBLE}"
+            android:visibility="@{viewModel.shareMemory.lockScreen? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/btMenuChart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/btMenuChart" />
@@ -36,7 +36,7 @@
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuChart}"
             android:src="@mipmap/curve"
-            android:visibility="@{viewModel.shareMemory.lockScreen ? View.INVISIBLE:View.VISIBLE}"
+            android:visibility="@{viewModel.shareMemory.lockScreen ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btMenuSetting"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +49,7 @@
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuScale}"
             android:src="@mipmap/scale"
-            android:visibility="@{viewModel.shareMemory.lockScreen || (!viewModel.moduleHardware.isSCALE()) ?View.INVISIBLE:View.VISIBLE}"
+            android:visibility="@{viewModel.shareMemory.lockScreen || (!viewModel.moduleHardware.isSCALE()) ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/btMenuChart"
             app:layout_constraintStart_toEndOf="@+id/btMenuChart"
             app:layout_constraintTop_toTopOf="@+id/btMenuChart" />
@@ -62,7 +62,7 @@
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuSpo2}"
             android:src="@mipmap/heart"
-            android:visibility="@{viewModel.shareMemory.lockScreen || (!viewModel.moduleHardware.isSPO2()) ? View.INVISIBLE:View.VISIBLE}"
+            android:visibility="@{viewModel.shareMemory.lockScreen || (!viewModel.moduleHardware.isSPO2()) ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/btMenuChart"
             app:layout_constraintStart_toEndOf="@+id/btMenuScale"
             app:layout_constraintTop_toTopOf="@+id/btMenuChart" />
@@ -75,7 +75,7 @@
             android:background="@drawable/menu_button"
             android:isSelected="@{viewModel.menuCamera}"
             android:src="@mipmap/camera"
-            android:visibility="@{viewModel.shareMemory.lockScreen || (!viewModel.moduleHardware.isCameraInstalled()) ? View.INVISIBLE:View.VISIBLE}"
+            android:visibility="@{viewModel.shareMemory.lockScreen || (!viewModel.moduleHardware.isCameraInstalled()) ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@+id/btMenuChart"
             app:layout_constraintStart_toEndOf="@+id/btMenuSpo2"
             app:layout_constraintTop_toTopOf="@+id/btMenuChart" />

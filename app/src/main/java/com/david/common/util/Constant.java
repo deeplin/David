@@ -19,7 +19,6 @@ public class Constant {
     public static final int LONG_CLICK_DELAY = 100; //millisecond
 
     public static final int SENSOR_SAVED_IN_DATABASE = 43200; //43200 per month 存储一月，秒为单位
-    public static final int SCALE_SAVED_IN_DATABASE = 720; //720 per month 存储一月
 
     public static final String SYSTEM_PASSWORD = "121212";
     public static final String USER_PASSWORD = "898989";

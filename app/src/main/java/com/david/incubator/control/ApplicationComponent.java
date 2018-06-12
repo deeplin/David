@@ -236,4 +236,8 @@ public interface ApplicationComponent {
     void inject(AlarmAdapter alarmAdapter);
 
     void inject(UserTimeLayout userTimeLayout);
+
+
+    /*Test*/
+//    void inject(GreenDaoTest  greenDaoTest);
 }

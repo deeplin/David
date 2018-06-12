@@ -27,6 +27,10 @@ public abstract class MainApplication extends Application {
         return application;
     }
 
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -43,10 +47,6 @@ public abstract class MainApplication extends Application {
     protected abstract void start();
 
     public abstract void stop();
-
-    public ApplicationComponent getApplicationComponent() {
-        return applicationComponent;
-    }
 
     protected void setLanguage(DaoControl daoControl) {
         SystemSetting sensorRange = daoControl.getSystemSetting();

@@ -64,13 +64,15 @@ public class ChartFragment extends TabHomeFragment<FragmentChartBinding> impleme
 
         binding.tlChart.removeAllTabs();
         binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.celsius_small));
-        binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.radiation));
 
         if (isCabin) {
+            binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.heating));
             if (moduleHardware.isHUM())
                 binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.humidity));
             if (moduleHardware.isO2())
                 binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.o2));
+        }else{
+            binding.tlChart.addTab(buildIcon(binding.tlChart, R.mipmap.radiation));
         }
 
         if (moduleHardware.isSPO2()) {

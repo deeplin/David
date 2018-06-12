@@ -210,7 +210,7 @@ public class TopViewModel implements IViewModel {
     }
 
     public void muteAlarm() {
-        if (alarmControl.isAlert()) {
+        if (alarmControl.isAlert() && muteDisposable == null) {
             String alarmId = alarmControl.topAlarmId.get();
             int alarmTime = AlarmControl.getMuteTime(alarmId);
             messageSender.setMute(alarmId, alarmTime, (aBoolean, baseSerialMessage) -> {
@@ -218,7 +218,6 @@ public class TopViewModel implements IViewModel {
                     /*静音成功*/
                     synchronized (this) {
                         clearAlarm();
-                        showMute.set(true);
                         muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
 
                         muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
