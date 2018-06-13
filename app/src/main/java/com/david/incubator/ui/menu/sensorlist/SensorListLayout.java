@@ -101,6 +101,8 @@ public class SensorListLayout extends BindingConstraintLayout<LayoutSensorListBi
             binding.sensorListForth.rightBottom.set(null);
             binding.sensorListForth.objective.set(null);
         }
+        binding.sensorListThird.invalidate();
+        binding.sensorListForth.invalidate();
     }
 
     @Override

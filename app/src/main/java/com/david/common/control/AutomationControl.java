@@ -67,8 +67,6 @@ public class AutomationControl implements IViewModel {
 
     @Override
     public void attach() {
-        messageSender.setStandBy(false, true, null);
-
         /*读取配置文件*/
         messageSender.getHardwareModule((aBoolean, baseSerialMessage) -> {
             if (aBoolean) {
@@ -76,6 +74,10 @@ public class AutomationControl implements IViewModel {
                 startRefresh();
             }
         });
+    }
+
+    private void startRefresh() {
+        messageSender.setStandBy(false, true, null);
 
         /*读取传感器*/
         if (ioDisposable == null) {
@@ -92,9 +94,7 @@ public class AutomationControl implements IViewModel {
                         }
                     }, LogUtils::e);
         }
-    }
 
-    private void startRefresh() {
         SystemSetting sensorRange = daoControl.getSystemSetting();
         if (moduleHardware.is2000S()) {
             messageSender.setLanguage(LanguageMode.values()[sensorRange.getLanguageIndex()].getName(), null);

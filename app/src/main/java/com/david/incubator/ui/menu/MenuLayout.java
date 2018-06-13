@@ -2,7 +2,9 @@ package com.david.incubator.ui.menu;
 
 import android.content.Context;
 import android.databinding.Observable;
+import android.databinding.ObservableBoolean;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
@@ -42,12 +44,24 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
     @Inject
     ModuleSoftware moduleSoftware;
 
+
+
     Observable.OnPropertyChangedCallback softwareCallback;
+    Observable.OnPropertyChangedCallback hardwareCallback;
 
     public MenuLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         MainApplication.getInstance().getApplicationComponent().inject(this);
         binding.setViewModel(menuViewModel);
+
+        hardwareCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                menuViewModel.spo2Visible.set(moduleHardware.isSPO2());
+                menuViewModel.scaleVisible.set(moduleHardware.isSCALE());
+                menuViewModel.cameraVisible.set(moduleHardware.isCameraInstalled());
+            }
+        };
 
         softwareCallback = new Observable.OnPropertyChangedCallback() {
             @Override
@@ -129,6 +143,7 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
 
     @Override
     public void attach() {
+        moduleHardware.updated.addOnPropertyChangedCallback(hardwareCallback);
         moduleSoftware.updated.addOnPropertyChangedCallback(softwareCallback);
         moduleHardware.updated.notifyChange();
         moduleSoftware.updated.notifyChange();

@@ -31,6 +31,10 @@ public class MenuViewModel {
     public ObservableBoolean menuCamera = new ObservableBoolean(false);
     public ObservableBoolean menuSetting = new ObservableBoolean(false);
 
+    public ObservableBoolean spo2Visible = new ObservableBoolean();
+    public ObservableBoolean scaleVisible = new ObservableBoolean();
+    public ObservableBoolean cameraVisible = new ObservableBoolean();
+
     @Inject
     public MenuViewModel() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
