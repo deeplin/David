@@ -4,6 +4,7 @@ import android.databinding.Observable;
 import android.databinding.ObservableInt;
 
 import com.david.R;
+import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
@@ -28,6 +29,8 @@ public class SideViewModel implements IViewModel {
     MessageSender messageSender;
     @Inject
     TopViewModel topViewModel;
+    @Inject
+    AlarmControl alarmControl;
 
     public ObservableInt lockScreenImage = new ObservableInt(R.mipmap.screen_unlocked);
 
@@ -60,7 +63,9 @@ public class SideViewModel implements IViewModel {
     }
 
     void clearAlarm() {
-        messageSender.clearAlarm((aBoolean, baseSerialMessage) -> topViewModel.clearAlarm());
+        if(alarmControl.isAlert() || topViewModel.overheatExperimentMode.get()) {
+            messageSender.clearAlarm((aBoolean, baseSerialMessage) -> topViewModel.clearAlarm());
+        }
     }
 
     void muteAlarm() {

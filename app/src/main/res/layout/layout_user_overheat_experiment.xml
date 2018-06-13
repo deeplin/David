@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.david.incubator.ui.system.overheatexperiment.SystemOverheatExperimentLayout" />
+            type="com.david.incubator.ui.user.UserOverheatExperimentLayout" />
     </data>
 
     <android.support.constraint.ConstraintLayout
@@ -57,7 +57,7 @@
             style="@style/large_button_style"
             android:isSelected="@{viewModel.airAbove37Selected}"
             android:text="@string/overheat_air_above_37"
-            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{viewModel.shareMemory.isCabin() &amp;&amp; viewModel.shareMemory.isAir() ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/space3"
             app:layout_constraintLeft_toLeftOf="@id/title"
             app:layout_constraintTop_toBottomOf="@+id/space2" />
@@ -67,7 +67,7 @@
             style="@style/large_button_style"
             android:isSelected="@{viewModel.airBelow37Selected}"
             android:text="@string/overheat_air_below_37"
-            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{viewModel.shareMemory.isCabin() &amp;&amp; viewModel.shareMemory.isAir() ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/overheatAirAbove37"
             app:layout_constraintLeft_toLeftOf="@id/rightVerticalGuideline"
             app:layout_constraintTop_toTopOf="@+id/ibObjectiveAbove37" />
@@ -86,7 +86,7 @@
             style="@style/large_button_style"
             android:isSelected="@{viewModel.skinAbove37Selected}"
             android:text="@string/overheat_skin_above_37"
-            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Cabin) ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{viewModel.shareMemory.isCabin() &amp;&amp; viewModel.shareMemory.isSkin()? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/topDivider"
             app:layout_constraintLeft_toLeftOf="@id/title"
             app:layout_constraintTop_toBottomOf="@+id/overheatAirBelow37" />
@@ -108,7 +108,7 @@
             style="@style/large_button_style"
             android:isSelected="@{viewModel.stableStateSelected}"
             android:text="@string/stable_state"
-            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Warmer) ? View.VISIBLE : View.INVISIBLE}"
+            android:visibility="@{viewModel.shareMemory.isWarmer() ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toTopOf="@+id/bottomDivider"
             app:layout_constraintLeft_toLeftOf="@id/title"
             app:layout_constraintTop_toBottomOf="@+id/topDivider" />

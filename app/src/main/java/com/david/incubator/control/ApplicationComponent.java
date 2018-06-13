@@ -7,7 +7,6 @@ import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.alarm.AlarmAdapter;
 import com.david.common.ui.alarm.AlarmView;
-import com.david.incubator.control.IncubatorApplication;
 import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.home.cabin.HomeViewModel;
 import com.david.incubator.ui.home.warmer.HeatingTimingView;
@@ -64,7 +63,7 @@ import com.david.incubator.ui.system.deviation.SystemDeviationViewModel;
 import com.david.incubator.ui.system.factory.SystemFactoryLayout;
 import com.david.incubator.ui.system.otherparameter.SystemOtherParameterLayout;
 import com.david.incubator.ui.system.overheat.SystemOverheatViewModel;
-import com.david.incubator.ui.system.overheatexperiment.SystemOverheatExperimentLayout;
+import com.david.incubator.ui.user.UserOverheatExperimentLayout;
 import com.david.incubator.ui.system.print.SystemPrintViewModel;
 import com.david.incubator.ui.system.range.SystemRangeViewModel;
 import com.david.incubator.ui.user.UserLanguageLayout;
@@ -189,7 +188,7 @@ public interface ApplicationComponent {
 
     void inject(SystemOverheatViewModel systemOverheatViewModel);
 
-    void inject(SystemOverheatExperimentLayout systemOverheatExperimentLayout);
+    void inject(UserOverheatExperimentLayout userOverheatExperimentLayout);
 
     void inject(SystemPrintViewModel systemPrintViewModel);
 

@@ -1,4 +1,4 @@
-package com.david.incubator.ui.system.overheatexperiment;
+package com.david.incubator.ui.user;
 
 import android.content.Context;
 import android.databinding.ObservableBoolean;
@@ -13,9 +13,9 @@ import com.david.common.mode.SystemMode;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
-import com.david.databinding.LayoutSystemOverheatExperimentBinding;
 import com.david.incubator.ui.common.ButtonControlViewModel;
 import com.jakewharton.rxbinding2.view.RxView;
+import com.david.databinding.LayoutUserOverheatExperimentBinding;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,7 +27,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SystemOverheatExperimentLayout extends BindingConstraintLayout<LayoutSystemOverheatExperimentBinding> {
+public class UserOverheatExperimentLayout extends BindingConstraintLayout<LayoutUserOverheatExperimentBinding> {
 
     @Inject
     MessageSender messageSender;
@@ -41,7 +41,7 @@ public class SystemOverheatExperimentLayout extends BindingConstraintLayout<Layo
 
     ObservableInt navigationView;
 
-    public SystemOverheatExperimentLayout(Context context, ObservableInt navigationView) {
+    public UserOverheatExperimentLayout(Context context, ObservableInt navigationView) {
         super(context);
         this.navigationView = navigationView;
 
@@ -73,7 +73,7 @@ public class SystemOverheatExperimentLayout extends BindingConstraintLayout<Layo
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibReturn))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> navigationView.set(FragmentPage.SYSTEM_HOME));
+                .subscribe((aVoid) -> navigationView.set(FragmentPage.USER_HOME));
     }
 
     private void selectAirAbove37() {
@@ -130,11 +130,16 @@ public class SystemOverheatExperimentLayout extends BindingConstraintLayout<Layo
 
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_system_overheat_experiment;
+        return R.layout.layout_user_overheat_experiment;
     }
 
     @Override
     public void attach() {
+        if(shareMemory.isAir()){
+
+        }else if (shareMemory.isSkin()){
+
+        }
     }
 
     @Override

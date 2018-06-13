@@ -31,7 +31,7 @@ import javax.inject.Inject;
 public class UserScreenLuminanceLayout extends BindingConstraintLayout<LayoutUserScreenLuminanceBinding> {
 
     private final byte MAXIMUM = 100;
-    private final byte MINIMUM = 30;
+    private final byte MINIMUM = 20;
 
     @Inject
     MainViewModel mainViewModel;

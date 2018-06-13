@@ -35,17 +35,7 @@ public class SettingDeviceLayout extends BindingConstraintLayout<LayoutSettingDe
     public SettingDeviceLayout(Context context) {
         super(context);
         MainApplication.getInstance().getApplicationComponent().inject(this);
-
         binding.setViewModel(this);
-
-        binding.title.setTitle(R.string.software_information);
-
-        setHardware("");
-        setMaster("");
-        setSlave("");
-        setUpper(ResourceUtil.getString(R.string.upper_version_id));
-        setDeviceId(UuidUtil.getUuid(MainApplication.getInstance()));
-
     }
 
     @Override
@@ -55,6 +45,14 @@ public class SettingDeviceLayout extends BindingConstraintLayout<LayoutSettingDe
 
     @Override
     public void attach() {
+        binding.title.setTitle(R.string.software_information);
+
+        setHardware("");
+        setMaster("");
+        setSlave("");
+        setUpper(ResourceUtil.getString(R.string.upper_version_id));
+        setDeviceId(UuidUtil.getUuid(MainApplication.getInstance()));
+
         messageSender.getVersion((aBoolean, baseSerialMessage) -> {
             if (aBoolean) {
                 VersionCommand versionCommand = (VersionCommand) baseSerialMessage;
@@ -67,7 +65,6 @@ public class SettingDeviceLayout extends BindingConstraintLayout<LayoutSettingDe
 
     @Override
     public void detach() {
-
     }
 
     private void setHardware(String hardwareVersion) {

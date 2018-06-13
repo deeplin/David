@@ -17,7 +17,7 @@ public class TimeUtil {
     public static final String DateTimeWithoutSecond = "yy-MM-dd HH:mm";
     public static final String Date = "yyyy-MM-dd";
     public static final String SimpleDate = "MM-dd";
-    public static final String Time = "HH:mm E";
+    public static final String Time = "HH:mm:ss";
 
     public static String getCurrentDate(String format) {
         Calendar calendar = Calendar.getInstance();
@@ -30,13 +30,6 @@ public class TimeUtil {
     public static String getTime(long time, String format) {
         SimpleDateFormat dateFormatter = new SimpleDateFormat(format, Locale.US);
         return dateFormatter.format(time);
-    }
-
-    public static String getCurrentEnglishDate(String format) {
-        Calendar calendar = Calendar.getInstance();
-        java.util.Date date = calendar.getTime();
-        SimpleDateFormat dateFormatter = new SimpleDateFormat(format, Locale.ENGLISH);
-        return dateFormatter.format(date);
     }
 
     public static long getCurrentTimeInSecond() {

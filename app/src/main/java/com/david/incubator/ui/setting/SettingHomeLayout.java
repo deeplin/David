@@ -18,7 +18,7 @@ import com.david.incubator.ui.system.deviation.SystemDeviationWarningLayout;
 import com.david.incubator.ui.system.factory.SystemFactoryLayout;
 import com.david.incubator.ui.system.otherparameter.SystemOtherParameterLayout;
 import com.david.incubator.ui.system.overheat.SystemOverheatWarningLayout;
-import com.david.incubator.ui.system.overheatexperiment.SystemOverheatExperimentLayout;
+import com.david.incubator.ui.user.UserOverheatExperimentLayout;
 import com.david.incubator.ui.system.print.SystemPrintLayout;
 import com.david.incubator.ui.system.range.SystemRangeLayout;
 import com.david.incubator.ui.user.UserHomeLayout;
@@ -106,7 +106,7 @@ public class SettingHomeLayout extends BindingConstraintLayout<LayoutSettingHome
                         view = new SystemOtherParameterLayout(context, navigationView);
                         break;
                     case (FragmentPage.SYSTEM_OVERHEAT_EXPERIMENT):
-                        view = new SystemOverheatExperimentLayout(context, navigationView);
+                        view = new UserOverheatExperimentLayout(context, navigationView);
                         break;
                     case (FragmentPage.SYSTEM_DATA_PRINT):
                         view = new SystemPrintLayout(context, navigationView);

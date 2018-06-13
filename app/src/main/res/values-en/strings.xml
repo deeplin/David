@@ -67,14 +67,16 @@
     <!--Calibration-->
     <string name="calibration">Calibration</string>
     <string name="calibration_o2">O2 Calibration</string>
-    <string name="calibration_confirm_o2_21">Please confirm if calibrate o2 at 21%</string>
-    <string name="calibration_confirm_o2_100">Please confirm if calibrate o2 at 100%</string>
+    <string name="calibration_confirm_o2_21">Please confirm if calibrating o2 at 21%</string>
+    <string name="calibration_confirm_o2_100">Please confirm if calibrating o2 at 100%</string>
     <string name="calibration_scale">Scale Calibration</string>
-    <string name="calibration_confirm_scale_0">Current weight %sg\nPlease confirm if calibrate scale at 0g</string>
-    <string name="calibration_confirm_scale_5000">Current weight %sg\nPlease confirm if calibrate scale at 5000g</string>
+    <string name="calibration_confirm_scale_0">Current weight %sg\nPlease confirm if calibrating scale at 0g</string>
+    <string name="calibration_confirm_scale_5000">Current weight %sg\nPlease confirm if calibrating scale at 5000g</string>
     <string name="cancel">Cancel</string>
     <string name="calibration_successful">Calibration Successful</string>
     <string name="calibration_failed">Calibration Failed</string>
+    <string name="time_update">Time Modification</string>
+    <string name="time_update_confirm">All history data will be deleted.\n Please confirm if updating time.</string>
 
     <!--Device-->
     <string name="software_information">Software Information</string>

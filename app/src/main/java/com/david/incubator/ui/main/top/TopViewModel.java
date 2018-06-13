@@ -4,7 +4,6 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
-import android.util.Log;
 
 import com.david.R;
 import com.david.common.alarm.AlarmControl;
@@ -126,7 +125,7 @@ public class TopViewModel implements IViewModel {
                 } else {
                     if (Objects.equals(batteryModeCallback.get(), BatteryMode.Charging)) {
                         setBatteryCharging();
-                    }else if (Objects.equals(batteryModeCallback.get(), BatteryMode.Failure)) {
+                    } else if (Objects.equals(batteryModeCallback.get(), BatteryMode.Failure)) {
                         batteryModeCallback.set(BatteryMode.Full);
                     }
                 }
@@ -160,14 +159,14 @@ public class TopViewModel implements IViewModel {
 
     public void displayCurrentTime() {
         this.dateTime.set(String.format(Locale.US, "%s\n%s",
-                TimeUtil.getCurrentDate(TimeUtil.Date), TimeUtil.getCurrentEnglishDate(TimeUtil.Time)));
+                TimeUtil.getCurrentDate(TimeUtil.Date), TimeUtil.getCurrentDate(TimeUtil.Time)));
     }
 
     private void setOverheatExperiment(boolean status) {
         if (status) {
             userId.set(ResourceUtil.getString(R.string.overheat_experiment));
         } else {
-            userId.set("");
+            loadUserId();
         }
         overheatExperimentMode.set(status);
     }
@@ -218,6 +217,7 @@ public class TopViewModel implements IViewModel {
                     /*静音成功*/
                     synchronized (this) {
                         clearAlarm();
+                        showMute.set(true);
                         muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
 
                         muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
@@ -248,7 +248,7 @@ public class TopViewModel implements IViewModel {
         }
     }
 
-    private boolean isBatteryAlert(){
+    private boolean isBatteryAlert() {
         String alarmId = alarmControl.topAlarmId.get();
         if (Objects.equals(alarmId, "SYS.UPS") || Objects.equals(alarmId, "SYS.BAT")) {
             return true;

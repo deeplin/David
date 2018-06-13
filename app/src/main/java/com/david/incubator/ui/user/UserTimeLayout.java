@@ -63,8 +63,8 @@ public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBindin
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibOK))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.calibration_o2,
-                            ResourceUtil.getString(R.string.calibration_confirm_o2_21),
+                    alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.time_update,
+                            ResourceUtil.getString(R.string.time_update_confirm),
                             (dialog, which) -> {
                                 setTime();
                                 daoControl.deleteTables();

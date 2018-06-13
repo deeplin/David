@@ -86,9 +86,9 @@ public class AutomationControl implements IViewModel {
                         serialControl.refresh();
                         checkLockScreen();
                         long currentTime = TimeUtil.getCurrentTimeInSecond();
+                        topViewModel.displayCurrentTime();
                         if (currentTime % 60 == 0) {
                             daoControl.deleteStale();
-                            topViewModel.displayCurrentTime();
                         }
                     }, LogUtils::e);
         }
