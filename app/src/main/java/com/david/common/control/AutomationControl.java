@@ -74,9 +74,7 @@ public class AutomationControl implements IViewModel {
                 startRefresh();
             }
         });
-    }
 
-    private void startRefresh() {
         messageSender.setStandBy(false, true, null);
 
         /*读取传感器*/
@@ -94,7 +92,9 @@ public class AutomationControl implements IViewModel {
                         }
                     }, LogUtils::e);
         }
+    }
 
+    private void startRefresh() {
         SystemSetting sensorRange = daoControl.getSystemSetting();
         if (moduleHardware.is2000S()) {
             messageSender.setLanguage(LanguageMode.values()[sensorRange.getLanguageIndex()].getName(), null);
