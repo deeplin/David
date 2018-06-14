@@ -1,12 +1,8 @@
 package com.david.incubator.ui.setting;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
-import com.david.common.data.UserModelData;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentSettingBinding;
-
-import javax.inject.Inject;
 
 
 /**
@@ -17,14 +13,8 @@ import javax.inject.Inject;
  */
 public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding> {
 
-    @Inject
-    UserModelData userModelData;
-
     @Override
     protected void init() {
-        MainApplication.getInstance().getApplicationComponent().inject(this);
-        // Inflate the layout for this fragment
-        binding.setViewModel(userModelData);
     }
 
     @Override
@@ -52,7 +42,7 @@ public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding>
     }
 
     @Override
-    public void detach(){
+    public void detach() {
         super.detach();
         binding.sllLeft.detach();
     }

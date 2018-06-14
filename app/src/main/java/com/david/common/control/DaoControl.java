@@ -19,7 +19,6 @@ import com.david.common.dao.gen.StatusCommandDao;
 import com.david.common.dao.gen.SystemSettingDao;
 import com.david.common.dao.gen.UserModelDao;
 import com.david.common.dao.gen.WeightModelDao;
-import com.david.common.data.UserModelData;
 import com.david.common.mode.LanguageMode;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
@@ -43,16 +42,12 @@ import javax.inject.Singleton;
 @Singleton
 public class DaoControl {
 
-    @Inject
-    UserModelData userModelData;
-
     private DaoMaster.DevOpenHelper devOpenHelper;
     private Database database;
     private DaoSession daoSession;
 
     @Inject
     public DaoControl() {
-        MainApplication.getInstance().getApplicationComponent().inject(this);
     }
 
     public void start(Context applicationContext) {
@@ -233,10 +228,7 @@ public class DaoControl {
     public List<AnalogCommand> getAnalogCommand(int limit, long currentId) {
         daoSession.clear();
 
-        UserModel userModel = userModelData.userModel;
-        if (userModel == null) {
-            userModel = getLastUserModel();
-        }
+        UserModel userModel = getLastUserModel();
 
         AnalogCommandDao analogModelDao = daoSession.getAnalogCommandDao();
         QueryBuilder<AnalogCommand> queryBuilder = analogModelDao.queryBuilder()
@@ -264,10 +256,7 @@ public class DaoControl {
     public List<StatusCommand> getStatusCommand(int limit, long currentId) {
         daoSession.clear();
 
-        UserModel userModel = userModelData.userModel;
-        if (userModel == null) {
-            userModel = getLastUserModel();
-        }
+        UserModel userModel = getLastUserModel();
 
         StatusCommandDao statusCommandDao = daoSession.getStatusCommandDao();
         QueryBuilder<StatusCommand> queryBuilder = statusCommandDao.queryBuilder()
@@ -300,10 +289,7 @@ public class DaoControl {
     public List<WeightModel> getWeightModel() {
         daoSession.clear();
 
-        UserModel userModel = userModelData.userModel;
-        if (userModel == null) {
-            userModel = getLastUserModel();
-        }
+        UserModel userModel = getLastUserModel();
 
         WeightModelDao weightModelDao = daoSession.getWeightModelDao();
         QueryBuilder<WeightModel> queryBuilder = weightModelDao.queryBuilder()
@@ -327,10 +313,7 @@ public class DaoControl {
     public List<WeightModel> getWeightModel(int limit, long currentId) {
         daoSession.clear();
 
-        UserModel userModel = userModelData.userModel;
-        if (userModel == null) {
-            userModel = getLastUserModel();
-        }
+        UserModel userModel = getLastUserModel();
 
         WeightModelDao weightModelDao = daoSession.getWeightModelDao();
         QueryBuilder<WeightModel> queryBuilder = weightModelDao.queryBuilder()
@@ -376,16 +359,16 @@ public class DaoControl {
                 .where(UserModelDao.Properties.UserId.eq(userModel.getUserId()))
                 .build().list();
 
-        if(userModelList.size() > 0){
+        if (userModelList.size() > 0) {
             return false;
-        }else{
+        } else {
             userModel.setStartTimeStamp(TimeUtil.getCurrentTimeInSecond());
             userModelDao.save(userModel);
             return true;
         }
     }
 
-    public List<UserModel> getUserModel(int limit, long currentId) {
+    public synchronized List<UserModel> getUserModel(int limit, long currentId) {
         daoSession.clear();
 
         UserModelDao userModelDao = daoSession.getUserModelDao();

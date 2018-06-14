@@ -96,8 +96,6 @@ public interface ApplicationComponent {
 
     void inject(MessageSender messageSender);
 
-    void inject(DaoControl daoControl);
-
     void inject(AutomationControl automationControl);
 
     void inject(MainActivity mainActivity);
@@ -153,8 +151,6 @@ public interface ApplicationComponent {
     void inject(WarmerObjectiveJaundiceViewModel warmerObjectiveJaundiceViewModel);
 
     void inject(WarmerObjectiveTimingLayout warmerObjectiveTimingLayout);
-
-    void inject(SettingHomeFragment settingFragment);
 
     void inject(SensorListViewModel sensorListViewModel);
 
@@ -235,7 +231,6 @@ public interface ApplicationComponent {
     void inject(AlarmAdapter alarmAdapter);
 
     void inject(UserTimeLayout userTimeLayout);
-
 
     /*Test*/
 //    void inject(GreenDaoTest  greenDaoTest);
