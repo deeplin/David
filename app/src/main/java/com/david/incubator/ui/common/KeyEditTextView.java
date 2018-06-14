@@ -1,7 +1,11 @@
 package com.david.incubator.ui.common;
 
 import android.content.Context;
+import android.databinding.Observable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
@@ -27,6 +31,10 @@ public class KeyEditTextView extends LinearLayout {
 
     public void setViewModel(KeyEditTextViewModel keyEditTextViewModel) {
         binding.setViewModel(keyEditTextViewModel);
+    }
+
+    public void setValueTextChangedListener(TextWatcher textWatcher) {
+        binding.tvValue.addTextChangedListener(textWatcher);
     }
 
     public String getValueField() {

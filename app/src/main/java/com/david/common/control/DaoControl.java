@@ -352,7 +352,7 @@ public class DaoControl {
     }
 
     /*User*/
-    public UserModel getLastUserModel() {
+    public synchronized UserModel getLastUserModel() {
         daoSession.clear();
 
         UserModelDao userModelDao = daoSession.getUserModelDao();
@@ -360,7 +360,7 @@ public class DaoControl {
                 .orderDesc(UserModelDao.Properties.Id).limit(1).unique();
     }
 
-    public void addUserModel(UserModel userModel) {
+    public synchronized boolean addUserModel(UserModel userModel) {
         daoSession.clear();
 
         UserModel lastUserModel = getLastUserModel();
@@ -369,8 +369,20 @@ public class DaoControl {
             lastUserModel.setEndTimeStamp(TimeUtil.getCurrentTimeInSecond());
             userModelDao.save(lastUserModel);
         }
-        userModel.setStartTimeStamp(TimeUtil.getCurrentTimeInSecond());
-        userModelDao.save(userModel);
+
+        List<UserModel> userModelList = userModelDao.queryBuilder()
+                .orderDesc(UserModelDao.Properties.Id)
+                .limit(1)
+                .where(UserModelDao.Properties.UserId.eq(userModel.getUserId()))
+                .build().list();
+
+        if(userModelList.size() > 0){
+            return false;
+        }else{
+            userModel.setStartTimeStamp(TimeUtil.getCurrentTimeInSecond());
+            userModelDao.save(userModel);
+            return true;
+        }
     }
 
     public List<UserModel> getUserModel(int limit, long currentId) {
@@ -391,7 +403,7 @@ public class DaoControl {
         }
     }
 
-    public void deleteUserModel(UserModel userModel) {
+    public synchronized void deleteUserModel(UserModel userModel) {
         UserModelDao userModelDao = daoSession.getUserModelDao();
         userModelDao.delete(userModel);
     }

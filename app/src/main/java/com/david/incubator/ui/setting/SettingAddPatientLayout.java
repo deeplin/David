@@ -6,6 +6,8 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.NumberPicker;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
+import com.david.common.control.AutomationControl;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
@@ -43,12 +46,14 @@ import javax.inject.Inject;
  * description:
  */
 
-public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSettingAddPatientBinding> {
+public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSettingAddPatientBinding> implements TextWatcher {
 
     @Inject
     DaoControl daoControl;
     @Inject
     TopViewModel topViewModel;
+    @Inject
+    AutomationControl automationControl;
 
     KeyEditTextViewModel nameKeyEditTextViewModel;
     KeyEditTextViewModel idKeyEditTextViewModel;
@@ -241,21 +246,27 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
                         if (nameValue == null || nameValue.length() == 0) {
                             binding.addPatientName.requestFocus();
                             return;
+                        } else {
+                            binding.addPatientName.clearValueField();
                         }
                         userModel.setName(nameValue);
+
                         String idString = binding.addPatientId.getValueField();
                         if (idString == null || idString.length() == 0) {
                             binding.addPatientId.requestFocus();
-                        }else{
+                            return;
+                        } else {
                             binding.addPatientId.clearValueField();
                         }
                         userModel.setUserId(idString);
+
                         userModel.setSex(sexKeyValueViewModel.valueField.get().equals(ResourceUtil.getString(R.string.male)));
                         userModel.setBloodGroup(bloodTypeKeyValueViewModel.valueField.get());
                         userModel.setBirthday(birthdayKeyValueViewModel.valueField.get());
                         userModel.setWeight(Integer.parseInt(birthWeightKeyValueViewModel.valueField.get()));
                         userModel.setGestationalAge(Integer.parseInt(gestationKeyValueViewModel.valueField.get()));
                         userModel.setHistory(medicalHistoryKeyEditTextViewModel.valueField.get());
+
                         daoControl.addUserModel(userModel);
                         binding.btOK.setSelected(true);
 
@@ -275,14 +286,17 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
     private void init() {
         binding.title.setTitle(R.string.patient_information);
 
-        medicalHistoryKeyEditTextViewModel = new KeyEditTextViewModel(R.string.medical_history);
-        binding.addPatientBirthMedicalHistory.setViewModel(medicalHistoryKeyEditTextViewModel);
-
         nameKeyEditTextViewModel = new KeyEditTextViewModel(R.string.name);
         binding.addPatientName.setViewModel(nameKeyEditTextViewModel);
+        binding.addPatientName.setValueTextChangedListener(this);
 
         idKeyEditTextViewModel = new KeyEditTextViewModel(R.string.id);
         binding.addPatientId.setViewModel(idKeyEditTextViewModel);
+        binding.addPatientId.setValueTextChangedListener(this);
+
+        medicalHistoryKeyEditTextViewModel = new KeyEditTextViewModel(R.string.medical_history);
+        binding.addPatientBirthMedicalHistory.setViewModel(medicalHistoryKeyEditTextViewModel);
+        binding.addPatientBirthMedicalHistory.setValueTextChangedListener(this);
 
         sexKeyValueViewModel = new KeyValueViewModel(R.string.sex);
         sexKeyValueViewModel.unitTextVisibility.set(false);
@@ -306,8 +320,6 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
         gestationKeyValueViewModel = new KeyValueViewModel(R.string.gestation);
         gestationKeyValueViewModel.setUnitText(R.string.week);
         binding.addPatientGestation.setViewModel(gestationKeyValueViewModel);
-
-
     }
 
     @Override
@@ -328,7 +340,6 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
 
         /*gestation*/
         gestation.notifyChange();
-
     }
 
     @Override
@@ -354,6 +365,20 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
                     .getSystemService(Context.INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        automationControl.initializeTimeOut();
+        binding.btOK.setSelected(false);
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
     }
 
 //    private void showKeyboard(){
