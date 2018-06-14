@@ -15,6 +15,7 @@ import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutUserModelDetailBinding;
 import com.david.incubator.ui.common.KeyValueViewModel;
 import com.david.incubator.ui.main.MainActivity;
+import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -35,6 +36,8 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
     UserModelDetailViewModel userModelDetailViewModel;
     @Inject
     DaoControl daoControl;
+    @Inject
+    TopViewModel topViewModel;
 
     KeyValueViewModel nameKeyValueViewModel;
     KeyValueViewModel idKeyValueViewModel;
@@ -65,6 +68,7 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
                         (dialog, which) -> {
                             alertDialog = null;
                             daoControl.deleteUserModel(userModelDetailViewModel.userModel);
+                            topViewModel.loadUserId();
                             navigationView.set(FragmentPage.USER_MODEL);
                         }));
 

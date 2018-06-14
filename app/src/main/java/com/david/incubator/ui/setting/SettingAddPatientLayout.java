@@ -246,8 +246,6 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
                         if (nameValue == null || nameValue.length() == 0) {
                             binding.addPatientName.requestFocus();
                             return;
-                        } else {
-                            binding.addPatientName.clearValueField();
                         }
                         userModel.setName(nameValue);
 
@@ -255,8 +253,6 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
                         if (idString == null || idString.length() == 0) {
                             binding.addPatientId.requestFocus();
                             return;
-                        } else {
-                            binding.addPatientId.clearValueField();
                         }
                         userModel.setUserId(idString);
 
@@ -267,10 +263,15 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
                         userModel.setGestationalAge(Integer.parseInt(gestationKeyValueViewModel.valueField.get()));
                         userModel.setHistory(medicalHistoryKeyEditTextViewModel.valueField.get());
 
-                        daoControl.addUserModel(userModel);
-                        binding.btOK.setSelected(true);
+                        if (daoControl.addUserModel(userModel)) {
+                            binding.addPatientName.clearValueField();
+                            binding.addPatientId.clearValueField();
 
-                        topViewModel.loadUserId();
+                            binding.btOK.setSelected(true);
+                            topViewModel.loadUserId();
+                        } else {
+                            binding.btOK.setSelected(false);
+                        }
                     } catch (Exception e) {
                         binding.btOK.setSelected(false);
                         LogUtils.e(e);
