@@ -19,7 +19,6 @@ import javax.inject.Singleton;
 public class UserModelDetailViewModel implements IViewModel {
 
     public UserModel userModel;
-    public ObservableBoolean showSignsOfData = new ObservableBoolean(false);
 
     @Inject
     UserModelDetailViewModel() {
@@ -31,7 +30,6 @@ public class UserModelDetailViewModel implements IViewModel {
 
     @Override
     public void detach() {
-        showSignsOfData.set(false);
         userModel = null;
     }
 }

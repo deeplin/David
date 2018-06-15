@@ -30,48 +30,45 @@
         <ImageButton
             android:id="@+id/btChartTempSkin1"
             style="@style/image_button_style"
+            android:layout_marginStart="20dp"
             android:src="@mipmap/skin_small"
             android:visibility="@{viewModel.tableSelected? View.GONE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0198"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.9772" />
 
         <ImageButton
             android:id="@+id/btChartTempSkin2"
             style="@style/image_button_style"
+            android:layout_marginStart="20dp"
             android:src="@mipmap/skin2_small"
             android:visibility="@{viewModel.tableSelected? View.GONE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/btChartTempSkin1"
-            app:layout_constraintHorizontal_bias="0.2183"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/btChartTempSkin1"
             app:layout_constraintTop_toTopOf="@id/btChartTempSkin1" />
 
         <ImageButton
             android:id="@+id/btChartTempAir"
             style="@style/image_button_style"
+            android:layout_marginStart="20dp"
             android:src="@mipmap/air_small"
             android:visibility="@{viewModel.tableSelected || (!viewModel.isCabin())? View.GONE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/btChartTempSkin1"
-            app:layout_constraintHorizontal_bias="0.4167"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/btChartTempSkin2"
             app:layout_constraintTop_toTopOf="@id/btChartTempSkin1" />
 
         <!--<Button-->
-            <!--android:id="@+id/btChartTempDelete"-->
-            <!--style="@style/button_style"-->
-            <!--android:text="@string/delete"-->
-            <!--android:visibility="@{viewModel.tableSelected? View.GONE:View.VISIBLE}"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintHorizontal_bias="0.65"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintVertical_bias="0.9772" />-->
+        <!--android:id="@+id/btChartTempDelete"-->
+        <!--style="@style/button_style"-->
+        <!--android:text="@string/delete"-->
+        <!--android:visibility="@{viewModel.tableSelected? View.GONE:View.VISIBLE}"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.65"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_bias="0.9772" />-->
 
     </android.support.constraint.ConstraintLayout>
 </layout>

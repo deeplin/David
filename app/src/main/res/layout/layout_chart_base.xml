@@ -26,10 +26,9 @@
             android:text='@{viewModel.cycleValue + " h"}'
             android:textColor="@color/info_white"
             android:textSize="@dimen/f24"
+            android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_percent="0.0833"
-            app:layout_constraintHorizontal_bias="0.9802"
-            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.02273" />
@@ -48,21 +47,19 @@
         <ImageButton
             android:id="@+id/ibChartCycleUp"
             style="@style/button_style"
+            android:layout_marginStart="20dp"
             android:src="@mipmap/up"
             app:layout_constraintBottom_toBottomOf="@id/tvChartCycleValue"
-            app:layout_constraintHorizontal_bias="0.0198"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvChartCycleValue" />
 
         <ImageButton
             android:id="@+id/ibChartCycleDown"
             style="@style/button_style"
+            android:layout_marginStart="20dp"
             android:src="@mipmap/down"
             app:layout_constraintBottom_toBottomOf="@id/tvChartCycleValue"
-            app:layout_constraintHorizontal_bias="0.2183"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/ibChartCycleUp"
             app:layout_constraintTop_toTopOf="@id/tvChartCycleValue" />
 
         <ImageView
@@ -104,12 +101,13 @@
             android:id="@+id/switchButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="320dp"
             android:checked="@={viewModel.tableSelected}"
             android:showText="false"
             android:thumb="@drawable/thumb_switch"
             android:track="@drawable/track_switch"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="@id/tvChartCycleValue"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.9762" />
 

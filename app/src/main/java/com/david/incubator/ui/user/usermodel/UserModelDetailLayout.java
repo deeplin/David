@@ -72,9 +72,9 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
                             navigationView.set(FragmentPage.USER_MODEL);
                         }));
 
-        RxView.clicks(binding.btSignsOfData)
-                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> userModelDetailViewModel.showSignsOfData.set(true));
+//        RxView.clicks(binding.btSignsOfData)
+//                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+//                .subscribe((aVoid) -> userModelDetailViewModel.showSignsOfData.set(true));
 
         RxView.clicks(binding.btReturn)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)

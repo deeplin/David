@@ -1,7 +1,6 @@
 package com.david.incubator.control;
 
 import com.david.common.control.AutomationControl;
-import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
@@ -56,7 +55,6 @@ import com.david.incubator.ui.objective.warmer.timing.WarmerObjectiveTimingLayou
 import com.david.incubator.ui.setting.SettingAddPatientLayout;
 import com.david.incubator.ui.setting.SettingCalibrationLayout;
 import com.david.incubator.ui.setting.SettingDeviceLayout;
-import com.david.incubator.ui.setting.SettingHomeFragment;
 import com.david.incubator.ui.setting.SettingIntroductionLayout;
 import com.david.incubator.ui.system.calibration.SystemCalibrationViewModel;
 import com.david.incubator.ui.system.deviation.SystemDeviationViewModel;
@@ -70,7 +68,7 @@ import com.david.incubator.ui.user.UserLanguageLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
 import com.david.incubator.ui.user.UserTimeLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
-import com.david.incubator.ui.user.usermodel.ChartLayout;
+import com.david.incubator.ui.menu.chart.ChartLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
 import com.david.incubator.ui.user.usermodel.UserModelLayout;
 
@@ -191,8 +189,6 @@ public interface ApplicationComponent {
     void inject(SystemRangeViewModel systemRangeViewModel);
 
     void inject(SystemFactoryLayout systemFactoryLayout);
-
-    void inject(ChartFragment chartFragment);
 
     void inject(AnalogChartWriter analogChartWriter);
 

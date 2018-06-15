@@ -37,7 +37,7 @@
             android:id="@+id/tlChart"
             android:layout_width="600dp"
             android:layout_height="@dimen/y40"
-            android:layout_marginStart="270dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="@dimen/y32"
             android:background="@drawable/tab_background"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -51,7 +51,7 @@
             android:id="@+id/vpChart"
             android:layout_width="584dp"
             android:layout_height="@dimen/y480"
-            android:layout_marginStart="280dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="@dimen/y100"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -59,11 +59,10 @@
         <Button
             android:id="@+id/btReturn"
             style="@style/button_style"
+            android:layout_marginEnd="60dp"
             android:text="@string/exit"
             app:layout_constraintBottom_toBottomOf="@id/vpChart"
-            app:layout_constraintHorizontal_bias="0.65"
-            app:layout_constraintLeft_toLeftOf="@id/vpChart"
-            app:layout_constraintRight_toRightOf="@id/vpChart"
+            app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/vpChart"
             app:layout_constraintVertical_bias="0.9772" />
 
