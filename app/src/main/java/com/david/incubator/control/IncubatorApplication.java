@@ -5,6 +5,7 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
+import com.david.common.control.AutomationControl;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
@@ -26,6 +27,8 @@ public class IncubatorApplication extends MainApplication {
     SerialControl serialControl;
     @Inject
     SerialMessageParser serialMessageHandler;
+    @Inject
+    AutomationControl automationControl;
 //    @Inject
 //    LocationControl locationControl;
 //    @Inject
@@ -53,6 +56,7 @@ public class IncubatorApplication extends MainApplication {
 
             moduleHardware.load();
             daoControl.start(this);
+
             super.setLanguage(daoControl);
         } catch (Exception e) {
             LogUtils.e(e);
@@ -66,6 +70,7 @@ public class IncubatorApplication extends MainApplication {
 //            }
 
             serialControl.start(Constant.SERIAL_BUFFER_SIZE, serialMessageHandler);
+            automationControl.attach();
         } catch (Exception e) {
             LogUtils.e(e);
         }
@@ -74,6 +79,7 @@ public class IncubatorApplication extends MainApplication {
     @Override
     public void stop() {
         try {
+            automationControl.detach();
             serialControl.stop();
             daoControl.stop();
             Cockroach.uninstall();

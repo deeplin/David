@@ -75,8 +75,6 @@ public class AutomationControl implements IViewModel {
             }
         });
 
-        messageSender.setStandBy(false, true, null);
-
         /*读取传感器*/
         if (ioDisposable == null) {
             Observable<Long> observable = Observable.interval(1, 1, TimeUnit.SECONDS);
@@ -85,8 +83,9 @@ public class AutomationControl implements IViewModel {
                     .subscribe((aLong) -> {
                         serialControl.refresh();
                         checkLockScreen();
-                        long currentTime = TimeUtil.getCurrentTimeInSecond();
                         topViewModel.displayCurrentTime();
+
+                        long currentTime = TimeUtil.getCurrentTimeInSecond();
                         if (currentTime % 60 == 0) {
                             daoControl.deleteStale();
                         }
@@ -95,6 +94,8 @@ public class AutomationControl implements IViewModel {
     }
 
     private void startRefresh() {
+        messageSender.setStandBy(false, true, null);
+
         SystemSetting sensorRange = daoControl.getSystemSetting();
         if (moduleHardware.is2000S()) {
             messageSender.setLanguage(LanguageMode.values()[sensorRange.getLanguageIndex()].getName(), null);

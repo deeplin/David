@@ -1,6 +1,5 @@
 package com.david.incubator.ui.main;
 
-import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
@@ -107,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 
         binding.avAlarm.attach();
         mainViewModel.attach();
-        automationControl.attach();
     }
 
     @Override
@@ -116,7 +113,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         if (currentFragment != null)
             currentFragment.detach();
 
-        automationControl.detach();
         mainViewModel.detach();
         binding.avAlarm.detach();
     }
