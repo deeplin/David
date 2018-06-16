@@ -14,6 +14,7 @@
     <dimen name="f122">96px</dimen>
 
     <!--Sensor list-->
+    <dimen name="f16">16px</dimen>
     <dimen name="f54">42px</dimen>
     <dimen name="f60">48px</dimen>
 

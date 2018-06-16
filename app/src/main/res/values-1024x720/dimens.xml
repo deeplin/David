@@ -18,9 +18,14 @@
     <dimen name="f54">54px</dimen>
     <dimen name="f60">60px</dimen>
 
+    <!--dimen x-->
+    <dimen name="c1">60dp</dimen>
+    <dimen name="c2">260dp</dimen>
+
     <!--dimen y-->
     <dimen name="y10">10px</dimen>
     <dimen name="y20">20px</dimen>
+    <dimen name="y26">26px</dimen>
     <dimen name="y32">32px</dimen>
     <dimen name="y36">36px</dimen>
     <dimen name="y40">40px</dimen>

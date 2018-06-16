@@ -27,8 +27,6 @@ public class IncubatorApplication extends MainApplication {
     SerialControl serialControl;
     @Inject
     SerialMessageParser serialMessageHandler;
-    @Inject
-    AutomationControl automationControl;
 //    @Inject
 //    LocationControl locationControl;
 //    @Inject
@@ -38,14 +36,14 @@ public class IncubatorApplication extends MainApplication {
 
     @Override
     protected void start() {
-        Cockroach.install((thread, throwable) -> new Handler(Looper.getMainLooper()).post(() -> {
-            try {
-                LogUtils.e("--->CockroachException:" + thread + "<---", throwable);
-                LogUtils.e(throwable);
-                Toast.makeText(IncubatorApplication.this, "Exception \n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
-            } catch (Throwable e) {
-            }
-        }));
+//        Cockroach.install((thread, throwable) -> new Handler(Looper.getMainLooper()).post(() -> {
+//            try {
+//                LogUtils.e("--->CockroachException:" + thread + "<---", throwable);
+//                LogUtils.e(throwable);
+//                Toast.makeText(IncubatorApplication.this, "Exception \n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
+//            } catch (Throwable e) {
+//            }
+//        }));
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
         try {
@@ -70,7 +68,6 @@ public class IncubatorApplication extends MainApplication {
 //            }
 
             serialControl.start(Constant.SERIAL_BUFFER_SIZE, serialMessageHandler);
-            automationControl.attach();
         } catch (Exception e) {
             LogUtils.e(e);
         }
@@ -79,7 +76,6 @@ public class IncubatorApplication extends MainApplication {
     @Override
     public void stop() {
         try {
-            automationControl.detach();
             serialControl.stop();
             daoControl.stop();
             Cockroach.uninstall();

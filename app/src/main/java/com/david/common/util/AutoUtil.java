@@ -13,7 +13,6 @@ import android.view.Display;
 
 public class AutoUtil {
 
-    private static double widthRadio;
     public static double heightRadio;
 
     public static void setSize(Activity activity, int designWidth, int designHeight) {
@@ -35,10 +34,8 @@ public class AutoUtil {
         Point point = new Point();
         display.getRealSize(point);
 
-        double displayWidth = point.x;
         double displayHeight = point.y;
 
-        AutoUtil.widthRadio = displayWidth / designWidth;
         AutoUtil.heightRadio = displayHeight / designHeight;
     }
 

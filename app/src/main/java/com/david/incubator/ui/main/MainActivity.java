@@ -7,12 +7,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
 import com.david.R;
 import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
+import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AutoUtil;
@@ -105,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 
         binding.avAlarm.attach();
         mainViewModel.attach();
+        automationControl.attach();
     }
 
     @Override
@@ -113,6 +116,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         if (currentFragment != null)
             currentFragment.detach();
 
+        automationControl.detach();
         mainViewModel.detach();
         binding.avAlarm.detach();
     }
