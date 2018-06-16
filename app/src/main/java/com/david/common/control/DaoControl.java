@@ -1,6 +1,7 @@
 package com.david.common.control;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.david.R;
 import com.david.common.dao.AnalogCommand;
@@ -123,11 +124,14 @@ public class DaoControl {
         /*每分钟记录一次*/
         if (currentTime % 60 == 0) {
             analogCommand.setTimeStamp(currentTime);
-
-            AnalogCommandDao analogCommandDao = daoSession.getAnalogCommandDao();
-            analogCommandDao.insert(analogCommand);
             /*去除ID*/
             analogCommand.setId(null);
+            AnalogCommandDao analogCommandDao = daoSession.getAnalogCommandDao();
+            analogCommandDao.insert(analogCommand);
+
+            //todo
+            Log.e("deeplin", String.format(String.format(String.format("add analog " + analogCommand.getId() + " " + analogCommand.getTimeStamp() + " "
+                    + TimeUtil.getTime(analogCommand.getTimeStamp() * 1000, TimeUtil.FullTime)))));
         }
     }
 
@@ -136,11 +140,11 @@ public class DaoControl {
         /*每分钟记录一次*/
         if (currentTime % 60 == 0) {
             statusCommand.setTimeStamp(currentTime);
-
-            StatusCommandDao statusCommandDao = daoSession.getStatusCommandDao();
-            statusCommandDao.insert(statusCommand);
             /*去除ID*/
             statusCommand.setId(null);
+            StatusCommandDao statusCommandDao = daoSession.getStatusCommandDao();
+            statusCommandDao.insert(statusCommand);
+
         }
     }
 
@@ -148,11 +152,10 @@ public class DaoControl {
         if (ctrlGetCommand.isChanged()) {
             long currentTime = TimeUtil.getCurrentTimeInSecond();
             ctrlGetCommand.setTimeStamp(currentTime);
-
-            CtrlGetCommandDao ctrlGetCommandDao = daoSession.getCtrlGetCommandDao();
-            ctrlGetCommandDao.insert(ctrlGetCommand);
             /*去除ID*/
             ctrlGetCommand.setId(null);
+            CtrlGetCommandDao ctrlGetCommandDao = daoSession.getCtrlGetCommandDao();
+            ctrlGetCommandDao.insert(ctrlGetCommand);
             ctrlGetCommand.setCtrlGetCommand(ctrlGetCommand);
         }
     }
@@ -161,12 +164,10 @@ public class DaoControl {
         if (spo2GetCommand.isChanged()) {
             long currentTime = TimeUtil.getCurrentTimeInSecond();
             spo2GetCommand.setTimeStamp(currentTime);
-
-            Spo2GetCommandDao spo2GetCommandDao = daoSession.getSpo2GetCommandDao();
-            spo2GetCommandDao.insert(spo2GetCommand);
             /*去除ID*/
             spo2GetCommand.setId(null);
-
+            Spo2GetCommandDao spo2GetCommandDao = daoSession.getSpo2GetCommandDao();
+            spo2GetCommandDao.insert(spo2GetCommand);
             spo2GetCommand.setSpo2GetCommand(spo2GetCommand);
         }
     }
@@ -182,6 +183,7 @@ public class DaoControl {
                 .build().list();
         for (AnalogCommand analogCommand : analogModelsList) {
             analogCommandDao.delete(analogCommand);
+
         }
 
         //delete old status records
@@ -218,6 +220,9 @@ public class DaoControl {
                 .build().list();
         for (WeightModel scaleCommand : weightModelList) {
             weightModelDao.delete(scaleCommand);
+            //todo
+            Log.e("deeplin","delete weight " + scaleCommand.getId() + " " + scaleCommand.getTimeStamp()
+                    + TimeUtil.getTime(scaleCommand.getTimeStamp() * 1000, TimeUtil.FullTime));
         }
     }
 
