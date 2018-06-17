@@ -44,8 +44,6 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
     @Inject
     ModuleSoftware moduleSoftware;
 
-
-
     Observable.OnPropertyChangedCallback softwareCallback;
     Observable.OnPropertyChangedCallback hardwareCallback;
 
