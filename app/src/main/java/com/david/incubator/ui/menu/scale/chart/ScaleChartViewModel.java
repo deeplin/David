@@ -91,8 +91,7 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
 
     public void setLastWeight(int weight) {
         lastWeight.set(String.format(Locale.US, "%s: %d",
-                ResourceUtil.getString(R.string.current_weight),
-                weight));
+                ResourceUtil.getString(R.string.current_weight), weight));
     }
 
     private void setVisiblePage(boolean checked) {

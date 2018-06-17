@@ -51,9 +51,8 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
         heatCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                if (navigator != null) {
-                    navigator.setHeatStep(shareMemory.inc.get());
-                }
+                //todo
+                navigator.setHeatStep(shareMemory.inc.get());
             }
         };
         settingUpdateCallback = new Observable.OnPropertyChangedCallback() {

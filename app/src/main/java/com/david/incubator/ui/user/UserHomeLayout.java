@@ -61,12 +61,9 @@ public class UserHomeLayout extends BindingConstraintLayout<LayoutUserHomeBindin
 
     @Override
     public void attach() {
-
     }
 
     @Override
     public void detach() {
-
     }
 }
-

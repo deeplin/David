@@ -36,14 +36,14 @@ public class IncubatorApplication extends MainApplication {
 
     @Override
     protected void start() {
-//        Cockroach.install((thread, throwable) -> new Handler(Looper.getMainLooper()).post(() -> {
-//            try {
-//                LogUtils.e("--->CockroachException:" + thread + "<---", throwable);
-//                LogUtils.e(throwable);
-//                Toast.makeText(IncubatorApplication.this, "Exception \n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
-//            } catch (Throwable e) {
-//            }
-//        }));
+        Cockroach.install((thread, throwable) -> new Handler(Looper.getMainLooper()).post(() -> {
+            try {
+                LogUtils.e("--->CockroachException:" + thread + "<---", throwable);
+                LogUtils.e(throwable);
+                Toast.makeText(IncubatorApplication.this, "Exception \n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
+            } catch (Throwable e) {
+            }
+        }));
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
         try {

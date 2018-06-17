@@ -1,8 +1,14 @@
 package com.david.incubator.ui.setting;
 
+import android.databinding.ObservableBoolean;
+
 import com.david.R;
+import com.david.common.control.MainApplication;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentSettingBinding;
+import com.david.incubator.ui.user.usermodel.UserModelDetailViewModel;
+
+import javax.inject.Inject;
 
 
 /**
@@ -13,8 +19,13 @@ import com.david.databinding.FragmentSettingBinding;
  */
 public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding> {
 
+    @Inject
+    public UserModelDetailViewModel userModelDetailViewModel;
+
     @Override
     protected void init() {
+        MainApplication.getInstance().getApplicationComponent().inject(this);
+        binding.setViewModel(this);
     }
 
     @Override
@@ -44,6 +55,7 @@ public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding>
     @Override
     public void detach() {
         super.detach();
+        userModelDetailViewModel.showDetail.set(false);
         binding.sllLeft.detach();
     }
 }

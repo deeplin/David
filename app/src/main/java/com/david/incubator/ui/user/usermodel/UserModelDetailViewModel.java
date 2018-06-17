@@ -19,6 +19,7 @@ import javax.inject.Singleton;
 public class UserModelDetailViewModel implements IViewModel {
 
     public UserModel userModel;
+    public ObservableBoolean showDetail = new ObservableBoolean(false);
 
     @Inject
     UserModelDetailViewModel() {

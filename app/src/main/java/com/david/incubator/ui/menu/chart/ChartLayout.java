@@ -36,17 +36,19 @@ public class ChartLayout extends TabHomeLayout<LayoutChartBinding> {
     @Inject
     DaoControl daoControl;
     @Inject
-    UserModelDetailViewModel userModelDetailViewModel;
+    public UserModelDetailViewModel userModelDetailViewModel;
 
     protected Disposable refreshDisposable;
 
     public ChartLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         MainApplication.getInstance().getApplicationComponent().inject(this);
+        binding.setViewModel(this);
 
         RxView.clicks(binding.btReturn)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
+                    userModelDetailViewModel.showDetail.set(false);
                     ChartLayout.this.setVisibility(View.GONE);
                 });
     }
@@ -58,10 +60,6 @@ public class ChartLayout extends TabHomeLayout<LayoutChartBinding> {
 
     @Override
     public void attach() {
-        if(userModelDetailViewModel.userModel == null){
-            binding.btReturn.setVisibility(View.GONE);
-        }
-
         boolean isCabin = shareMemory.isCabin();
 
         ChartPagerAdapter pagerAdapter = new ChartPagerAdapter(isCabin,
