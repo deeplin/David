@@ -65,6 +65,7 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
     @Override
     public void detach() {
         pageTurnTable.stop();
+        baseChartViewWriter.clearXAxis();
         baseChartViewWriter.detach();
     }
 

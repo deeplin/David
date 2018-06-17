@@ -63,18 +63,18 @@ public class GreenDaoTest {
         DaoControl daoControl = new DaoControl();
         daoControl.start(MainApplication.getInstance());
 
-        daoControl.deleteTables();
-
-        AnalogCommand analogCommand = new AnalogCommand();
-        analogCommand.setS1A(1);
-        analogCommand.setS1B(2);
-        analogCommand.setS2(3);
-        analogCommand.setS3(4);
-
-        for(int index = 0; index < 1000; index ++){
-            analogCommand.setA1(index);
-            daoControl.saveCommand(analogCommand);
-        }
+//        daoControl.deleteTables();
+//
+//        AnalogCommand analogCommand = new AnalogCommand();
+//        analogCommand.setS1A(1);
+//        analogCommand.setS1B(2);
+//        analogCommand.setS2(3);
+//        analogCommand.setS3(4);
+//
+//        for(int index = 0; index < 1000; index ++){
+//            analogCommand.setA1(index);
+//            daoControl.saveCommand(analogCommand);
+//        }
 
         List<AnalogCommand> analogCommandList = daoControl.getAnalogCommand(100);
         for(AnalogCommand command : analogCommandList){

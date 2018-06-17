@@ -102,25 +102,25 @@ public class ChartPagerAdapter extends PagerAdapter {
             case 1:
                 BaseChartViewModel heatingViewModel = new HeatingChartViewModel(
                         sensorChartView, pageTurnTable, shareMemory);
-                view = new ChartBaseLayout(container.getContext(), heatingViewModel);
+                view = new BaseChartLayout(container.getContext(), heatingViewModel);
                 break;
             case 2:
                 BaseChartViewModel humidityViewModel = new HumidityChartViewModel(
                         sensorChartView, pageTurnTable, shareMemory, moduleSoftware);
-                view = new ChartBaseLayout(container.getContext(), humidityViewModel);
+                view = new BaseChartLayout(container.getContext(), humidityViewModel);
                 break;
             case 3:
                 BaseChartViewModel oxygenViewModel = new OxygenChartViewModel(
                         sensorChartView, pageTurnTable, shareMemory, moduleSoftware);
-                view = new ChartBaseLayout(container.getContext(), oxygenViewModel);
+                view = new BaseChartLayout(container.getContext(), oxygenViewModel);
                 break;
             case 4:
                 BaseChartViewModel spo2ViewModel = new Spo2ChartViewModel(sensorChartView, pageTurnTable);
-                view = new ChartBaseLayout(container.getContext(), spo2ViewModel);
+                view = new BaseChartLayout(container.getContext(), spo2ViewModel);
                 break;
             case 5:
                 BaseChartViewModel prViewModel = new PrChartViewModel(sensorChartView, pageTurnTable);
-                view = new ChartBaseLayout(container.getContext(), prViewModel);
+                view = new BaseChartLayout(container.getContext(), prViewModel);
                 break;
             default:
                 view = new View(container.getContext());

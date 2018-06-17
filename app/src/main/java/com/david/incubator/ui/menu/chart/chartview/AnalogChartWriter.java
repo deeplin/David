@@ -5,6 +5,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
 import com.david.incubator.ui.menu.chart.IChartViewModel;
 import com.david.incubator.ui.menu.chart.SensorChartView;
+import com.david.incubator.ui.user.usermodel.UserModelDetailViewModel;
 
 import java.util.List;
 

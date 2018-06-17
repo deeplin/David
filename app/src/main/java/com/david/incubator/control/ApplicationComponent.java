@@ -1,6 +1,7 @@
 package com.david.incubator.control;
 
 import com.david.common.control.AutomationControl;
+import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
@@ -230,4 +231,6 @@ public interface ApplicationComponent {
     void inject(UserTimeLayout userTimeLayout);
 
     void inject(SettingHomeFragment settingHomeFragment);
+
+    void inject(DaoControl daoControl);
 }

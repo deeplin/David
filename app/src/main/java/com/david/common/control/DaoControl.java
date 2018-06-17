@@ -24,6 +24,7 @@ import com.david.common.mode.LanguageMode;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
+import com.david.incubator.ui.user.usermodel.UserModelDetailViewModel;
 
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -48,7 +49,11 @@ public class DaoControl {
     private DaoSession daoSession;
 
     @Inject
+    UserModelDetailViewModel userModelDetailViewModel;
+
+    @Inject
     public DaoControl() {
+        MainApplication.getInstance().getApplicationComponent().inject(this);
     }
 
     public void start(Context applicationContext) {
@@ -122,17 +127,17 @@ public class DaoControl {
     public synchronized void saveCommand(AnalogCommand analogCommand) {
         long currentTime = TimeUtil.getCurrentTimeInSecond();
         /*每分钟记录一次*/
-        if (currentTime % 60 == 0) {
+//        if (currentTime % 60 == 0) {
             analogCommand.setTimeStamp(currentTime);
             /*去除ID*/
             analogCommand.setId(null);
             AnalogCommandDao analogCommandDao = daoSession.getAnalogCommandDao();
             analogCommandDao.insert(analogCommand);
 
-            //todo
-            Log.e("deeplin", String.format(String.format(String.format("add analog " + analogCommand.getId() + " " + analogCommand.getTimeStamp() + " "
-                    + TimeUtil.getTime(analogCommand.getTimeStamp() * 1000, TimeUtil.FullTime)))));
-        }
+//            //todo
+//            Log.e("deeplin", String.format(String.format(String.format("add analog " + analogCommand.getId() + " " + analogCommand.getTimeStamp() + " "
+//                    + TimeUtil.getTime(analogCommand.getTimeStamp() * 1000, TimeUtil.FullTime)))));
+//        }
     }
 
     public synchronized void saveCommand(StatusCommand statusCommand) {
@@ -144,7 +149,6 @@ public class DaoControl {
             statusCommand.setId(null);
             StatusCommandDao statusCommandDao = daoSession.getStatusCommandDao();
             statusCommandDao.insert(statusCommand);
-
         }
     }
 
@@ -233,20 +237,24 @@ public class DaoControl {
     public List<AnalogCommand> getAnalogCommand(int limit, long currentId) {
         daoSession.clear();
 
-        UserModel userModel = getLastUserModel();
-
         AnalogCommandDao analogModelDao = daoSession.getAnalogCommandDao();
         QueryBuilder<AnalogCommand> queryBuilder = analogModelDao.queryBuilder()
                 .orderDesc(AnalogCommandDao.Properties.Id)
                 .limit(limit);
 
+        UserModel userModel = userModelDetailViewModel.userModel;
+        if(userModel == null){
+            userModel = getLastUserModel();
+        }
+
         if (userModel != null) {
+            //todo
+            Log.e("deeplin", "Current User:" + userModel.getUserId());
             queryBuilder.where(AnalogCommandDao.Properties.TimeStamp.ge(userModel.getStartTimeStamp()));
             if (userModel.getEndTimeStamp() > 0) {
                 queryBuilder.where(AnalogCommandDao.Properties.TimeStamp.le(userModel.getEndTimeStamp()));
             }
         }
-
         if (currentId > 0) {
             queryBuilder.where(AnalogCommandDao.Properties.Id.le(currentId));
         }
@@ -261,12 +269,15 @@ public class DaoControl {
     public List<StatusCommand> getStatusCommand(int limit, long currentId) {
         daoSession.clear();
 
-        UserModel userModel = getLastUserModel();
-
         StatusCommandDao statusCommandDao = daoSession.getStatusCommandDao();
         QueryBuilder<StatusCommand> queryBuilder = statusCommandDao.queryBuilder()
                 .orderDesc(StatusCommandDao.Properties.Id)
                 .limit(limit);
+
+        UserModel userModel = userModelDetailViewModel.userModel;
+        if(userModel == null){
+            userModel = getLastUserModel();
+        }
 
         if (userModel != null) {
             queryBuilder.where(StatusCommandDao.Properties.TimeStamp.ge(userModel.getStartTimeStamp()));
@@ -294,11 +305,14 @@ public class DaoControl {
     public List<WeightModel> getWeightModel() {
         daoSession.clear();
 
-        UserModel userModel = getLastUserModel();
-
         WeightModelDao weightModelDao = daoSession.getWeightModelDao();
         QueryBuilder<WeightModel> queryBuilder = weightModelDao.queryBuilder()
                 .orderDesc(WeightModelDao.Properties.Id);
+
+        UserModel userModel = userModelDetailViewModel.userModel;
+        if(userModel == null){
+            userModel = getLastUserModel();
+        }
 
         if (userModel != null) {
             long currentTime = TimeUtil.getCurrentTimeInSecond();
@@ -326,6 +340,7 @@ public class DaoControl {
                 .limit(limit);
 
         if (userModel != null) {
+            Log.e("deeplin", "Current User:" + userModel.getUserId());
             queryBuilder.where(WeightModelDao.Properties.TimeStamp.ge(userModel.getStartTimeStamp()));
             if (userModel.getEndTimeStamp() > 0) {
                 queryBuilder.where(WeightModelDao.Properties.TimeStamp.le(userModel.getEndTimeStamp()));

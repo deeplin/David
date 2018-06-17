@@ -5,6 +5,7 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 import android.view.View;
 
+import com.david.common.dao.UserModel;
 import com.david.common.ui.IViewModel;
 import com.david.incubator.ui.menu.chart.chartview.BaseChartViewWriter;
 import com.david.incubator.ui.menu.chart.table.PageTurnTable;
@@ -22,13 +23,12 @@ public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableV
     protected final int[] CYCLE_VALUE_ARRAY = {2, 4, 8, 12, 24, 48};
     protected final int[] CYCLE_VALUE_TIME = {1, 2, 4, 6, 12, 24};
 
-    protected BaseChartViewWriter baseChartViewWriter;
-    protected PageTurnTable pageTurnTable;
+    protected final BaseChartViewWriter baseChartViewWriter;
+    protected final PageTurnTable pageTurnTable;
 
     public ObservableInt cycleValue = new ObservableInt();
     public ObservableInt cycleIndex = new ObservableInt();
     public ObservableInt yAxisTitle = new ObservableInt();
-
     public ObservableBoolean tableSelected = new ObservableBoolean(false);
 
     public BaseChartViewModel(BaseChartViewWriter baseChartViewWriter,
@@ -101,6 +101,12 @@ public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableV
     }
 
     @Override
+    public synchronized void detach() {
+        baseChartViewWriter.clearXAxis();
+        pageTurnTable.stop();
+    }
+
+    @Override
     public void refresh() {
         io.reactivex.Observable.just(this)
                 .observeOn(Schedulers.io())
@@ -128,11 +134,6 @@ public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableV
             pageTurnTable.stop();
             pageTurnTable.setVisibility(View.INVISIBLE);
         }
-    }
-
-    @Override
-    public synchronized void detach() {
-        pageTurnTable.stop();
     }
 
     protected void addLine() {

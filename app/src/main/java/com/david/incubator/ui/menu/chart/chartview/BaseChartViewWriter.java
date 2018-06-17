@@ -33,6 +33,10 @@ public abstract class BaseChartViewWriter {
         sensorChartView.setYAxisLabels(max, min, step, detailStep);
     }
 
+    public void clearXAxis(){
+        sensorChartView.resetXAxis();
+    }
+
     protected void initializeXAxis(long lastTimeStamp, int step) {
         sensorChartView.resetXAxis();
         int count = 5;

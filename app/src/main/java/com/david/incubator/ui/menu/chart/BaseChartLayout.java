@@ -17,11 +17,11 @@ import java.util.concurrent.TimeUnit;
  * description:
  */
 
-public class ChartBaseLayout extends BindingConstraintLayout<LayoutChartBaseBinding> implements IRefreshableViewModel {
+public class BaseChartLayout extends BindingConstraintLayout<LayoutChartBaseBinding> implements IRefreshableViewModel {
 
     BaseChartViewModel viewModel;
 
-    public ChartBaseLayout(Context context, BaseChartViewModel viewModel) {
+    public BaseChartLayout(Context context, BaseChartViewModel viewModel) {
         super(context);
         this.viewModel = viewModel;
 
