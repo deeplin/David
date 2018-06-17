@@ -8,6 +8,7 @@ import com.david.R;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
+import com.david.common.data.SelectedUser;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
@@ -36,7 +37,7 @@ public class UserModelLayout extends BindingConstraintLayout<LayoutUserModelBind
     @Inject
     ShareMemory shareMemory;
     @Inject
-    UserModelDetailViewModel userModelDetailViewModel;
+    SelectedUser selectedUser;
 
     ButtonControlViewModel buttonControlViewModel;
 
@@ -136,7 +137,7 @@ public class UserModelLayout extends BindingConstraintLayout<LayoutUserModelBind
 
     private void setListener(KeyValueView keyValueView) {
         keyValueView.setListener(o -> {
-            userModelDetailViewModel.userModel = (UserModel) keyValueView.getTag();
+            selectedUser.userModel = (UserModel) keyValueView.getTag();
             navigationView.set(FragmentPage.USER_MODEL_DETAIL);
         });
     }

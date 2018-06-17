@@ -60,7 +60,7 @@
             android:id="@+id/clChart"
             android:layout_width="654dp"
             android:layout_height="match_parent"
-            android:visibility="@{viewModel.userModelDetailViewModel.showDetail ? View.VISIBLE:View.GONE}"
+            android:visibility="@{viewModel.selectedUser.showDetail ? View.VISIBLE:View.GONE}"
             app:layout_constraintLeft_toRightOf="@id/sllLeft" />
 
     </android.support.constraint.ConstraintLayout>

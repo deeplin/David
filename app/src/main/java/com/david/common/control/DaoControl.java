@@ -24,7 +24,7 @@ import com.david.common.mode.LanguageMode;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
-import com.david.incubator.ui.user.usermodel.UserModelDetailViewModel;
+import com.david.common.data.SelectedUser;
 
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -49,7 +49,7 @@ public class DaoControl {
     private DaoSession daoSession;
 
     @Inject
-    UserModelDetailViewModel userModelDetailViewModel;
+    SelectedUser selectedUser;
 
     @Inject
     public DaoControl() {
@@ -242,7 +242,7 @@ public class DaoControl {
                 .orderDesc(AnalogCommandDao.Properties.Id)
                 .limit(limit);
 
-        UserModel userModel = userModelDetailViewModel.userModel;
+        UserModel userModel = selectedUser.userModel;
         if(userModel == null){
             userModel = getLastUserModel();
         }
@@ -274,7 +274,7 @@ public class DaoControl {
                 .orderDesc(StatusCommandDao.Properties.Id)
                 .limit(limit);
 
-        UserModel userModel = userModelDetailViewModel.userModel;
+        UserModel userModel = selectedUser.userModel;
         if(userModel == null){
             userModel = getLastUserModel();
         }
@@ -309,7 +309,7 @@ public class DaoControl {
         QueryBuilder<WeightModel> queryBuilder = weightModelDao.queryBuilder()
                 .orderDesc(WeightModelDao.Properties.Id);
 
-        UserModel userModel = userModelDetailViewModel.userModel;
+        UserModel userModel = selectedUser.userModel;
         if(userModel == null){
             userModel = getLastUserModel();
         }

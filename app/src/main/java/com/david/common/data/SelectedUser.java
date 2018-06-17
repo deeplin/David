@@ -1,4 +1,4 @@
-package com.david.incubator.ui.user.usermodel;
+package com.david.common.data;
 
 import android.databinding.ObservableBoolean;
 
@@ -16,13 +16,13 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-public class UserModelDetailViewModel implements IViewModel {
+public class SelectedUser implements IViewModel {
 
     public UserModel userModel;
     public ObservableBoolean showDetail = new ObservableBoolean(false);
 
     @Inject
-    UserModelDetailViewModel() {
+    SelectedUser() {
     }
 
     @Override

@@ -8,13 +8,13 @@ import com.david.R;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
+import com.david.common.data.SelectedUser;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutUserModelDetailBinding;
 import com.david.incubator.ui.common.KeyValueViewModel;
-import com.david.incubator.ui.main.MainActivity;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -33,7 +33,7 @@ import javax.inject.Inject;
 public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserModelDetailBinding> {
 
     @Inject
-    UserModelDetailViewModel userModelDetailViewModel;
+    SelectedUser selectedUser;
     @Inject
     DaoControl daoControl;
     @Inject
@@ -67,14 +67,14 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
                         ResourceUtil.getString(R.string.delete_confirm),
                         (dialog, which) -> {
                             alertDialog = null;
-                            daoControl.deleteUserModel(userModelDetailViewModel.userModel);
+                            daoControl.deleteUserModel(selectedUser.userModel);
                             topViewModel.loadUserId();
                             navigationView.set(FragmentPage.USER_MODEL);
                         }));
 
         RxView.clicks(binding.btSignsOfData)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> userModelDetailViewModel.showDetail.set(true));
+                .subscribe((aVoid) -> selectedUser.showDetail.set(true));
 
         RxView.clicks(binding.btReturn)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
@@ -83,12 +83,12 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
 
     @Override
     public void attach() {
-        userModelDetailViewModel.attach();
+        selectedUser.attach();
     }
 
     @Override
     public void detach() {
-        userModelDetailViewModel.detach();
+        selectedUser.detach();
         if (alertDialog != null) {
             alertDialog.dismiss();
             alertDialog = null;
@@ -98,7 +98,7 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
     private void init() {
         binding.title.setTitle(R.string.patient_information);
 
-        UserModel userModel = userModelDetailViewModel.userModel;
+        UserModel userModel = selectedUser.userModel;
 
         nameKeyValueViewModel = new KeyValueViewModel(R.string.name);
         nameKeyValueViewModel.setValueField(userModel.getName());
@@ -109,7 +109,7 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
         binding.addPatientId.setViewModel(idKeyValueViewModel);
 
         sexKeyValueViewModel = new KeyValueViewModel(R.string.sex);
-        if (userModelDetailViewModel.userModel.getSex()) {
+        if (selectedUser.userModel.getSex()) {
             sexKeyValueViewModel.setValueField(ResourceUtil.getString(R.string.male));
         } else {
             sexKeyValueViewModel.setValueField(ResourceUtil.getString(R.string.female));

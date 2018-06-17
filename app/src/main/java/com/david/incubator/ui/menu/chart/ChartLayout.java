@@ -14,8 +14,7 @@ import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabHomeLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.LayoutChartBinding;
-import com.david.incubator.ui.menu.chart.ChartPagerAdapter;
-import com.david.incubator.ui.user.usermodel.UserModelDetailViewModel;
+import com.david.common.data.SelectedUser;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.Calendar;
@@ -36,7 +35,7 @@ public class ChartLayout extends TabHomeLayout<LayoutChartBinding> {
     @Inject
     DaoControl daoControl;
     @Inject
-    public UserModelDetailViewModel userModelDetailViewModel;
+    public SelectedUser selectedUser;
 
     protected Disposable refreshDisposable;
 
@@ -48,7 +47,7 @@ public class ChartLayout extends TabHomeLayout<LayoutChartBinding> {
         RxView.clicks(binding.btReturn)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    userModelDetailViewModel.showDetail.set(false);
+                    selectedUser.showDetail.set(false);
                     ChartLayout.this.setVisibility(View.GONE);
                 });
     }

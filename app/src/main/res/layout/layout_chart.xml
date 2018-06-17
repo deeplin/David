@@ -71,7 +71,7 @@
             style="@style/button_style"
             android:layout_marginEnd="60dp"
             android:text="@string/exit"
-            android:visibility="@{viewModel.userModelDetailViewModel.showDetail ? View.VISIBLE:View.GONE}"
+            android:visibility="@{viewModel.selectedUser.showDetail ? View.VISIBLE:View.GONE}"
             app:layout_constraintBottom_toBottomOf="@id/vpChart"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="@id/vpChart"
