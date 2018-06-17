@@ -178,4 +178,3 @@ public class StatusCommand extends BaseSerialMessage {
         this.ACount = ACount;
     }
 }
-

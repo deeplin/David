@@ -1,6 +1,7 @@
 package com.david.incubator.ui.home.cabin;
 
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -119,6 +120,8 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
                 .subscribe((num) -> {
                     ViewGroup.LayoutParams params = binding.ivHomeHeatingHide.getLayoutParams();
                     params.width = (int) ((100 - num) * 1.74);
+                    //todo
+                    Log.e("deeplin", "heat width" + step + " " + params.width);
                     binding.ivHomeHeatingHide.invalidate();
                     binding.ivHomeHeatingHide.setVisibility(View.GONE);
                     binding.ivHomeHeatingHide.setVisibility(View.VISIBLE);

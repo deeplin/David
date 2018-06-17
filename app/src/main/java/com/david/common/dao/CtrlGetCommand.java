@@ -1,12 +1,12 @@
 package com.david.common.dao;
 
-import com.david.common.serial.BaseSerialMessage;
-import com.david.common.util.CommandChar;
+        import com.david.common.serial.BaseSerialMessage;
+        import com.david.common.util.CommandChar;
 
-import org.greenrobot.greendao.annotation.Entity;
-import org.greenrobot.greendao.annotation.Generated;
-import org.greenrobot.greendao.annotation.Id;
-import org.greenrobot.greendao.annotation.Transient;
+        import org.greenrobot.greendao.annotation.Entity;
+        import org.greenrobot.greendao.annotation.Generated;
+        import org.greenrobot.greendao.annotation.Id;
+        import org.greenrobot.greendao.annotation.Transient;
 
 /**
  * author: Ling Lin

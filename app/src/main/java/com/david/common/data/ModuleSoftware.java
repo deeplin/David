@@ -1,6 +1,5 @@
 package com.david.common.data;
 
-import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 
 import com.david.common.serial.BaseSerialMessage;

@@ -127,17 +127,17 @@ public class DaoControl {
     public synchronized void saveCommand(AnalogCommand analogCommand) {
         long currentTime = TimeUtil.getCurrentTimeInSecond();
         /*每分钟记录一次*/
-//        if (currentTime % 60 == 0) {
+        if (currentTime % 60 == 0) {
             analogCommand.setTimeStamp(currentTime);
             /*去除ID*/
             analogCommand.setId(null);
             AnalogCommandDao analogCommandDao = daoSession.getAnalogCommandDao();
             analogCommandDao.insert(analogCommand);
 
-//            //todo
-//            Log.e("deeplin", String.format(String.format(String.format("add analog " + analogCommand.getId() + " " + analogCommand.getTimeStamp() + " "
-//                    + TimeUtil.getTime(analogCommand.getTimeStamp() * 1000, TimeUtil.FullTime)))));
-//        }
+            //todo
+            Log.e("deeplin", String.format(String.format(String.format("add analog " + analogCommand.getId() + " " + analogCommand.getTimeStamp() + " "
+                    + TimeUtil.getTime(analogCommand.getTimeStamp() * 1000, TimeUtil.FullTime)))));
+        }
     }
 
     public synchronized void saveCommand(StatusCommand statusCommand) {

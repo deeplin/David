@@ -1,16 +1,16 @@
 package com.david.common.serial;
 
-import com.apkfuns.logutils.LogUtils;
-import com.david.common.util.Constant;
-import com.lztek.toolkit.SerialPort;
+        import com.apkfuns.logutils.LogUtils;
+        import com.david.common.util.Constant;
+        import com.lztek.toolkit.SerialPort;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+        import java.io.InputStream;
+        import java.io.OutputStream;
 
-import javax.inject.Inject;
+        import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
+        import io.reactivex.Observable;
+        import io.reactivex.schedulers.Schedulers;
 
 /**
  * author: Ling Lin

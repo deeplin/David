@@ -1,7 +1,5 @@
 package com.david.common.serial.command.spo2;
 
-import android.util.Log;
-
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.util.CommandChar;
 import com.david.common.util.Pair;
