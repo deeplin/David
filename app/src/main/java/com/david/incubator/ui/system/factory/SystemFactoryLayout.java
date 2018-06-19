@@ -1,5 +1,6 @@
 package com.david.incubator.ui.system.factory;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
@@ -10,8 +11,10 @@ import com.david.common.control.MessageSender;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
+import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSystemFactoryBinding;
 import com.david.incubator.ui.common.ButtonControlViewModel;
+import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -28,6 +31,8 @@ public class SystemFactoryLayout extends BindingConstraintLayout<LayoutSystemFac
 
     ObservableInt navigationView;
 
+    private AlertDialog alertDialog;
+
     public SystemFactoryLayout(Context context, ObservableInt navigationView) {
         super(context);
         MainApplication.getInstance().getApplicationComponent().inject(this);
@@ -43,14 +48,14 @@ public class SystemFactoryLayout extends BindingConstraintLayout<LayoutSystemFac
 
         RxView.clicks(binding.systemFactoryLower)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> {
-                    messageSender.Factory((aBoolean, serialMessage) -> {
-                        if (aBoolean) {
-                            selectLower.set(true);
-                            selectUpper.set(false);
-                        }
-                    });
-                });
+                .subscribe((aVoid) -> alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.time_update,
+                        ResourceUtil.getString(R.string.time_update_confirm),
+                        (dialog, which) -> messageSender.Factory((aBoolean, serialMessage) -> {
+                            if (aBoolean) {
+                                selectLower.set(true);
+                                selectUpper.set(false);
+                            }
+                        })));
 
         RxView.clicks(binding.systemFactoryUpper)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)

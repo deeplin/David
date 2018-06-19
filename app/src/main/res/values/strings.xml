@@ -94,7 +94,7 @@
     <string name="calibration_successful">校准成功</string>
     <string name="calibration_failed">校准失败</string>
     <string name="time_update">时间修改</string>
-    <string name="time_update_confirm">历史数据将被删除，是否修改时间？</string>
+    <string name="time_update_confirm">历史数据将被删除，是否修改？</string>
 
     <!--Device-->
     <string name="software_information">软件信息</string>

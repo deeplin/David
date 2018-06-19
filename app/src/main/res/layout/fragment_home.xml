@@ -201,7 +201,6 @@
         <!--side-->
 
         <TextView
-            android:id="@+id/tvHomeHumidityValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
@@ -218,10 +217,13 @@
             android:id="@+id/ivHomeHumidityPower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/tvHomeHumidityValue"
-            app:layout_constraintRight_toRightOf="@id/tvHomeHumidityValue"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvHomeHumidityValue"
+            app:layout_constraintLeft_toRightOf="@id/tvHomeHumidityValue"/>
 
         <TextView
+            android:id="@+id/tvHomeHumidityValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
@@ -249,7 +251,6 @@
             app:layout_constraintVertical_bias="0.1875" />
 
         <TextView
-            android:id="@+id/tvHomeOxygenValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"
@@ -267,10 +268,13 @@
             android:id="@+id/ivHomeOxygenPower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/tvHomeOxygenValue"
-            app:layout_constraintRight_toRightOf="@id/tvHomeOxygenValue"/>
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toBottomOf="@id/tvHomeOxygenValue"
+            app:layout_constraintLeft_toRightOf="@id/tvHomeOxygenValue"/>
 
         <TextView
+            android:id="@+id/tvHomeOxygenValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="monospace"

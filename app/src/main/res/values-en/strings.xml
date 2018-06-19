@@ -76,7 +76,7 @@
     <string name="calibration_successful">Calibration Successful</string>
     <string name="calibration_failed">Calibration Failed</string>
     <string name="time_update">Time Modification</string>
-    <string name="time_update_confirm">All history data will be deleted.\n Please confirm if updating time.</string>
+    <string name="time_update_confirm">All history data will be deleted.\n Please confirm.</string>
 
     <!--Device-->
     <string name="software_information">Software Information</string>

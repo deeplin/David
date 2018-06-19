@@ -76,7 +76,7 @@
     <string name="calibration_successful">Kalibracja pomyślna</string>
     <string name="calibration_failed">Kalibracja niepomyślna</string>
     <string name="time_update">Zmiana czasu</string>
-    <string name="time_update_confirm">Dane historyczne zostaną usunięte, zmodyfikowany czas?</string>
+    <string name="time_update_confirm">Dane historyczne zostaną usunięte, zmodyfikowany?</string>
 
     <!--Device-->
     <string name="software_information">Informacje o oprogramowaniu</string>

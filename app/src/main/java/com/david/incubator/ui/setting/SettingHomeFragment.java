@@ -34,6 +34,7 @@ public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding>
     @Override
     public void attach() {
         binding.sllLeft.attach();
+        binding.clChart.attach();
 
         SettingPagerAdapter pagerAdapter = new SettingPagerAdapter();
         binding.vpSetting.setAdapter(pagerAdapter);
@@ -54,6 +55,7 @@ public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding>
     public void detach() {
         super.detach();
         selectedUser.showDetail.set(false);
+        binding.clChart.detach();
         binding.sllLeft.detach();
     }
 }

@@ -15,6 +15,7 @@
 
         <!--654*620-->
         <com.david.incubator.ui.menu.chart.ChartLayout
+            android:id="@+id/clChart"
             android:layout_width="654dp"
             android:layout_height="match_parent"
             app:layout_constraintLeft_toRightOf="@id/sllLeft"/>

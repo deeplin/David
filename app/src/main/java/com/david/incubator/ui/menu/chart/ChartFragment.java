@@ -39,11 +39,13 @@ public class ChartFragment extends TabHomeFragment<FragmentChartBinding> impleme
     @Override
     public void attach() {
         binding.sllLeft.attach();
+        binding.clChart.attach();
     }
 
     @Override
     public void detach() {
         super.detach();
+        binding.clChart.detach();
         binding.sllLeft.detach();
     }
 }

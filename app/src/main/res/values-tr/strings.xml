@@ -76,7 +76,7 @@
     <string name="calibration_successful">Kalibrasyon başarılı</string>
     <string name="calibration_failed">Kalibrasyon başarısız</string>
     <string name="time_update">Zaman değişiklik</string>
-    <string name="time_update_confirm">Tarihsel veriler silinecek, zaman değiştirilecek mi?</string>
+    <string name="time_update_confirm">Tarihsel veriler silinecek, değiştirilecek mi?</string>
 
     <!--Device-->
     <string name="software_information">Yazılım bilgisi</string>
