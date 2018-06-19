@@ -114,12 +114,12 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
             }
         });
 
-        shareMemory.warm.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+        shareMemory.warmPower.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
                 if (navigator != null) {
                     if (shareMemory.isWarmer()) {
-                        navigator.displaySecondValue(String.valueOf(shareMemory.warm.get()));
+                        navigator.displaySecondValue(String.valueOf(shareMemory.warmPower.get()));
                     }
                 }
             }
@@ -181,7 +181,7 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
         shareMemory.S1B.notifyChange();
         shareMemory.O2.notifyChange();
         shareMemory.H1.notifyChange();
-        shareMemory.warm.notifyChange();
+        shareMemory.warmPower.notifyChange();
         shareMemory.SPO2.notifyChange();
         shareMemory.PR.notifyChange();
 

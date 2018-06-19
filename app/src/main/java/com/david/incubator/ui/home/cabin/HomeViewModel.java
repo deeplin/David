@@ -40,7 +40,9 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
     public ObservableBoolean oxygenVisible = new ObservableBoolean(true);
     public ObservableBoolean spo2Visible = new ObservableBoolean(true);
 
-    private Observable.OnPropertyChangedCallback heatCallback;
+    private Observable.OnPropertyChangedCallback incPowerCallback;
+    private Observable.OnPropertyChangedCallback humidityPowerCallback;
+    private Observable.OnPropertyChangedCallback oxygenPowerCallback;
     private Observable.OnPropertyChangedCallback settingUpdateCallback;
     private Observable.OnPropertyChangedCallback ctrlModeCallback;
 
@@ -48,13 +50,28 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
     public HomeViewModel() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
-        heatCallback = new Observable.OnPropertyChangedCallback() {
+        incPowerCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
                 //todo
-                navigator.setHeatStep(shareMemory.inc.get());
+                navigator.setHeatStep(shareMemory.incPower.get());
             }
         };
+
+        humidityPowerCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                navigator.setHumidityPower(shareMemory.humidityPower.get());
+            }
+        };
+
+        oxygenPowerCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                navigator.setOxygenPower(shareMemory.oxygenPower.get());
+            }
+        };
+
         settingUpdateCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
@@ -84,8 +101,14 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
         moduleSoftware.updated.addOnPropertyChangedCallback(settingUpdateCallback);
         moduleHardware.updated.notifyChange();
 
-        shareMemory.inc.addOnPropertyChangedCallback(heatCallback);
-        shareMemory.inc.notifyChange();
+        shareMemory.incPower.addOnPropertyChangedCallback(incPowerCallback);
+        shareMemory.incPower.notifyChange();
+
+        shareMemory.humidityPower.addOnPropertyChangedCallback(humidityPowerCallback);
+        shareMemory.humidityPower.notifyChange();
+
+        shareMemory.oxygenPower.addOnPropertyChangedCallback(oxygenPowerCallback);
+        shareMemory.oxygenPower.notifyChange();
 
         shareMemory.ctrlMode.addOnPropertyChangedCallback(ctrlModeCallback);
         messageSender.getCtrlGet(shareMemory);
@@ -114,7 +137,7 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
     @Override
     public void detach() {
         shareMemory.ctrlMode.removeOnPropertyChangedCallback(ctrlModeCallback);
-        shareMemory.inc.removeOnPropertyChangedCallback(heatCallback);
+        shareMemory.incPower.removeOnPropertyChangedCallback(incPowerCallback);
         moduleSoftware.updated.removeOnPropertyChangedCallback(settingUpdateCallback);
         moduleHardware.updated.addOnPropertyChangedCallback(settingUpdateCallback);
     }

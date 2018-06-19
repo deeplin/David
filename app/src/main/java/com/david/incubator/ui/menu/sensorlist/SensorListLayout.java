@@ -70,7 +70,7 @@ public class SensorListLayout extends BindingConstraintLayout<LayoutSensorListBi
             binding.sensorListThird.valueColor.set(ResourceUtil.getColor(R.color.humidity));
             binding.sensorListThird.rightTopIcon.set(R.mipmap.color_humidity);
             binding.sensorListThird.rightTopText.set(null);
-            binding.sensorListThird.rightBottom.set("%");
+            binding.sensorListThird.rightBottom.set("%RH");
             binding.sensorListThird.setImageIcon.set(R.mipmap.set_humidity);
             binding.sensorListThird.objective.set(ViewUtil.formatHumidityValue(humidityObjective));
 

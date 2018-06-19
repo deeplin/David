@@ -5,7 +5,6 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableByte;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
-import android.util.Log;
 
 import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
@@ -43,8 +42,10 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
     /*Status Command*/
     public ObservableField<SystemMode> systemMode = new ObservableField<>(SystemMode.Init);
-    public ObservableInt inc = new ObservableInt(0);
-    public ObservableInt warm = new ObservableInt(0);
+    public ObservableInt incPower = new ObservableInt(0);
+    public ObservableInt warmPower = new ObservableInt(0);
+    public ObservableBoolean humidityPower = new ObservableBoolean();
+    public ObservableBoolean oxygenPower = new ObservableBoolean();
     public ObservableInt cTime = new ObservableInt(0);
     public ObservableInt ohTest = new ObservableInt(0);
     /*Analog Command*/
@@ -139,8 +140,10 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
                     cTime.set(0);
                 }
 
-                inc.set(statusCommand.getInc());
-                warm.set(statusCommand.getWarm());
+                incPower.set(statusCommand.getInc());
+                warmPower.set(statusCommand.getWarm());
+                humidityPower.set(statusCommand.getHum() > 0);
+                oxygenPower.set(statusCommand.getO2() > 0);
 
                 if (Objects.equals(statusCommand.getAlert(), Constant.SENSOR_NA_STRING)) {
                     alarmControl.topAlarmId.set(null);
@@ -285,19 +288,19 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
         return Objects.equals(systemMode.get(), SystemMode.Transit);
     }
 
-    public boolean isAir(){
+    public boolean isAir() {
         return Objects.equals(ctrlMode.get(), CtrlMode.Air);
     }
 
-    public boolean isSkin(){
+    public boolean isSkin() {
         return Objects.equals(ctrlMode.get(), CtrlMode.Skin);
     }
 
-    public boolean isManual(){
+    public boolean isManual() {
         return Objects.equals(ctrlMode.get(), CtrlMode.Manual);
     }
 
-    public boolean isPrewarm(){
+    public boolean isPrewarm() {
         return Objects.equals(ctrlMode.get(), CtrlMode.Prewarm);
     }
 

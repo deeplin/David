@@ -3,7 +3,6 @@ package com.david.incubator.ui.home.warmer;
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
-import android.util.Log;
 
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
@@ -53,7 +52,7 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
         warmCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                int warm = shareMemory.warm.get();
+                int warm = shareMemory.warmPower.get();
                 if (navigator != null) {
                     navigator.setHeatStep(warm);
                 }
@@ -111,10 +110,10 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
         setEnableSensor();
 
         shareMemory.ctrlMode.addOnPropertyChangedCallback(ctrlModeCallback);
-        shareMemory.warm.addOnPropertyChangedCallback(warmCallback);
+        shareMemory.warmPower.addOnPropertyChangedCallback(warmCallback);
         shareMemory.manObjective.addOnPropertyChangedCallback(manObjectiveCallback);
 
-        shareMemory.warm.notifyChange();
+        shareMemory.warmPower.notifyChange();
         shareMemory.ctrlMode.notifyChange();
         shareMemory.manObjective.notifyChange();
 
@@ -126,7 +125,7 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
     @Override
     public void detach() {
         shareMemory.manObjective.removeOnPropertyChangedCallback(manObjectiveCallback);
-        shareMemory.warm.removeOnPropertyChangedCallback(warmCallback);
+        shareMemory.warmPower.removeOnPropertyChangedCallback(warmCallback);
         shareMemory.ctrlMode.removeOnPropertyChangedCallback(ctrlModeCallback);
     }
 

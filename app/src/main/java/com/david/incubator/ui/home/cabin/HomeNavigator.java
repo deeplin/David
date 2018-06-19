@@ -18,4 +18,8 @@ public interface HomeNavigator {
     void showAir();
 
     void showSkin();
+
+    void setHumidityPower(boolean status);
+
+    void setOxygenPower(boolean status);
 }

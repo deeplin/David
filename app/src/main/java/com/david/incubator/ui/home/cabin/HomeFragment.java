@@ -201,4 +201,34 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
                     }
                 });
     }
+
+    @Override
+    public void setHumidityPower(boolean status) {
+        Observable.just(this)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((obj) -> {
+                    if (status) {
+                        binding.ivHomeHumidityPower
+                                .setImageResource(R.mipmap.power_on);
+                    } else {
+                        binding.ivHomeHumidityPower
+                                .setImageResource(R.mipmap.power_off);
+                    }
+                });
+    }
+
+    @Override
+    public void setOxygenPower(boolean status) {
+        Observable.just(this)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((obj) -> {
+                    if (status) {
+                        binding.ivHomeOxygenPower
+                                .setImageResource(R.mipmap.power_on);
+                    } else {
+                        binding.ivHomeOxygenPower
+                                .setImageResource(R.mipmap.power_off);
+                    }
+                });
+    }
 }

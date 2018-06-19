@@ -63,22 +63,22 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="@dimen/y20"
             android:imageSrc="@{viewModel.rightTopIcon}"
             android:visibility="@{viewModel.showView &amp;&amp; viewModel.rightTopIcon != 0 ? View.VISIBLE: View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sensorListValue"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
             android:layout_marginTop="@dimen/y20"
             android:text="@{viewModel.rightTopText}"
             android:textColor="@{viewModel.valueColor}"
             android:textSize="@dimen/f16"
             android:visibility="@{viewModel.showView ? View.VISIBLE :View.GONE}"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sensorListValue"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -86,12 +86,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/y20"
+            android:layout_marginStart="4dp"
             android:text="@{viewModel.rightBottom}"
             android:textColor="@{viewModel.valueColor}"
             android:textSize="@dimen/f22"
             android:visibility="@{viewModel.showView ? View.VISIBLE :View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/sensorListValue" />
 
     </android.support.constraint.ConstraintLayout>
