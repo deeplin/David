@@ -54,7 +54,7 @@ public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSett
     public ObservableField<String> result = new ObservableField<>();
     Observable.OnPropertyChangedCallback alarmCallback;
 
-    private AlertDialog alertDialog;
+    private AlertDialog alertDialog = null;
 
     public SettingCalibrationLayout(Context context) {
         super(context);
@@ -96,58 +96,50 @@ public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSett
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object aVoid) -> {
                     if (selectO2.get()) {
-
                         alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.calibration_o2,
                                 ResourceUtil.getString(R.string.calibration_confirm_o2_21),
-                                (dialog, which) -> {
-                                    alertDialog = null;
-                                    messageSender.setOxygen(210, 1,
-                                            (aBoolean, baseSerialMessage) -> {
-                                                if (aBoolean) {
-                                                    messageSender.setOxygen(210, 2,
-                                                            (aaBoolean, abaseSerialMessage) -> io.reactivex.Observable
-                                                                    .just(this)
-                                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                                    .subscribe((obj) -> {
-                                                                        if (aaBoolean) {
-                                                                            selectLeft.set(true);
-                                                                            selectRight.set(false);
-                                                                            result.set(ResourceUtil.getString(R.string.calibration_successful));
-                                                                        } else {
-                                                                            selectLeft.set(false);
-                                                                            selectRight.set(false);
-                                                                            result.set(ResourceUtil.getString(R.string.calibration_failed));
-                                                                        }
-                                                                    }));
-                                                } else {
-                                                    selectLeft.set(false);
-                                                    selectRight.set(false);
-                                                    result.set(ResourceUtil.getString(R.string.calibration_failed));
-                                                }
-                                            });
-                                });
+                                (dialog, which) -> messageSender.setOxygen(210, 1,
+                                        (aBoolean, baseSerialMessage) -> {
+                                            if (aBoolean) {
+                                                messageSender.setOxygen(210, 2,
+                                                        (aaBoolean, abaseSerialMessage) -> io.reactivex.Observable
+                                                                .just(this)
+                                                                .observeOn(AndroidSchedulers.mainThread())
+                                                                .subscribe((obj) -> {
+                                                                    if (aaBoolean) {
+                                                                        selectLeft.set(true);
+                                                                        selectRight.set(false);
+                                                                        result.set(ResourceUtil.getString(R.string.calibration_successful));
+                                                                    } else {
+                                                                        selectLeft.set(false);
+                                                                        selectRight.set(false);
+                                                                        result.set(ResourceUtil.getString(R.string.calibration_failed));
+                                                                    }
+                                                                }));
+                                            } else {
+                                                selectLeft.set(false);
+                                                selectRight.set(false);
+                                                result.set(ResourceUtil.getString(R.string.calibration_failed));
+                                            }
+                                        }));
                     } else {
-                        String str = ResourceUtil.getString(R.string.calibration_confirm_o2_21);
                         alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.calibration_scale,
                                 String.format(ResourceUtil.getString(R.string.calibration_confirm_scale_0), shareMemory.SC.get()),
-                                (dialog, which) -> {
-                                    alertDialog = null;
-                                    messageSender.setScale(0,
-                                            (aBoolean, baseSerialMessage) -> io.reactivex.Observable
-                                                    .just(this)
-                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                    .subscribe((obj) -> {
-                                                        if (aBoolean) {
-                                                            selectLeft.set(true);
-                                                            selectRight.set(false);
-                                                            result.set(ResourceUtil.getString(R.string.calibration_successful));
-                                                        } else {
-                                                            selectLeft.set(false);
-                                                            selectRight.set(false);
-                                                            result.set(ResourceUtil.getString(R.string.calibration_failed));
-                                                        }
-                                                    }));
-                                });
+                                (dialog, which) -> messageSender.setScale(0,
+                                        (aBoolean, baseSerialMessage) -> io.reactivex.Observable
+                                                .just(this)
+                                                .observeOn(AndroidSchedulers.mainThread())
+                                                .subscribe((obj) -> {
+                                                    if (aBoolean) {
+                                                        selectLeft.set(true);
+                                                        selectRight.set(false);
+                                                        result.set(ResourceUtil.getString(R.string.calibration_successful));
+                                                    } else {
+                                                        selectLeft.set(false);
+                                                        selectRight.set(false);
+                                                        result.set(ResourceUtil.getString(R.string.calibration_failed));
+                                                    }
+                                                })));
                     }
                 });
 
@@ -157,54 +149,48 @@ public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSett
                     if (selectO2.get()) {
                         alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.calibration_o2,
                                 ResourceUtil.getString(R.string.calibration_confirm_o2_100),
-                                (dialog, which) -> {
-                                    alertDialog = null;
-                                    messageSender.setOxygen(999, 1,
-                                            (aBoolean, baseSerialMessage) -> {
-                                                if (aBoolean) {
-                                                    messageSender.setOxygen(999, 2,
-                                                            (aaBoolean, abaseSerialMessage) -> io.reactivex.Observable
-                                                                    .just(this)
-                                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                                    .subscribe((obj) -> {
-                                                                        if (aaBoolean) {
-                                                                            selectLeft.set(false);
-                                                                            selectRight.set(true);
-                                                                            result.set(ResourceUtil.getString(R.string.calibration_successful));
-                                                                        } else {
-                                                                            selectLeft.set(false);
-                                                                            selectRight.set(false);
-                                                                            result.set(ResourceUtil.getString(R.string.calibration_failed));
-                                                                        }
-                                                                    }));
-                                                } else {
-                                                    selectLeft.set(false);
-                                                    selectRight.set(false);
-                                                    result.set(ResourceUtil.getString(R.string.calibration_failed));
-                                                }
-                                            });
-                                });
+                                (dialog, which) -> messageSender.setOxygen(999, 1,
+                                        (aBoolean, baseSerialMessage) -> {
+                                            if (aBoolean) {
+                                                messageSender.setOxygen(999, 2,
+                                                        (aaBoolean, abaseSerialMessage) -> io.reactivex.Observable
+                                                                .just(this)
+                                                                .observeOn(AndroidSchedulers.mainThread())
+                                                                .subscribe((obj) -> {
+                                                                    if (aaBoolean) {
+                                                                        selectLeft.set(false);
+                                                                        selectRight.set(true);
+                                                                        result.set(ResourceUtil.getString(R.string.calibration_successful));
+                                                                    } else {
+                                                                        selectLeft.set(false);
+                                                                        selectRight.set(false);
+                                                                        result.set(ResourceUtil.getString(R.string.calibration_failed));
+                                                                    }
+                                                                }));
+                                            } else {
+                                                selectLeft.set(false);
+                                                selectRight.set(false);
+                                                result.set(ResourceUtil.getString(R.string.calibration_failed));
+                                            }
+                                        }));
                     } else {
                         alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.calibration_scale,
                                 String.format(ResourceUtil.getString(R.string.calibration_confirm_scale_5000), shareMemory.SC.get()),
-                                (dialog, which) -> {
-                                    alertDialog = null;
-                                    messageSender.setScale(5000,
-                                            (aBoolean, baseSerialMessage) -> io.reactivex.Observable
-                                                    .just(this)
-                                                    .observeOn(AndroidSchedulers.mainThread())
-                                                    .subscribe((obj) -> {
-                                                        if (aBoolean) {
-                                                            selectLeft.set(false);
-                                                            selectRight.set(true);
-                                                            result.set(ResourceUtil.getString(R.string.calibration_successful));
-                                                        } else {
-                                                            selectLeft.set(false);
-                                                            selectRight.set(false);
-                                                            result.set(ResourceUtil.getString(R.string.calibration_failed));
-                                                        }
-                                                    }));
-                                });
+                                (dialog, which) -> messageSender.setScale(5000,
+                                        (aBoolean, baseSerialMessage) -> io.reactivex.Observable
+                                                .just(this)
+                                                .observeOn(AndroidSchedulers.mainThread())
+                                                .subscribe((obj) -> {
+                                                    if (aBoolean) {
+                                                        selectLeft.set(false);
+                                                        selectRight.set(true);
+                                                        result.set(ResourceUtil.getString(R.string.calibration_successful));
+                                                    } else {
+                                                        selectLeft.set(false);
+                                                        selectRight.set(false);
+                                                        result.set(ResourceUtil.getString(R.string.calibration_failed));
+                                                    }
+                                                })));
                     }
                 });
     }

@@ -50,7 +50,7 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
 
     ObservableInt navigationView;
 
-    private AlertDialog alertDialog;
+    private AlertDialog alertDialog = null;
 
     public UserModelDetailLayout(Context context, ObservableInt navigationView) {
         super(context);

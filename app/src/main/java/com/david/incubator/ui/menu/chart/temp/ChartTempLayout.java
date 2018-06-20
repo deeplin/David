@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 public class ChartTempLayout extends BindingConstraintLayout<LayoutChartTempBinding> implements IRefreshableViewModel, IViewModel {
 
     TempChartViewModel chartTempViewModel;
-    private AlertDialog alertDialog;
+    private AlertDialog alertDialog = null;
 
     public ChartTempLayout(Context context, TempChartViewModel chartTempViewModel) {
         super(context);

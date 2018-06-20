@@ -46,7 +46,7 @@ public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBindin
     ObservableInt navigationView;
     ButtonControlViewModel buttonControlViewModel;
 
-    private AlertDialog alertDialog;
+    private AlertDialog alertDialog = null;
 
     public UserTimeLayout(Context context, ObservableInt navigationView) {
         super(context);
@@ -62,14 +62,12 @@ public class UserTimeLayout extends BindingConstraintLayout<LayoutUserTimeBindin
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibOK))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> {
-                    alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.time_update,
-                            ResourceUtil.getString(R.string.time_update_confirm),
-                            (dialog, which) -> {
-                                setTime();
-                                daoControl.deleteTables();
-                            });
-                });
+                .subscribe((aVoid) -> alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.time_update,
+                        ResourceUtil.getString(R.string.time_update_confirm),
+                        (dialog, which) -> {
+                            setTime();
+                            daoControl.deleteTables();
+                        }));
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibReturn))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)

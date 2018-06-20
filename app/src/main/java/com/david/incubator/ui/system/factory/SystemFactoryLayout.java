@@ -31,7 +31,7 @@ public class SystemFactoryLayout extends BindingConstraintLayout<LayoutSystemFac
 
     ObservableInt navigationView;
 
-    private AlertDialog alertDialog;
+    private AlertDialog alertDialog = null;
 
     public SystemFactoryLayout(Context context, ObservableInt navigationView) {
         super(context);
@@ -80,6 +80,9 @@ public class SystemFactoryLayout extends BindingConstraintLayout<LayoutSystemFac
 
     @Override
     public void detach() {
-
+        if (alertDialog != null) {
+            alertDialog.dismiss();
+            alertDialog = null;
+        }
     }
 }
