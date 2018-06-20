@@ -67,8 +67,8 @@
     <!--Calibration-->
     <string name="calibration">Kalibrasyon</string>
     <string name="calibration_o2">O2 Kalibrasyon</string>
-    <string name="calibration_confirm_o2_21">Lütfen O2'nin %21'de kalibre edildiğini onaylayın</string>
-    <string name="calibration_confirm_o2_100">Lütfen O2'nin % 100 'de kalibre edildiğini onaylayın</string>
+    <string name="calibration_confirm_o2_21">Lütfen O2\'nin %21\'de kalibre edildiğini onaylayın</string>
+    <string name="calibration_confirm_o2_100">Lütfen O2\'nin % 100\'de kalibre edildiğini onaylayın</string>
     <string name="calibration_scale">Terazi Kalibrasyonu</string>
     <string name="calibration_confirm_scale_0">Mevcut ağırlık %sg\nLütfen terazi klb. 0g'da onaylayın</string>
     <string name="calibration_confirm_scale_5000">Mevcut ağırlık %sg\nLütfen terazi klb. 5000g'da onaylayın</string>
@@ -106,9 +106,9 @@
     <string name="exit">Geri dön</string>
 
     <!--Overheat Warning-->
-    <string name="overheat_air_above_37">Hava>37℃</string>
+    <string name="overheat_air_above_37">Hava>37</string>
     <string name="air_flow">Hava Akış</string>
-    <string name="overheat_airflow_above_37">Hava Akış>37℃</string>
+    <string name="overheat_airflow_above_37">Hava Akış>37</string>
     <string name="fan_speed">Fan Hızı</string>
 
     <!--System Calibration-->
@@ -119,8 +119,8 @@
     <string name="print_cycle">Baskı döngüsü</string>
 
     <!--Overheat Experiment-->
-    <string name="overheat_air_below_37">Hava ≤37℃</string>
-    <string name="overheat_skin_above_37">Cilt >37℃</string>
+    <string name="overheat_air_below_37">Hava≤37</string>
+    <string name="overheat_skin_above_37">Cilt>37</string>
     <string name="stable_state">Stabil</string>
 
     <!--User -->
@@ -168,8 +168,8 @@
     <string name="TEMP.DEVH">Yüksek Isı Sapma Alarmı</string>
     <string name="TEMP.DEVL">Düşük Isı Sapma Alarmı</string>
 
-    <string name="CTRL.ERR1">Cilt Sensörü A'yı Kontrol et</string>
-    <string name="CTRL.ERR2">Cilt Sensörü C'yi Kontrol et</string>
+    <string name="CTRL.ERR1">Cilt Sensörü A\'yı Kontrol et</string>
+    <string name="CTRL.ERR2">Cilt Sensörü C\'yi Kontrol et</string>
     <string name="CTRL.MAN">Manuel Modu Kontrol et</string>
     <string name="SEN.O2_1">O2 1. Sensörü Hatası</string>
     <string name="SEN.O2_2">O2 2. Sensörü Hatası</string>
@@ -205,7 +205,7 @@
     <string name="SYS.CFG">Yedekleme verileri bozuk</string>
 
     <string name="SPO2.BIT2">Düşük PI</string>
-    <string name="SPO2.LOW">Spo2 % 85'in altında</string>
+    <string name="SPO2.LOW">Spo2 % 85\'in altında</string>
     <string name="SPO2.BIT3">Nabız ara</string>
     <string name="SPO2.BIT4">Müdahele algılandı</string>
     <string name="SPO2.BIT6">Cok fazla ortam ışığı</string>

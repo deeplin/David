@@ -5,7 +5,6 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 import android.view.View;
 
-import com.david.common.dao.UserModel;
 import com.david.common.ui.IViewModel;
 import com.david.incubator.ui.menu.chart.chartview.BaseChartViewWriter;
 import com.david.incubator.ui.menu.chart.table.PageTurnTable;

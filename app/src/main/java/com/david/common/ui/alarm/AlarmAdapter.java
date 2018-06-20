@@ -2,6 +2,7 @@ package com.david.common.ui.alarm;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +44,13 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull AlarmViewHolder holder, int position) {
         String alarmId = alarmArray[position];
+
         AlarmModel alarmModel = AlarmControl.getAlarmMode(alarmId);
-        holder.tvAlarm.setText(alarmModel.toString());
+        if(alarmModel != null) {
+            holder.tvAlarm.setText(alarmModel.toString());
+        }else{
+            holder.tvAlarm.setText(alarmId);
+        }
         if (Objects.equals(alarmModel.getAlarmPriorityMode(), AlarmPriorityMode.High)) {
             holder.tvAlarm.setBackgroundResource(R.color.alarm_high);
         } else if (Objects.equals(alarmModel.getAlarmPriorityMode(), AlarmPriorityMode.Middle)) {

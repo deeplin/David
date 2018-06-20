@@ -17,6 +17,7 @@ import com.david.incubator.ui.menu.chart.IChartViewModel;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
 import com.david.incubator.ui.menu.chart.SensorChartView;
 import com.david.incubator.ui.menu.chart.table.PageTurnTable;
+import com.david.incubator.util.ViewUtil;
 
 import java.util.Locale;
 
@@ -80,9 +81,7 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
                             baseChartViewWriter.draw(this, 0, 0, 0);
                             addLine();
 
-                            if (baseChartViewWriter.getLastWeight() > Constant.SENSOR_NA_VALUE) {
-                                this.setLastWeight(baseChartViewWriter.getLastWeight());
-                            }
+                            this.setLastWeight(ViewUtil.formatScaleValue(baseChartViewWriter.getLastWeight()));
 
                             baseChartViewWriter.postInvalidate();
                         }
@@ -90,8 +89,8 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
                 });
     }
 
-    public void setLastWeight(int weight) {
-        lastWeight.set(String.format(Locale.US, "%s: %d",
+    public void setLastWeight(String weight) {
+        lastWeight.set(String.format(Locale.US, "%s: %s",
                 ResourceUtil.getString(R.string.current_weight), weight));
     }
 

@@ -51,7 +51,7 @@ public class SettingDeviceLayout extends BindingConstraintLayout<LayoutSettingDe
         setMaster("");
         setSlave("");
         setUpper(ResourceUtil.getString(R.string.upper_version_id));
-        setDeviceId(UuidUtil.getUuid(MainApplication.getInstance()));
+        setDeviceId(UuidUtil.getUuid(MainApplication.getInstance()).substring(0, 10));
 
         messageSender.getVersion((aBoolean, baseSerialMessage) -> {
             if (aBoolean) {

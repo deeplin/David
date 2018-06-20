@@ -10,6 +10,7 @@ import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
 import com.david.incubator.ui.menu.scale.ScaleViewModel;
+import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.david.databinding.LayoutScaleChartBinding;
 
@@ -32,7 +33,7 @@ public class ScaleChartLayout extends BindingConstraintLayout<LayoutScaleChartBi
         scaleViewModel.recordedWeight.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                scaleChartViewModel.setLastWeight(scaleViewModel.recordedWeight.get());
+                scaleChartViewModel.setLastWeight(ViewUtil.formatScaleValue(scaleViewModel.recordedWeight.get()));
             }
         });
 

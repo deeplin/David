@@ -78,9 +78,9 @@ public class ScaleChartWriter extends BaseChartViewWriter implements IViewModel 
         for (int dateId = 11; dateId >= 0; dateId--) {
             long currentTimeStamp = lastTimeStamp - dateId * 24 * 3600;
 
+            dataSeries.add(0.0);
+
             if (weightModelId < 0) {
-                double data = chartViewModel.getChartData(null);
-                dataSeries.add(data);
                 break;
             }
 
@@ -89,16 +89,14 @@ public class ScaleChartWriter extends BaseChartViewWriter implements IViewModel 
                 if (isSameDate(currentTimeStamp, weightModel.getTimeStamp())) {
                     //找到数据点，跳出
                     double data = chartViewModel.getChartData(weightModel);
-                    dataSeries.add(data);
+                    dataSeries.set(11 - dateId, data);
                     weightModelId--;
-                    break;
                 } else if (currentTimeStamp < weightModel.getTimeStamp()) {
                     //不符合，weightModel太新, 读取下一个weightModel,继续判断
-                    weightModelId--;
+                    break;
                 } else {
-                    //不符合，找不到当日数据，插入0，跳出
-                    double data = chartViewModel.getChartData(null);
-                    dataSeries.add(data);
+                    //不符合，找不到当日数据
+                    weightModelId --;
                     break;
                 }
             }

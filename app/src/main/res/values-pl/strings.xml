@@ -106,9 +106,9 @@
     <string name="exit">Powrót</string>
 
     <!--Overheat Warning-->
-    <string name="overheat_air_above_37">powierza>37℃</string>
+    <string name="overheat_air_above_37">powierza>37</string>
     <string name="air_flow">Przepływ powietrza</string>
-    <string name="overheat_airflow_above_37">Przepływ powietrza>37℃</string>
+    <string name="overheat_airflow_above_37">Przepływ powietrza>37</string>
     <string name="fan_speed">Prędkość wentylatora</string>
 
     <!--System Calibration-->
@@ -119,8 +119,8 @@
     <string name="print_cycle">Cykl drukowania</string>
 
     <!--Overheat Experiment-->
-    <string name="overheat_air_below_37">powietrza ≤37℃</string>
-    <string name="overheat_skin_above_37">skóry > 37℃</string>
+    <string name="overheat_air_below_37">powietrza≤37</string>
+    <string name="overheat_skin_above_37">skóry>37</string>
     <string name="stable_state">Stan stabilny</string>
 
     <!--User -->

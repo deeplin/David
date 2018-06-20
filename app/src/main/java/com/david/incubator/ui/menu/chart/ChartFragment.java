@@ -1,23 +1,9 @@
 package com.david.incubator.ui.menu.chart;
 
-import android.view.ViewGroup;
-
 import com.david.R;
-import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
-import com.david.common.data.ModuleHardware;
-import com.david.common.data.ModuleSoftware;
-import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentChartBinding;
 import com.david.incubator.ui.main.IFragmentLockable;
-
-import java.util.Calendar;
-import java.util.concurrent.TimeUnit;
-
-import javax.inject.Inject;
-
-import io.reactivex.disposables.Disposable;
 
 /**
  * author: Ling Lin
