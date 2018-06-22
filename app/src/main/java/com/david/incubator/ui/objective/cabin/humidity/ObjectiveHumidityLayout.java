@@ -2,11 +2,12 @@ package com.david.incubator.ui.objective.cabin.humidity;
 
 import android.content.Context;
 
+import com.david.R;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.LayoutObjectiveHumidityBinding;
 import com.jakewharton.rxbinding2.view.RxView;
-import com.david.R;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -46,6 +47,12 @@ public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<Layout
                     stopDisposable();
                     objectiveViewModel.setObjective();
                 });
+
+
+    }
+
+    public void setUnit(String value) {
+        binding.tvObjectiveUnit.setText(value);
     }
 
     @Override

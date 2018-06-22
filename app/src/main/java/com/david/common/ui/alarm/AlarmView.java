@@ -38,7 +38,7 @@ public class AlarmView extends FrameLayout implements IViewModel {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         layoutInflater.inflate(R.layout.layout_alarm, this);
 
-        RecyclerView recyclerView = findViewById(R.id.rvAlarm);
+        final RecyclerView recyclerView = findViewById(R.id.rvAlarm);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(alarmAdapter);
 
@@ -51,7 +51,11 @@ public class AlarmView extends FrameLayout implements IViewModel {
             public void onPropertyChanged(Observable sender, int propertyId) {
                 io.reactivex.Observable.just(this)
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe((o) -> alarmAdapter.notifyDataSetChanged());
+                        .subscribe((o) -> {
+                            if (recyclerView.getScrollState() == RecyclerView.SCROLL_STATE_IDLE || (recyclerView.isComputingLayout() == false)) {
+                                alarmAdapter.notifyDataSetChanged();
+                            }
+                        });
             }
         };
     }

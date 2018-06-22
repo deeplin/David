@@ -104,11 +104,15 @@ public class ObjectivePagerAdapter extends PagerAdapter {
                 break;
             case 1:
                 ObjectiveHumidityViewModel objectiveHumidityViewModel = new ObjectiveHumidityViewModel();
-                view = new ObjectiveHumidityLayout(container.getContext(), objectiveHumidityViewModel);
+                ObjectiveHumidityLayout objectiveHumidityLayout = new ObjectiveHumidityLayout(container.getContext(), objectiveHumidityViewModel);
+                objectiveHumidityLayout.setUnit("%RH");
+                view = objectiveHumidityLayout;
                 break;
             case 2:
                 ObjectiveOxygenViewModel objectiveOxygenViewModel = new ObjectiveOxygenViewModel();
-                view = new ObjectiveHumidityLayout(container.getContext(), objectiveOxygenViewModel);
+                ObjectiveHumidityLayout objectiveOxygenLayout = new ObjectiveHumidityLayout(container.getContext(), objectiveOxygenViewModel);
+                objectiveOxygenLayout.setUnit("%");
+                view = objectiveOxygenLayout;
                 break;
             case 3:
                 ObjectiveSpo2ViewModel objectiveSpo2ViewModel = new ObjectiveSpo2ViewModel();

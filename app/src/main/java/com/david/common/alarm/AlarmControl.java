@@ -49,9 +49,9 @@ public class AlarmControl {
                 String id = alarmArray[index++];
                 String priorityString = alarmArray[index++];
                 AlarmPriorityMode priorityMode;
-                if (Objects.equals(priorityString, "2")) {
+                if (Objects.equals(priorityString, "3")) {
                     priorityMode = AlarmPriorityMode.High;
-                } else if (Objects.equals(priorityString, "1")) {
+                } else if (Objects.equals(priorityString, "2")) {
                     priorityMode = AlarmPriorityMode.Middle;
                 } else {
                     priorityMode = AlarmPriorityMode.Low;

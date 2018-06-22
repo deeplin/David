@@ -66,10 +66,10 @@
             app:layout_constraintTop_toTopOf="@id/ibObjectiveUpperSet" />
 
         <TextView
+            android:id="@+id/tvObjectiveUnit"
             android:layout_width="80dp"
             android:layout_height="0dp"
             android:gravity="center"
-            android:text="%RH"
             android:textColor="@color/info_dark"
             android:textSize="@dimen/f30"
             android:visibility="@{viewModel.selectFirst ? View.VISIBLE : View.GONE}"

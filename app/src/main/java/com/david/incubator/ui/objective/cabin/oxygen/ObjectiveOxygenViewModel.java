@@ -11,6 +11,11 @@ import com.david.incubator.util.ViewUtil;
  * description:
  */
 public class ObjectiveOxygenViewModel extends ObjectiveHumidityViewModel {
+
+    public ObjectiveOxygenViewModel(){
+        super();
+    }
+
     protected boolean getEnable() {
         return moduleSoftware.isO2();
     }

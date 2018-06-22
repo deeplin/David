@@ -264,8 +264,8 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
                         userModel.setHistory(medicalHistoryKeyEditTextViewModel.valueField.get());
 
                         if (daoControl.addUserModel(userModel)) {
-                            binding.addPatientName.clearValueField();
-                            binding.addPatientId.clearValueField();
+//                            binding.addPatientName.clearValueField();
+//                            binding.addPatientId.clearValueField();
 
                             binding.btOK.setSelected(true);
                             topViewModel.loadUserId();
