@@ -98,8 +98,8 @@ public class TempChartViewModel extends BaseChartViewModel<AnalogCommand> {
     }
 
     @Override
-    public int getYAxisTitle() {
-        return R.mipmap.celsius_small;
+    public String getYAxisTitle() {
+        return "℃";
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.david.incubator.ui.menu.chart;
 
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.view.View;
 
@@ -27,7 +28,7 @@ public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableV
 
     public ObservableInt cycleValue = new ObservableInt();
     public ObservableInt cycleIndex = new ObservableInt();
-    public ObservableInt yAxisTitle = new ObservableInt();
+    public ObservableField<String> yAxisTitle = new ObservableField<>();
     public ObservableBoolean tableSelected = new ObservableBoolean(false);
 
     public BaseChartViewModel(BaseChartViewWriter baseChartViewWriter,
@@ -58,7 +59,7 @@ public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableV
 
     public abstract void initializePageTurnTable();
 
-    public abstract int getYAxisTitle();
+    public abstract String getYAxisTitle();
 
     public synchronized void increase() {
         if (cycleIndex.get() < CYCLE_VALUE_ARRAY.length - 1) {
@@ -125,7 +126,7 @@ public abstract class BaseChartViewModel<T> implements IViewModel, IRefreshableV
     private void setVisiblePage(boolean checked) {
         baseChartViewWriter.setVisibility(!checked);
         if (checked) {
-            yAxisTitle.set(0);
+            yAxisTitle.set(null);
             pageTurnTable.setVisibility(View.VISIBLE);
             pageTurnTable.start();
         } else {

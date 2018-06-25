@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">David Medical</string>
 
@@ -10,7 +10,7 @@
     <string name="on">Wł.</string>
     <string name="off">Wył.</string>
     <string name="blue_time">Czas świecenia</string>
-    <string name="clockwise">Zgodnie ze wskazówkami zegara</string>
+    <string name="clockwise">Czas w górę</string>
     <string name="countdown">Odliczanie</string>
 
     <!--Chart-->
@@ -24,7 +24,7 @@
     <string name="pr">Puls</string>
     <string name="heating_power">Moc grzewcza</string>
     <string name="time">Czas</string>
-    <string name="previous_page">Do przodu</string>
+    <string name="previous_page">Naprzód</string>
     <string name="next_page">Do tyłu</string>
     <string name="delete">Usuń</string>
     <string name="delete_confirm">Potwierdź usunięcie danych</string>
@@ -48,7 +48,7 @@
     <string name="sex">Płeć</string>
     <string name="blood_type">Grupa krwi</string>
     <string name="birthday">Data urodzenia</string>
-    <string name="birth_weight">Waga urodzeniowa</string>
+    <string name="birth_weight">Waga</string>
     <string name="medical_history">Przypadek</string>
     <string name="add_patient">Dodaj pacjenta</string>
 
@@ -106,9 +106,9 @@
     <string name="exit">Powrót</string>
 
     <!--Overheat Warning-->
-    <string name="overheat_air_above_37">powierza>37</string>
+    <string name="overheat_air_above_37">Powi.>37</string>
     <string name="air_flow">Przepływ powietrza</string>
-    <string name="overheat_airflow_above_37">Przepływ powietrza>37</string>
+    <string name="overheat_airflow_above_37">Prze.>37</string>
     <string name="fan_speed">Prędkość wentylatora</string>
 
     <!--System Calibration-->
@@ -119,13 +119,13 @@
     <string name="print_cycle">Cykl drukowania</string>
 
     <!--Overheat Experiment-->
-    <string name="overheat_air_below_37">powietrza≤37</string>
+    <string name="overheat_air_below_37">powi.≤37</string>
     <string name="overheat_skin_above_37">skóry>37</string>
-    <string name="stable_state">Stan stabilny</string>
+    <string name="stable_state">Stabilny</string>
 
     <!--User -->
     <string name="user_setting">Ustawienia użytkownika</string>
-    <string name="patient_information">Informacje o pacjencie</string>
+    <string name="patient_information">Informacje  pacjencie</string>
     <string name="time_setup">Ustawienie czasu</string>
     <string name="language_setup">Ustawienia języka</string>
     <string name="warning_volume">Głośność alarmu</string>
@@ -141,9 +141,10 @@
     <string name="reset_upper">Zresetuj górny</string>
 
     <!--鍛婅-->
+    <string name="SYS.PWR">Power failure</string>
     <string name="SYS.CON">Błąd komunikacji szeregowej</string>
-    <!--<string name="SYS.PWR">Power failure</string>-->
     <string name="SYS.HA">Błąd komunikacji MCU</string>
+    <string name="SYS.CFG">Dane kopii zapasowej są uszkodzone</string>
     <string name="SYS.HOOD">Awaria kopuły</string>
     <string name="SYS.MOTOR">Awaria systemu podnoszenia</string>
     <string name="SYS.DOOR">Awaria drzwi radiacyjnych</string>
@@ -151,19 +152,21 @@
     <string name="SYS.WARM2">Awaria promiennika</string>
     <string name="SYS.BOX">Błąd podłączenia skrzynki czujnika</string>
     <string name="SEN.A1">Awaria czujnika temperatury powietrza</string>
-    <string name="SEN.A2">Awaria czujnika temperatury zewnętrznej</string>
-    <string name="SEN.ADIF">Błąd czujnika temperatury powietrza - pomiar różnicowy</string>
+    <string name="SEN.A2">Izolowany błąd czujnika</string>
+    <string name="SEN.ADIF">Błąd różnicy czujnika różnicy temperatur</string>
     <string name="SEN.F1">Błąd czujnika przepływu powietrza</string>
     <string name="SEN.S1A">Alarm czujnika temperatury skóry 1</string>
     <string name="SEN.S1B">ISO Błąd czujnika temperatury</string>
     <string name="SEN.S2">Alarm czujnika temperatury skóry 2</string>
-    <string name="SEN.SDIF">Błąd czujnika temperatury skóry - pomiar różnicowy</string>
+    <string name="SEN.SDIF">Błąd różnicy czujnika temperatury skóry</string>
+
+    <string name="SEN.SCALE">Alarm awarii czujnika wagi</string>
 
     <string name="AIR.OVH">Alarm przegrzania powietrza</string>
     <string name="SKIN.OVH">Alarm przegrzania skóry</string>
     <string name="FLOW.OVH">Alarm przegrzania przepływu powietrza</string>
 
-    <string name="CTRL.SEN">Błąd umieszczenia czujnika temperatury skóry</string>
+    <string name="CTRL.SEN">Błąd położenia czujnika skóry</string>
     <string name="SYS.FAN">Błąd silnika</string>
     <string name="TEMP.DEVH">Alarm odchylenia temperatury</string>
     <string name="TEMP.DEVL">Alarm odchylenia temperatury</string>
@@ -180,30 +183,25 @@
     <string name="SEN.SPO2">Awaria modułu pomiaru SpO2</string>
     <string name="SPO2.ERR">Awaria systemu pomiaru SpO2</string>
 
-    <string name="SPO2.BIT12">Przewód przewodzący nie jest podłączony</string>
+    <string name="SPO2.BIT12">Przewód przewodzący nie podłączony</string>
     <string name="SPO2.BIT0">Błąd połączenia czujnika SpO2</string>
     <string name="SPO2.BIT1">Awaria czujnika SpO2</string>
     <string name="SPO2.BIT7">Niemożliwa identyfikacja czujnika SpO2</string>
     <string name="SPO2.BIT5">Czujnik SpO2 podłączony niepoprawnie.</string>
     <string name="SPO2.BIT13">Czujnik samoprzylepny niepodlączony</string>
-
-    <string name="SYS.HUMC">Awaria systemu ogrzewania nawilżacza</string>
-    <string name="SEN.HUM">Awaria czujnika wilgotności</string>
-
-    <string name="HUM.DEVH">Alarm odchylenia w górę pomiaru z czujnika wilgotności</string>
-    <string name="HUM.DEVL">Alarm odchylenia w dół+C165 pomiaru z czujnika wilgotności</string>
-    <string name="SYS.UPS">Błąd akumulatora Ni-MH</string>
-    <string name="SYS.BAT">Błąd przycisku</string>
-
     <string name="SPO2.OVH">Górny limit alarmu SpO2</string>
-
     <string name="SPO2.OVL">Dolny limit alarmu SpO2</string>
     <string name="PR.OVH">Górny limit alarmu pulsu</string>
     <string name="PR.OVL">Dolny limit alarmu pulsu</string>
+    <string name="UNIT.FAN">Alarm awarii wentylatora sterownika</string>
 
+    <string name="SYS.HUMC">Awaria systemu ogrzewania nawilżacza</string>
+    <string name="SEN.HUM">Awaria czujnika wilgotności</string>
     <string name="SYS.TANK">Błąd umieszczenia zbiornika na wodę</string>
     <string name="SYS.WATER">Alarm braku wody</string>
-    <string name="SYS.CFG">Dane konfiguracji kopii zapasowej są uszkodzone</string>
+    <string name="HUM.DEVH">Alarm odchylenia wilgotności</string>
+    <string name="HUM.DEVL">Alarm odchylenia wilgotności</string>
+    <string name="SYS.UPS">Błąd akumulatora Ni-MH</string>
 
     <string name="SPO2.BIT2">Niskie PI</string>
     <string name="SPO2.LOW">SpO2 poniżej 85%</string>
@@ -211,4 +209,5 @@
     <string name="SPO2.BIT4">Wykryto zakłócenia</string>
     <string name="SPO2.BIT6">Za dużo światła zewnętrznego</string>
     <string name="SPO2.BIT10">Niska jakość sygnału</string>
+    <string name="COM.ERR">Port szeregowy zwraca ERR</string>
 </resources>

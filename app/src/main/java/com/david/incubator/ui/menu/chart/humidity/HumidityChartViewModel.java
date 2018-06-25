@@ -44,8 +44,8 @@ public class HumidityChartViewModel extends BaseChartViewModel<AnalogCommand> {
     }
 
     @Override
-    public int getYAxisTitle() {
-        return R.mipmap.percentage_relative;
+    public String getYAxisTitle() {
+        return "%RH";
     }
 
     @Override

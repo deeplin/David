@@ -150,5 +150,6 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
     @Override
     public void detach() {
         moduleSoftware.updated.removeOnPropertyChangedCallback(softwareCallback);
+        moduleHardware.updated.removeOnPropertyChangedCallback(hardwareCallback);
     }
 }

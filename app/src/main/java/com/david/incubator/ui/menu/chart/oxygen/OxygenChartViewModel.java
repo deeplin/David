@@ -44,8 +44,8 @@ public class OxygenChartViewModel extends BaseChartViewModel<AnalogCommand> {
     }
 
     @Override
-    public int getYAxisTitle() {
-        return R.mipmap.percentage;
+    public String getYAxisTitle() {
+        return "%";
     }
 
     @Override

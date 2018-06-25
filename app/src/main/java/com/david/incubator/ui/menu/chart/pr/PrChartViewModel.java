@@ -34,8 +34,8 @@ public class PrChartViewModel extends BaseChartViewModel<AnalogCommand> {
     }
 
     @Override
-    public int getYAxisTitle() {
-        return R.mipmap.bpm;
+    public String getYAxisTitle() {
+        return "bpm";
     }
 
     @Override

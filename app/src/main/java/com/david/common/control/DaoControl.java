@@ -20,11 +20,11 @@ import com.david.common.dao.gen.StatusCommandDao;
 import com.david.common.dao.gen.SystemSettingDao;
 import com.david.common.dao.gen.UserModelDao;
 import com.david.common.dao.gen.WeightModelDao;
+import com.david.common.data.SelectedUser;
 import com.david.common.mode.LanguageMode;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
-import com.david.common.data.SelectedUser;
 
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.QueryBuilder;
@@ -135,8 +135,8 @@ public class DaoControl {
             analogCommandDao.insert(analogCommand);
 
             //todo
-            Log.e("deeplin", String.format(String.format(String.format("add analog " + analogCommand.getId() + " " + analogCommand.getTimeStamp() + " "
-                    + TimeUtil.getTime(analogCommand.getTimeStamp() * 1000, TimeUtil.FullTime)))));
+            Log.e("deeplin", "add analog " + analogCommand.getId() + " " + analogCommand.getTimeStamp() + " "
+                    + TimeUtil.getTime(analogCommand.getTimeStamp() * 1000, TimeUtil.FullTime));
         }
     }
 
@@ -225,7 +225,7 @@ public class DaoControl {
         for (WeightModel scaleCommand : weightModelList) {
             weightModelDao.delete(scaleCommand);
             //todo
-            Log.e("deeplin","delete weight " + scaleCommand.getId() + " " + scaleCommand.getTimeStamp()
+            Log.e("deeplin", "delete weight " + scaleCommand.getId() + " " + scaleCommand.getTimeStamp()
                     + TimeUtil.getTime(scaleCommand.getTimeStamp() * 1000, TimeUtil.FullTime));
         }
     }
@@ -243,7 +243,7 @@ public class DaoControl {
                 .limit(limit);
 
         UserModel userModel = selectedUser.userModel;
-        if(userModel == null){
+        if (userModel == null) {
             userModel = getLastUserModel();
         }
 
@@ -275,7 +275,7 @@ public class DaoControl {
                 .limit(limit);
 
         UserModel userModel = selectedUser.userModel;
-        if(userModel == null){
+        if (userModel == null) {
             userModel = getLastUserModel();
         }
 
@@ -310,7 +310,7 @@ public class DaoControl {
                 .orderDesc(WeightModelDao.Properties.Id);
 
         UserModel userModel = selectedUser.userModel;
-        if(userModel == null){
+        if (userModel == null) {
             userModel = getLastUserModel();
         }
 

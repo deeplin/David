@@ -33,6 +33,6 @@ public class TimeUtil {
     }
 
     public static long getCurrentTimeInSecond() {
-        return System.currentTimeMillis() / 1000;
+        return Math.round(System.currentTimeMillis() / 1000.0);
     }
 }

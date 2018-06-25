@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">David Medical</string>
 
@@ -141,9 +141,10 @@
     <string name="reset_upper">Reset Upper</string>
 
     <!--告警-->
-    <string name="SYS.CON">No Serial Connection</string>
     <string name="SYS.PWR">Power Failure</string>
+    <string name="SYS.CON">No Serial Connection</string>
     <string name="SYS.HA">MCU Communication Fault</string>
+    <string name="SYS.CFG">Backup configuration data is corrupted</string>
     <string name="SYS.HOOD">Canopy Fault</string>
     <string name="SYS.MOTOR">Lift System Fault</string>
     <string name="SYS.DOOR">Radiant Door Fault</string>
@@ -158,6 +159,8 @@
     <string name="SEN.S1B">Isolated Skin Sensor Fault</string>
     <string name="SEN.S2">Skin Sensor 2 Fault</string>
     <string name="SEN.SDIF">Skin Sensor DIFF. Fault</string>
+
+    <string name="SEN.SCALE">Weight Scale Sensor Fault</string>
 
     <string name="AIR.OVH">Air Overheat Alarm</string>
     <string name="SKIN.OVH">Skin Overheat Alarm</string>
@@ -186,23 +189,20 @@
     <string name="SPO2.BIT7">Unable To Identify Pulse Oximeter Sensor</string>
     <string name="SPO2.BIT5">Pulse oximeter Sensor Not Fixed Well</string>
     <string name="SPO2.BIT13">Adhesive Sensor Not Connected</string>
-
-    <string name="SYS.HUMC">HUM. Heater System Fault</string>
-    <string name="SEN.HUM">HUM. Sensor Fault</string>
-
-    <string name="HUM.DEVH">HUM. Sensor Upper Deviation Alarm</string>
-    <string name="HUM.DEVL">HUM. Sensor Lower Deviation Alarm</string>
-    <string name="SYS.UPS">Ni-MH Battery Fault</string>
-    <string name="SYS.BAT">Button Cell Fault</string>
-
     <string name="SPO2.OVH">SpO2 High Alarm Limit</string>
     <string name="SPO2.OVL">SpO2 Low Alarm Limit</string>
     <string name="PR.OVH">Pulse Rate High Alarm Limit</string>
     <string name="PR.OVL">Pulse Rate Low Alarm Limit</string>
+    <string name="UNIT.FAN">Fan Fault in the Control Unit</string>
 
+    <string name="SYS.HUMC">HUM. Heater System Fault</string>
+    <string name="SEN.HUM">HUM. Sensor Fault</string>
     <string name="SYS.TANK">Tank Position Error</string>
     <string name="SYS.WATER">Water Shortage</string>
-    <string name="SYS.CFG">Backup configuration data is corrupted</string>
+
+    <string name="HUM.DEVH">HUM. Sensor Upper Deviation Alarm</string>
+    <string name="HUM.DEVL">HUM. Sensor Lower Deviation Alarm</string>
+    <string name="SYS.UPS">Ni-MH Battery Fault</string>
 
     <string name="SPO2.BIT2">Low PI</string>
     <string name="SPO2.LOW">SpO2 Less Than 85%</string>
@@ -210,4 +210,5 @@
     <string name="SPO2.BIT4">Interference Is Detected</string>
     <string name="SPO2.BIT6">Too Much Ambient Light</string>
     <string name="SPO2.BIT10">Low Signal Quality</string>
+    <string name="COM.ERR">Return ERR via Serial interface</string>
 </resources>

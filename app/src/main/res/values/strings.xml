@@ -1,4 +1,4 @@
-<resources>
+﻿<resources>
     <!--系统设置-->
     <string name="app_name">戴维医疗</string>
     <string name="upper_version_id" translatable="false">1.0.0</string>
@@ -128,7 +128,7 @@
     <string name="overheat_air_above_37">箱温&gt;37</string>
     <string name="air_flow">风道</string>
     <string name="overheat_airflow_above_37">风道&gt;37</string>
-    <string name="fan_speed">风机转数</string>
+    <string name="fan_speed">风机转速</string>
 
     <!--System Calibration-->
     <string name="iso_air">箱温独立</string>
@@ -160,9 +160,10 @@
     <string name="reset_upper">重置上位机</string>
 
     <!--Alarm-->
-    <string name="SYS.CON">串口通讯故障</string>
     <string name="SYS.PWR">电源故障</string>
+    <string name="SYS.CON">串口通讯故障</string>
     <string name="SYS.HA">主从机通讯故障报警</string>
+    <string name="SYS.CFG">备份配置数据损坏</string>
     <string name="SYS.HOOD">箱篷故障报警</string>
     <string name="SYS.MOTOR">升降系统故障</string>
     <string name="SYS.DOOR">辐射门故障报警</string>
@@ -177,55 +178,47 @@
     <string name="SEN.S1B">独立肤温传感器故障报警</string>
     <string name="SEN.S2">肤温传感器2故障报警</string>
     <string name="SEN.SDIF">肤温传感器差异故障报警</string>
-
+    <string name="SEN.SCALE">体重秤传感器故障</string>
     <string name="AIR.OVH">箱温超温报警</string>
     <string name="SKIN.OVH">肤温超温报警</string>
     <string name="FLOW.OVH">风道超温报警</string>
-
     <string name="CTRL.SEN">肤温传感器放置错误报警</string>
     <string name="SYS.FAN">风机故障报警</string>
     <string name="TEMP.DEVH">温度上偏差报警</string>
     <string name="TEMP.DEVL">温度下偏差报警</string>
-
     <string name="CTRL.ERR1">设置报警A</string>
     <string name="CTRL.ERR2">设置报警C</string>
     <string name="CTRL.MAN">手控检查报警</string>
     <string name="SEN.O2_1">O2传感器1故障报警</string>
     <string name="SEN.O2_2">O2传感器2故障报警</string>
     <string name="SEN.O2DIF">O2传感器差异报警</string>
-
     <string name="O2.DEVH">O2上偏差报警</string>
     <string name="O2.DEVL">O2下偏差报警</string>
     <string name="SEN.SPO2">血氧模块故障报警</string>
     <string name="SPO2.ERR">血氧系统报警</string>
-
     <string name="SPO2.BIT12">导电线未连接</string>
     <string name="SPO2.BIT0">血氧传感器连接错误</string>
     <string name="SPO2.BIT1">血氧传感器故障</string>
     <string name="SPO2.BIT7">血氧传感器无法识别</string>
     <string name="SPO2.BIT5">血氧传感器脱落</string>
     <string name="SPO2.BIT13">未连接粘黏探头</string>
-
-    <string name="SYS.HUMC">湿度加热系统故障报警</string>
-    <string name="SEN.HUM">湿度传感器故障报警</string>
-    <string name="HUM.DEVH">湿度上偏差报警</string>
-    <string name="HUM.DEVL">湿度下偏差报警</string>
-
-    <string name="SYS.UPS">镍氢电池报警</string>
-    <string name="SYS.BAT">扣式电池报警</string>
     <string name="SPO2.OVH">SpO2上限报警</string>
     <string name="SPO2.OVL">SpO2下限报警</string>
     <string name="PR.OVH">脉搏上限报警</string>
     <string name="PR.OVL">脉搏下限报警</string>
-
+    <string name="UNIT.FAN">控制仪内风扇故障报警</string>
+    <string name="SYS.HUMC">湿度加热系统故障报警</string>
+    <string name="SEN.HUM">湿度传感器故障报警</string>
     <string name="SYS.TANK">水箱放置错误报警</string>
     <string name="SYS.WATER">缺水报警</string>
-    <string name="SYS.CFG">备份配置数据损坏</string>
-
+    <string name="HUM.DEVH">湿度上偏差报警</string>
+    <string name="HUM.DEVL">湿度下偏差报警</string>
+    <string name="SYS.UPS">镍氢电池报警</string>
     <string name="SPO2.BIT2">低血流灌注</string>
     <string name="SPO2.LOW">血氧饱和度低于85%</string>
     <string name="SPO2.BIT3">搜寻脉搏</string>
     <string name="SPO2.BIT4">探测到干扰</string>
     <string name="SPO2.BIT6">太多环境光</string>
     <string name="SPO2.BIT10">低信号质量</string>
+    <string name="COM.ERR">串口通讯返回ERR</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.david.common.control;
 
+import android.util.Log;
+
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.Spo2GetCommand;
@@ -82,6 +84,7 @@ public class AutomationControl implements IViewModel {
                     .observeOn(Schedulers.io())
                     .subscribe((aLong) -> {
                         serialControl.refresh();
+
                         checkLockScreen();
                         topViewModel.displayCurrentTime();
 

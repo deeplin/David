@@ -47,8 +47,6 @@ public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<Layout
                     stopDisposable();
                     objectiveViewModel.setObjective();
                 });
-
-
     }
 
     public void setUnit(String value) {

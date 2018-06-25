@@ -62,14 +62,15 @@
             app:layout_constraintLeft_toRightOf="@id/ibChartCycleUp"
             app:layout_constraintTop_toTopOf="@id/tvChartCycleValue" />
 
-        <ImageView
+        <TextView
             android:id="@+id/ivChartYAxisTitle"
-            android:layout_width="100dp"
-            android:layout_height="0dp"
-            android:imageSrc="@{viewModel.yAxisTitle}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.yAxisTitle}"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f24"
             android:visibility="@{viewModel.tableSelected? View.GONE:View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_percent="0.0417"
             app:layout_constraintLeft_toLeftOf="@id/ibChartCycleUp"
             app:layout_constraintRight_toRightOf="@id/ibChartCycleDown"
             app:layout_constraintTop_toTopOf="parent"

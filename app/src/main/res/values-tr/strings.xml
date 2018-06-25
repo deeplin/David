@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">David Medical</string>
 
@@ -95,7 +95,7 @@
     <string name="deviation_warning">Sapma Uyarısı</string>
     <string name="overheat_warning">Aşırı Isı Uyarısı</string>
     <string name="setting_range">Ayar Aralığı</string>
-    <string name="temp_calibration">Isı Kalbirasyonu</string>
+    <string name="temp_calibration">Ayarlama</string>
     <string name="other_parameter">Diğer</string>
     <string name="data_print">Çıktı</string>
     <string name="factory_setting">Fabrika ayarları</string>
@@ -141,9 +141,11 @@
     <string name="reset_upper">Komple Sıfırla</string>
 
     <!--鍛婅-->
+    <string name="SYS.PWR">Güc kesintisi</string>
     <string name="SYS.CON">Seri Bağlantı Mevcut değil</string>
-    <string name="SYS.PWR">Power failure</string>
+
     <string name="SYS.HA">MCU Bağlantı Hatası</string>
+    <string name="SYS.CFG">Yedekleme verileri bozuk</string>
     <string name="SYS.HOOD">Kanopi hatası</string>
     <string name="SYS.MOTOR">Yükseklik hatası</string>
     <string name="SYS.DOOR">Kapı hatası</string>
@@ -158,6 +160,8 @@
     <string name="SEN.S1B">Izole Cilt Sensör Hatası</string>
     <string name="SEN.S2">Cilt Sensörü 2 Hatası</string>
     <string name="SEN.SDIF">Cilt Sensor Fark Hatası</string>
+
+    <string name="SEN.SCALE">Ağırlık ölçek sensörü arıza alarmı</string>
 
     <string name="AIR.OVH">Aşırı Hava Sıcaklığı Alarmı</string>
     <string name="SKIN.OVH">Aşırı Cilt Sıcaklığı Alarmı</string>
@@ -183,26 +187,25 @@
     <string name="SPO2.BIT12">İletken Tel Bağlı Değil</string>
     <string name="SPO2.BIT0">SopO2 Sensor Bağlantı Hatası</string>
     <string name="SPO2.BIT1">Pulse Oksimetre Sensör Hatası</string>
-    <string name="SPO2.BIT7">Pulse Oksimetre Sensörü Tanımlanamadı</string>
+    <string name="SPO2.BIT7">Kan oksijen sensörü tanımıyor</string>
     <string name="SPO2.BIT5">Pulse Oksimetre Sensörü Takılı değil</string>
     <string name="SPO2.BIT13">Yapışkan Sensör Bağlı Değil</string>
-
-    <string name="SYS.HUMC">Nem Isıtıcı Sistemi Hatası</string>
-    <string name="SEN.HUM">Nem Sensör Hatası</string>
-
-    <string name="HUM.DEVH">Yüksek Nem Alarmı</string>
-    <string name="HUM.DEVL">Düşük  Nem Alarmı</string>
-    <string name="SYS.UPS">Pil Hatası</string>
-    <string name="SYS.BAT">Tuş Hücresi Hatası</string>
-
     <string name="SPO2.OVH">SpO2 Yüksek Alarm Limiti</string>
     <string name="SPO2.OVL">SpO2 Düşük Alarm Limiti</string>
     <string name="PR.OVH">Nabız Sayısı Yüksek Alarm Limiti</string>
     <string name="PR.OVL">Nabız Sayısı Düşük Alarm Limiti</string>
 
+    <string name="UNIT.FAN">Denetleyici Fan Arızası Alarmı</string>
+
+    <string name="SYS.HUMC">Nem Isıtıcı Sistemi Hatası</string>
+    <string name="SEN.HUM">Nem Sensör Hatası</string>
     <string name="SYS.TANK">Su Haznesi Pozisyon Hatası</string>
     <string name="SYS.WATER">Su Az</string>
-    <string name="SYS.CFG">Yedekleme verileri bozuk</string>
+
+    <string name="HUM.DEVH">Yüksek Nem Alarmı</string>
+    <string name="HUM.DEVL">Düşük  Nem Alarmı</string>
+
+    <string name="SYS.UPS">Pil Hatası</string>
 
     <string name="SPO2.BIT2">Düşük PI</string>
     <string name="SPO2.LOW">Spo2 % 85\'in altında</string>
@@ -210,4 +213,5 @@
     <string name="SPO2.BIT4">Müdahele algılandı</string>
     <string name="SPO2.BIT6">Cok fazla ortam ışığı</string>
     <string name="SPO2.BIT10">Düsük Sinyal Kalitesi</string>
+    <string name="COM.ERR">Seri arayüz üzerinden ERR dönüşü</string>
 </resources>
