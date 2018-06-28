@@ -13,11 +13,11 @@ public final class GPIO {
     private GPIO() {
     }
 
-    //private static final byte[] BYTES_1       = new byte[] { '1'};                  // "1".getBytes();
-    //private static final byte[] BYTES_0       = new byte[] { '0'};                  // "0".getBytes();
+    private static final byte[] BYTES_1       = new byte[] { '1'};                  // "1".getBytes();
+    private static final byte[] BYTES_0       = new byte[] { '0'};                  // "0".getBytes();
 
     private static String directionPath(int port) {
-        return "/sys/class/gpio/gpio" + port + "/direction";
+        return String.format("/sys/debuggpio/debug_tp%d", port);
     }
 
     private static String valuePath(int port) {
@@ -61,7 +61,8 @@ public final class GPIO {
             return true;
         }
 
-        SU.exec("echo " + port + " > /sys/class/gpio/export");
+//        SU.exec("echo " + port + " > /sys/class/gpio/export");
+        SU.exec("echo " + port + " > /sys/debuggpio/debug_tp1");
         times = 0;
         while (!(value.exists() && direction.exists()) && times < 2500) {
             try {

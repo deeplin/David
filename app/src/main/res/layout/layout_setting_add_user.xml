@@ -4,9 +4,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
-            type="com.david.incubator.ui.setting.SettingAddPatientLayout" />
+            type="com.david.incubator.ui.setting.SettingAddUserLayout" />
     </data>
 
     <!--584*480-->
@@ -107,27 +109,50 @@
             android:id="@+id/space2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y10"
-            app:layout_constraintBottom_toTopOf="@id/btOK"
+            app:layout_constraintBottom_toTopOf="@id/btAddUser"
             app:layout_constraintTop_toBottomOf="@id/addPatientGestation" />
 
         <!--第五行-->
 
         <Button
-            android:id="@+id/btOK"
+            android:id="@+id/btAddUser"
             style="@style/large_button_style"
             android:background="@drawable/confirm_button"
             android:text="@string/add_patient"
             android:textSize="@dimen/f18"
+            android:visibility="@{viewModel.addUser? View.INVISIBLE: View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/space"
             app:layout_constraintLeft_toLeftOf="@+id/addPatientName"
             app:layout_constraintTop_toBottomOf="@+id/space2" />
+
+        <Button
+            android:id="@+id/ibOK"
+            style="@style/large_button_style"
+            android:background="@drawable/confirm_button"
+            android:isSelected="@{viewModel.okSelected}"
+            android:text="@string/ok"
+            android:visibility="@{viewModel.addUser ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/btAddUser"
+            android:layout_marginEnd="60dp"
+            app:layout_constraintRight_toLeftOf="@id/ibReturn"
+            app:layout_constraintTop_toTopOf="@id/btAddUser" />
+
+        <Button
+            android:id="@+id/ibReturn"
+            style="@style/large_button_style"
+            android:text="@string/exit"
+            android:visibility="@{viewModel.addUser ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/btAddUser"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btAddUser" />
 
         <Space
             android:id="@+id/space"
             android:layout_width="match_parent"
             android:layout_height="@dimen/y20"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btOK" />
+            app:layout_constraintTop_toBottomOf="@id/btAddUser" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

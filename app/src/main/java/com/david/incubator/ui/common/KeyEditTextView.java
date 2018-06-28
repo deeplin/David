@@ -44,4 +44,10 @@ public class KeyEditTextView extends LinearLayout {
     public void clearValueField(){
         binding.tvValue.setText("");
     }
+
+    @Override
+    public void setEnabled(boolean status) {
+        binding.btKeyValue.setEnabled(status);
+        binding.tvValue.setEnabled(status);
+    }
 }

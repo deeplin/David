@@ -47,4 +47,10 @@ public class KeyValueView extends LinearLayout {
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe(consumer);
     }
+
+    @Override
+    public void setEnabled(boolean status) {
+        layoutKeyValueBinding.btKeyValue.setEnabled(status);
+        layoutKeyValueBinding.tvValue.setEnabled(status);
+    }
 }

@@ -24,7 +24,6 @@ import com.david.incubator.ui.main.top.TopLayout;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
-import com.david.incubator.ui.menu.chart.ChartFragment;
 import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;
 import com.david.incubator.ui.menu.chart.chartview.StatusChartWriter;
 import com.david.incubator.ui.menu.chart.table.AnalogDataRetriever;
@@ -53,7 +52,7 @@ import com.david.incubator.ui.objective.warmer.jaundice.WarmerObjectiveJaundiceV
 import com.david.incubator.ui.objective.warmer.temp.WarmerObjectiveTempLayout;
 import com.david.incubator.ui.objective.warmer.temp.WarmerObjectiveTempViewModel;
 import com.david.incubator.ui.objective.warmer.timing.WarmerObjectiveTimingLayout;
-import com.david.incubator.ui.setting.SettingAddPatientLayout;
+import com.david.incubator.ui.setting.SettingAddUserLayout;
 import com.david.incubator.ui.setting.SettingCalibrationLayout;
 import com.david.incubator.ui.setting.SettingDeviceLayout;
 import com.david.incubator.ui.setting.SettingHomeFragment;
@@ -158,7 +157,7 @@ public interface ApplicationComponent {
 
     void inject(ShareMemory shareMemory);
 
-    void inject(SettingAddPatientLayout settingAddPatientLayout);
+    void inject(SettingAddUserLayout settingAddUserLayout);
 
     void inject(SettingCalibrationLayout settingCalibrationLayout);
 

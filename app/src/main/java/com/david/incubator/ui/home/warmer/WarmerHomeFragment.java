@@ -148,7 +148,6 @@ public class WarmerHomeFragment extends AutoAttachFragment<WarmerFragmentHomeBin
                                 .setBackground(ContextCompat.getDrawable(this.getActivity(), R.mipmap.home_spo2_hide));
                     }
                 });
-
     }
 
     @Override

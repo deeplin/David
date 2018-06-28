@@ -27,7 +27,7 @@ import com.david.common.mode.BloodTypeMode;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
-import com.david.databinding.LayoutSettingAddPatientBinding;
+import com.david.databinding.LayoutSettingAddUserBinding;
 import com.david.incubator.ui.common.KeyEditTextViewModel;
 import com.david.incubator.ui.common.KeyValueViewModel;
 import com.david.incubator.ui.main.top.TopViewModel;
@@ -46,7 +46,7 @@ import javax.inject.Inject;
  * description:
  */
 
-public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSettingAddPatientBinding> implements TextWatcher {
+public class SettingAddUserLayout extends BindingConstraintLayout<LayoutSettingAddUserBinding> implements TextWatcher {
 
     @Inject
     DaoControl daoControl;
@@ -54,6 +54,9 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
     TopViewModel topViewModel;
     @Inject
     AutomationControl automationControl;
+
+    public ObservableBoolean addUser = new ObservableBoolean(false);
+    public ObservableBoolean okSelected = new ObservableBoolean(false);
 
     KeyEditTextViewModel nameKeyEditTextViewModel;
     KeyEditTextViewModel idKeyEditTextViewModel;
@@ -66,35 +69,73 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
 
     public ObservableBoolean sex = new ObservableBoolean(false);
     public ObservableField<BloodTypeMode> bloodType = new ObservableField<>(BloodTypeMode.A);
-    public ObservableInt birthWeight = new ObservableInt(0);
     public ObservableInt gestation = new ObservableInt(40);
+    public ObservableInt birthWeight = new ObservableInt(0);
 
     private AlertDialog alertDialog = null;
 
-    public SettingAddPatientLayout(Context context) {
+    public SettingAddUserLayout(Context context) {
         super(context);
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
         binding.setViewModel(this);
 
-        init();
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        sex.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+        addUser.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
-            public void onPropertyChanged(Observable observable, int i) {
-                if (sex.get()) {
-                    sexKeyValueViewModel.valueField.set(ResourceUtil.getString(R.string.male));
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                if (addUser.get()) {
+                    binding.addPatientName.setEnabled(true);
+                    binding.addPatientId.setEnabled(true);
+                    binding.addPatientBirthMedicalHistory.setEnabled(true);
+                    binding.addPatientSex.setEnabled(true);
+                    binding.addPatientBloodType.setEnabled(true);
+                    binding.addPatientBirthday.setEnabled(true);
+                    binding.addPatientGestation.setEnabled(true);
+                    binding.addPatientBirthWeight.setEnabled(true);
+
+                    nameKeyEditTextViewModel.valueField.set("");
+                    idKeyEditTextViewModel.valueField.set("");
+                    medicalHistoryKeyEditTextViewModel.valueField.set("");
+                    sex.notifyChange();
+                    bloodType.notifyChange();
+                    birthWeight.notifyChange();
+                    gestation.notifyChange();
+                    Calendar calendar = Calendar.getInstance();
+                    String date = String.format(Locale.US, "%02d-%02d-%02d", calendar.get(Calendar.YEAR) % 100,
+                            calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                    birthdayKeyValueViewModel.setValueField(date);
+
                 } else {
-                    sexKeyValueViewModel.valueField.set(ResourceUtil.getString(R.string.female));
+                    binding.addPatientName.setEnabled(false);
+                    binding.addPatientId.setEnabled(false);
+                    binding.addPatientBirthMedicalHistory.setEnabled(false);
+                    binding.addPatientSex.setEnabled(false);
+                    binding.addPatientBloodType.setEnabled(false);
+                    binding.addPatientBirthday.setEnabled(false);
+                    binding.addPatientGestation.setEnabled(false);
+                    binding.addPatientBirthWeight.setEnabled(false);
+
+                    UserModel userModel = daoControl.getLastUserModel();
+                    if (userModel != null) {
+                        nameKeyEditTextViewModel.valueField.set(userModel.getName());
+                        idKeyEditTextViewModel.valueField.set(userModel.getUserId());
+                        medicalHistoryKeyEditTextViewModel.valueField.set(userModel.getHistory());
+                        sexKeyValueViewModel.valueField.set(getSex(sex.get()));
+                        bloodTypeKeyValueViewModel.valueField.set(bloodType.get().getName());
+                        gestationKeyValueViewModel.valueField.set(String.valueOf(gestation.get()));
+                        birthdayKeyValueViewModel.valueField.set(userModel.getBirthday());
+                        birthWeightKeyValueViewModel.valueField.set(String.valueOf(birthWeight.get()));
+                    }
                 }
             }
         });
 
-        bloodType.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+        sex.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                bloodTypeKeyValueViewModel.valueField.set(bloodType.get().getName());
+                sexKeyValueViewModel.valueField.set(getSex(sex.get()));
             }
         });
 
@@ -102,6 +143,13 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
             @Override
             public void onPropertyChanged(Observable observable, int i) {
                 birthWeightKeyValueViewModel.valueField.set(String.valueOf(birthWeight.get()));
+            }
+        });
+
+        bloodType.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                bloodTypeKeyValueViewModel.valueField.set(bloodType.get().getName());
             }
         });
 
@@ -113,7 +161,7 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
         });
 
         binding.addPatientSex.setListener(o -> {
-            binding.btOK.setSelected(false);
+            okSelected.set(false);
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.dialog);
             builder.setTitle(ResourceUtil.getString(R.string.sex));
             String[] items = new String[]{ResourceUtil.getString(R.string.male), ResourceUtil.getString(R.string.female)};
@@ -125,7 +173,7 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
         });
 
         binding.addPatientBloodType.setListener(o -> {
-            binding.btOK.setSelected(false);
+            okSelected.set(false);
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.dialog);
             builder.setTitle(ResourceUtil.getString(R.string.blood_type));
             String[] items = new String[]{BloodTypeMode.A.getName(), BloodTypeMode.B.getName(),
@@ -137,7 +185,7 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
         });
 
         binding.addPatientBirthday.setListener(o -> {
-            binding.btOK.setSelected(false);
+            okSelected.set(false);
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.dialog);
             builder.setTitle(ResourceUtil.getString(R.string.birthday));
 
@@ -165,7 +213,7 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
         });
 
         binding.addPatientBirthWeight.setListener(o -> {
-            binding.btOK.setSelected(false);
+            okSelected.set(false);
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.dialog);
             builder.setTitle(ResourceUtil.getString(R.string.birth_weight));
 
@@ -207,7 +255,7 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
         });
 
         binding.addPatientGestation.setListener(o -> {
-            binding.btOK.setSelected(false);
+            okSelected.set(false);
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getContext(), R.style.dialog);
             builder.setTitle(ResourceUtil.getString(R.string.gestation));
@@ -236,7 +284,11 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
             alertDialog.show();
         });
 
-        RxView.clicks(binding.btOK)
+        RxView.clicks(binding.btAddUser)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((aVoid) -> addUser.set(true));
+
+        RxView.clicks(binding.ibOK)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
                     try {
@@ -264,24 +316,30 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
                         userModel.setHistory(medicalHistoryKeyEditTextViewModel.valueField.get());
 
                         if (daoControl.addUserModel(userModel)) {
-//                            binding.addPatientName.clearValueField();
-//                            binding.addPatientId.clearValueField();
-
-                            binding.btOK.setSelected(true);
                             topViewModel.loadUserId();
+                            okSelected.set(true);
+                            addUser.set(false);
                         } else {
-                            binding.btOK.setSelected(false);
+                            okSelected.set(false);
                         }
                     } catch (Exception e) {
-                        binding.btOK.setSelected(false);
+                        okSelected.set(false);
                         LogUtils.e(e);
                     }
                 });
+
+        RxView.clicks(binding.ibReturn)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((aVoid) -> {
+                    okSelected.set(false);
+                    addUser.set(false);
+                });
+        init();
     }
 
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_setting_add_patient;
+        return R.layout.layout_setting_add_user;
     }
 
     private void init() {
@@ -321,26 +379,13 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
         gestationKeyValueViewModel = new KeyValueViewModel(R.string.gestation);
         gestationKeyValueViewModel.setUnitText(R.string.week);
         binding.addPatientGestation.setViewModel(gestationKeyValueViewModel);
+
+
     }
 
     @Override
     public void attach() {
-        /*Sex*/
-        sex.notifyChange();
-        /*BloodType*/
-        bloodType.notifyChange();
-
-        /*Birthday*/
-        Calendar calendar = Calendar.getInstance();
-        String date = String.format(Locale.US, "%02d-%02d-%02d", calendar.get(Calendar.YEAR) % 100,
-                calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-        birthdayKeyValueViewModel.setValueField(date);
-
-        /*birth weight*/
-        birthWeight.notifyChange();
-
-        /*gestation*/
-        gestation.notifyChange();
+        addUser.notifyChange();
     }
 
     @Override
@@ -375,7 +420,7 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         automationControl.initializeTimeOut();
-        binding.btOK.setSelected(false);
+        okSelected.set(false);
     }
 
     @Override
@@ -386,4 +431,12 @@ public class SettingAddPatientLayout extends BindingConstraintLayout<LayoutSetti
 //        InputMethodManager imm = (InputMethodManager) getContext( ).getSystemService(Context.INPUT_METHOD_SERVICE);
 //           imm.showSoftInput(editText,InputMethodManager.SHOW_FORCED);
 //    }
+
+    private String getSex(boolean status) {
+        if (status) {
+            return ResourceUtil.getString(R.string.male);
+        } else {
+            return ResourceUtil.getString(R.string.female);
+        }
+    }
 }
