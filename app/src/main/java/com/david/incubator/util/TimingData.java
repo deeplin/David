@@ -5,7 +5,9 @@ import android.media.SoundPool;
 import android.support.annotation.NonNull;
 
 import com.david.R;
+import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
+import com.david.common.dao.SystemSetting;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -28,6 +30,9 @@ import io.reactivex.schedulers.Schedulers;
 @Singleton
 public class TimingData implements Consumer<Long> {
 
+    @Inject
+    DaoControl daoControl;
+
     public static final String APGAR = "APGAR";
     public static final String CPR = "CPR";
 
@@ -40,18 +45,27 @@ public class TimingData implements Consumer<Long> {
     private Disposable disposable;
     private Consumer<String> consumer;
 
-    private SoundPool soundPool;
+    private final SoundPool soundPool;
+
+    public float volume;
 
     @Inject
     TimingData() {
+        MainApplication.getInstance().getApplicationComponent().inject(this);
         count = -1;
         textString = "--:--";
-        soundPool = new SoundPool(3, AudioManager.STREAM_MUSIC, 0);
+        loadVolume();
+        soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         soundPool.setOnLoadCompleteListener(
                 (pool, sampleId, status) ->
-                        pool.play(sampleId, 1, 1, 0, 0, 1));
+                        pool.play(sampleId, volume, volume, 0, 0, 1));
 
         setApgar();
+    }
+
+    public void loadVolume(){
+        SystemSetting systemSetting = daoControl.getSystemSetting();
+        this.volume = (float) (systemSetting.getVolume() / 100.0);
     }
 
     public synchronized void start() {

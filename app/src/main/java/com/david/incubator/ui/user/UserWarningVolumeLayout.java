@@ -4,18 +4,18 @@ import android.content.Context;
 import android.databinding.Observable;
 import android.databinding.ObservableByte;
 import android.databinding.ObservableInt;
-import android.media.AudioManager;
 
+import com.david.R;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.SystemSetting;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
-import com.david.incubator.ui.common.ButtonControlViewModel;
-import com.jakewharton.rxbinding2.view.RxView;
 import com.david.databinding.LayoutUserWarningVolumeBinding;
-import com.david.R;
+import com.david.incubator.ui.common.ButtonControlViewModel;
+import com.david.incubator.util.TimingData;
+import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,16 +31,17 @@ import javax.inject.Inject;
 public class UserWarningVolumeLayout extends BindingConstraintLayout<LayoutUserWarningVolumeBinding> {
 
     private final byte MAXIMUM = 100;
-    private final byte MINIMUM = 30;
+    private final byte MINIMUM = 20;
 
     @Inject
     DaoControl daoControl;
+    @Inject
+    TimingData timingData;
 
     ObservableInt navigationView;
 
     public ObservableByte valueField = new ObservableByte();
 
-    AudioManager audioManager;
     SystemSetting systemSetting;
 
     public UserWarningVolumeLayout(Context context, ObservableInt navigationView) {
@@ -88,7 +89,7 @@ public class UserWarningVolumeLayout extends BindingConstraintLayout<LayoutUserW
                 byte volume = valueField.get();
                 systemSetting.setVolume(volume);
                 save();
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, AudioManager.FLAG_PLAY_SOUND);
+                timingData.loadVolume();
             }
         });
     }
@@ -107,7 +108,6 @@ public class UserWarningVolumeLayout extends BindingConstraintLayout<LayoutUserW
     }
 
     private void init() {
-        audioManager = (AudioManager) MainApplication.getInstance().getSystemService(Context.AUDIO_SERVICE);
         systemSetting = daoControl.getSystemSetting();
         valueField.set(systemSetting.getVolume());
     }
