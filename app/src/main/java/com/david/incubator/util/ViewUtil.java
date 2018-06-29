@@ -118,7 +118,7 @@ public class ViewUtil {
             return Constant.SENSOR_PI_STRING;
         } else if (value <= SensorRange.PI_DISPLAY_UPPER && value >= SensorRange.PI_DISPLAY_LOWER) {
             DecimalFormat decimalFormat = new DecimalFormat("0.00");
-            return decimalFormat.format(value / 10000.0) + "%";
+            return decimalFormat.format(value / 1000.0) + "%";
         } else {
             return Constant.SENSOR_PI_STRING;
         }

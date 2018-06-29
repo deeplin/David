@@ -26,6 +26,6 @@ public class SensorRange {
     public final static int SCALE_DISPLAY_UPPER = 8000;
     public final static int SCALE_DISPLAY_LOWER = 0;
 
-    public final static int PI_DISPLAY_UPPER = 20 * 10000;
-    public final static int PI_DISPLAY_LOWER = 200;
+    public final static int PI_DISPLAY_UPPER = 20000;
+    public final static int PI_DISPLAY_LOWER = 20;
 }

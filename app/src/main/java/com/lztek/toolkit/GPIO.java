@@ -62,7 +62,7 @@ public final class GPIO {
         }
 
 //        SU.exec("echo " + port + " > /sys/class/gpio/export");
-        SU.exec("echo " + port + " > /sys/debuggpio/debug_tp1");
+        SU.exec("cat " + port + " > /sys/debuggpio/debug_tp1");
         times = 0;
         while (!(value.exists() && direction.exists()) && times < 2500) {
             try {

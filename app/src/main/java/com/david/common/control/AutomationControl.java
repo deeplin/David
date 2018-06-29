@@ -18,6 +18,7 @@ import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.common.util.TimeUtil;
 import com.david.incubator.ui.main.top.TopViewModel;
+import com.david.incubator.util.GPIOUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -69,6 +70,8 @@ public class AutomationControl implements IViewModel {
 
     @Override
     public void attach() {
+//        GPIOUtil.init();
+
         /*读取配置文件*/
         messageSender.getHardwareModule((aBoolean, baseSerialMessage) -> {
             if (aBoolean) {
@@ -88,12 +91,17 @@ public class AutomationControl implements IViewModel {
                         checkLockScreen();
                         topViewModel.displayCurrentTime();
 
+//                        boolean status = GPIOUtil.read();
+//                        Log.e("deeplin", "GPIO " + status);
+
                         long currentTime = TimeUtil.getCurrentTimeInSecond();
                         if (currentTime % 60 == 0) {
                             daoControl.deleteStale();
                         }
                     }, LogUtils::e);
         }
+
+
     }
 
     private void startRefresh() {
