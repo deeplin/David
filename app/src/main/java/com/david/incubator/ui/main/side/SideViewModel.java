@@ -62,7 +62,7 @@ public class SideViewModel implements IViewModel {
         shareMemory.lockScreen.removeOnPropertyChangedCallback(lockScreenCallback);
     }
 
-    void clearAlarm() {
+    public void clearAlarm() {
         if(alarmControl.isAlert() || topViewModel.overheatExperimentMode.get()) {
             messageSender.clearAlarm((aBoolean, baseSerialMessage) -> topViewModel.clearAlarm());
         }

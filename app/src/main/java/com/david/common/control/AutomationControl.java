@@ -17,6 +17,7 @@ import com.david.common.serial.command.other.LEDCommand;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.common.util.TimeUtil;
+import com.david.incubator.ui.main.side.SideViewModel;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.util.GPIOUtil;
 
@@ -53,6 +54,8 @@ public class AutomationControl implements IViewModel {
     ModuleSoftware moduleSoftware;
     @Inject
     TopViewModel topViewModel;
+    @Inject
+    SideViewModel sideViewModel;
 
     private Disposable ioDisposable;
 
@@ -70,7 +73,7 @@ public class AutomationControl implements IViewModel {
 
     @Override
     public void attach() {
-//        GPIOUtil.init();
+        GPIOUtil.init();
 
         /*读取配置文件*/
         messageSender.getHardwareModule((aBoolean, baseSerialMessage) -> {
@@ -91,8 +94,9 @@ public class AutomationControl implements IViewModel {
                         checkLockScreen();
                         topViewModel.displayCurrentTime();
 
-//                        boolean status = GPIOUtil.read();
-//                        Log.e("deeplin", "GPIO " + status);
+                        if(GPIOUtil.read()){
+                            sideViewModel.clearAlarm();
+                        }
 
                         long currentTime = TimeUtil.getCurrentTimeInSecond();
                         if (currentTime % 60 == 0) {
