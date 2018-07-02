@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@mipmap/convertible"
-            android:visibility="@{viewModel.shareMemory.isTransit()? View.VISIBLE : View.INVISIBLE}" />
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit)? View.VISIBLE : View.INVISIBLE}" />
 
         <com.david.common.ui.alarm.AlarmView
             android:id="@+id/avAlarm"
