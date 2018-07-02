@@ -209,6 +209,9 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
                 navigator.setSystemMode(true, shareMemory.humidityObjective.get(), shareMemory.oxygenObjective.get(), null);
                 navigator.showHumidity(moduleHardware.isHUM(), moduleSoftware.isHUM());
                 navigator.showOxygen(moduleHardware.isO2(), moduleSoftware.isO2());
+
+                timingData.setConsumer(null);
+                timingData.stop();
             } else if (shareMemory.isWarmer()) {
                 String timingMode = null;
                 if (timingData.isApgarStarted()) {
