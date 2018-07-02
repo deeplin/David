@@ -53,7 +53,6 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
         incPowerCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                //todo
                 navigator.setHeatStep(shareMemory.incPower.get());
             }
         };
@@ -96,6 +95,9 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
 
     @Override
     public void attach() {
+        messageSender.getSpo2Alert(shareMemory);
+        messageSender.getPrAlert(shareMemory);
+
         /*画动画*/
         moduleHardware.updated.addOnPropertyChangedCallback(settingUpdateCallback);
         moduleSoftware.updated.addOnPropertyChangedCallback(settingUpdateCallback);
@@ -113,9 +115,6 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
         shareMemory.ctrlMode.addOnPropertyChangedCallback(ctrlModeCallback);
         messageSender.getCtrlGet(shareMemory);
         shareMemory.ctrlMode.notifyChange();
-
-        messageSender.getSpo2Alert(shareMemory);
-        messageSender.getPrAlert(shareMemory);
 
         shareMemory.A2.notifyChange();
         shareMemory.airObjective.notifyChange();
@@ -137,6 +136,8 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
     @Override
     public void detach() {
         shareMemory.ctrlMode.removeOnPropertyChangedCallback(ctrlModeCallback);
+        shareMemory.oxygenPower.removeOnPropertyChangedCallback(oxygenPowerCallback);
+        shareMemory.humidityPower.removeOnPropertyChangedCallback(humidityPowerCallback);
         shareMemory.incPower.removeOnPropertyChangedCallback(incPowerCallback);
         moduleSoftware.updated.removeOnPropertyChangedCallback(settingUpdateCallback);
         moduleHardware.updated.addOnPropertyChangedCallback(settingUpdateCallback);

@@ -208,7 +208,7 @@ public class TopViewModel implements IViewModel {
         muteAlarmField.set(null);
     }
 
-    public void muteAlarm() {
+    public synchronized void muteAlarm() {
         if (alarmControl.isAlert() && muteDisposable == null) {
             String alarmId = alarmControl.topAlarmId.get();
             int alarmTime = AlarmControl.getMuteTime(alarmId);

@@ -190,6 +190,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
             transaction.hide(currentFragment);
             currentFragment = null;
         }
+
         AutoAttachFragment toFragment = fragmentArray[position];
         if (toFragment != null) {
             transaction.show(toFragment);

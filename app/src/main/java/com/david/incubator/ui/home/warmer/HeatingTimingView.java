@@ -32,28 +32,28 @@ public class HeatingTimingView extends View implements Consumer {
     @Inject
     TimingData timingData;
 
-    private TextPaint mTitlePaint;
-    private TextPaint mTextPaint;
-    private Paint mRectPaint;
+    private TextPaint titlePaint;
+    private TextPaint textPaint;
+    private Paint rectPaint;
     private Bitmap beepBitmap;
 
-    private int mRectX;
-    private int mRectY;
-    private int mRectWidth;
-    private int mRectHeightThin;
-    private int mRectGap;
-    private int mRectHeightThick;
+    private int rectX;
+    private int rectY;
+    private int rectWidth;
+    private int rectHeightThin;
+    private int rectGap;
+    private int rectHeightThick;
 
     public HeatingTimingView(Context context, AttributeSet attrs) {
         super(context, attrs);
         MainApplication.getInstance().getApplicationComponent().inject(this);
-        mRectX = 26;
-        mRectY = AutoUtil.getHeight(46);
+        rectX = 26;
+        rectY = AutoUtil.getHeight(46);
 
-        mRectWidth = 28;
-        mRectHeightThin = AutoUtil.getHeight(5);
-        mRectHeightThick = AutoUtil.getHeight(10);
-        mRectGap = 4;
+        rectWidth = 28;
+        rectHeightThin = AutoUtil.getHeight(5);
+        rectHeightThick = AutoUtil.getHeight(10);
+        rectGap = 4;
 
         invalidateTextPaint();
     }
@@ -68,22 +68,22 @@ public class HeatingTimingView extends View implements Consumer {
 
     private void invalidateTextPaint() {
         // Set up a default TextPaint object
-        mTitlePaint = new TextPaint();
-        mTitlePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        mTitlePaint.setTextAlign(Paint.Align.LEFT);
-        mTitlePaint.setTextSize(AutoUtil.getHeight(30));
-        mTitlePaint.setColor(ContextCompat.getColor(this.getContext(), R.color.info_dark));
+        titlePaint = new TextPaint();
+        titlePaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        titlePaint.setTextAlign(Paint.Align.LEFT);
+        titlePaint.setTextSize(AutoUtil.getHeight(30));
+        titlePaint.setColor(ContextCompat.getColor(this.getContext(), R.color.info_dark));
 
-        mTextPaint = new TextPaint();
-        mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setTextAlign(Paint.Align.RIGHT);
-        mTextPaint.setTextSize(AutoUtil.getHeight(60));
-        mTextPaint.setTypeface(Typeface.MONOSPACE);
-        mTextPaint.setColor(ContextCompat.getColor(this.getContext(), R.color.info_white));
+        textPaint = new TextPaint();
+        textPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
+        textPaint.setTextAlign(Paint.Align.RIGHT);
+        textPaint.setTextSize(AutoUtil.getHeight(60));
+        textPaint.setTypeface(Typeface.MONOSPACE);
+        textPaint.setColor(ContextCompat.getColor(this.getContext(), R.color.info_white));
 
-        mRectPaint = new Paint();
-        mRectPaint.setColor(ContextCompat.getColor(this.getContext(), R.color.info_dark));
-        mRectPaint.setStyle(Paint.Style.FILL);
+        rectPaint = new Paint();
+        rectPaint.setColor(ContextCompat.getColor(this.getContext(), R.color.info_dark));
+        rectPaint.setStyle(Paint.Style.FILL);
 
         beepBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.beep);
     }
@@ -99,15 +99,15 @@ public class HeatingTimingView extends View implements Consumer {
         String textValue = timingData.getTextString();
 
         /*写标题*/
-        canvas.drawText(title, 24, AutoUtil.getHeight(36), mTitlePaint);
+        canvas.drawText(title, 24, AutoUtil.getHeight(36), titlePaint);
 
         /*写时间*/
-        canvas.drawText(textValue, contentWidth - 8, contentHeight - 20, mTextPaint);
+        canvas.drawText(textValue, contentWidth - 8, contentHeight - 20, textPaint);
         /*画长方形*/
         if (timingData.isCprStarted()) {
             for (int index = 0; index < 7; index++) {
-                int rx = mRectX + index * (mRectWidth + mRectGap);
-                canvas.drawRect(rx, mRectY, rx + mRectWidth, mRectY + mRectHeightThin, mRectPaint);
+                int rx = rectX + index * (rectWidth + rectGap);
+                canvas.drawRect(rx, rectY, rx + rectWidth, rectY + rectHeightThin, rectPaint);
             }
 
             /*去掉前30秒*/
@@ -142,9 +142,9 @@ public class HeatingTimingView extends View implements Consumer {
 
     private void drawRect(Canvas canvas, int remainder) {
         for (int index = 0; index <= remainder; index++) {
-            int rx = mRectX + index * (mRectWidth + mRectGap);
-            int ry = mRectY + 8;
-            canvas.drawRect(rx, ry, rx + mRectWidth, ry + mRectHeightThick, mRectPaint);
+            int rx = rectX + index * (rectWidth + rectGap);
+            int ry = rectY + 8;
+            canvas.drawRect(rx, ry, rx + rectWidth, ry + rectHeightThick, rectPaint);
         }
     }
 

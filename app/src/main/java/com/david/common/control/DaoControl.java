@@ -133,10 +133,6 @@ public class DaoControl {
             analogCommand.setId(null);
             AnalogCommandDao analogCommandDao = daoSession.getAnalogCommandDao();
             analogCommandDao.insert(analogCommand);
-
-            //todo
-            Log.e("deeplin", "add analog " + analogCommand.getId() + " " + analogCommand.getTimeStamp() + " "
-                    + TimeUtil.getTime(analogCommand.getTimeStamp() * 1000, TimeUtil.FullTime));
         }
     }
 
@@ -224,9 +220,6 @@ public class DaoControl {
                 .build().list();
         for (WeightModel scaleCommand : weightModelList) {
             weightModelDao.delete(scaleCommand);
-            //todo
-            Log.e("deeplin", "delete weight " + scaleCommand.getId() + " " + scaleCommand.getTimeStamp()
-                    + TimeUtil.getTime(scaleCommand.getTimeStamp() * 1000, TimeUtil.FullTime));
         }
     }
 
@@ -248,8 +241,6 @@ public class DaoControl {
         }
 
         if (userModel != null) {
-            //todo
-            Log.e("deeplin", "Current User:" + userModel.getUserId());
             queryBuilder.where(AnalogCommandDao.Properties.TimeStamp.ge(userModel.getStartTimeStamp()));
             if (userModel.getEndTimeStamp() > 0) {
                 queryBuilder.where(AnalogCommandDao.Properties.TimeStamp.le(userModel.getEndTimeStamp()));

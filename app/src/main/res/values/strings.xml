@@ -3,9 +3,9 @@
     <string name="app_name">戴维医疗</string>
     <string name="upper_version_id" translatable="false">1.0.0</string>
     <!--<string name="device_model" translatable="false">YP-2008S</string>-->
-    <string name="device_model" translatable="false">YP-3000S</string>
+    <!--<string name="device_model" translatable="false">YP-3000S</string>-->
     <!--<string name="device_model" translatable="false">YP-2000S</string>-->
-    <!--<string name="device_model" translatable="false">HKN-93S</string>-->
+    <string name="device_model" translatable="false">HKN-93S</string>
 
     <!--网络设置-->
     <bool name="enable_cloud" translatable="false">false</bool>

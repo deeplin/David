@@ -1,7 +1,5 @@
 package com.david.common.control;
 
-import android.util.Log;
-
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.Spo2GetCommand;
@@ -94,8 +92,8 @@ public class AutomationControl implements IViewModel {
                         checkLockScreen();
                         topViewModel.displayCurrentTime();
 
-                        if(GPIOUtil.read()){
-                            sideViewModel.clearAlarm();
+                        if (GPIOUtil.read()) {
+                            sideViewModel.muteAlarm();
                         }
 
                         long currentTime = TimeUtil.getCurrentTimeInSecond();
@@ -104,8 +102,6 @@ public class AutomationControl implements IViewModel {
                         }
                     }, LogUtils::e);
         }
-
-
     }
 
     private void startRefresh() {
