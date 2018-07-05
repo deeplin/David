@@ -1,12 +1,12 @@
 package com.david.common.dao;
 
-        import com.david.common.serial.BaseSerialMessage;
-        import com.david.common.util.CommandChar;
+import com.david.common.serial.BaseSerialMessage;
+import com.david.common.util.CommandChar;
 
-        import org.greenrobot.greendao.annotation.Entity;
-        import org.greenrobot.greendao.annotation.Generated;
-        import org.greenrobot.greendao.annotation.Id;
-        import org.greenrobot.greendao.annotation.Transient;
+import org.greenrobot.greendao.annotation.Entity;
+import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
+import org.greenrobot.greendao.annotation.Transient;
 
 /**
  * author: Ling Lin
@@ -116,9 +116,6 @@ public class CtrlGetCommand extends BaseSerialMessage {
         this.timeStamp = timeStamp;
     }
 
-    @Transient
-    private CtrlGetCommand ctrlGetCommand;
-
     @Generated(hash = 194615124)
     public CtrlGetCommand(Long id, long timeStamp, String ctrl, int c_air, int c_hum,
                           int c_o2, int c_skin, int w_skin, int w_man, int w_inc) {
@@ -138,11 +135,7 @@ public class CtrlGetCommand extends BaseSerialMessage {
     public CtrlGetCommand() {
     }
 
-    public void setCtrlGetCommand(CtrlGetCommand ctrlGetCommand) {
-        this.ctrlGetCommand = ctrlGetCommand;
-    }
-
-    public boolean isChanged() {
+    public boolean isChanged(CtrlGetCommand ctrlGetCommand) {
         if (ctrlGetCommand != null) {
             if (!ctrl.equals(ctrlGetCommand.ctrl)) {
                 return true;
@@ -160,10 +153,11 @@ public class CtrlGetCommand extends BaseSerialMessage {
                 return true;
             } else if (w_inc != ctrlGetCommand.w_inc) {
                 return true;
+            } else {
+                return false;
             }
         } else {
             return true;
         }
-        return false;
     }
 }

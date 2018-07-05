@@ -125,10 +125,9 @@ public class DaoControl {
     }
 
     public synchronized void saveCommand(AnalogCommand analogCommand) {
-        long currentTime = TimeUtil.getCurrentTimeInSecond();
+        long currentTime = analogCommand.getTimeStamp();
         /*每分钟记录一次*/
         if (currentTime % 60 == 0) {
-            analogCommand.setTimeStamp(currentTime);
             /*去除ID*/
             analogCommand.setId(null);
             AnalogCommandDao analogCommandDao = daoSession.getAnalogCommandDao();
@@ -137,10 +136,9 @@ public class DaoControl {
     }
 
     public synchronized void saveCommand(StatusCommand statusCommand) {
-        long currentTime = TimeUtil.getCurrentTimeInSecond();
+        long currentTime = statusCommand.getTimeStamp();
         /*每分钟记录一次*/
         if (currentTime % 60 == 0) {
-            statusCommand.setTimeStamp(currentTime);
             /*去除ID*/
             statusCommand.setId(null);
             StatusCommandDao statusCommandDao = daoSession.getStatusCommandDao();
@@ -148,15 +146,16 @@ public class DaoControl {
         }
     }
 
+    private CtrlGetCommand oldCtrlGetCommand = null;
     public synchronized void saveCommand(CtrlGetCommand ctrlGetCommand) {
-        if (ctrlGetCommand.isChanged()) {
+        if (ctrlGetCommand.isChanged(oldCtrlGetCommand)) {
             long currentTime = TimeUtil.getCurrentTimeInSecond();
             ctrlGetCommand.setTimeStamp(currentTime);
             /*去除ID*/
             ctrlGetCommand.setId(null);
             CtrlGetCommandDao ctrlGetCommandDao = daoSession.getCtrlGetCommandDao();
             ctrlGetCommandDao.insert(ctrlGetCommand);
-            ctrlGetCommand.setCtrlGetCommand(ctrlGetCommand);
+            this.oldCtrlGetCommand = ctrlGetCommand;
         }
     }
 

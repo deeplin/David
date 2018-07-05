@@ -104,5 +104,6 @@ public class HeatingView extends View {
     public void setHeat(int mHeat) {
         this.mHeat = mHeat;
         mHeatString = mHeat + "%";
+        postInvalidate();
     }
 }

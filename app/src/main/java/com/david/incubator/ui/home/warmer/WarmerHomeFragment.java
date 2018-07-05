@@ -130,8 +130,6 @@ public class WarmerHomeFragment extends AutoAttachFragment<WarmerFragmentHomeBin
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((num) -> {
                     binding.heatingView.setHeat(num);
-                    binding.heatingView.setVisibility(View.GONE);
-                    binding.heatingView.setVisibility(View.VISIBLE);
                 });
     }
 

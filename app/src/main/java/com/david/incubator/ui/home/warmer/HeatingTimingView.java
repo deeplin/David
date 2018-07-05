@@ -60,6 +60,7 @@ public class HeatingTimingView extends View implements Consumer {
 
     public void attach() {
         timingData.setConsumer(this);
+        postInvalidate();
     }
 
     public void detach() {

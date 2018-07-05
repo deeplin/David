@@ -40,5 +40,5 @@ public class Constant {
 
     public static final int SERIAL_BUFFER_SIZE = 512;
     public static final String COM3 = "dev/ttyS3";
-    public static final String COM4 = "dev/ttyS4";
+    public static final String COM4 = "dev/ttyS0";
 }
