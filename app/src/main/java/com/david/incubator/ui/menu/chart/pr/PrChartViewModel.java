@@ -35,7 +35,7 @@ public class PrChartViewModel extends BaseChartViewModel<AnalogCommand> {
 
     @Override
     public String getYAxisTitle() {
-        return "bpm";
+        return "1/min";
     }
 
     @Override

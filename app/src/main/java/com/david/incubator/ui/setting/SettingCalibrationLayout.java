@@ -95,6 +95,7 @@ public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSett
         RxView.clicks(binding.userCalibrationLeft)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object aVoid) -> {
+                    result.set("");
                     if (selectO2.get()) {
                         alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.calibration_o2,
                                 ResourceUtil.getString(R.string.calibration_confirm_o2_21),
@@ -146,6 +147,7 @@ public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSett
         RxView.clicks(binding.userCalibrationRight)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object aVoid) -> {
+                    result.set("");
                     if (selectO2.get()) {
                         alertDialog = ViewUtil.buildConfirmDialog(this.getContext(), R.string.calibration_o2,
                                 ResourceUtil.getString(R.string.calibration_confirm_o2_100),
