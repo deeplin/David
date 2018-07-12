@@ -2,7 +2,6 @@ package com.david.incubator.ui.user.usermodel;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 
 import com.david.R;

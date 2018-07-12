@@ -13,6 +13,7 @@ import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabHomeLayout;
 import com.david.common.util.Constant;
+import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutChartBinding;
 import com.david.common.data.SelectedUser;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -60,7 +61,6 @@ public class ChartLayout extends TabHomeLayout<LayoutChartBinding> {
     @Override
     public void attach() {
         boolean isCabin = shareMemory.isCabin();
-
         ChartPagerAdapter pagerAdapter = new ChartPagerAdapter(isCabin,
                 binding.scvChart, binding.pttChart,
                 moduleHardware, shareMemory, moduleSoftware, daoControl);

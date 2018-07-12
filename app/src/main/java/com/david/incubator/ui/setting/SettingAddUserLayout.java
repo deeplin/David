@@ -313,7 +313,7 @@ public class SettingAddUserLayout extends BindingConstraintLayout<LayoutSettingA
                         userModel.setBirthday(birthdayKeyValueViewModel.valueField.get());
                         userModel.setWeight(Integer.parseInt(birthWeightKeyValueViewModel.valueField.get()));
                         userModel.setGestationalAge(Integer.parseInt(gestationKeyValueViewModel.valueField.get()));
-                        userModel.setHistory(medicalHistoryKeyEditTextViewModel.valueField.get());
+                        userModel.setHistory(binding.addPatientBirthMedicalHistory.getValueField());
 
                         if (daoControl.addUserModel(userModel)) {
                             topViewModel.loadUserId();

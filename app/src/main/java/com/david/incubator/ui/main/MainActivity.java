@@ -178,6 +178,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         transaction.commit();
     }
 
+
+
     /*
      * 碎片换页
      * */

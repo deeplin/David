@@ -73,7 +73,7 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
                     ResourceUtil.setLocalLanguage(getContext(), Locale.SIMPLIFIED_CHINESE);
                     setUI(LanguageMode.Chinese.getIndex());
                     saveLanguage(LanguageMode.Chinese.getIndex());
-                    topViewModel.loadUserId();
+                    invalidate();
                     refresh();
                 });
 
@@ -83,7 +83,6 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
                     ResourceUtil.setLocalLanguage(getContext(), Locale.ENGLISH);
                     setUI(LanguageMode.English.getIndex());
                     saveLanguage(LanguageMode.English.getIndex());
-                    topViewModel.loadUserId();
                     invalidate();
                     refresh();
                 });
@@ -94,7 +93,6 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
                     ResourceUtil.setLocalLanguage(getContext(), new Locale("tr", "TR"));
                     setUI(LanguageMode.Turkish.getIndex());
                     saveLanguage(LanguageMode.Turkish.getIndex());
-                    topViewModel.loadUserId();
                     invalidate();
                     refresh();
                 });
@@ -105,7 +103,6 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
                     ResourceUtil.setLocalLanguage(getContext(), new Locale("pl", "PL"));
                     setUI(LanguageMode.Polish.getIndex());
                     saveLanguage(LanguageMode.Polish.getIndex());
-                    topViewModel.loadUserId();
                     invalidate();
                     refresh();
                 });
@@ -168,6 +165,7 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
         button.setText(R.string.exit);
 
         alarmAdapter.notifyDataSetChanged();
+        topViewModel.refresh();
         topViewModel.updateAlarm();
     }
 }

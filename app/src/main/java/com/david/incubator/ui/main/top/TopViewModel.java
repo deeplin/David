@@ -256,4 +256,8 @@ public class TopViewModel implements IViewModel {
             return false;
         }
     }
+
+    public void refresh(){
+        setOverheatExperiment(overheatExperimentMode.get());
+    }
 }
