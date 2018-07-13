@@ -4,6 +4,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.support.annotation.NonNull;
 
+import com.apkfuns.logutils.LogUtils;
 import com.david.R;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
@@ -63,7 +64,7 @@ public class TimingData implements Consumer<Long> {
         setApgar();
     }
 
-    public void loadVolume(){
+    public void loadVolume() {
         SystemSetting systemSetting = daoControl.getSystemSetting();
         this.volume = (float) (systemSetting.getVolume() / 100.0);
     }
@@ -96,6 +97,13 @@ public class TimingData implements Consumer<Long> {
     public synchronized void stop() {
         if (disposable != null) {
             textString = "--:--";
+            if (consumer != null) {
+                try {
+                    consumer.accept(textString);
+                } catch (Exception e) {
+                    LogUtils.e(e);
+                }
+            }
             disposable.dispose();
             disposable = null;
         }

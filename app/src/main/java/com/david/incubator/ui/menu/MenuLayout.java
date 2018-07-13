@@ -2,9 +2,7 @@ package com.david.incubator.ui.menu;
 
 import android.content.Context;
 import android.databinding.Observable;
-import android.databinding.ObservableBoolean;
 import android.util.AttributeSet;
-import android.util.Log;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
@@ -110,7 +108,7 @@ public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
         RxView.clicks(binding.btMenuScale)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    if (moduleHardware.isSCALE() && moduleSoftware.isSCALE()) {
+                    if (moduleHardware.isSCALE()) {
                         menuViewModel.menuChart.set(false);
                         menuViewModel.menuSpo2.set(false);
                         menuViewModel.menuScale.set(true);

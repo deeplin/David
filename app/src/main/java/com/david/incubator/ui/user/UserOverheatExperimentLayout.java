@@ -5,6 +5,7 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableInt;
 
 import com.david.R;
+import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
@@ -135,11 +136,6 @@ public class UserOverheatExperimentLayout extends BindingConstraintLayout<Layout
 
     @Override
     public void attach() {
-        if(shareMemory.isAir()){
-
-        }else if (shareMemory.isSkin()){
-
-        }
     }
 
     @Override
