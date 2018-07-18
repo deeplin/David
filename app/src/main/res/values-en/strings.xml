@@ -17,6 +17,7 @@
     <string name="cycle">Period</string>
     <string name="skin1">Skin1</string>
     <string name="skin2">Skin2</string>
+    <string name="mat">Mat.</string>
     <string name="air">Air</string>
     <string name="humidity">Hum.</string>
     <string name="oxygen">O2</string>
@@ -143,6 +144,7 @@
     <!--告警-->
     <string name="SYS.PWR">Power Failure</string>
     <string name="SYS.CON">No Serial Connection</string>
+    <string name="SYS.BCON">Control Unit and Sensor Box Comm. Fault</string>
     <string name="SYS.HA">MCU Communication Fault</string>
     <string name="SYS.CFG">Backup configuration data is corrupted</string>
     <string name="SYS.HOOD">Canopy Fault</string>
@@ -150,11 +152,17 @@
     <string name="SYS.DOOR">Radiant Door Fault</string>
     <string name="SYS.WARM1">TEMP. Heater System Fault</string>
     <string name="SYS.WARM2">Radiant Heater System Fault</string>
-    <string name="SYS.BOX">Sensor Box Connection Error</string>
+
+    <string name="SYS.MATC">Mattress Heater System Fault</string>
+    <string name="SYS.BOX">Sensor Box Placed Error</string>
     <string name="SEN.A1">Air Sensor Fault</string>
     <string name="SEN.A2">Isolated Sensor Fault</string>
     <string name="SEN.ADIF">Air Sensor DIFF. Fault</string>
     <string name="SEN.F1">Air Flow Sensor Fault</string>
+
+    <string name="SEN.M1">Mattress Sensor Fault</string>
+    <string name="SEN.M2">Isolated Mattress Sensor Fault</string>
+    <string name="SEN.MDIF">Mattress Sensor DIFF. Fault</string>
     <string name="SEN.S1A">Skin Sensor 1 Fault</string>
     <string name="SEN.S1B">Isolated Skin Sensor Fault</string>
     <string name="SEN.S2">Skin Sensor 2 Fault</string>
@@ -163,6 +171,8 @@
     <string name="SEN.SCALE">Weight Scale Sensor Fault</string>
 
     <string name="AIR.OVH">Air Overheat Alarm</string>
+
+    <string name="MAT.OVH">Mattress Overheat Alarm</string>
     <string name="SKIN.OVH">Skin Overheat Alarm</string>
     <string name="FLOW.OVH">Air flow Overheat Alarm</string>
 

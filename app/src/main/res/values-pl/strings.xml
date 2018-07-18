@@ -17,6 +17,7 @@
     <string name="cycle">Okres</string>
     <string name="skin1">skóry 1</string>
     <string name="skin2">skóry 2</string>
+    <string name="mat">Materac</string>
     <string name="air">powietrza</string>
     <string name="humidity">Wilgotność</string>
     <string name="oxygen">O2</string>
@@ -143,6 +144,7 @@
     <!--鍛婅-->
     <string name="SYS.PWR">Power failure</string>
     <string name="SYS.CON">Błąd komunikacji szeregowej</string>
+    <string name="SYS.BCON">Usterka komunikacji skrzynki czujnika</string>
     <string name="SYS.HA">Błąd komunikacji MCU</string>
     <string name="SYS.CFG">Dane kopii zapasowej są uszkodzone</string>
     <string name="SYS.HOOD">Awaria kopuły</string>
@@ -150,11 +152,19 @@
     <string name="SYS.DOOR">Awaria drzwi radiacyjnych</string>
     <string name="SYS.WARM1">Awaria systemu grzewczego</string>
     <string name="SYS.WARM2">Awaria promiennika</string>
-    <string name="SYS.BOX">Błąd podłączenia skrzynki czujnika</string>
+
+    <string name="SYS.MATC">Usterka systemu nagrzewnicy materaca</string>
+    <string name="SYS.BOX">Błąd umieszczenia czujnika</string>
     <string name="SEN.A1">Awaria czujnika temperatury powietrza</string>
     <string name="SEN.A2">Izolowany błąd czujnika</string>
     <string name="SEN.ADIF">Błąd różnicy czujnika różnicy temperatur</string>
     <string name="SEN.F1">Błąd czujnika przepływu powietrza</string>
+
+    <string name="SEN.M1">Usterka czujnika materaca</string>
+    <string name="SEN.M2">Izolowany błąd czujnika materaca</string>
+    <string name="SEN.MDIF">Materac Błąd czujnika</string>
+
+
     <string name="SEN.S1A">Alarm czujnika temperatury skóry 1</string>
     <string name="SEN.S1B">ISO Błąd czujnika temperatury</string>
     <string name="SEN.S2">Alarm czujnika temperatury skóry 2</string>
@@ -163,6 +173,8 @@
     <string name="SEN.SCALE">Alarm awarii czujnika wagi</string>
 
     <string name="AIR.OVH">Alarm przegrzania powietrza</string>
+
+    <string name="MAT.OVH">Alarm przegrzania materaca</string>
     <string name="SKIN.OVH">Alarm przegrzania skóry</string>
     <string name="FLOW.OVH">Alarm przegrzania przepływu powietrza</string>
 

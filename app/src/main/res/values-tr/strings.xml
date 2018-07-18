@@ -17,6 +17,7 @@
     <string name="cycle">Dönem</string>
     <string name="skin1">Cilt1</string>
     <string name="skin2">Cilt2</string>
+    <string name="mat">Yatak</string>
     <string name="air">Hava</string>
     <string name="humidity">Nem</string>
     <string name="oxygen">O2</string>
@@ -143,6 +144,7 @@
     <!--鍛婅-->
     <string name="SYS.PWR">Güc kesintisi</string>
     <string name="SYS.CON">Seri Bağlantı Mevcut değil</string>
+    <string name="SYS.BCON">Kontrol Ünitesi ve Sensör Kutusu İletişim Hatası</string>
 
     <string name="SYS.HA">MCU Bağlantı Hatası</string>
     <string name="SYS.CFG">Yedekleme verileri bozuk</string>
@@ -151,11 +153,16 @@
     <string name="SYS.DOOR">Kapı hatası</string>
     <string name="SYS.WARM1">Isıtıcı Sistem Hatası</string>
     <string name="SYS.WARM2">Radyant Isıtıcı Sistem Hatası</string>
-    <string name="SYS.BOX">Sensör kutusu bağlantı hatası</string>
+    <string name="SYS.MATC">Yatak Isıtıcı Sistemi Arızası</string>
+    <string name="SYS.BOX">Sensör Kutusu Yerleştirilen Hata</string>
     <string name="SEN.A1">Hava Sensörü Hatası</string>
     <string name="SEN.A2">İzole Hava Sensörü Hatası</string>
     <string name="SEN.ADIF">Hava Sensörleri Fark Hatası</string>
     <string name="SEN.F1">Hava Akış Sensörü Hatası</string>
+
+    <string name="SEN.M1">Yatak Sensörü Hatası</string>
+    <string name="SEN.M2">İzole Yatak Sensörü Hatası</string>
+    <string name="SEN.MDIF">Yatak Sensörü farkı Arızası</string>
     <string name="SEN.S1A">Cilt Sensörü 1 Hatası</string>
     <string name="SEN.S1B">Izole Cilt Sensör Hatası</string>
     <string name="SEN.S2">Cilt Sensörü 2 Hatası</string>
@@ -164,6 +171,8 @@
     <string name="SEN.SCALE">Ağırlık ölçek sensörü arıza alarmı</string>
 
     <string name="AIR.OVH">Aşırı Hava Sıcaklığı Alarmı</string>
+
+    <string name="MAT.OVH">Yatak Aşırı Isınma Alarmı</string>
     <string name="SKIN.OVH">Aşırı Cilt Sıcaklığı Alarmı</string>
     <string name="FLOW.OVH">Hava Sirkülasyon Arızası</string>
 

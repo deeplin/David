@@ -30,6 +30,8 @@
     <string name="cycle">周期</string>
     <string name="skin1">肤温1</string>
     <string name="skin2">肤温2</string>
+    <string name="mat">床温</string>
+
     <string name="air">箱温</string>
     <string name="humidity">湿度</string>
     <string name="oxygen">氧气</string>
@@ -162,6 +164,7 @@
     <!--Alarm-->
     <string name="SYS.PWR">电源故障</string>
     <string name="SYS.CON">串口通讯故障</string>
+    <string name="SYS.BCON">控制仪与传感器盒通讯故障</string>
     <string name="SYS.HA">主从机通讯故障报警</string>
     <string name="SYS.CFG">备份配置数据损坏</string>
     <string name="SYS.HOOD">箱篷故障报警</string>
@@ -169,17 +172,26 @@
     <string name="SYS.DOOR">辐射门故障报警</string>
     <string name="SYS.WARM1">温度加热系统故障</string>
     <string name="SYS.WARM2">辐射加热系统故障</string>
-    <string name="SYS.BOX">传感器盒连接错误</string>
+    <string name="SYS.MATC">床垫加热系统故障</string>
+
+
+    <string name="SYS.BOX">传感器盒放置错误报警</string>
     <string name="SEN.A1">箱温传感器故障报警</string>
     <string name="SEN.A2">独立温度传感器故障报警</string>
     <string name="SEN.ADIF">箱温传感器差异故障报警</string>
     <string name="SEN.F1">风道温度传感器故障报警</string>
+    <string name="SEN.M1">床温传感器故障报警</string>
+    <string name="SEN.M2">床温独立传感器故障报警</string>
+    <string name="SEN.MDIF">床温传感器差异故障报警 </string>
+
     <string name="SEN.S1A">肤温传感器1故障报警</string>
     <string name="SEN.S1B">独立肤温传感器故障报警</string>
     <string name="SEN.S2">肤温传感器2故障报警</string>
     <string name="SEN.SDIF">肤温传感器差异故障报警</string>
     <string name="SEN.SCALE">体重秤传感器故障</string>
     <string name="AIR.OVH">箱温超温报警</string>
+    <string name="MAT.OVH">床温超温报警</string>
+
     <string name="SKIN.OVH">肤温超温报警</string>
     <string name="FLOW.OVH">风道超温报警</string>
     <string name="CTRL.SEN">肤温传感器放置错误报警</string>

@@ -119,6 +119,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
             }
         });
     }
+    private int count = 0;
 
     @Override
     public void accept(Boolean aBoolean, BaseSerialMessage baseSerialMessage) throws Exception {
@@ -130,7 +131,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
                 //todo to be removed
                 if (!Constant.RELEASE_TO_DAVID)
-                    system = SystemMode.Warmer;
+                    system = SystemMode.Cabin;
                 systemMode.set(system);
 
                 CtrlMode ctrl = ctrlMode.get();
@@ -142,6 +143,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
                 }
 
                 incPower.set(statusCommand.getInc());
+
                 warmPower.set(statusCommand.getWarm());
                 humidityPower.set(statusCommand.getHum() > 0);
                 oxygenPower.set(statusCommand.getO2() > 0);

@@ -2,6 +2,7 @@ package com.david.incubator.ui.home.cabin;
 
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
@@ -39,6 +40,7 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
     public ObservableBoolean humidityVisible = new ObservableBoolean(true);
     public ObservableBoolean oxygenVisible = new ObservableBoolean(true);
     public ObservableBoolean spo2Visible = new ObservableBoolean(true);
+    public ObservableField<String> incPower = new ObservableField<>();
 
     private Observable.OnPropertyChangedCallback incPowerCallback;
     private Observable.OnPropertyChangedCallback humidityPowerCallback;
@@ -54,6 +56,7 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
                 navigator.setHeatStep(shareMemory.incPower.get());
+                incPower.set(shareMemory.incPower.get() + "%");
             }
         };
 
