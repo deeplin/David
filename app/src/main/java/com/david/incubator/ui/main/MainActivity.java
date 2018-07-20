@@ -100,9 +100,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         if (actionBar != null) {
             actionBar.hide();
         }
-
-        automationControl.setLanguageIn2000S();
-
         initFragment();
 
         binding.avAlarm.attach();

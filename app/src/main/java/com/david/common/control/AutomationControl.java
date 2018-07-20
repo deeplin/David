@@ -1,5 +1,7 @@
 package com.david.common.control;
 
+import android.util.Log;
+
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.Spo2GetCommand;
@@ -107,8 +109,6 @@ public class AutomationControl implements IViewModel {
     private void startRefresh() {
         messageSender.setStandBy(false, true, null);
 
-
-
         /*配置37度灯*/
         if (!moduleHardware.is93S()) {
             shareMemory.above37.addOnPropertyChangedCallback(new android.databinding.Observable.OnPropertyChangedCallback() {
@@ -155,6 +155,8 @@ public class AutomationControl implements IViewModel {
             }
         });
         serialControl.addRepeatSession(statusCommand);
+
+        setLanguageIn2000S();
     }
 
     @Override

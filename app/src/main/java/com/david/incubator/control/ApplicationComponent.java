@@ -62,6 +62,7 @@ import com.david.incubator.ui.system.deviation.SystemDeviationViewModel;
 import com.david.incubator.ui.system.factory.SystemFactoryLayout;
 import com.david.incubator.ui.system.otherparameter.SystemOtherParameterLayout;
 import com.david.incubator.ui.system.overheat.SystemOverheatViewModel;
+import com.david.incubator.ui.user.UserHomeLayout;
 import com.david.incubator.ui.user.UserOverheatExperimentLayout;
 import com.david.incubator.ui.system.print.SystemPrintViewModel;
 import com.david.incubator.ui.system.range.SystemRangeViewModel;
@@ -235,4 +236,6 @@ public interface ApplicationComponent {
     void inject(DaoControl daoControl);
 
     void inject(TimingData timingData);
+
+    void inject(UserHomeLayout userHomeLayout);
 }

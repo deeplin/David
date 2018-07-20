@@ -5,6 +5,8 @@ import android.databinding.ObservableInt;
 import android.view.View;
 
 import com.david.R;
+import com.david.common.control.MainApplication;
+import com.david.common.data.ModuleHardware;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.FragmentPage;
@@ -12,6 +14,8 @@ import com.david.databinding.LayoutUserHomeBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
+
+import javax.inject.Inject;
 
 /**
  * author: Ling Lin
@@ -22,10 +26,14 @@ import java.util.concurrent.TimeUnit;
 
 public class UserHomeLayout extends BindingConstraintLayout<LayoutUserHomeBinding> {
 
+    @Inject
+    ModuleHardware moduleHardware;
+
     ObservableInt navigationView;
 
     public UserHomeLayout(Context context, ObservableInt navigationView) {
         super(context);
+        MainApplication.getInstance().getApplicationComponent().inject(this);
         this.navigationView = navigationView;
 
         binding.title.setTitle(R.string.user_setting);
@@ -54,7 +62,8 @@ public class UserHomeLayout extends BindingConstraintLayout<LayoutUserHomeBindin
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> navigationView.set(FragmentPage.SYSTEM_OVERHEAT_EXPERIMENT));
 
-        binding.userPatientInfo.setVisibility(View.INVISIBLE);
+        if(!moduleHardware.isUser())
+            binding.userPatientInfo.setVisibility(View.INVISIBLE);
     }
 
     @Override
