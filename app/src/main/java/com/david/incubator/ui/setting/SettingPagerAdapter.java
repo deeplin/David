@@ -4,6 +4,8 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.david.common.data.ModuleHardware;
+
 /**
  * author: Ling Lin
  * created on: 2018/1/3 17:51
@@ -12,12 +14,23 @@ import android.view.ViewGroup;
  */
 public class SettingPagerAdapter extends PagerAdapter {
 
+    ModuleHardware moduleHardware;
+
+    public SettingPagerAdapter(ModuleHardware moduleHardware) {
+        this.moduleHardware = moduleHardware;
+    }
+
     /**
      * 返回 页卡 的数量
      */
     @Override
     public int getCount() {
-        return 6;
+        int count = 4;
+        if (moduleHardware.isInst())
+            count++;
+        if (moduleHardware.isUser())
+            count++;
+        return count;
     }
 
     /**
@@ -36,22 +49,27 @@ public class SettingPagerAdapter extends PagerAdapter {
         View view;
         switch (position) {
             case 0:
-                view = new SettingAddUserLayout(container.getContext());
-                break;
-            case 1:
                 view = new SettingComfortZoneLayout(container.getContext());
                 break;
-            case 2:
+            case 1:
                 view = new SettingCalibrationLayout(container.getContext());
                 break;
-            case 3:
-                view = new SettingIntroductionLayout(container.getContext());
-                break;
-            case 4:
+            case 2:
                 view = new SettingDeviceLayout(container.getContext());
                 break;
-            case 5:
+            case 3:
                 view = new SettingHomeLayout(container.getContext());
+                break;
+            case 4: {
+                if (moduleHardware.isUser()) {
+                    view = new SettingAddUserLayout(container.getContext());
+                } else {
+                    view = new SettingIntroductionLayout(container.getContext());
+                }
+            }
+            break;
+            case 5:
+                view = new SettingIntroductionLayout(container.getContext());
                 break;
             default:
                 view = new View(container.getContext());

@@ -21,7 +21,7 @@
             android:layout_width="40dp"
             android:layout_height="@dimen/y26"
             android:src="@mipmap/user"
-            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alarmField != null? View.GONE: View.VISIBLE}"
+            android:visibility="@{viewModel.shareMemory.systemMode.equals(SystemMode.Transit) || viewModel.alarmField != null || (!viewModel.moduleHardware.isUser())? View.GONE: View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

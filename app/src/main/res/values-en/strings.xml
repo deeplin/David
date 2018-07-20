@@ -20,8 +20,8 @@
     <string name="mat">Mat.</string>
     <string name="air">Air</string>
     <string name="humidity">Hum.</string>
-    <string name="oxygen">O2</string>
-    <string name="spo2">SpO2</string>
+    <string name="oxygen">O₂</string>
+    <string name="spo2">SpO₂</string>
     <string name="pr">PR</string>
     <string name="heating_power">Heating</string>
     <string name="time">Time</string>
@@ -67,9 +67,9 @@
 
     <!--Calibration-->
     <string name="calibration">Calibration</string>
-    <string name="calibration_o2">O2 Calibration</string>
-    <string name="calibration_confirm_o2_21">Please confirm if calibrating O2 at 21%</string>
-    <string name="calibration_confirm_o2_100">Please confirm if calibrating O2 at 100%</string>
+    <string name="calibration_o2">O₂ Calibration</string>
+    <string name="calibration_confirm_o2_21">Please confirm if calibrating O₂ at 21%</string>
+    <string name="calibration_confirm_o2_100">Please confirm if calibrating O₂ at 100%</string>
     <string name="calibration_scale">Scale Calibration</string>
     <string name="calibration_confirm_scale_0">Current weight %sg\nPlease confirm if calibrating scale at 0g</string>
     <string name="calibration_confirm_scale_5000">Current weight %sg\nPlease confirm if calibrating scale at 5000g</string>
@@ -184,23 +184,23 @@
     <string name="CTRL.ERR1">Check Skin Sensor A</string>
     <string name="CTRL.ERR2">Check Skin Sensor C</string>
     <string name="CTRL.MAN">Check Manual Mode</string>
-    <string name="SEN.O2_1">O2 Sensor 1 Fault</string>
-    <string name="SEN.O2_2">O2 Sensor 2 Fault</string>
-    <string name="SEN.O2DIF">O2 Sensor DIFF. Fault</string>
+    <string name="SEN.O2_1">O₂ Sensor 1 Fault</string>
+    <string name="SEN.O2_2">O₂ Sensor 2 Fault</string>
+    <string name="SEN.O2DIF">O₂ Sensor DIFF. Fault</string>
 
-    <string name="O2.DEVH">O2 Sensor Upper Deviation Alarm</string>
-    <string name="O2.DEVL">O2 Sensor Lower Deviation Alarm</string>
+    <string name="O2.DEVH">O₂ Sensor Upper Deviation Alarm</string>
+    <string name="O2.DEVL">O₂ Sensor Lower Deviation Alarm</string>
     <string name="SEN.SPO2">Pulse Oximeter Moudle Fault</string>
     <string name="SPO2.ERR">Pulse Oximeter System Fault</string>
 
     <string name="SPO2.BIT12">Conductive Wire Not Connected</string>
-    <string name="SPO2.BIT0">SpO2 Sensor Connection Error</string>
+    <string name="SPO2.BIT0">SpO₂ Sensor Connection Error</string>
     <string name="SPO2.BIT1">Pulse Oximeter Sensor Fault</string>
     <string name="SPO2.BIT7">Unable To Identify Pulse Oximeter Sensor</string>
     <string name="SPO2.BIT5">Pulse oximeter Sensor Not Fixed Well</string>
     <string name="SPO2.BIT13">Adhesive Sensor Not Connected</string>
-    <string name="SPO2.OVH">SpO2 High Alarm Limit</string>
-    <string name="SPO2.OVL">SpO2 Low Alarm Limit</string>
+    <string name="SPO2.OVH">SpO₂ High Alarm Limit</string>
+    <string name="SPO2.OVL">SpO₂ Low Alarm Limit</string>
     <string name="PR.OVH">Pulse Rate High Alarm Limit</string>
     <string name="PR.OVL">Pulse Rate Low Alarm Limit</string>
     <string name="UNIT.FAN">Fan Fault in the Control Unit</string>
@@ -215,7 +215,7 @@
     <string name="SYS.UPS">Ni-MH Battery Fault</string>
 
     <string name="SPO2.BIT2">Low PI</string>
-    <string name="SPO2.LOW">SpO2 Less Than 85%</string>
+    <string name="SPO2.LOW">SpO₂ Less Than 85%</string>
     <string name="SPO2.BIT3">Search pulse</string>
     <string name="SPO2.BIT4">Interference Is Detected</string>
     <string name="SPO2.BIT6">Too Much Ambient Light</string>

@@ -2,9 +2,10 @@ package com.david.incubator.ui.setting;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
+import com.david.common.data.ModuleHardware;
+import com.david.common.data.SelectedUser;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentSettingBinding;
-import com.david.common.data.SelectedUser;
 
 import javax.inject.Inject;
 
@@ -19,6 +20,8 @@ public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding>
 
     @Inject
     public SelectedUser selectedUser;
+    @Inject
+    ModuleHardware moduleHardware;
 
     @Override
     protected void init() {
@@ -36,17 +39,19 @@ public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding>
         binding.sllLeft.attach();
         binding.clChart.attach();
 
-        SettingPagerAdapter pagerAdapter = new SettingPagerAdapter();
+        SettingPagerAdapter pagerAdapter = new SettingPagerAdapter(moduleHardware);
         binding.vpSetting.setAdapter(pagerAdapter);
         binding.tlSetting.setupWithViewPager(binding.vpSetting);
 
         binding.tlSetting.removeAllTabs();
-        binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.user_small));
         binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.comfort_zone));
         binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.cal));
-        binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.introduction));
         binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.device));
         binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.login));
+        if (moduleHardware.isUser())
+            binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.user_small));
+        if (moduleHardware.isInst())
+            binding.tlSetting.addTab(buildIcon(binding.tlSetting, R.mipmap.introduction));
         binding.vpSetting.addOnPageChangeListener(super.getPageChangeListener(binding.vpSetting));
         binding.tlSetting.getTabAt(0).select();
     }

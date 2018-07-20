@@ -2,6 +2,7 @@ package com.david.common.data;
 
 import com.david.R;
 import com.david.common.serial.BaseSerialMessage;
+import com.david.common.serial.command.module.ModuleGetHardwareCommand;
 import com.david.common.serial.command.module.ModuleGetSoftwareCommand;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
@@ -26,18 +27,30 @@ public class ModuleHardware extends ModuleSoftware {
     private boolean cameraInstalled;
     private boolean jaundiceInstalled;
     private String deviceModel;
-    private boolean enableCloud;
-    private InetAddress cloudServerIP;
-    private int cloudServerPort;
+
+    public boolean isUser() {
+        return user;
+    }
+
+    public boolean isInst() {
+        return inst;
+    }
+
+    private boolean user;
+    private boolean inst;
+
+//    private boolean enableCloud;
+//    private InetAddress cloudServerIP;
+//    private int cloudServerPort;
 
     @Inject
     public ModuleHardware() {
     }
 
     public void load() throws Exception {
-        enableCloud = ResourceUtil.getBool(R.bool.enable_cloud);
-        cloudServerIP = InetAddress.getByName(ResourceUtil.getString(R.string.cloud_ip));
-        cloudServerPort = ResourceUtil.getInt(R.integer.cloud_port);
+//        enableCloud = ResourceUtil.getBool(R.bool.enable_cloud);
+//        cloudServerIP = InetAddress.getByName(ResourceUtil.getString(R.string.cloud_ip));
+//        cloudServerPort = ResourceUtil.getInt(R.integer.cloud_port);
     }
 
     public boolean isCameraInstalled() {
@@ -52,21 +65,21 @@ public class ModuleHardware extends ModuleSoftware {
         return super.SCALE;
     }
 
-    public boolean isEnableCloud() {
-        return enableCloud;
-    }
-
     public String getDeviceModel() {
         return deviceModel;
     }
 
-    public InetAddress getCloudServerIP() {
-        return cloudServerIP;
-    }
-
-    public int getCloudServerPort() {
-        return cloudServerPort;
-    }
+//    public boolean isEnableCloud() {
+//        return enableCloud;
+//    }
+//
+//    public InetAddress getCloudServerIP() {
+//        return cloudServerIP;
+//    }
+//
+//    public int getCloudServerPort() {
+//        return cloudServerPort;
+//    }
 
     public boolean isJaundiceInstalled() {
         return jaundiceInstalled;
@@ -75,9 +88,12 @@ public class ModuleHardware extends ModuleSoftware {
     @Override
     public void accept(Boolean aBoolean, BaseSerialMessage baseSerialMessage) {
         if (aBoolean) {
-            ModuleGetSoftwareCommand moduleGetSoftwareCommand = (ModuleGetSoftwareCommand) baseSerialMessage;
+            ModuleGetHardwareCommand moduleGetSoftwareCommand = (ModuleGetHardwareCommand) baseSerialMessage;
             cameraInstalled = moduleGetSoftwareCommand.getCAMERA() == 1;
             jaundiceInstalled = moduleGetSoftwareCommand.getBLUE() == 1;
+            user = moduleGetSoftwareCommand.getUSER() == 1;
+            inst = moduleGetSoftwareCommand.getINST() == 1;
+
             //todo
             if(Constant.RELEASE_TO_DAVID) {
                 deviceModel = moduleGetSoftwareCommand.getMODEL();

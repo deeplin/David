@@ -7,14 +7,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
 import com.david.R;
 import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
-import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AutoUtil;
@@ -103,6 +101,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
             actionBar.hide();
         }
 
+        automationControl.setLanguageIn2000S();
+
         initFragment();
 
         binding.avAlarm.attach();
@@ -177,8 +177,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         }
         transaction.commit();
     }
-
-
 
     /*
      * 碎片换页

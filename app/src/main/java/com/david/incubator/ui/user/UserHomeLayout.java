@@ -2,6 +2,7 @@ package com.david.incubator.ui.user;
 
 import android.content.Context;
 import android.databinding.ObservableInt;
+import android.view.View;
 
 import com.david.R;
 import com.david.common.ui.BindingConstraintLayout;
@@ -52,6 +53,8 @@ public class UserHomeLayout extends BindingConstraintLayout<LayoutUserHomeBindin
         RxView.clicks(binding.systemOverheatExperiment)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> navigationView.set(FragmentPage.SYSTEM_OVERHEAT_EXPERIMENT));
+
+        binding.userPatientInfo.setVisibility(View.INVISIBLE);
     }
 
     @Override

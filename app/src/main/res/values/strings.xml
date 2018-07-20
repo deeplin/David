@@ -55,7 +55,7 @@
     <!--Scale-->
     <string name="rescale">重新称重</string>
     <string name="scale">称重</string>
-    <string name="raise_baby">请抬起婴儿...</string>
+    <string name="raise_baby">请抱起婴儿...</string>
     <string name="put_down_baby">请放下婴儿...</string>
     <string name="no_record_added">没有新数据</string>
     <string name="current_weight">重量</string>

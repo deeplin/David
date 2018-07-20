@@ -118,8 +118,11 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
         Observable.just(step)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((num) -> {
-                    ViewGroup.LayoutParams params = binding.ivHomeHeatingHide.getLayoutParams();
-                    params.width = (int) ((100 - num) * 1.74);
+                    synchronized (this) {
+                        ViewGroup.LayoutParams params = binding.ivHomeHeatingHide.getLayoutParams();
+                        params.width = (int) ((100 - num) * 1.74);
+                        homeViewModel.incPower.set(num + "%");
+                    }
                 });
     }
 

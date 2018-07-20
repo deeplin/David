@@ -20,8 +20,8 @@
     <string name="mat">Yatak</string>
     <string name="air">Hava</string>
     <string name="humidity">Nem</string>
-    <string name="oxygen">O2</string>
-    <string name="spo2">SPO2</string>
+    <string name="oxygen">O₂</string>
+    <string name="spo2">SPO₂</string>
     <string name="pr">PR</string>
     <string name="heating_power">Isıtma</string>
     <string name="time">Zaman</string>
@@ -67,9 +67,9 @@
 
     <!--Calibration-->
     <string name="calibration">Kalibrasyon</string>
-    <string name="calibration_o2">O2 Kalibrasyon</string>
-    <string name="calibration_confirm_o2_21">Lütfen O2\'nin %21\'de kalibre edildiğini onaylayın</string>
-    <string name="calibration_confirm_o2_100">Lütfen O2\'nin % 100\'de kalibre edildiğini onaylayın</string>
+    <string name="calibration_o2">O₂ Kalibrasyon</string>
+    <string name="calibration_confirm_o2_21">Lütfen O₂\'nin %21\'de kalibre edildiğini onaylayın</string>
+    <string name="calibration_confirm_o2_100">Lütfen O₂\'nin % 100\'de kalibre edildiğini onaylayın</string>
     <string name="calibration_scale">Terazi Kalibrasyonu</string>
     <string name="calibration_confirm_scale_0">Mevcut ağırlık %sg\nLütfen terazi klb. 0g'da onaylayın</string>
     <string name="calibration_confirm_scale_5000">Mevcut ağırlık %sg\nLütfen terazi klb. 5000g'da onaylayın</string>
@@ -184,9 +184,9 @@
     <string name="CTRL.ERR1">Cilt Sensörü A\'yı Kontrol et</string>
     <string name="CTRL.ERR2">Cilt Sensörü C\'yi Kontrol et</string>
     <string name="CTRL.MAN">Manuel Modu Kontrol et</string>
-    <string name="SEN.O2_1">O2 1. Sensörü Hatası</string>
-    <string name="SEN.O2_2">O2 2. Sensörü Hatası</string>
-    <string name="SEN.O2DIF">O2 Sensörleri Fark Hatası</string>
+    <string name="SEN.O2_1">O₂ 1. Sensörü Hatası</string>
+    <string name="SEN.O2_2">O₂ 2. Sensörü Hatası</string>
+    <string name="SEN.O2DIF">O₂ Sensörleri Fark Hatası</string>
 
     <string name="O2.DEVH">Yüksek Oksijen Alarmı</string>
     <string name="O2.DEVL">Düşük Oksijen Alarmı</string>
@@ -194,13 +194,13 @@
     <string name="SPO2.ERR">Pulse Oksimetre Sistem Hatası</string>
 
     <string name="SPO2.BIT12">İletken Tel Bağlı Değil</string>
-    <string name="SPO2.BIT0">SopO2 Sensor Bağlantı Hatası</string>
+    <string name="SPO2.BIT0">SpO₂ Sensor Bağlantı Hatası</string>
     <string name="SPO2.BIT1">Pulse Oksimetre Sensör Hatası</string>
     <string name="SPO2.BIT7">Kan oksijen sensörü tanımıyor</string>
     <string name="SPO2.BIT5">Pulse Oksimetre Sensörü Takılı değil</string>
     <string name="SPO2.BIT13">Yapışkan Sensör Bağlı Değil</string>
-    <string name="SPO2.OVH">SpO2 Yüksek Alarm Limiti</string>
-    <string name="SPO2.OVL">SpO2 Düşük Alarm Limiti</string>
+    <string name="SPO2.OVH">SpO₂ Yüksek Alarm Limiti</string>
+    <string name="SPO2.OVL">SpO₂ Düşük Alarm Limiti</string>
     <string name="PR.OVH">Nabız Sayısı Yüksek Alarm Limiti</string>
     <string name="PR.OVL">Nabız Sayısı Düşük Alarm Limiti</string>
 
@@ -217,7 +217,7 @@
     <string name="SYS.UPS">Pil Hatası</string>
 
     <string name="SPO2.BIT2">Düşük PI</string>
-    <string name="SPO2.LOW">Spo2 % 85\'in altında</string>
+    <string name="SPO2.LOW">SpO₂ % 85\'in altında</string>
     <string name="SPO2.BIT3">Nabız ara</string>
     <string name="SPO2.BIT4">Müdahele algılandı</string>
     <string name="SPO2.BIT6">Cok fazla ortam ışığı</string>

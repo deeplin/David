@@ -20,8 +20,8 @@
     <string name="mat">Materac</string>
     <string name="air">powietrza</string>
     <string name="humidity">Wilgotność</string>
-    <string name="oxygen">O2</string>
-    <string name="spo2">SpO2</string>
+    <string name="oxygen">O₂</string>
+    <string name="spo2">SpO₂</string>
     <string name="pr">Puls</string>
     <string name="heating_power">Moc grzewcza</string>
     <string name="time">Czas</string>
@@ -67,9 +67,9 @@
 
     <!--Calibration-->
     <string name="calibration">Kalibracja</string>
-    <string name="calibration_o2">Kalibracja O2</string>
-    <string name="calibration_confirm_o2_21">Potwierdź, czy kalibracja O2 przy 21%</string>
-    <string name="calibration_confirm_o2_100">Potwierdź, czy kalibracja O2 przy 100%</string>
+    <string name="calibration_o2">Kalibracja O₂</string>
+    <string name="calibration_confirm_o2_21">Potwierdź, czy kalibracja O₂ przy 21%</string>
+    <string name="calibration_confirm_o2_100">Potwierdź, czy kalibracja O₂ przy 100%</string>
     <string name="calibration_scale">Kalibracja wagi.</string>
     <string name="calibration_confirm_scale_0">Aktualna waga %sg \ nProszę potwierdzić, czy waga została skalibrowana na 0g</string>
     <string name="calibration_confirm_scale_5000">Aktualna waga %sg \ nProszę potwierdzić, czy waga została skalibrowana na 5000g</string>
@@ -186,23 +186,23 @@
     <string name="CTRL.ERR1">Sprawdź czujnik skóry A</string>
     <string name="CTRL.ERR2">Sprawdź czujnik skóry C</string>
     <string name="CTRL.MAN">Sprawdź tryb ręczny</string>
-    <string name="SEN.O2_1">Błąd czujnika 1 O2</string>
-    <string name="SEN.O2_2">Błąd czujnika 2 O2</string>
-    <string name="SEN.O2DIF">Błąd czujników O2 - pomiar różnicowy</string>
+    <string name="SEN.O2_1">Błąd czujnika 1 O₂</string>
+    <string name="SEN.O2_2">Błąd czujnika 2 O₂</string>
+    <string name="SEN.O2DIF">Błąd czujników O₂ - pomiar różnicowy</string>
 
-    <string name="O2.DEVH">Alarm odchylenia czujnika O2 - w górę</string>
-    <string name="O2.DEVL">Alarm odchylenia czujnika O2 - w dół</string>
-    <string name="SEN.SPO2">Awaria modułu pomiaru SpO2</string>
-    <string name="SPO2.ERR">Awaria systemu pomiaru SpO2</string>
+    <string name="O2.DEVH">Alarm odchylenia czujnika O₂ - w górę</string>
+    <string name="O2.DEVL">Alarm odchylenia czujnika O₂ - w dół</string>
+    <string name="SEN.SPO2">Awaria modułu pomiaru SpO₂</string>
+    <string name="SPO2.ERR">Awaria systemu pomiaru SpO₂</string>
 
     <string name="SPO2.BIT12">Przewód przewodzący nie podłączony</string>
-    <string name="SPO2.BIT0">Błąd połączenia czujnika SpO2</string>
-    <string name="SPO2.BIT1">Awaria czujnika SpO2</string>
-    <string name="SPO2.BIT7">Niemożliwa identyfikacja czujnika SpO2</string>
-    <string name="SPO2.BIT5">Czujnik SpO2 podłączony niepoprawnie.</string>
+    <string name="SPO2.BIT0">Błąd połączenia czujnika SpO₂</string>
+    <string name="SPO2.BIT1">Awaria czujnika SpO₂</string>
+    <string name="SPO2.BIT7">Niemożliwa identyfikacja czujnika SpO₂</string>
+    <string name="SPO2.BIT5">Czujnik SpO₂ podłączony niepoprawnie.</string>
     <string name="SPO2.BIT13">Czujnik samoprzylepny niepodlączony</string>
-    <string name="SPO2.OVH">Górny limit alarmu SpO2</string>
-    <string name="SPO2.OVL">Dolny limit alarmu SpO2</string>
+    <string name="SPO2.OVH">Górny limit alarmu SpO₂</string>
+    <string name="SPO2.OVL">Dolny limit alarmu SpO₂</string>
     <string name="PR.OVH">Górny limit alarmu pulsu</string>
     <string name="PR.OVL">Dolny limit alarmu pulsu</string>
     <string name="UNIT.FAN">Alarm awarii wentylatora sterownika</string>
@@ -216,7 +216,7 @@
     <string name="SYS.UPS">Błąd akumulatora Ni-MH</string>
 
     <string name="SPO2.BIT2">Niskie PI</string>
-    <string name="SPO2.LOW">SpO2 poniżej 85%</string>
+    <string name="SPO2.LOW">SpO₂ poniżej 85%</string>
     <string name="SPO2.BIT3">Szukam tętna</string>
     <string name="SPO2.BIT4">Wykryto zakłócenia</string>
     <string name="SPO2.BIT6">Za dużo światła zewnętrznego</string>

@@ -12,6 +12,26 @@ import com.david.common.util.CommandChar;
 public class ModuleGetHardwareCommand extends ModuleGetSoftwareCommand {
     public static final byte[] HARDWARE_COMMAND = ("~MODULE HARDWARE" + CommandChar.ENTER).getBytes();
 
+    public int getUSER() {
+        return USER;
+    }
+
+    public void setUSER(int USER) {
+        this.USER = USER;
+    }
+
+    public int getINST() {
+        return INST;
+    }
+
+    public void setINST(int INST) {
+        this.INST = INST;
+    }
+
+    private int USER;
+
+    private int INST;
+
     @Override
     public byte[] getRequest() {
         return HARDWARE_COMMAND;

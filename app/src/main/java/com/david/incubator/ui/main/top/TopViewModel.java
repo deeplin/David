@@ -11,6 +11,7 @@ import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.dao.UserModel;
+import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.BatteryMode;
 import com.david.common.mode.SystemMode;
@@ -39,6 +40,8 @@ public class TopViewModel implements IViewModel {
     DaoControl daoControl;
     @Inject
     MessageSender messageSender;
+    @Inject
+    public ModuleHardware moduleHardware;
 
     public ObservableField<String> userId = new ObservableField<>();
     public ObservableField<String> alarmField = new ObservableField<>();
@@ -147,12 +150,16 @@ public class TopViewModel implements IViewModel {
     }
 
     public void loadUserId() {
-        UserModel userModel = daoControl.getLastUserModel();
         String userString;
-        if (userModel != null && userModel.getEndTimeStamp() == 0) {
-            userString = String.format("%s", userModel.getName());
-        } else {
-            userString = ResourceUtil.getString(R.string.default_user);
+        if(moduleHardware.isUser()) {
+            UserModel userModel = daoControl.getLastUserModel();
+            if (userModel != null && userModel.getEndTimeStamp() == 0) {
+                userString = String.format("%s", userModel.getName());
+            } else {
+                userString = ResourceUtil.getString(R.string.default_user);
+            }
+        }else{
+            userString = "";
         }
         userId.set(userString);
     }

@@ -107,10 +107,7 @@ public class AutomationControl implements IViewModel {
     private void startRefresh() {
         messageSender.setStandBy(false, true, null);
 
-        SystemSetting sensorRange = daoControl.getSystemSetting();
-        if (moduleHardware.is2000S()) {
-            messageSender.setLanguage(LanguageMode.values()[sensorRange.getLanguageIndex()].getName(), null);
-        }
+
 
         /*配置37度灯*/
         if (!moduleHardware.is93S()) {
@@ -186,6 +183,13 @@ public class AutomationControl implements IViewModel {
             if (lockTimeOut == Constant.SCREEN_LOCK_SECOND) {
                 shareMemory.enableAlertList.set(false);
             }
+        }
+    }
+
+    public void setLanguageIn2000S(){
+        SystemSetting sensorRange = daoControl.getSystemSetting();
+        if (moduleHardware.is2000S()) {
+            messageSender.setLanguage(LanguageMode.values()[sensorRange.getLanguageIndex()].getName(), null);
         }
     }
 }
