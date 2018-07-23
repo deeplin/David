@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
@@ -110,12 +111,15 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     @Override
     public void onPause() {
         super.onPause();
-        if (currentFragment != null)
-            currentFragment.detach();
+//        if (currentFragment != null) {
+//            Log.e("deeplin3","detach);");
+//            currentFragment.detach();
+//            currentFragment = null;
+//        }
 
-        automationControl.detach();
-        mainViewModel.detach();
-        binding.avAlarm.detach();
+//        automationControl.detach();
+//        mainViewModel.detach();
+//        binding.avAlarm.detach();
     }
 
     @Override
@@ -185,6 +189,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 
         if (currentFragment != null) {
             transaction.hide(currentFragment);
+            currentFragment.detach();
             currentFragment = null;
         }
 
@@ -193,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
             transaction.show(toFragment);
             transaction.commit();
             currentFragment = toFragment;
+            currentFragment.attach();
         }
 
         switch (position) {

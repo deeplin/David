@@ -119,7 +119,6 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
             }
         });
     }
-    private int count = 0;
 
     @Override
     public void accept(Boolean aBoolean, BaseSerialMessage baseSerialMessage) throws Exception {
@@ -147,7 +146,6 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
                 warmPower.set(statusCommand.getWarm());
                 humidityPower.set(statusCommand.getHum() > 0);
                 oxygenPower.set(statusCommand.getO2() > 0);
-
                 if (Objects.equals(statusCommand.getAlert(), Constant.SENSOR_NA_STRING)) {
                     alarmControl.topAlarmId.set(null);
                     alarmControl.alarmCount.set(0);

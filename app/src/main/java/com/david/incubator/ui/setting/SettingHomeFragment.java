@@ -1,5 +1,7 @@
 package com.david.incubator.ui.setting;
 
+import android.util.Log;
+
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;

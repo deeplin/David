@@ -94,9 +94,9 @@ public class AutomationControl implements IViewModel {
                         checkLockScreen();
                         topViewModel.displayCurrentTime();
 
-                        if (GPIOUtil.read()) {
-                            sideViewModel.muteAlarm();
-                        }
+//                        if (GPIOUtil.read()) {
+//                            sideViewModel.muteAlarm();
+//                        }
 
                         long currentTime = TimeUtil.getCurrentTimeInSecond();
                         if (currentTime % 60 == 0) {
