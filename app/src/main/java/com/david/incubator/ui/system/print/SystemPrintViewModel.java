@@ -100,7 +100,7 @@ public class SystemPrintViewModel {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
                 int value = dataCycle.get();
-                dataValue.set(String.format(Locale.US, "%s %2d hours", ResourceUtil.getString(R.string.print_cycle), value));
+                dataValue.set(String.format(Locale.US, "%s %2d %s", ResourceUtil.getString(R.string.print_cycle), value, ResourceUtil.getString(R.string.hours)));
             }
         });
 
@@ -110,7 +110,7 @@ public class SystemPrintViewModel {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
                 int value = scaleCycle.get();
-                dataValue.set(String.format(Locale.US, "%s %2d days", ResourceUtil.getString(R.string.print_cycle), value));
+                dataValue.set(String.format(Locale.US, "%s %2d %s", ResourceUtil.getString(R.string.print_cycle), value, ResourceUtil.getString(R.string.days)));
             }
         });
     }

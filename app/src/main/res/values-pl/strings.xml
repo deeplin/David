@@ -15,10 +15,10 @@
 
     <!--Chart-->
     <string name="cycle">Okres</string>
-    <string name="skin1">skóry 1</string>
-    <string name="skin2">skóry 2</string>
+    <string name="skin1">Skóry 1</string>
+    <string name="skin2">Skóry 2</string>
     <string name="mat">Materac</string>
-    <string name="air">powietrza</string>
+    <string name="air">Powietrza</string>
     <string name="humidity">Wilgotność</string>
     <string name="oxygen">O₂</string>
     <string name="spo2">SpO₂</string>
@@ -103,7 +103,7 @@
     <string name="overheat_experiment">Test nadmiernej</string>
 
     <!--Deviation Warning-->
-    <string name="skin">skóry</string>
+    <string name="skin">Skóry</string>
     <string name="exit">Powrót</string>
 
     <!--Overheat Warning-->
@@ -118,10 +118,12 @@
 
     <!--System Print-->
     <string name="print_cycle">Cykl drukowania</string>
+    <string name="hours">Godziny</string>
+    <string name="days">Dni</string>
 
     <!--Overheat Experiment-->
-    <string name="overheat_air_below_37">powi.≤37</string>
-    <string name="overheat_skin_above_37">skóry>37</string>
+    <string name="overheat_air_below_37">Powi.≤37</string>
+    <string name="overheat_skin_above_37">Skóry>37</string>
     <string name="stable_state">Stabilny</string>
 
     <!--User -->

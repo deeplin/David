@@ -118,6 +118,9 @@
 
     <!--System Print-->
     <string name="print_cycle">Print Cycle</string>
+    <string name="hours">Hours</string>
+    <string name="days">Days</string>
+
 
     <!--Overheat Experiment-->
     <string name="overheat_air_below_37">Air≤37</string>

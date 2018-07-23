@@ -118,6 +118,8 @@
 
     <!--System Print-->
     <string name="print_cycle">Baskı döngüsü</string>
+    <string name="hours">Saatler</string>
+    <string name="days">Günler</string>
 
     <!--Overheat Experiment-->
     <string name="overheat_air_below_37">Hava≤37</string>
@@ -144,7 +146,7 @@
     <!--鍛婅-->
     <string name="SYS.PWR">Güc kesintisi</string>
     <string name="SYS.CON">Seri Bağlantı Mevcut değil</string>
-    <string name="SYS.BCON">Kontrol Ünitesi ve Sensör Kutusu İletişim Hatası</string>
+    <string name="SYS.BCON">Ünitesi ve Sensör Kutusu İletişim Hatası</string>
 
     <string name="SYS.HA">MCU Bağlantı Hatası</string>
     <string name="SYS.CFG">Yedekleme verileri bozuk</string>

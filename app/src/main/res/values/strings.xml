@@ -138,6 +138,8 @@
 
     <!--System Print-->
     <string name="print_cycle">打印周期</string>
+    <string name="hours">小时</string>
+    <string name="days">天</string>
 
     <!--Overheat Experiment-->
     <string name="overheat_air_below_37">箱温≤37</string>
@@ -201,11 +203,11 @@
     <string name="CTRL.ERR1">设置报警A</string>
     <string name="CTRL.ERR2">设置报警C</string>
     <string name="CTRL.MAN">手控检查报警</string>
-    <string name="SEN.O2_1">O2传感器1故障报警</string>
-    <string name="SEN.O2_2">O2传感器2故障报警</string>
-    <string name="SEN.O2DIF">O2传感器差异报警</string>
-    <string name="O2.DEVH">O2上偏差报警</string>
-    <string name="O2.DEVL">O2下偏差报警</string>
+    <string name="SEN.O2_1">O₂传感器1故障报警</string>
+    <string name="SEN.O2_2">O₂传感器2故障报警</string>
+    <string name="SEN.O2DIF">O₂传感器差异报警</string>
+    <string name="O2.DEVH">O₂上偏差报警</string>
+    <string name="O2.DEVL">O₂下偏差报警</string>
     <string name="SEN.SPO2">血氧模块故障报警</string>
     <string name="SPO2.ERR">血氧系统报警</string>
     <string name="SPO2.BIT12">导电线未连接</string>
@@ -214,8 +216,8 @@
     <string name="SPO2.BIT7">血氧传感器无法识别</string>
     <string name="SPO2.BIT5">血氧传感器脱落</string>
     <string name="SPO2.BIT13">未连接粘黏探头</string>
-    <string name="SPO2.OVH">SpO2上限报警</string>
-    <string name="SPO2.OVL">SpO2下限报警</string>
+    <string name="SPO2.OVH">SpO₂上限报警</string>
+    <string name="SPO2.OVL">SpO₂下限报警</string>
     <string name="PR.OVH">脉搏上限报警</string>
     <string name="PR.OVL">脉搏下限报警</string>
     <string name="UNIT.FAN">控制仪内风扇故障报警</string>

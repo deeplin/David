@@ -200,7 +200,7 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
     }
 
     @Override
-    public void setHumidityPower(boolean status) {
+    public synchronized void setHumidityPower(boolean status) {
         Observable.just(this)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((obj) -> {
@@ -215,7 +215,7 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
     }
 
     @Override
-    public void setOxygenPower(boolean status) {
+    public synchronized void setOxygenPower(boolean status) {
         Observable.just(this)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((obj) -> {
