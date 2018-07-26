@@ -11,6 +11,7 @@ import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.IViewModel;
+import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 
 import java.util.Locale;
@@ -100,19 +101,21 @@ public class ScaleViewModel implements IViewModel {
     }
 
     private int tempNewWeight;
+
     public void saveWeight() {
         tempNewWeight = Integer.MAX_VALUE;
-
-        final int newWeight = shareMemory.SC.get();
-
         Observable.interval(0, 1, TimeUnit.SECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .take(4)
                 .subscribe(bLong -> {
+                    if (tempNewWeight < 0)
+                        return;
+                    int newWeight = shareMemory.SC.get();
                     if (bLong <= 3) {
-                        if(Math.abs(tempNewWeight - newWeight) < 100){
+                        if (Math.abs(tempNewWeight - newWeight) < 100) {
                             daoControl.saveWeight(newWeight - weightOffset);
-                        }else{
+                            tempLowestWeight = Constant.SENSOR_NA_VALUE;
+                        } else {
                             tempNewWeight = newWeight;
                         }
                     } else {
@@ -122,6 +125,7 @@ public class ScaleViewModel implements IViewModel {
                         toast.show();
                     }
                 });
+
     }
 
     private void readLowestWeight() {
