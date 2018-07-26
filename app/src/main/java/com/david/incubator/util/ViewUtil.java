@@ -87,7 +87,7 @@ public class ViewUtil {
         if (value == Constant.SENSOR_NA_VALUE) {
             return Constant.SENSOR_DEFAULT_STRING;
         } else if (value <= SensorRange.HUMIDITY_DISPLAY_UPPER && value >= SensorRange.HUMIDITY_DISPLAY_LOWER) {
-            return String.valueOf(value / 10);
+            return String.valueOf(Math.round(value/10.0));
         } else {
             return Constant.SENSOR_DEFAULT_STRING;
         }
@@ -97,7 +97,7 @@ public class ViewUtil {
         if (value == Constant.SENSOR_NA_VALUE) {
             return Constant.SENSOR_DEFAULT_STRING;
         } else if (value <= SensorRange.OXYGEN_DISPLAY_UPPER && value >= SensorRange.OXYGEN_DISPLAY_LOWER) {
-            return String.valueOf(value / 10);
+            return String.valueOf(Math.round(value/10.0));
         } else {
             return Constant.SENSOR_DEFAULT_STRING;
         }

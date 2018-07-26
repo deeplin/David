@@ -25,6 +25,7 @@ import io.reactivex.disposables.Disposable;
 
 @Singleton
 public class ScaleViewModel implements IViewModel {
+
     @Inject
     ShareMemory shareMemory;
     @Inject
@@ -98,14 +99,30 @@ public class ScaleViewModel implements IViewModel {
                 });
     }
 
+    private int tempNewWeight;
     public void saveWeight() {
-        int newWeight = shareMemory.SC.get();
-        if (newWeight < 0) {
-            newWeight = 0;
-        }
-        daoControl.saveWeight(newWeight - weightOffset);
-    }
+        tempNewWeight = Integer.MAX_VALUE;
 
+        final int newWeight = shareMemory.SC.get();
+
+        Observable.interval(0, 1, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .take(4)
+                .subscribe(bLong -> {
+                    if (bLong <= 3) {
+                        if(Math.abs(tempNewWeight - newWeight) < 100){
+                            daoControl.saveWeight(newWeight - weightOffset);
+                        }else{
+                            tempNewWeight = newWeight;
+                        }
+                    } else {
+                        String message = ResourceUtil.getString(R.string.no_record_added);
+                        Toast toast = Toast.makeText(MainApplication.getInstance(), message, Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.CENTER, 0, 0);
+                        toast.show();
+                    }
+                });
+    }
 
     private void readLowestWeight() {
         int newWeight = shareMemory.SC.get();

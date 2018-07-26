@@ -40,6 +40,7 @@
             style="@style/button_style"
             android:background="@drawable/confirm_button"
             android:isSelected="@{viewModel.okSelected}"
+            android:enabled="@{viewModel.okEnabled}"
             android:text="@string/ok"
             android:visibility="@{viewModel.showOK ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"

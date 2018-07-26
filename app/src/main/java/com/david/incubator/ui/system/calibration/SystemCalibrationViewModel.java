@@ -373,7 +373,6 @@ public class SystemCalibrationViewModel implements IViewModel {
 
     void setHumidity() {
         messageSender.setHumCalibration(humidityValue.get(), (aBoolean, baseSerialMessage) -> {
-//            refresh();
             if (aBoolean) {
                 buttonControlViewModel.okSelected.set(true);
             }

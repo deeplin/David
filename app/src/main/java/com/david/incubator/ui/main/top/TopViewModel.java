@@ -95,7 +95,13 @@ public class TopViewModel implements IViewModel {
         shareMemory.ohTest.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable sender, int propertyId) {
-                setOverheatExperiment(shareMemory.ohTest.get() == 1);
+                if (shareMemory.ohTest.get() == 1) {
+                    setOverheatExperiment(true);
+                } else {
+                    setOverheatExperiment(false);
+                    shareMemory.airObjective.set(320);
+                    shareMemory.skinObjective.set(340);
+                }
             }
         });
 
@@ -151,14 +157,14 @@ public class TopViewModel implements IViewModel {
 
     public void loadUserId() {
         String userString;
-        if(moduleHardware.isUser()) {
+        if (moduleHardware.isUser()) {
             UserModel userModel = daoControl.getLastUserModel();
             if (userModel != null && userModel.getEndTimeStamp() == 0) {
                 userString = String.format("%s", userModel.getName());
             } else {
                 userString = ResourceUtil.getString(R.string.default_user);
             }
-        }else{
+        } else {
             userString = "";
         }
         userId.set(userString);
@@ -264,7 +270,7 @@ public class TopViewModel implements IViewModel {
         }
     }
 
-    public void refresh(){
+    public void refresh() {
         setOverheatExperiment(overheatExperimentMode.get());
     }
 }

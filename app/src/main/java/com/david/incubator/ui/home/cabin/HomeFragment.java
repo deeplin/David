@@ -90,7 +90,7 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
                                 functionTab = FunctionMode.Pr.getIndex();
                         }
                     }
-                    if (!shareMemory.lockScreen.get() && functionTab != CtrlMode.None.getIndex()) {
+                    if (!shareMemory.lockScreen.get() && functionTab != CtrlMode.None.getIndex() && (shareMemory.ohTest.get() == 0)) {
                         shareMemory.functionTag.set(functionTab);
                         shareMemory.currentFragmentID.set(FragmentPage.OBJECTIVE_FRAGMENT);
                     }

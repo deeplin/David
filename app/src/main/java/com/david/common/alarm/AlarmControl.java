@@ -87,6 +87,15 @@ public class AlarmControl {
         }
     }
 
+    public static boolean isScaleAlarm(String alarmId){
+        return Objects.equals(alarmId, "SEN.SCALE");
+    }
+
+    public static boolean isOxygenAlarm(String alarmId){
+        return Objects.equals(alarmId, "SEN.O2_1")
+                || Objects.equals(alarmId, "SEN.O2_2");
+    }
+
     public static AlarmModel getAlarmMode(String alarmId) {
         return alarmMap.get(alarmId);
     }
@@ -94,4 +103,5 @@ public class AlarmControl {
     public boolean isAlert() {
         return topAlarmId.get() != null;
     }
+
 }

@@ -29,6 +29,7 @@ import com.david.incubator.ui.menu.chart.chartview.StatusChartWriter;
 import com.david.incubator.ui.menu.chart.table.AnalogDataRetriever;
 import com.david.incubator.ui.menu.chart.table.StatusDataRetriever;
 import com.david.incubator.ui.menu.scale.chart.ScaleChartLayout;
+import com.david.incubator.ui.menu.scale.chart.ScaleChartViewModel;
 import com.david.incubator.ui.menu.scale.chart.ScaleChartWriter;
 import com.david.incubator.ui.menu.scale.chart.ScaleDataRetriever;
 import com.david.incubator.ui.menu.sensorlist.SensorListLayout;
@@ -238,4 +239,6 @@ public interface ApplicationComponent {
     void inject(TimingData timingData);
 
     void inject(UserHomeLayout userHomeLayout);
+
+    void inject(ScaleChartViewModel scaleChartViewModel);
 }

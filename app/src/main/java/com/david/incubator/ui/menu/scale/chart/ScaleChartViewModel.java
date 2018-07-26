@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.david.R;
+import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.WeightModel;
 import com.david.common.ui.IViewModel;
@@ -21,9 +22,15 @@ import com.david.incubator.util.ViewUtil;
 
 import java.util.Locale;
 
+import javax.inject.Inject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, IChartViewModel<WeightModel> {
+
+    @Inject
+    AlarmControl alarmControl;
 
     protected ScaleChartWriter baseChartViewWriter;
     protected PageTurnTable pageTurnTable;
@@ -31,7 +38,12 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
     public ObservableBoolean tableSelected = new ObservableBoolean(false);
     public ObservableField<String> lastWeight = new ObservableField<>();
 
+    public ObservableBoolean scaleEnabled = new ObservableBoolean(true);
+
+    Observable.OnPropertyChangedCallback alarmCallback;
+
     public ScaleChartViewModel(SensorChartView sensorChartView, PageTurnTable pageTurnTable) {
+        MainApplication.getInstance().getApplicationComponent().inject(this);
         this.baseChartViewWriter = new ScaleChartWriter(sensorChartView);
         this.pageTurnTable = pageTurnTable;
 
@@ -43,6 +55,13 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
                 refresh();
             }
         });
+
+        alarmCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable sender, int propertyId) {
+                scaleEnabled.set(!AlarmControl.isScaleAlarm(alarmControl.topAlarmId.get()));
+            }
+        };
     }
 
     public synchronized void goNext() {
@@ -55,6 +74,8 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
 
     @Override
     public void attach() {
+        alarmControl.topAlarmId.addOnPropertyChangedCallback(alarmCallback);
+        alarmControl.topAlarmId.notifyChange();
         baseChartViewWriter.attach();
         initialize();
         initializePageTurnTable();
@@ -68,6 +89,7 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
         pageTurnTable.stop();
         baseChartViewWriter.clearXAxis();
         baseChartViewWriter.detach();
+        alarmControl.topAlarmId.removeOnPropertyChangedCallback(alarmCallback);
     }
 
     @Override

@@ -116,11 +116,13 @@ public class SystemPrintViewModel {
     }
 
     public void startPrint() {
+        buttonControlViewModel.okEnabled.set(false);
         if (chartSelected.get()) {
             startPrintData();
         } else {
             startPrintScale();
         }
+        buttonControlViewModel.okEnabled.set(true);
     }
 
     private void startPrintData() {

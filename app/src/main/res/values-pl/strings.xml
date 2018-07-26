@@ -143,7 +143,7 @@
     <string name="reset_lower">Nastawić</string>
     <string name="reset_upper">Zresetuj górny</string>
 
-    <!--鍛婅-->
+    <!--Warning-->
     <string name="SYS.PWR">Power failure</string>
     <string name="SYS.CON">Błąd komunikacji szeregowej</string>
     <string name="SYS.BCON">Usterka komunikacji skrzynki czujnika</string>
@@ -182,8 +182,8 @@
 
     <string name="CTRL.SEN">Błąd położenia czujnika skóry</string>
     <string name="SYS.FAN">Błąd silnika</string>
-    <string name="TEMP.DEVH">Alarm odchylenia temperatury</string>
-    <string name="TEMP.DEVL">Alarm odchylenia temperatury</string>
+    <string name="TEMP.DEVH">Alarm górnego odchylenia</string>
+    <string name="TEMP.DEVL">Alarm niższego odchylenia</string>
 
     <string name="CTRL.ERR1">Sprawdź czujnik skóry A</string>
     <string name="CTRL.ERR2">Sprawdź czujnik skóry C</string>

@@ -2,6 +2,7 @@ package com.david.incubator.ui.system.print;
 
 import android.content.Context;
 import android.databinding.ObservableInt;
+import android.view.ViewGroup;
 
 import com.david.R;
 import com.david.common.ui.FastIncreaseConstraintLayout;
@@ -11,6 +12,10 @@ import com.david.databinding.LayoutSystemPrintBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * author: Ling Lin
@@ -42,7 +47,11 @@ public class SystemPrintLayout extends FastIncreaseConstraintLayout<LayoutSystem
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibOK))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> systemPrintViewModel.startPrint());
+                .subscribe((aVoid) -> {
+                    Observable.just(this)
+                            .observeOn(Schedulers.io())
+                            .subscribe((num) -> systemPrintViewModel.startPrint());
+                });
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibReturn))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)

@@ -6,20 +6,19 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 
+import com.david.R;
 import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSettingCalibrationBinding;
-import com.david.common.ui.BindingConstraintLayout;
 import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
-
-import com.david.R;
 
 import java.util.concurrent.TimeUnit;
 
@@ -218,33 +217,34 @@ public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSett
     }
 
     public void updateEnable() {
-//        String text = alarmControl.topAlarmId.get();
-//        io.reactivex.Observable.just(this)
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(o -> {
-//                    if (text == null) {
-//                        if (selectO2.get()) {
-//                            if (moduleHardware.isO2() && moduleSoftware.isO2()) {
-//                                binding.userCalibrationLeft.setEnabled(true);
-//                                binding.userCalibrationRight.setEnabled(true);
-//                            } else {
-//                                binding.userCalibrationLeft.setEnabled(false);
-//                                binding.userCalibrationRight.setEnabled(false);
-//                            }
-//                        } else {
-//                            if (moduleHardware.isSCALE() && moduleSoftware.isSCALE()) {
-//                                binding.userCalibrationLeft.setEnabled(true);
-//                                binding.userCalibrationRight.setEnabled(true);
-//                            } else {
-//                                binding.userCalibrationLeft.setEnabled(false);
-//                                binding.userCalibrationRight.setEnabled(false);
-//                            }
-//                        }
-//                    } else {
-//                        binding.userCalibrationLeft.setEnabled(false);
-//                        binding.userCalibrationRight.setEnabled(false);
-//                    }
-//                });
+        String alarmId = alarmControl.topAlarmId.get();
+        io.reactivex.Observable.just(this)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(o -> {
+                    if (selectO2.get()) {
+                        if (alarmId != null && AlarmControl.isOxygenAlarm(alarmId)) {
+                            binding.userCalibrationLeft.setEnabled(false);
+                            binding.userCalibrationRight.setEnabled(false);
+                        } else if (moduleHardware.isO2() && moduleSoftware.isO2()){
+                            binding.userCalibrationLeft.setEnabled(true);
+                            binding.userCalibrationRight.setEnabled(true);
+                        } else {
+                            binding.userCalibrationLeft.setEnabled(false);
+                            binding.userCalibrationRight.setEnabled(false);
+                        }
+                    } else {
+                        if (alarmId != null && AlarmControl.isScaleAlarm(alarmId)) {
+                            binding.userCalibrationLeft.setEnabled(false);
+                            binding.userCalibrationRight.setEnabled(false);
+                        } else if (moduleHardware.isSCALE() && moduleSoftware.isSCALE()){
+                            binding.userCalibrationLeft.setEnabled(true);
+                            binding.userCalibrationRight.setEnabled(true);
+                        } else {
+                            binding.userCalibrationLeft.setEnabled(false);
+                            binding.userCalibrationRight.setEnabled(false);
+                        }
+                    }
+                });
     }
 }
 

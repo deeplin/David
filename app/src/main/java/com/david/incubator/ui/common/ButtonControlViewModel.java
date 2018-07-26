@@ -14,7 +14,7 @@ public class ButtonControlViewModel {
     public ObservableBoolean showUpDown = new ObservableBoolean(true);
     public ObservableBoolean showReturn = new ObservableBoolean(true);
     public ObservableBoolean showOK = new ObservableBoolean(true);
-
+    public ObservableBoolean okEnabled = new ObservableBoolean(true);
     public ObservableBoolean okSelected = new ObservableBoolean(false);
 
 }
