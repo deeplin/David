@@ -236,7 +236,7 @@ public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSett
                         if (alarmId != null && AlarmControl.isScaleAlarm(alarmId)) {
                             binding.userCalibrationLeft.setEnabled(false);
                             binding.userCalibrationRight.setEnabled(false);
-                        } else if (moduleHardware.isSCALE() && moduleSoftware.isSCALE()){
+                        } else if (moduleHardware.isSCALE()){
                             binding.userCalibrationLeft.setEnabled(true);
                             binding.userCalibrationRight.setEnabled(true);
                         } else {
