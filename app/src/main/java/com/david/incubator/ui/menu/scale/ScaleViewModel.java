@@ -102,30 +102,25 @@ public class ScaleViewModel implements IViewModel {
 
     private int tempNewWeight;
 
-    public void saveWeight() {
-        tempNewWeight = Integer.MAX_VALUE;
-        Observable.interval(0, 1, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .take(4)
-                .subscribe(bLong -> {
-                    if (tempNewWeight < 0)
-                        return;
-                    int newWeight = shareMemory.SC.get();
-                    if (bLong <= 3) {
-                        if (Math.abs(tempNewWeight - newWeight) < 100) {
-                            daoControl.saveWeight(newWeight - weightOffset);
-                            tempLowestWeight = Constant.SENSOR_NA_VALUE;
-                        } else {
-                            tempNewWeight = newWeight;
-                        }
-                    } else {
-                        String message = ResourceUtil.getString(R.string.no_record_added);
-                        Toast toast = Toast.makeText(MainApplication.getInstance(), message, Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
-                    }
-                });
-
+    public void saveConstantWeight(long count) {
+        if (count == 0) {
+            tempNewWeight = Integer.MAX_VALUE;
+        }else if (tempNewWeight == Integer.MIN_VALUE)
+            return;
+        int newWeight = shareMemory.SC.get();
+        if (count <= 2) {
+            if (Math.abs(tempNewWeight - newWeight) < 100) {
+                daoControl.saveWeight(newWeight - weightOffset);
+                tempNewWeight = Integer.MIN_VALUE;
+            } else {
+                tempNewWeight = newWeight;
+            }
+        } else {
+            String message = ResourceUtil.getString(R.string.no_record_added);
+            Toast toast = Toast.makeText(MainApplication.getInstance(), message, Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
     }
 
     private void readLowestWeight() {

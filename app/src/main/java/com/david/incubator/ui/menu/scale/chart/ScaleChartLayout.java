@@ -2,12 +2,15 @@ package com.david.incubator.ui.menu.scale.chart;
 
 import android.content.Context;
 import android.databinding.Observable;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.ui.IViewModel;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
+import com.david.common.util.ResourceUtil;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
 import com.david.incubator.ui.menu.scale.ScaleViewModel;
 import com.david.incubator.util.ViewUtil;
@@ -17,6 +20,8 @@ import com.david.databinding.LayoutScaleChartBinding;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
 
 public class ScaleChartLayout extends BindingConstraintLayout<LayoutScaleChartBinding> implements IViewModel, IRefreshableViewModel {
 
@@ -54,8 +59,16 @@ public class ScaleChartLayout extends BindingConstraintLayout<LayoutScaleChartBi
         RxView.clicks(binding.btScale2)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    scaleViewModel.saveWeight();
-                    scaleChartViewModel.refresh();
+                    io.reactivex.Observable.interval(0, 1, TimeUnit.SECONDS)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .take(3)
+                            .subscribe(bLong -> {
+                                scaleChartViewModel.setLastWeight("----");
+                                scaleViewModel.saveConstantWeight(bLong);
+                                if(bLong == 2){
+                                    scaleChartViewModel.refresh();
+                                }
+                            });
                 });
     }
 
