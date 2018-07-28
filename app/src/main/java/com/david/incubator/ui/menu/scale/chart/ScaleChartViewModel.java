@@ -76,7 +76,7 @@ public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, I
     @Override
     public void attach() {
         alarmControl.topAlarmId.addOnPropertyChangedCallback(alarmCallback);
-        alarmControl.topAlarmId.notifyChange();
+        scaleEnabled.set(!AlarmControl.isScaleAlarm(alarmControl.topAlarmId.get()));
         baseChartViewWriter.attach();
         initialize();
         initializePageTurnTable();

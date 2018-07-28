@@ -209,11 +209,11 @@ public class SettingCalibrationLayout extends BindingConstraintLayout<LayoutSett
 
     @Override
     public void detach() {
-        alarmControl.topAlarmId.removeOnPropertyChangedCallback(alarmCallback);
         if (alertDialog != null) {
             alertDialog.dismiss();
             alertDialog = null;
         }
+        alarmControl.topAlarmId.removeOnPropertyChangedCallback(alarmCallback);
     }
 
     public void updateEnable() {

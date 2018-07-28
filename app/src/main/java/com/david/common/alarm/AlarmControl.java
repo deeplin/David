@@ -103,5 +103,4 @@ public class AlarmControl {
     public boolean isAlert() {
         return topAlarmId.get() != null;
     }
-
 }
