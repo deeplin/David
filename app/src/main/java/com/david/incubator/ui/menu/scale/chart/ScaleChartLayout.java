@@ -2,20 +2,17 @@ package com.david.incubator.ui.menu.scale.chart;
 
 import android.content.Context;
 import android.databinding.Observable;
-import android.view.Gravity;
-import android.widget.Toast;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
-import com.david.common.ui.IViewModel;
 import com.david.common.ui.BindingConstraintLayout;
+import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
-import com.david.common.util.ResourceUtil;
+import com.david.databinding.LayoutScaleChartBinding;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
 import com.david.incubator.ui.menu.scale.ScaleViewModel;
 import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
-import com.david.databinding.LayoutScaleChartBinding;
 
 import java.util.concurrent.TimeUnit;
 
@@ -59,14 +56,32 @@ public class ScaleChartLayout extends BindingConstraintLayout<LayoutScaleChartBi
         RxView.clicks(binding.btScale2)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    io.reactivex.Observable.interval(0, 1, TimeUnit.SECONDS)
+                    binding.btScale2.setEnabled(false);
+                    io.reactivex.Observable
+                            .interval(0, 1, TimeUnit.SECONDS)
                             .observeOn(AndroidSchedulers.mainThread())
-                            .take(3)
+                            .take(5)
                             .subscribe(bLong -> {
-                                scaleChartViewModel.setLastWeight("----");
-                                scaleViewModel.saveConstantWeight(bLong);
-                                if(bLong == 2){
-                                    scaleChartViewModel.refresh();
+                                switch (bLong.intValue()) {
+                                    case 0:
+                                        scaleChartViewModel.setLastWeight("----");
+                                        break;
+                                    case 1:
+                                        scaleChartViewModel.setLastWeight("");
+                                        break;
+                                    case 2:
+                                        scaleViewModel.saveConstantWeight(bLong);
+                                        scaleChartViewModel.setLastWeight("----");
+                                        break;
+                                    case 3:
+                                        scaleViewModel.saveConstantWeight(bLong);
+                                        scaleChartViewModel.setLastWeight("");
+                                        break;
+                                    case 4:
+                                        scaleViewModel.saveConstantWeight(bLong);
+                                        scaleChartViewModel.refresh();
+                                        binding.btScale2.setEnabled(true);
+                                        break;
                                 }
                             });
                 });
