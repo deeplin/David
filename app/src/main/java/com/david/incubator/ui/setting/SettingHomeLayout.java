@@ -138,7 +138,7 @@ public class SettingHomeLayout extends BindingConstraintLayout<LayoutSettingHome
         if (Constant.RELEASE_TO_DAVID) {
             navigationView.set(FragmentPage.SETTING_LOGIN);
         } else {
-            navigationView.set(FragmentPage.SYSTEM_HOME);
+            navigationView.set(FragmentPage.USER_HOME);
         }
         navigationView.addOnPropertyChangedCallback(settingViewCallback);
         navigationView.notifyChange();

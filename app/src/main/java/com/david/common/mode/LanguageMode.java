@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public enum LanguageMode {
 
-    English("ENG", (byte) 0), Chinese("CHN", (byte) 1), Turkish("TUR", (byte) 2), Polish("POL", (byte) 3);
+    English("ENG", (byte) 0), Chinese("CHN", (byte) 1), Turkish("TUR", (byte) 2), Polish("POL", (byte) 3), Russia("RUS", (byte) 4);
 
     private final String name;
     private final byte index;

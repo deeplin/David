@@ -63,6 +63,14 @@
             app:layout_constraintStart_toStartOf="@+id/language_chinese_button"
             app:layout_constraintTop_toTopOf="@id/language_chinese_button" />
 
+        <Button
+            android:id="@+id/language_russia_button"
+            style="@style/large_button_style"
+            android:isSelected="@{viewModel.russiaSelected}"
+            android:text="Russia"
+            app:layout_constraintTop_toTopOf="@id/language_polish_button"
+            app:layout_constraintLeft_toLeftOf="@id/language_english_button"/>
+
         <ImageView
             android:id="@+id/divider"
             android:layout_width="wrap_content"

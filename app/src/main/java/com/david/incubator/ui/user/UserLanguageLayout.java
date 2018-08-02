@@ -53,6 +53,7 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
     public ObservableBoolean englishSelected = new ObservableBoolean();
     public ObservableBoolean turkishSelected = new ObservableBoolean();
     public ObservableBoolean polishSelected = new ObservableBoolean();
+    public ObservableBoolean russiaSelected = new ObservableBoolean();
 
     public UserLanguageLayout(Context context, ObservableInt navigationView) {
         super(context);
@@ -107,6 +108,16 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
                     refresh();
                 });
 
+        RxView.clicks(binding.languageRussiaButton)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((aVoid) -> {
+                    ResourceUtil.setLocalLanguage(getContext(), new Locale("ru", "RU"));
+                    setUI(LanguageMode.Russia.getIndex());
+                    saveLanguage(LanguageMode.Russia.getIndex());
+                    invalidate();
+                    refresh();
+                });
+
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibReturn))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> navigationView.set(FragmentPage.USER_HOME));
@@ -124,27 +135,11 @@ public class UserLanguageLayout extends BindingConstraintLayout<LayoutUserLangua
     }
 
     private void setUI(int languageId) {
-        if (languageId == LanguageMode.English.getIndex()) {
-            chineseSelected.set(false);
-            englishSelected.set(true);
-            turkishSelected.set(false);
-            polishSelected.set(false);
-        } else if (languageId == LanguageMode.Chinese.getIndex()) {
-            chineseSelected.set(true);
-            englishSelected.set(false);
-            turkishSelected.set(false);
-            polishSelected.set(false);
-        } else if (languageId == LanguageMode.Turkish.getIndex()) {
-            chineseSelected.set(false);
-            englishSelected.set(false);
-            turkishSelected.set(true);
-            polishSelected.set(false);
-        } else if (languageId == LanguageMode.Polish.getIndex()) {
-            chineseSelected.set(false);
-            englishSelected.set(false);
-            turkishSelected.set(false);
-            polishSelected.set(true);
-        }
+        englishSelected.set(languageId == LanguageMode.English.getIndex());
+        chineseSelected.set(languageId == LanguageMode.Chinese.getIndex());
+        turkishSelected.set(languageId == LanguageMode.Turkish.getIndex());
+        polishSelected.set(languageId == LanguageMode.Polish.getIndex());
+        russiaSelected.set(languageId == LanguageMode.Russia.getIndex());
     }
 
     @Override

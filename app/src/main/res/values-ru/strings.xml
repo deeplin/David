@@ -1,0 +1,220 @@
+<resources>
+    <!--系统设置-->
+    <string name="app_name">David Medical</string>
+    <!--Home-->
+    <string name="default_user">Обычный пользователь</string>
+
+    <!--Objective-->
+    <string name="ok">OK</string>
+    <string name="on">ВКЛ</string>
+    <string name="off">ВЫКЛ</string>
+    <string name="blue_time">Общее время работы освещения</string>
+    <string name="clockwise">По часовой стрелке</string>
+    <string name="countdown">Обратный отсчет</string>
+
+    <!--Chart-->
+    <string name="cycle">Период</string>
+    <string name="skin1">Skin1</string>
+    <string name="skin2">Skin2</string>
+    <string name="mat">Мат.</string>
+
+    <string name="air">Воздух </string>
+    <string name="humidity">Влаж.</string>
+    <string name="oxygen">O₂</string>
+    <string name="spo2">SpO₂</string>
+    <string name="pr">Частота пульса</string>
+    <string name="heating_power">Нагрев</string>
+    <string name="time">Время</string>
+    <string name="previous_page">Пред.</string>
+    <string name="next_page">След.</string>
+    <string name="delete">Удалить</string>
+    <string name="delete_confirm">Подтвердите удаление.</string>
+
+
+    <!--Camera-->
+    <string name="camera_no_connection">Нет камеры</string>
+
+    <!--Scale-->
+    <string name="rescale">Взвесить повторно</string>
+    <string name="scale">Взвесить</string>
+    <string name="raise_baby">Поднимите младенца...</string>
+    <string name="put_down_baby">Опустите младенца...</string>
+    <string name="no_record_added">Нет добавленных записей</string>
+    <string name="current_weight">Масса</string>
+
+    <!--Setting-->
+
+    <!--Add User -->
+    <string name="name">ФИО</string>
+    <string name="id">ИН</string>
+    <string name="sex">Пол</string>
+    <string name="blood_type">Группа крови</string>
+    <string name="birthday">Дата рождения</string>
+    <string name="birth_weight">Масса тела при рождении</string>
+    <string name="medical_history">Анамнез</string>
+    <string name="add_patient">Добавить пациента</string>
+
+    <string name="male">Мужской</string>
+    <string name="female">Женский</string>
+
+    <!--Comfort Zone-->
+    <string name="comfort_zone">Зона комфорта</string>
+    <string name="age">Возраст</string>
+    <string name="day">Дни</string>
+    <string name="gestation">Гестация</string>
+    <string name="week">Недели</string>
+    <string name="weight">Масса</string>
+    <string name="proposed_setting_range">Рекомендовано:</string>
+
+    <!--Calibration-->
+    <string name="calibration">Калибровка</string>
+    <string name="calibration_o2">Калибровка O₂</string>
+    <string name="calibration_confirm_o2_21">Подтвердите выполнение калибровки O2 при 21%</string>
+    <string name="calibration_confirm_o2_100">Подтвердите выполнение калибровки O2 при 100%</string>
+    <string name="calibration_scale">Калибровка весов</string>
+    <string name="calibration_confirm_scale_0">Текущая масса %sг\nПодтвердите выполнение калибровки весов при 0 г</string>
+    <string name="calibration_confirm_scale_5000">Текущая масса %sг\nПодтвердите выполнение калибровки весов при 5000 г</string>
+    <string name="cancel">Отмена</string>
+    <string name="calibration_successful">Калибровка выполнена успешно</string>
+    <string name="calibration_failed">Калибровка не выполнена</string>
+    <string name="time_update">Изменение времени</string>
+    <string name="time_update_confirm">Все данные в журнале будут удалены.\n Подтвердите.</string>
+
+    <!--Device-->
+    <string name="software_information">Информация о программном обеспечении</string>
+    <string name="hardware_version">Версия оборудования</string>
+    <string name="master_version">Версия главного устройства</string>
+    <string name="slave_version">Версия подчиненного устройства</string>
+    <string name="upper_version">Старшая версия</string>
+    <string name="device_id">ИН устройства</string>
+
+    <!--Login-->
+    <string name="input_password">Введите пароль</string>
+
+    <!--System-->
+    <string name="system_setting">Системная настройка</string>
+
+    <!--Home-->
+    <string name="deviation_warning">Предупреждение об отклонении</string>
+    <string name="overheat_warning">Предупреждение о перегреве</string>
+    <string name="setting_range">Диапазон настройки</string>
+    <string name="temp_calibration">Калибровка темп.</string>
+    <string name="other_parameter">Другой параметр</string>
+    <string name="data_print">Печать данных</string>
+    <string name="factory_setting">Заводская настройка</string>
+    <string name="overheat_experiment">Пробный перегрев</string>
+
+    <!--Deviation Warning-->
+    <string name="skin">Кожа </string>
+    <string name="exit">Обратн.</string>
+
+    <!--Overheat Warning-->
+    <string name="overheat_air_above_37">Воздух > 37</string>
+    <string name="air_flow">Расход воздуха</string>
+    <string name="overheat_airflow_above_37">Расход воздуха > 37</string>
+    <string name="fan_speed">Вентилятор</string>
+
+    <!--System Calibration-->
+    <string name="iso_air">ISO — воздух </string>
+    <string name="iso_skin1">ISO — Skin1</string>
+
+    <!--System Print-->
+    <string name="print_cycle">Цикл печати</string>
+    <string name="hours">小时</string>
+    <string name="days">天</string>
+
+    <!--Overheat Experiment-->
+    <string name="overheat_air_below_37">Воздух ≤37</string>
+    <string name="overheat_skin_above_37">Кожа > 37</string>
+    <string name="stable_state">Устойчив</string>
+
+    <!--User -->
+    <string name="user_setting">Пользовательская настройка</string>
+    <string name="patient_information">Сведения о пациенте</string>
+    <string name="time_setup">Заданное время</string>
+    <string name="language_setup">Заданный язык</string>
+    <string name="warning_volume">Громкость предупреждения</string>
+    <string name="screen_luminance">Яркость экрана</string>
+
+    <string name="delete_user">Удалить запись пациента</string>
+    <string name="signs_data">Подписи на данных</string>
+    <string name="video_data">Видеоданные</string>
+    <string name="image_data">Данные изображения</string>
+
+    <!--User -->
+    <string name="reset_lower">Сброс</string>
+    <string name="reset_upper">Сбросить верхнее</string>
+
+    <!--Alarm-->
+    <string name="SYS.PWR">Перебой электропитания</string>
+    <string name="SYS.BCON">Обрыв связи между блоком управления и блоком датчиков</string>
+    <string name="SYS.CON">Отсутствует последовательное соединение</string>
+    <string name="SYS.HA">Обрыв связи с микроконтроллером</string>
+    <string name="SYS.CFG">Резервная информация о конфигурации повреждена</string>
+    <string name="SYS.HOOD">Отказ верхней крышки</string>
+    <string name="SYS.MOTOR">Отказ подъемного устройства</string>
+    <string name="SYS.DOOR">Отказ дверцы теплового излучателя</string>
+    <string name="SYS.WARM1">Отказ системы нагревателя в регуляторе температуры</string>
+    <string name="SYS.WARM2">Отказ системы источника теплового излучения</string>
+    <string name="SYS.MATC">Отказ системы подогрева матраца</string>
+
+
+    <string name="SYS.BOX">Ошибка размещения блока датчиков</string>
+    <string name="SEN.A1">Отказ датчика воздуха</string>
+    <string name="SEN.A2">Отказ независимого датчика</string>
+    <string name="SEN.ADIF">Ошибка отклонения показаний датчика температуры воздуха</string>
+    <string name="SEN.F1">Отказ датчика расхода воздуха</string>
+    <string name="SEN.M1">Отказ датчика температуры матраца</string>
+    <string name="SEN.M2">Отказ независимого датчика температуры матраца</string>
+    <string name="SEN.MDIF">Ошибка разности показаний датчиков температуры матраца </string>
+
+    <string name="SEN.S1A">Отказ кожного датчика 1 температуры</string>
+    <string name="SEN.S1B">Отказ независимого кожного датчика</string>
+    <string name="SEN.S2">Отказ кожного датчика 2 температуры</string>
+    <string name="SEN.SDIF">Ошибка разности показаний кожных датчиков</string>
+    <string name="SEN.SCALE">Отказ датчика весов</string>
+    <string name="AIR.OVH">Тревога по высокой температуре воздуха</string>
+    <string name="MAT.OVH">Тревога по высокой температуре матраца</string>
+
+    <string name="SKIN.OVH">Тревога по высокой температуре кожи</string>
+    <string name="FLOW.OVH">Тревога по высокой температуре потока воздуха</string>
+    <string name="CTRL.SEN">Ошибка положения кожного датчика</string>
+    <string name="SYS.FAN">Отказ двигателя</string>
+    <string name="TEMP.DEVH">Тревога по отклонению верхнего значения температуры</string>
+    <string name="TEMP.DEVL">Тревога по отклонению нижнего значения температуры</string>
+    <string name="CTRL.ERR1">Проверьте кожный датчик A</string>
+    <string name="CTRL.ERR2">Проверьте кожный датчик C</string>
+    <string name="CTRL.MAN">Проверьте ручной режим</string>
+    <string name="SEN.O2_1">Отказ датчика 1 O₂</string>
+    <string name="SEN.O2_2">Отказ датчика 2 O₂</string>
+    <string name="SEN.O2DIF">Ошибка разности показаний датчиковO₂</string>
+    <string name="O2.DEVH">Тревога по отклонению верхнего показания датчика O₂</string>
+    <string name="O2.DEVL">Тревога по отклонению нижнего показания датчика O₂</string>
+    <string name="SEN.SPO2">Отказ модуля пульсоксиметра</string>
+    <string name="SPO2.ERR">Отказ системы пульсоксиметра</string>
+    <string name="SPO2.BIT12">Проводящий провод не присоединен</string>
+    <string name="SPO2.BIT0">Ошибка подключения датчика SpO₂</string>
+    <string name="SPO2.BIT1">Отказ датчика пульсоксиметра</string>
+    <string name="SPO2.BIT7">Не удается идентифицировать датчик пульсоксиметра</string>
+    <string name="SPO2.BIT5">Датчик пульсоксиметра неправильно закреплен</string>
+    <string name="SPO2.BIT13">Адгезивный датчик не подключен</string>
+    <string name="SPO2.OVH">Верхний предел тревоги поSpO₂</string>
+    <string name="SPO2.OVL">Нижний предел тревоги по SpO₂</string>
+    <string name="PR.OVH">Верхний предел тревоги по частоте пульса</string>
+    <string name="PR.OVL">Нижний предел тревоги по частоте пульса</string>
+    <string name="UNIT.FAN">Отказ вентилятора в блоке управления</string>
+    <string name="SYS.HUMC">Отказ системы нагревателя в регуляторе влажности</string>
+    <string name="SEN.HUM">Отказ датчика влажности</string>
+    <string name="SYS.TANK">Ошибка положения резервуара</string>
+    <string name="SYS.WATER">Отсутствие воды</string>
+    <string name="HUM.DEVH">Тревога по отклонению верхнего показания датчика влажности</string>
+    <string name="HUM.DEVL">Тревога по отклонению нижнего показания датчика влажности</string>
+    <string name="SYS.UPS">Неисправна никель-металлогидридная батарея</string>
+    <string name="SPO2.BIT2">Низк. PI</string>
+    <string name="SPO2.LOW">SpO₂ менее 85%%</string>
+    <string name="SPO2.BIT3">Найдите пульс</string>
+    <string name="SPO2.BIT4">Обнаружена помеха</string>
+    <string name="SPO2.BIT6">Слишком яркий свет в помещении</string>
+    <string name="SPO2.BIT10">Низкое качество сигнала</string>
+    <string name="COM.ERR">Вернуть ОШИБКУ через последовательный интерфейс</string>
+</resources>

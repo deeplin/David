@@ -60,7 +60,7 @@ public class ScaleChartLayout extends BindingConstraintLayout<LayoutScaleChartBi
                     io.reactivex.Observable
                             .interval(0, 1, TimeUnit.SECONDS)
                             .observeOn(AndroidSchedulers.mainThread())
-                            .take(5)
+                            .take(6)
                             .subscribe(bLong -> {
                                 switch (bLong.intValue()) {
                                     case 0:
@@ -70,15 +70,19 @@ public class ScaleChartLayout extends BindingConstraintLayout<LayoutScaleChartBi
                                         scaleChartViewModel.setLastWeight("");
                                         break;
                                     case 2:
-                                        scaleViewModel.saveConstantWeight(bLong);
+                                        scaleViewModel.saveConstantWeight(0);
                                         scaleChartViewModel.setLastWeight("----");
                                         break;
                                     case 3:
-                                        scaleViewModel.saveConstantWeight(bLong);
+                                        scaleViewModel.saveConstantWeight(1);
                                         scaleChartViewModel.setLastWeight("");
                                         break;
                                     case 4:
-                                        scaleViewModel.saveConstantWeight(bLong);
+                                        scaleViewModel.saveConstantWeight(2);
+                                        scaleChartViewModel.setLastWeight("----");
+                                        break;
+                                    case 5:
+                                        scaleViewModel.saveConstantWeight(3);
                                         scaleChartViewModel.refresh();
                                         binding.btScale2.setEnabled(true);
                                         break;

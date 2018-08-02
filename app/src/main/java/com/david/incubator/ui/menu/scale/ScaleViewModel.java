@@ -11,7 +11,6 @@ import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.IViewModel;
-import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 
 import java.util.Locale;
@@ -105,21 +104,22 @@ public class ScaleViewModel implements IViewModel {
     public void saveConstantWeight(long count) {
         if (count == 0) {
             tempNewWeight = Integer.MAX_VALUE;
-        }else if (tempNewWeight == Integer.MIN_VALUE)
+        } else if (tempNewWeight == Integer.MIN_VALUE)
             return;
         int newWeight = shareMemory.SC.get();
-        if (count <= 2) {
-            if (Math.abs(tempNewWeight - newWeight) < 100) {
-                daoControl.saveWeight(newWeight - weightOffset);
-                tempNewWeight = Integer.MIN_VALUE;
-            } else {
-                tempNewWeight = newWeight;
-            }
+
+        if (Math.abs(tempNewWeight - newWeight) < 100) {
+            daoControl.saveWeight(newWeight - weightOffset);
+            tempNewWeight = Integer.MIN_VALUE;
         } else {
-            String message = ResourceUtil.getString(R.string.no_record_added);
-            Toast toast = Toast.makeText(MainApplication.getInstance(), message, Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
+            if (count < 3) {
+                tempNewWeight = newWeight;
+            } else {
+                String message = ResourceUtil.getString(R.string.no_record_added);
+                Toast toast = Toast.makeText(MainApplication.getInstance(), message, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
         }
     }
 

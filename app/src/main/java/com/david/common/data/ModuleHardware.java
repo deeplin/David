@@ -91,7 +91,6 @@ public class ModuleHardware extends ModuleSoftware {
             ModuleGetHardwareCommand moduleGetSoftwareCommand = (ModuleGetHardwareCommand) baseSerialMessage;
             cameraInstalled = moduleGetSoftwareCommand.getCAMERA() == 1;
             jaundiceInstalled = moduleGetSoftwareCommand.getBLUE() == 1;
-            jaundiceInstalled = true;
             user = moduleGetSoftwareCommand.getUSER() == 1;
             inst = moduleGetSoftwareCommand.getINST() == 1;
 

@@ -177,7 +177,6 @@
     <string name="SYS.WARM2">辐射加热系统故障</string>
     <string name="SYS.MATC">床垫加热系统故障</string>
 
-
     <string name="SYS.BOX">传感器盒放置错误报警</string>
     <string name="SEN.A1">箱温传感器故障报警</string>
     <string name="SEN.A2">独立温度传感器故障报警</string>
