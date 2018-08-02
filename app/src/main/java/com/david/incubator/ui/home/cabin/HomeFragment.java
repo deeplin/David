@@ -90,6 +90,12 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
                                 functionTab = FunctionMode.Pr.getIndex();
                         }
                     }
+                    if (moduleHardware.is970SAndJaundice()) {
+                        if (x > 340 && x < 580 && y > 460 && y < 610) {
+                            if (homeViewModel.jaundice.get())
+                                binding.jaunediceView.press();
+                        }
+                    }
                     if (!shareMemory.lockScreen.get() && functionTab != CtrlMode.None.getIndex() && (shareMemory.ohTest.get() == 0)) {
                         shareMemory.functionTag.set(functionTab);
                         shareMemory.currentFragmentID.set(FragmentPage.OBJECTIVE_FRAGMENT);
@@ -105,10 +111,16 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
     public void attach() {
         homeViewModel.setNavigator(this);
         homeViewModel.attach();
+
+        if (moduleHardware.is970SAndJaundice())
+            binding.jaunediceView.attach();
     }
 
     @Override
     public void detach() {
+        if (moduleHardware.is970SAndJaundice())
+            binding.jaunediceView.detach();
+
         homeViewModel.detach();
         homeViewModel.setNavigator(null);
     }

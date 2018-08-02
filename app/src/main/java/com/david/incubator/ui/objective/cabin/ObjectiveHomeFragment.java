@@ -32,7 +32,7 @@ public class ObjectiveHomeFragment extends TabHomeFragment<FragmentObjectiveBind
     public void attach() {
         ViewGroup.LayoutParams layoutParams = binding.tlObjective.getLayoutParams();
         ObjectivePagerAdapter pagerAdapter = new ObjectivePagerAdapter();
-        layoutParams.width = 150 * pagerAdapter.getCount();
+        layoutParams.width = 120 * pagerAdapter.getCount();
 
         binding.vpObjective.setAdapter(pagerAdapter);
         binding.tlObjective.setupWithViewPager(binding.vpObjective);
@@ -51,6 +51,10 @@ public class ObjectiveHomeFragment extends TabHomeFragment<FragmentObjectiveBind
         if (moduleHardware.isSPO2()) {
             binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.spo2));
             binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.pr));
+        }
+
+        if (moduleHardware.isJaundiceInstalled()) {
+            binding.tlObjective.addTab(buildIcon(binding.tlObjective, R.mipmap.jaunedice));
         }
 
         binding.vpObjective.addOnPageChangeListener(super.getPageChangeListener(binding.vpObjective));

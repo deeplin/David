@@ -12,6 +12,7 @@ import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.ui.BaseNavigatorModel;
+import com.david.common.util.Constant;
 import com.david.incubator.util.ViewUtil;
 
 import java.util.Objects;
@@ -42,6 +43,7 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
     public ObservableBoolean oxygenVisible = new ObservableBoolean(true);
     public ObservableBoolean spo2Visible = new ObservableBoolean(true);
     public ObservableField<String> incPower = new ObservableField<>();
+    public ObservableBoolean jaundice = new ObservableBoolean(false);
 
     private Observable.OnPropertyChangedCallback incPowerCallback;
     private Observable.OnPropertyChangedCallback humidityPowerCallback;
@@ -134,6 +136,10 @@ public class HomeViewModel extends BaseNavigatorModel<HomeNavigator> {
         shareMemory.PR.notifyChange();
         shareMemory.prLowerLimit.notifyChange();
         shareMemory.prUpperLimit.notifyChange();
+
+        if(moduleHardware.is970SAndJaundice()){
+            jaundice.set(true);
+        }
     }
 
     @Override

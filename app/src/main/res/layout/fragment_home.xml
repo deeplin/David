@@ -217,10 +217,10 @@
             android:id="@+id/ivHomeHumidityPower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintBottom_toBottomOf="@id/tvHomeHumidityValue"
-            app:layout_constraintLeft_toRightOf="@id/tvHomeHumidityValue"/>
+            app:layout_constraintLeft_toRightOf="@id/tvHomeHumidityValue" />
 
         <TextView
             android:id="@+id/tvHomeHumidityValue"
@@ -268,10 +268,10 @@
             android:id="@+id/ivHomeOxygenPower"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginBottom="20dp"
+            android:layout_marginStart="20dp"
             app:layout_constraintBottom_toBottomOf="@id/tvHomeOxygenValue"
-            app:layout_constraintLeft_toRightOf="@id/tvHomeOxygenValue"/>
+            app:layout_constraintLeft_toRightOf="@id/tvHomeOxygenValue" />
 
         <TextView
             android:id="@+id/tvHomeOxygenValue"
@@ -395,6 +395,19 @@
             app:layout_constraintVertical_bias="0.918032787" />
 
         <!--Heater-->
+
+        <com.david.incubator.ui.home.warmer.JaunediceView
+            android:id="@+id/jaunediceView"
+            android:layout_width="280dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="284dp"
+            android:background="@mipmap/jaunedice_view"
+            android:visibility="@{viewModel.jaundice ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.232258065"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.979" />
 
         <TextView
             android:layout_width="wrap_content"

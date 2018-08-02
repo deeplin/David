@@ -91,6 +91,7 @@ public class ModuleHardware extends ModuleSoftware {
             ModuleGetHardwareCommand moduleGetSoftwareCommand = (ModuleGetHardwareCommand) baseSerialMessage;
             cameraInstalled = moduleGetSoftwareCommand.getCAMERA() == 1;
             jaundiceInstalled = moduleGetSoftwareCommand.getBLUE() == 1;
+            jaundiceInstalled = true;
             user = moduleGetSoftwareCommand.getUSER() == 1;
             inst = moduleGetSoftwareCommand.getINST() == 1;
 
@@ -114,6 +115,14 @@ public class ModuleHardware extends ModuleSoftware {
 
     public boolean is2000S(){
         if (Objects.equals(deviceModel, Constant.YP2000S)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean is970SAndJaundice() {
+        if (Objects.equals(deviceModel, Constant.YP970S) && jaundiceInstalled) {
             return true;
         } else {
             return false;

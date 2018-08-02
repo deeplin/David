@@ -38,7 +38,7 @@ public class WarmerObjectiveHomeFragment extends TabHomeFragment<FragmentObjecti
     public void attach() {
         ViewGroup.LayoutParams layoutParams = binding.tlObjective.getLayoutParams();
         WarmerObjectivePagerAdapter pagerAdapter = new WarmerObjectivePagerAdapter();
-        layoutParams.width = 150 * pagerAdapter.getCount();
+        layoutParams.width = 120 * pagerAdapter.getCount();
 
         binding.vpObjective.setAdapter(pagerAdapter);
         binding.tlObjective.setupWithViewPager(binding.vpObjective);

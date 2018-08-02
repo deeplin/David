@@ -113,11 +113,11 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
         shareMemory.warmPower.addOnPropertyChangedCallback(warmCallback);
         shareMemory.manObjective.addOnPropertyChangedCallback(manObjectiveCallback);
 
-        shareMemory.warmPower.notifyChange();
         shareMemory.ctrlMode.notifyChange();
+        shareMemory.warmPower.notifyChange();
         shareMemory.manObjective.notifyChange();
 
-        if (Objects.equals(moduleHardware.getDeviceModel(), Constant.HKN93S)) {
+        if(moduleHardware.is93S()){
             jaundice.set(true);
         }
     }

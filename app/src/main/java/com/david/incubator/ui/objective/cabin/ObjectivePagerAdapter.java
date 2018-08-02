@@ -13,6 +13,8 @@ import com.david.incubator.ui.objective.cabin.pr.ObjectivePrViewModel;
 import com.david.incubator.ui.objective.cabin.spo2.ObjectiveSpo2Layout;
 import com.david.incubator.ui.objective.cabin.spo2.ObjectiveSpo2ViewModel;
 import com.david.incubator.ui.objective.cabin.temp.ObjectiveTempLayout;
+import com.david.incubator.ui.objective.warmer.jaundice.WarmerObjectiveJaundiceLayout;
+import com.david.incubator.ui.objective.warmer.jaundice.WarmerObjectiveJaundiceViewModel;
 
 import java.util.Objects;
 
@@ -38,8 +40,8 @@ public class ObjectivePagerAdapter extends PagerAdapter {
         MainApplication.getInstance().getApplicationComponent().inject(this);
 
         count = 0;
-        tabArray = new int[5];
-        positionArray = new int[5];
+        tabArray = new int[6];
+        positionArray = new int[6];
 
         positionArray[0] = count;
         tabArray[count] = 0;
@@ -71,6 +73,14 @@ public class ObjectivePagerAdapter extends PagerAdapter {
         } else {
             positionArray[3] = -1;
             positionArray[4] = -1;
+        }
+
+        if (moduleHardware.isJaundiceInstalled()) {
+            positionArray[5] = count;
+            tabArray[count] = 5;
+            count++;
+        } else {
+            positionArray[5] = -1;
         }
     }
 
@@ -121,6 +131,11 @@ public class ObjectivePagerAdapter extends PagerAdapter {
             case 4:
                 ObjectivePrViewModel objectivePrViewModel = new ObjectivePrViewModel();
                 view = new ObjectiveSpo2Layout(container.getContext(), objectivePrViewModel);
+                break;
+            case 5:
+                WarmerObjectiveJaundiceViewModel warmerObjectiveJaundiceViewModel =
+                        new WarmerObjectiveJaundiceViewModel();
+                view = new WarmerObjectiveJaundiceLayout(container.getContext(), warmerObjectiveJaundiceViewModel);
                 break;
             default:
                 view = new View(container.getContext());

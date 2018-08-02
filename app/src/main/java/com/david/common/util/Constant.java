@@ -11,7 +11,7 @@ import android.graphics.Color;
 
 public class Constant {
 
-    public static final boolean RELEASE_TO_DAVID = false;
+    public static final boolean RELEASE_TO_DAVID = true;
     public static final boolean ENABLE_DEBUG = true;
 
     public static final int SCREEN_LOCK_SECOND = 30; //second
@@ -25,6 +25,7 @@ public class Constant {
 
     public static final String HKN93S = "HKN-93S";
     public static final String YP2000S = "YP-2000S";
+    public static final String YP970S = "YP-970S";
 
     public static final int AXIS_COLOR = Color.parseColor("#999999");
     public static int AXIS_X_DOT_PER_STEP = 10;
