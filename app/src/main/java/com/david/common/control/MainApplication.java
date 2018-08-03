@@ -55,11 +55,14 @@ public abstract class MainApplication extends Application {
         } else if (sensorRange.getLanguageIndex() == LanguageMode.Chinese.getIndex()) {
             ResourceUtil.setLocalLanguage(this, Locale.SIMPLIFIED_CHINESE);
         } else if (sensorRange.getLanguageIndex() == LanguageMode.Turkish.getIndex()) {
-            Locale spanish = new Locale("tr", "TR");
-            ResourceUtil.setLocalLanguage(this, spanish);
+            Locale turkish = new Locale("tr", "TR");
+            ResourceUtil.setLocalLanguage(this, turkish);
         } else if (sensorRange.getLanguageIndex() == LanguageMode.Polish.getIndex()) {
             Locale spanish = new Locale("pl", "PL");
             ResourceUtil.setLocalLanguage(this, spanish);
+        }  else if (sensorRange.getLanguageIndex() == LanguageMode.Russia.getIndex()) {
+            Locale russia = new Locale("ru", "RU");
+            ResourceUtil.setLocalLanguage(this, russia);
         }
     }
 }
