@@ -1,15 +1,12 @@
 package com.david.incubator.util;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.databinding.ObservableBoolean;
 
 import com.david.R;
-import com.david.common.util.Action;
+import com.david.common.util.Action1;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.SensorRange;
@@ -38,17 +35,17 @@ public class ViewUtil {
     }
 
     /*设置是否显示SPO2 PR Oxygen Humidity*/
-    public static void displaySensor(boolean installed, boolean enabled, ObservableBoolean visible, Action<Boolean> action) {
+    public static void displaySensor(boolean installed, boolean enabled, ObservableBoolean visible, Action1<Boolean> action1) {
         if (installed) {
             if (enabled) {
                 visible.set(false);
             } else {
                 visible.set(true);
-                action.accept(false);
+                action1.accept(false);
             }
         } else {
             visible.set(true);
-            action.accept(true);
+            action1.accept(true);
         }
     }
 

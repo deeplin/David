@@ -160,19 +160,17 @@ public class WarmerObjectiveTempViewModel implements IViewModel {
             if (aBoolean) {
                 valueChanged.set(false);
                 messageSender.getCtrlGet(shareMemory);
+                shareMemory.ctrlMode.set(ctrlMode);
                 selectOK.set(false);
                 if (ctrlMode.equals(CtrlMode.Skin)) {
-                    shareMemory.ctrlMode.set(CtrlMode.Skin);
                     skinSelected.set(true);
                     manualSelected.set(false);
                     prewarmSelected.set(false);
                 } else if (ctrlMode.equals(CtrlMode.Manual)) {
-                    shareMemory.ctrlMode.set(CtrlMode.Manual);
                     skinSelected.set(false);
                     manualSelected.set(true);
                     prewarmSelected.set(false);
                 } else if (ctrlMode.equals(CtrlMode.Prewarm)) {
-                    shareMemory.ctrlMode.set(CtrlMode.Prewarm);
                     skinSelected.set(false);
                     manualSelected.set(false);
                     prewarmSelected.set(true);

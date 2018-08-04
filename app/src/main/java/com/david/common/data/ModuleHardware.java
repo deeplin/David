@@ -88,15 +88,15 @@ public class ModuleHardware extends ModuleSoftware {
     @Override
     public void accept(Boolean aBoolean, BaseSerialMessage baseSerialMessage) {
         if (aBoolean) {
-            ModuleGetHardwareCommand moduleGetSoftwareCommand = (ModuleGetHardwareCommand) baseSerialMessage;
-            cameraInstalled = moduleGetSoftwareCommand.getCAMERA() == 1;
-            jaundiceInstalled = moduleGetSoftwareCommand.getBLUE() == 1;
-            user = moduleGetSoftwareCommand.getUSER() == 1;
-            inst = moduleGetSoftwareCommand.getINST() == 1;
+            ModuleGetHardwareCommand moduleGetHardwareCommand = (ModuleGetHardwareCommand) baseSerialMessage;
+            cameraInstalled = moduleGetHardwareCommand.getCAMERA() == 1;
+            jaundiceInstalled = moduleGetHardwareCommand.getBLUE() == 1;
+            user = moduleGetHardwareCommand.getUSER() == 1;
+            inst = moduleGetHardwareCommand.getINST() == 1;
 
             //todo
             if(Constant.RELEASE_TO_DAVID) {
-                deviceModel = moduleGetSoftwareCommand.getMODEL();
+                deviceModel = moduleGetHardwareCommand.getMODEL();
             }else{
                 deviceModel = ResourceUtil.getString(R.string.device_model);
             }

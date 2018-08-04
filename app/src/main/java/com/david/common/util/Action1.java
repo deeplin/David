@@ -7,6 +7,6 @@ package com.david.common.util;
  * description:
  */
 
-public interface Action<T> {
+public interface Action1<T> {
     void accept(T t);
 }

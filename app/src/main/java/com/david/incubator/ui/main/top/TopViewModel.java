@@ -157,16 +157,17 @@ public class TopViewModel implements IViewModel {
 
     public void loadUserId() {
         String userString;
-        if (moduleHardware.isUser()) {
+        //todo
+//        if (moduleHardware.isUser()) {
             UserModel userModel = daoControl.getLastUserModel();
             if (userModel != null && userModel.getEndTimeStamp() == 0) {
                 userString = String.format("%s", userModel.getName());
             } else {
                 userString = ResourceUtil.getString(R.string.default_user);
             }
-        } else {
-            userString = "";
-        }
+//        } else {
+//            userString = "";
+//        }
         userId.set(userString);
     }
 

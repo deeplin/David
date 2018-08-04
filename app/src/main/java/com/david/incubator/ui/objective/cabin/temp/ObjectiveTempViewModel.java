@@ -127,14 +127,9 @@ public class ObjectiveTempViewModel extends BaseObjectiveViewModel implements IV
             if (aBoolean) {
                 valueChanged.set(false);
                 messageSender.getCtrlGet(shareMemory);
+                shareMemory.ctrlMode.set(ctrlMode);
                 selectOK.set(false);
-                if (ctrlMode.equals(CtrlMode.Air)) {
-                    shareMemory.ctrlMode.set(CtrlMode.Air);
-                    selectFirst.set(true);
-                } else if (ctrlMode.equals(CtrlMode.Skin)) {
-                    shareMemory.ctrlMode.set(CtrlMode.Skin);
-                    selectFirst.set(false);
-                }
+                selectFirst.set(ctrlMode.equals(CtrlMode.Air));
             }
         });
     }
