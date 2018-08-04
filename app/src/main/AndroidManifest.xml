@@ -43,7 +43,7 @@
             android:name=".incubator.ui.main.MainActivity"
             android:launchMode="singleTask">
             <intent-filter>
-                <action1 android:name="android.intent.action1.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.HOME" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -52,7 +52,7 @@
 
         <receiver android:name=".common.control.BootBroadcastReceiver">
             <intent-filter>
-                <action1 android:name="android.intent.action1.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
 

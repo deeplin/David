@@ -56,14 +56,13 @@ public class ObjectiveTempViewModel extends BaseObjectiveViewModel implements IV
         ctrlModeCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                CtrlMode status = ((ObservableField<CtrlMode>) observable).get();
-                if (Objects.equals(status, CtrlMode.Air)) {
+                if (shareMemory.isAir()) {
                     selectFirst.set(true);
                     valueChanged.set(false);
                     valueField.set(shareMemory.airObjective.get());
                     upperLimit = systemSetting.getAirUpper();
                     lowerLimit = systemSetting.getAirLower();
-                } else if (Objects.equals(status, CtrlMode.Skin)) {
+                } else if (shareMemory.isSkin()) {
                     selectFirst.set(false);
                     valueChanged.set(false);
                     valueField.set(shareMemory.skinObjective.get());

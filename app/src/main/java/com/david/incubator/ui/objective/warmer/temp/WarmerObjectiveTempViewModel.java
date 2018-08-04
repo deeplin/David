@@ -62,8 +62,7 @@ public class WarmerObjectiveTempViewModel implements IViewModel {
         ctrlModeCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                CtrlMode status = ((ObservableField<CtrlMode>) observable).get();
-                if (Objects.equals(status, CtrlMode.Skin)) {
+                if (shareMemory.isSkin()) {
                     skinSelected.set(true);
                     manualSelected.set(false);
                     prewarmSelected.set(false);
@@ -72,7 +71,7 @@ public class WarmerObjectiveTempViewModel implements IViewModel {
                     valueField.set(ViewUtil.formatTempValue(value));
                     upperLimit = systemSetting.getSkinUpper();
                     lowerLimit = systemSetting.getSkinLower();
-                } else if (Objects.equals(status, CtrlMode.Manual)) {
+                } else if (shareMemory.isManual()) {
                     skinSelected.set(false);
                     manualSelected.set(true);
                     prewarmSelected.set(false);
@@ -81,7 +80,7 @@ public class WarmerObjectiveTempViewModel implements IViewModel {
                     valueField.set(String.valueOf(value));
                     upperLimit = 100;
                     lowerLimit = 0;
-                } else if (Objects.equals(status, CtrlMode.Prewarm)) {
+                } else if (shareMemory.isPrewarm()) {
                     skinSelected.set(false);
                     manualSelected.set(false);
                     prewarmSelected.set(true);

@@ -9,7 +9,8 @@ package com.david.common.mode;
 
 public enum CtrlMode {
 
-    Standby("Standby", 0), Prewarm("Prewarm", 1), Skin("Skin", 2), Air("Air", 3), Manual("Manual", 4), None("None", 5), Error("Error", 6);
+    Skin("Skin", 0), Air("Air", 1), Standby("Standby", 2), None("None", 3), Error("Error", 4),
+    Manual("Manual", 11), Prewarm("Prewarm", 12);
 
     private String name;
     private int index;
