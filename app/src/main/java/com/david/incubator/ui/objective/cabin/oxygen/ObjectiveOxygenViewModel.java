@@ -12,27 +12,32 @@ import com.david.incubator.util.ViewUtil;
  */
 public class ObjectiveOxygenViewModel extends ObjectiveHumidityViewModel {
 
-    public ObjectiveOxygenViewModel(){
+    public ObjectiveOxygenViewModel() {
         super();
     }
 
+    @Override
     protected boolean getEnable() {
         return moduleSoftware.isO2();
     }
 
+    @Override
     protected int getValue() {
         return shareMemory.oxygenObjective.get();
     }
 
+    @Override
     protected void setLimit() {
         upperLimit = systemSetting.getOxygenUpper();
         lowerLimit = systemSetting.getOxygenLower();
     }
 
+    @Override
     protected String getFunctionName() {
         return FunctionMode.Oxygen.getName();
     }
 
+    @Override
     protected String getValueString() {
         return ViewUtil.formatOxygenValue(value);
     }

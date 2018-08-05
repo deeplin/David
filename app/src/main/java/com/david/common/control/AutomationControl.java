@@ -1,7 +1,5 @@
 package com.david.common.control;
 
-import android.util.Log;
-
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.Spo2GetCommand;
@@ -188,7 +186,7 @@ public class AutomationControl implements IViewModel {
         }
     }
 
-    public void setLanguageIn2000S(){
+    public void setLanguageIn2000S() {
         SystemSetting sensorRange = daoControl.getSystemSetting();
         if (moduleHardware.is2000S()) {
             messageSender.setLanguage(LanguageMode.values()[sensorRange.getLanguageIndex()].getName(), null);

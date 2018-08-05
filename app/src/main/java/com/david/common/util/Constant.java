@@ -40,6 +40,6 @@ public class Constant {
     public static final int TEMP_370 = 370;
 
     public static final int SERIAL_BUFFER_SIZE = 512;
+    public static final String COM0 = "dev/ttyS0";
     public static final String COM3 = "dev/ttyS3";
-    public static final String COM4 = "dev/ttyS0";
 }

@@ -21,8 +21,8 @@
 
     <!--Objective-->
     <string name="ok">确认</string>
-    <string name="on">开</string>
-    <string name="off">关</string>
+    <string name="on">开启</string>
+    <string name="off">关闭</string>
     <string name="blue_time">光源总计时</string>
     <string name="clockwise">顺计时</string>
     <string name="countdown">倒计时</string>

@@ -1,7 +1,5 @@
 package com.david.common.serial;
 
-import android.util.Log;
-
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.StatusCommand;
@@ -134,9 +132,9 @@ public class SerialControl extends BaseSerialControl {
     private void startRepeatSession() {
         for (BaseSerialMessage serialMessage : repeatSessionMap.values()) {
             long currentTime = TimeUtil.getCurrentTimeInSecond();
-            if(serialMessage instanceof StatusCommand){
+            if (serialMessage instanceof StatusCommand) {
                 ((StatusCommand) serialMessage).setTimeStamp(currentTime);
-            }else if(serialMessage instanceof AnalogCommand){
+            } else if (serialMessage instanceof AnalogCommand) {
                 ((AnalogCommand) serialMessage).setTimeStamp(currentTime);
             }
 

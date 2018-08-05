@@ -34,7 +34,7 @@ public class PrintSerialControl extends BaseSerialControl {
             int parity = 0;
             int stopBits = 1;
             int dataFlow = 0;
-            serialPort = SerialPort.open(Constant.COM4, speed, dataBit, parity, stopBits, dataFlow);
+            serialPort = SerialPort.open(Constant.COM0, speed, dataBit, parity, stopBits, dataFlow);
             if (serialPort == null) {
                 throw new Exception("Error occur in opening serial port.");
             }
