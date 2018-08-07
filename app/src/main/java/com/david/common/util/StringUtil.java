@@ -11,7 +11,12 @@ public class StringUtil {
 
     public static String byteToHex(byte data){
         StringBuilder stringBuilder = new StringBuilder();
-        String hv = Integer.toHexString(data);
+        String hv;
+        if(data >= 0){
+            hv = Integer.toHexString(data);
+        }else{
+            hv = Integer.toHexString(data + 256);
+        }
         if (hv.length() < 2) {
             stringBuilder.append(0);
         }

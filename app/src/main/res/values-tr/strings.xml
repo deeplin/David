@@ -9,12 +9,12 @@
     <string name="ok">OK</string>
     <string name="on">ON</string>
     <string name="off">OFF</string>
-    <string name="blue_time">Işık kaynağı miktar zamanlaması</string>
+    <string name="blue_time">Toplam Işık Zamanlaması</string>
     <string name="clockwise">Saat yönü</string>
     <string name="countdown">Gerisayım</string>
 
     <!--Chart-->
-    <string name="cycle">Dönem</string>
+    <string name="cycle">Aralık</string>
     <string name="skin1">Cilt1</string>
     <string name="skin2">Cilt2</string>
     <string name="mat">Yatak</string>
@@ -34,7 +34,7 @@
     <string name="camera_no_connection">Kamera yok</string>
 
     <!--Scale-->
-    <string name="rescale">Tekrar</string>
+    <string name="rescale">Tekrarlayın</string>
     <string name="scale">Terazi</string>
     <string name="raise_baby">Lütfen bebeği kaldırın...</string>
     <string name="put_down_baby">Lütfen bebeği yerine koyun...</string>
@@ -50,14 +50,14 @@
     <string name="blood_type">Kan grubu</string>
     <string name="birthday">Doğum tarihi</string>
     <string name="birth_weight">Doğum ağırlığı</string>
-    <string name="medical_history">Olay</string>
+    <string name="medical_history">Hasta Geçmişi</string>
     <string name="add_patient">Hasta ekle</string>
 
     <string name="male">Erkek</string>
     <string name="female">Kız</string>
 
     <!--Comfort Zone-->
-    <string name="comfort_zone">Rahat Bölge</string>
+    <string name="comfort_zone">Konforlu Bölüm</string>
     <string name="age">Yaş</string>
     <string name="day">Gün</string>
     <string name="gestation">Gebelik süresi</string>
@@ -76,15 +76,15 @@
     <string name="cancel">İptal</string>
     <string name="calibration_successful">Kalibrasyon başarılı</string>
     <string name="calibration_failed">Kalibrasyon başarısız</string>
-    <string name="time_update">Zaman değişiklik</string>
-    <string name="time_update_confirm">Tarihsel veriler silinecek, değiştirilecek mi?</string>
+    <string name="time_update">Zaman değişiklik ayarı</string>
+    <string name="time_update_confirm">Tarihsel veriler silinecek, Lütfen onaylayın.</string>
 
     <!--Device-->
     <string name="software_information">Yazılım bilgisi</string>
     <string name="hardware_version">Donanım bilgisi</string>
-    <string name="master_version">Ana Sürüm</string>
-    <string name="slave_version">Yardımcı Sürüm</string>
-    <string name="upper_version">Üst Sürüm</string>
+    <string name="master_version">Ana Versiyon</string>
+    <string name="slave_version">Yardımcı Versiyon</string>
+    <string name="upper_version">Üst Versiyon</string>
     <string name="device_id">Cihaz ID'si</string>
 
     <!--Login-->
@@ -94,11 +94,11 @@
     <string name="system_setting">Sistem ayarları</string>
     <!--Home-->
     <string name="deviation_warning">Sapma Uyarısı</string>
-    <string name="overheat_warning">Aşırı Isı Uyarısı</string>
+    <string name="overheat_warning">Aşırı Isınma Uyarısı</string>
     <string name="setting_range">Ayar Aralığı</string>
     <string name="temp_calibration">Ayarlama</string>
     <string name="other_parameter">Diğer</string>
-    <string name="data_print">Çıktı</string>
+    <string name="data_print">Veri Çıktısı</string>
     <string name="factory_setting">Fabrika ayarları</string>
     <string name="overheat_experiment">Aşırı Isınma Testi</string>
 
@@ -127,17 +127,17 @@
     <string name="stable_state">Stabil</string>
 
     <!--User -->
-    <string name="user_setting">Kull. Ayarı</string>
+    <string name="user_setting">Kullanıcı Ayarı</string>
     <string name="patient_information">Hasta Bilgisi</string>
     <string name="time_setup">Zaman Ayarı</string>
     <string name="language_setup">Dil Ayarı</string>
     <string name="warning_volume">Ses Şiddeti</string>
     <string name="screen_luminance">Ekran Parlaklığı</string>
 
-    <string name="delete_user">Hasta Sil</string>
+    <string name="delete_user">Hastayı Sil</string>
     <string name="signs_data">Veri belirtileri</string>
     <string name="video_data">Video Verisi</string>
-    <string name="image_data">Imaj Verisi</string>
+    <string name="image_data">Görüntü Verisi</string>
 
     <!--User -->
     <string name="reset_lower">Sıfırla</string>
@@ -145,18 +145,18 @@
 
     <!--鍛婅-->
     <string name="SYS.PWR">Güc kesintisi</string>
-    <string name="SYS.CON">Seri Bağlantı Mevcut değil</string>
-    <string name="SYS.BCON">Ünitesi ve Sensör Kutusu İletişim Hatası</string>
+    <string name="SYS.CON">Seri Bağlantı yok</string>
+    <string name="SYS.BCON">Kontrol Ünitesi ve Sensör Kutusu İletişim Hatası</string>
 
     <string name="SYS.HA">MCU Bağlantı Hatası</string>
     <string name="SYS.CFG">Yedekleme verileri bozuk</string>
     <string name="SYS.HOOD">Kanopi hatası</string>
-    <string name="SYS.MOTOR">Yükseklik hatası</string>
-    <string name="SYS.DOOR">Kapı hatası</string>
+    <string name="SYS.MOTOR">Yükseltme sistemi hatası</string>
+    <string name="SYS.DOOR">Radyant Kapı hatası</string>
     <string name="SYS.WARM1">Isıtıcı Sistem Hatası</string>
     <string name="SYS.WARM2">Radyant Isıtıcı Sistem Hatası</string>
-    <string name="SYS.MATC">Yatak Isıtıcı Sistemi Arızası</string>
-    <string name="SYS.BOX">Sensör Kutusu Yerleştirilen Hata</string>
+    <string name="SYS.MATC">Yatak Isıtıcı Sistemi Hatası</string>
+    <string name="SYS.BOX">Sensör Kutusu Yerleştirme Hatası</string>
     <string name="SEN.A1">Hava Sensörü Hatası</string>
     <string name="SEN.A2">İzole Hava Sensörü Hatası</string>
     <string name="SEN.ADIF">Hava Sensörleri Fark Hatası</string>
@@ -170,13 +170,13 @@
     <string name="SEN.S2">Cilt Sensörü 2 Hatası</string>
     <string name="SEN.SDIF">Cilt Sensor Fark Hatası</string>
 
-    <string name="SEN.SCALE">Ağırlık ölçek sensörü arıza alarmı</string>
+    <string name="SEN.SCALE">Terazi sensörü Hatası</string>
 
     <string name="AIR.OVH">Aşırı Hava Sıcaklığı Alarmı</string>
 
     <string name="MAT.OVH">Yatak Aşırı Isınma Alarmı</string>
     <string name="SKIN.OVH">Aşırı Cilt Sıcaklığı Alarmı</string>
-    <string name="FLOW.OVH">Hava Sirkülasyon Arızası</string>
+    <string name="FLOW.OVH">Hava Sirkülasyon aşırı ısınma Alarmı</string>
 
     <string name="CTRL.SEN">Cilt Sensörü Pozisyon Hatası</string>
     <string name="SYS.FAN">Motor Arızası</string>
@@ -186,19 +186,19 @@
     <string name="CTRL.ERR1">Cilt Sensörü A\'yı Kontrol et</string>
     <string name="CTRL.ERR2">Cilt Sensörü C\'yi Kontrol et</string>
     <string name="CTRL.MAN">Manuel Modu Kontrol et</string>
-    <string name="SEN.O2_1">O₂ 1. Sensörü Hatası</string>
-    <string name="SEN.O2_2">O₂ 2. Sensörü Hatası</string>
+    <string name="SEN.O2_1">O₂ 1. Sensör Hatası</string>
+    <string name="SEN.O2_2">O₂ 2. Sensör Hatası</string>
     <string name="SEN.O2DIF">O₂ Sensörleri Fark Hatası</string>
 
-    <string name="O2.DEVH">Yüksek Oksijen Alarmı</string>
-    <string name="O2.DEVL">Düşük Oksijen Alarmı</string>
+    <string name="O2.DEVH">Yüksek Oksijen sapma Alarmı</string>
+    <string name="O2.DEVL">Düşük Oksijen sapma Alarmı</string>
     <string name="SEN.SPO2">Pulse Oksimetre Modül Hatası</string>
     <string name="SPO2.ERR">Pulse Oksimetre Sistem Hatası</string>
 
-    <string name="SPO2.BIT12">İletken Tel Bağlı Değil</string>
+    <string name="SPO2.BIT12">Bağlantı Kablosu Bağlı Değil</string>
     <string name="SPO2.BIT0">SpO₂ Sensor Bağlantı Hatası</string>
     <string name="SPO2.BIT1">Pulse Oksimetre Sensör Hatası</string>
-    <string name="SPO2.BIT7">Kan oksijen sensörü tanımıyor</string>
+    <string name="SPO2.BIT7">Pulse oksimetre sensörünü tanımıyor</string>
     <string name="SPO2.BIT5">Pulse Oksimetre Sensörü Takılı değil</string>
     <string name="SPO2.BIT13">Yapışkan Sensör Bağlı Değil</string>
     <string name="SPO2.OVH">SpO₂ Yüksek Alarm Limiti</string>
@@ -206,15 +206,15 @@
     <string name="PR.OVH">Nabız Sayısı Yüksek Alarm Limiti</string>
     <string name="PR.OVL">Nabız Sayısı Düşük Alarm Limiti</string>
 
-    <string name="UNIT.FAN">Denetleyici Fan Arızası Alarmı</string>
+    <string name="UNIT.FAN">Kontrol Ünitesi Fan Arızası Alarmı</string>
 
     <string name="SYS.HUMC">Nem Isıtıcı Sistemi Hatası</string>
     <string name="SEN.HUM">Nem Sensör Hatası</string>
     <string name="SYS.TANK">Su Haznesi Pozisyon Hatası</string>
     <string name="SYS.WATER">Su Az</string>
 
-    <string name="HUM.DEVH">Yüksek Nem Alarmı</string>
-    <string name="HUM.DEVL">Düşük  Nem Alarmı</string>
+    <string name="HUM.DEVH">Yüksek Nem Sapma Alarmı</string>
+    <string name="HUM.DEVL">Düşük  Nem Sapma Alarmı</string>
 
     <string name="SYS.UPS">Pil Hatası</string>
 
@@ -224,5 +224,5 @@
     <string name="SPO2.BIT4">Müdahele algılandı</string>
     <string name="SPO2.BIT6">Cok fazla ortam ışığı</string>
     <string name="SPO2.BIT10">Düsük Sinyal Kalitesi</string>
-    <string name="COM.ERR">Seri arayüz üzerinden ERR dönüşü</string>
+    <string name="COM.ERR">Seri arayüz üzerinden Dönüş ERR</string>
 </resources>

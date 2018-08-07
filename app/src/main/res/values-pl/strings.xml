@@ -31,7 +31,7 @@
     <string name="delete_confirm">Potwierdź usunięcie danych</string>
 
     <!--Camera-->
-    <string name="camera_no_connection">Brak aparatu</string>
+    <string name="camera_no_connection">Podłącz kamerę/aparat</string>
 
     <!--Scale-->
     <string name="rescale">Skaluj</string>
@@ -60,16 +60,16 @@
     <string name="comfort_zone">Strefa komfortu</string>
     <string name="age">Wiek</string>
     <string name="day">Dzień</string>
-    <string name="gestation">Czas ciąży</string>
+    <string name="gestation">Wiek ciążowy</string>
     <string name="week">Tydzień</string>
     <string name="weight">Waga</string>
     <string name="proposed_setting_range">Zalecany zakres ustawień:</string>
 
     <!--Calibration-->
-    <string name="calibration">Kalibracja</string>
+    <string name="calibration">Kalibracja czujnika</string>
     <string name="calibration_o2">Kalibracja O₂</string>
-    <string name="calibration_confirm_o2_21">Potwierdź, czy kalibracja O₂ przy 21%</string>
-    <string name="calibration_confirm_o2_100">Potwierdź, czy kalibracja O₂ przy 100%</string>
+    <string name="calibration_confirm_o2_21">Potwierdź, czy kalibrować przy stężeniu tlenu 21%</string>
+    <string name="calibration_confirm_o2_100">Potwierdź, czy kalibrować przy stężeniu tlenu 100%</string>
     <string name="calibration_scale">Kalibracja wagi.</string>
     <string name="calibration_confirm_scale_0">Aktualna waga %sg \ nProszę potwierdzić, czy waga została skalibrowana na 0g</string>
     <string name="calibration_confirm_scale_5000">Aktualna waga %sg \ nProszę potwierdzić, czy waga została skalibrowana na 5000g</string>
@@ -77,7 +77,7 @@
     <string name="calibration_successful">Kalibracja pomyślna</string>
     <string name="calibration_failed">Kalibracja niepomyślna</string>
     <string name="time_update">Zmiana czasu</string>
-    <string name="time_update_confirm">Dane historyczne zostaną usunięte, zmodyfikowany?</string>
+    <string name="time_update_confirm">Dane historyczne zostaną usunięte. Proszę potwierdzić.</string>
 
     <!--Device-->
     <string name="software_information">Informacje o oprogramowaniu</string>
@@ -137,17 +137,17 @@
     <string name="delete_user">Usunięcie pacjenta</string>
     <string name="signs_data">Znak danych</string>
     <string name="video_data">Dane wideo</string>
-    <string name="image_data">Dane zdjęciowe</string>
+    <string name="image_data">Dane foto</string>
 
     <!--User -->
-    <string name="reset_lower">Nastawić</string>
-    <string name="reset_upper">Zresetuj górny</string>
+    <string name="reset_lower">Zresetuj</string>
+    <string name="reset_upper">Zresetuj całość</string>
 
-    <!--Warning-->
-    <string name="SYS.PWR">Power failure</string>
+    <!--鍛婅-->
+    <string name="SYS.PWR">Awaria zasilania</string>
+    <string name="SYS.BCON">Błąd komunikacji modułu i czujnika</string>
     <string name="SYS.CON">Błąd komunikacji szeregowej</string>
-    <string name="SYS.BCON">Usterka komunikacji skrzynki czujnika</string>
-    <string name="SYS.HA">Błąd komunikacji MCU</string>
+    <string name="SYS.HA">Błąd komunikacji master-slave MCU</string>
     <string name="SYS.CFG">Dane kopii zapasowej są uszkodzone</string>
     <string name="SYS.HOOD">Awaria kopuły</string>
     <string name="SYS.MOTOR">Awaria systemu podnoszenia</string>
@@ -155,73 +155,73 @@
     <string name="SYS.WARM1">Awaria systemu grzewczego</string>
     <string name="SYS.WARM2">Awaria promiennika</string>
 
-    <string name="SYS.MATC">Usterka systemu nagrzewnicy materaca</string>
+    <string name="SYS.MATC">Awaria systemu ogrzewania materaca</string>
     <string name="SYS.BOX">Błąd umieszczenia czujnika</string>
     <string name="SEN.A1">Awaria czujnika temperatury powietrza</string>
-    <string name="SEN.A2">Izolowany błąd czujnika</string>
-    <string name="SEN.ADIF">Błąd różnicy czujnika różnicy temperatur</string>
+    <string name="SEN.A2">Błąd ISO czujnika temperatury zewnętrznej</string>
+    <string name="SEN.ADIF">Błąd różnicy czujników temp. pow.</string>
     <string name="SEN.F1">Błąd czujnika przepływu powietrza</string>
 
-    <string name="SEN.M1">Usterka czujnika materaca</string>
-    <string name="SEN.M2">Izolowany błąd czujnika materaca</string>
-    <string name="SEN.MDIF">Materac Błąd czujnika</string>
+    <string name="SEN.M1">Błąd czujnika temperatury materaca</string>
+    <string name="SEN.M2">Błąd czujnika temperatury otoczenia</string>
+    <string name="SEN.MDIF">Błąd różnicy czujników temp.materaca</string>
 
 
-    <string name="SEN.S1A">Alarm czujnika temperatury skóry 1</string>
-    <string name="SEN.S1B">ISO Błąd czujnika temperatury</string>
-    <string name="SEN.S2">Alarm czujnika temperatury skóry 2</string>
+    <string name="SEN.S1A">Alarm czujnika 1 temperatury skóry</string>
+    <string name="SEN.S1B">ISO Błąd czujnika temperatury skóry</string>
+    <string name="SEN.S2">Alarm czujnika 2 temperatury skóry</string>
     <string name="SEN.SDIF">Błąd różnicy czujnika temperatury skóry</string>
 
-    <string name="SEN.SCALE">Alarm awarii czujnika wagi</string>
+    <string name="SEN.SCALE">Błąd czujnika wagi</string>
 
-    <string name="AIR.OVH">Alarm przegrzania powietrza</string>
+    <string name="AIR.OVH">Alarm przekroczenia temperatury powietrza</string>
 
     <string name="MAT.OVH">Alarm przegrzania materaca</string>
-    <string name="SKIN.OVH">Alarm przegrzania skóry</string>
-    <string name="FLOW.OVH">Alarm przegrzania przepływu powietrza</string>
+    <string name="SKIN.OVH">Alarm przekroczenia temperatury skóry</string>
+    <string name="FLOW.OVH">Alarm przegrzania obiegu powietrza</string>
 
     <string name="CTRL.SEN">Błąd położenia czujnika skóry</string>
-    <string name="SYS.FAN">Błąd silnika</string>
-    <string name="TEMP.DEVH">Alarm górnego odchylenia</string>
-    <string name="TEMP.DEVL">Alarm niższego odchylenia</string>
+    <string name="SYS.FAN">Awaria wentylatora</string>
+    <string name="TEMP.DEVH">Alarm górnego odchylenia temperatury</string>
+    <string name="TEMP.DEVL">Alarm dolnego odchylenia temperatury </string>
 
     <string name="CTRL.ERR1">Sprawdź czujnik skóry A</string>
     <string name="CTRL.ERR2">Sprawdź czujnik skóry C</string>
-    <string name="CTRL.MAN">Sprawdź tryb ręczny</string>
+    <string name="CTRL.MAN">Sprawdź tryb ręczny - przegrzanie</string>
     <string name="SEN.O2_1">Błąd czujnika 1 O₂</string>
     <string name="SEN.O2_2">Błąd czujnika 2 O₂</string>
-    <string name="SEN.O2DIF">Błąd czujników O₂ - pomiar różnicowy</string>
+    <string name="SEN.O2DIF">Błąd różnicy czujników O₂</string>
 
     <string name="O2.DEVH">Alarm odchylenia czujnika O₂ - w górę</string>
     <string name="O2.DEVL">Alarm odchylenia czujnika O₂ - w dół</string>
     <string name="SEN.SPO2">Awaria modułu pomiaru SpO₂</string>
     <string name="SPO2.ERR">Awaria systemu pomiaru SpO₂</string>
 
-    <string name="SPO2.BIT12">Przewód przewodzący nie podłączony</string>
+    <string name="SPO2.BIT12">Kabel przewodzący nie jest podłączony</string>
     <string name="SPO2.BIT0">Błąd połączenia czujnika SpO₂</string>
     <string name="SPO2.BIT1">Awaria czujnika SpO₂</string>
     <string name="SPO2.BIT7">Niemożliwa identyfikacja czujnika SpO₂</string>
-    <string name="SPO2.BIT5">Czujnik SpO₂ podłączony niepoprawnie.</string>
+    <string name="SPO2.BIT5">Czujnik SpO₂ niepodłączony</string>
     <string name="SPO2.BIT13">Czujnik samoprzylepny niepodlączony</string>
     <string name="SPO2.OVH">Górny limit alarmu SpO₂</string>
     <string name="SPO2.OVL">Dolny limit alarmu SpO₂</string>
     <string name="PR.OVH">Górny limit alarmu pulsu</string>
     <string name="PR.OVL">Dolny limit alarmu pulsu</string>
-    <string name="UNIT.FAN">Alarm awarii wentylatora sterownika</string>
+    <string name="UNIT.FAN">Awaria sterownika wentylatora</string>
 
-    <string name="SYS.HUMC">Awaria systemu ogrzewania nawilżacza</string>
-    <string name="SEN.HUM">Awaria czujnika wilgotności</string>
-    <string name="SYS.TANK">Błąd umieszczenia zbiornika na wodę</string>
+    <string name="SYS.HUMC">Awaria systemu nagrzewania nawilżacza</string>
+    <string name="SEN.HUM">Błąd czujnika wilgotności</string>
+    <string name="SYS.TANK">Błąd pozycji zbiornika na wodę</string>
     <string name="SYS.WATER">Alarm braku wody</string>
-    <string name="HUM.DEVH">Alarm odchylenia wilgotności</string>
-    <string name="HUM.DEVL">Alarm odchylenia wilgotności</string>
+    <string name="HUM.DEVH">Alarm wysokiej wilgotności</string>
+    <string name="HUM.DEVL">Alarm niskiej wilgotności</string>
     <string name="SYS.UPS">Błąd akumulatora Ni-MH</string>
 
-    <string name="SPO2.BIT2">Niskie PI</string>
+    <string name="SPO2.BIT2">Niska perfuzja krwi PI</string>
     <string name="SPO2.LOW">SpO₂ poniżej 85%</string>
     <string name="SPO2.BIT3">Szukam tętna</string>
     <string name="SPO2.BIT4">Wykryto zakłócenia</string>
-    <string name="SPO2.BIT6">Za dużo światła zewnętrznego</string>
+    <string name="SPO2.BIT6">Za dużo światła otoczenia</string>
     <string name="SPO2.BIT10">Niska jakość sygnału</string>
-    <string name="COM.ERR">Port szeregowy zwraca ERR</string>
+    <string name="COM.ERR">Błąd transmisji danych</string>
 </resources>
