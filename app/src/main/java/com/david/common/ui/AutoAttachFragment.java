@@ -25,16 +25,6 @@ public abstract class AutoAttachFragment<U extends ViewDataBinding> extends Frag
         super.onDestroyView();
     }
 
-//    @Override
-//    public void onHiddenChanged(boolean hidden) {
-//        super.onHiddenChanged(hidden);
-//        if (hidden) {
-//            detach();
-//        } else {
-//            attach();
-//        }
-//    }
-
     protected abstract int getLayoutId();
 
     protected abstract void init();
