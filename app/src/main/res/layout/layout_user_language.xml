@@ -68,7 +68,6 @@
             style="@style/large_button_style"
             android:isSelected="@{viewModel.russiaSelected}"
             android:text="Russia"
-            android:visibility="invisible"
             app:layout_constraintTop_toTopOf="@id/language_polish_button"
             app:layout_constraintLeft_toLeftOf="@id/language_english_button"/>
 

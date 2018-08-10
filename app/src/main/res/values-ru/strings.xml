@@ -9,11 +9,11 @@
     <string name="on">ВКЛ</string>
     <string name="off">ВЫКЛ</string>
     <string name="blue_time">Общее время работы освещения</string>
-    <string name="clockwise">По часовой стрелке</string>
-    <string name="countdown">Обратный отсчет</string>
+    <string name="clockwise">Старт</string>
+    <string name="countdown">Обр. отсчет</string>
 
     <!--Chart-->
-    <string name="cycle">Период</string>
+    <string name="cycle">Время</string>
     <string name="skin1">Skin1</string>
     <string name="skin2">Skin2</string>
     <string name="mat">Мат.</string>
@@ -35,7 +35,7 @@
     <string name="camera_no_connection">Нет камеры</string>
 
     <!--Scale-->
-    <string name="rescale">Взвесить повторно</string>
+    <string name="rescale">Повторить</string>
     <string name="scale">Взвесить</string>
     <string name="raise_baby">Поднимите младенца...</string>
     <string name="put_down_baby">Опустите младенца...</string>
@@ -50,7 +50,7 @@
     <string name="sex">Пол</string>
     <string name="blood_type">Группа крови</string>
     <string name="birthday">Дата рождения</string>
-    <string name="birth_weight">Масса тела при рождении</string>
+    <string name="birth_weight">Вес при рождении</string>
     <string name="medical_history">Анамнез</string>
     <string name="add_patient">Добавить пациента</string>
 
@@ -81,7 +81,7 @@
     <string name="time_update_confirm">Все данные в журнале будут удалены.\n Подтвердите.</string>
 
     <!--Device-->
-    <string name="software_information">Информация о программном обеспечении</string>
+    <string name="software_information"> Информация о ПО</string>
     <string name="hardware_version">Версия оборудования</string>
     <string name="master_version">Версия главного устройства</string>
     <string name="slave_version">Версия подчиненного устройства</string>
@@ -95,8 +95,8 @@
     <string name="system_setting">Системная настройка</string>
 
     <!--Home-->
-    <string name="deviation_warning">Предупреждение об отклонении</string>
-    <string name="overheat_warning">Предупреждение о перегреве</string>
+    <string name="deviation_warning">Предуп. об отклонении</string>
+    <string name="overheat_warning">Предуп. о перегреве</string>
     <string name="setting_range">Диапазон настройки</string>
     <string name="temp_calibration">Калибровка темп.</string>
     <string name="other_parameter">Другой параметр</string>
@@ -111,7 +111,7 @@
     <!--Overheat Warning-->
     <string name="overheat_air_above_37">Воздух > 37</string>
     <string name="air_flow">Расход воздуха</string>
-    <string name="overheat_airflow_above_37">Расход воздуха > 37</string>
+    <string name="overheat_airflow_above_37">Расход возд.>37</string>
     <string name="fan_speed">Вентилятор</string>
 
     <!--System Calibration-->
@@ -120,11 +120,11 @@
 
     <!--System Print-->
     <string name="print_cycle">Цикл печати</string>
-    <string name="hours">小时</string>
-    <string name="days">天</string>
+    <string name="hours">час</string>
+    <string name="days">день</string>
 
     <!--Overheat Experiment-->
-    <string name="overheat_air_below_37">Воздух ≤37</string>
+    <string name="overheat_air_below_37">Возд.≤37</string>
     <string name="overheat_skin_above_37">Кожа > 37</string>
     <string name="stable_state">Устойчив</string>
 
@@ -136,7 +136,7 @@
     <string name="warning_volume">Громкость предупреждения</string>
     <string name="screen_luminance">Яркость экрана</string>
 
-    <string name="delete_user">Удалить запись пациента</string>
+    <string name="delete_user">Удалить данные</string>
     <string name="signs_data">Подписи на данных</string>
     <string name="video_data">Видеоданные</string>
     <string name="image_data">Данные изображения</string>
@@ -147,74 +147,74 @@
 
     <!--Alarm-->
     <string name="SYS.PWR">Перебой электропитания</string>
-    <string name="SYS.BCON">Обрыв связи между блоком управления и блоком датчиков</string>
-    <string name="SYS.CON">Отсутствует последовательное соединение</string>
+    <string name="SYS.BCON">Нет связи с блоком датчиков</string>
+    <string name="SYS.CON">Нет последовательного соединения</string>
     <string name="SYS.HA">Обрыв связи с микроконтроллером</string>
-    <string name="SYS.CFG">Резервная информация о конфигурации повреждена</string>
+    <string name="SYS.CFG">Резервные данные конф. повреждены</string>
     <string name="SYS.HOOD">Отказ верхней крышки</string>
     <string name="SYS.MOTOR">Отказ подъемного устройства</string>
     <string name="SYS.DOOR">Отказ дверцы теплового излучателя</string>
-    <string name="SYS.WARM1">Отказ системы нагревателя в регуляторе температуры</string>
-    <string name="SYS.WARM2">Отказ системы источника теплового излучения</string>
+    <string name="SYS.WARM1">Отказ системы нагрева</string>
+    <string name="SYS.WARM2">Отказ системы излучателя</string>
     <string name="SYS.MATC">Отказ системы подогрева матраца</string>
 
 
     <string name="SYS.BOX">Ошибка размещения блока датчиков</string>
     <string name="SEN.A1">Отказ датчика воздуха</string>
     <string name="SEN.A2">Отказ независимого датчика</string>
-    <string name="SEN.ADIF">Ошибка отклонения показаний датчика температуры воздуха</string>
+    <string name="SEN.ADIF">Ошибка показаний датчика воздуха</string>
     <string name="SEN.F1">Отказ датчика расхода воздуха</string>
     <string name="SEN.M1">Отказ датчика температуры матраца</string>
-    <string name="SEN.M2">Отказ независимого датчика температуры матраца</string>
-    <string name="SEN.MDIF">Ошибка разности показаний датчиков температуры матраца </string>
+    <string name="SEN.M2">Отказ независимого датчика ложа</string>
+    <string name="SEN.MDIF">Ошибка показаний датчика ложа </string>
 
     <string name="SEN.S1A">Отказ кожного датчика 1 температуры</string>
     <string name="SEN.S1B">Отказ независимого кожного датчика</string>
     <string name="SEN.S2">Отказ кожного датчика 2 температуры</string>
-    <string name="SEN.SDIF">Ошибка разности показаний кожных датчиков</string>
+    <string name="SEN.SDIF">Ошибка показаний датчика пациента</string>
     <string name="SEN.SCALE">Отказ датчика весов</string>
-    <string name="AIR.OVH">Тревога по высокой температуре воздуха</string>
-    <string name="MAT.OVH">Тревога по высокой температуре матраца</string>
+    <string name="AIR.OVH">Высокая температура воздуха</string>
+    <string name="MAT.OVH">Высокая температура ложа</string>
 
     <string name="SKIN.OVH">Тревога по высокой температуре кожи</string>
-    <string name="FLOW.OVH">Тревога по высокой температуре потока воздуха</string>
+    <string name="FLOW.OVH">Высокая температура потока воздуха</string>
     <string name="CTRL.SEN">Ошибка положения кожного датчика</string>
     <string name="SYS.FAN">Отказ двигателя</string>
-    <string name="TEMP.DEVH">Тревога по отклонению верхнего значения температуры</string>
-    <string name="TEMP.DEVL">Тревога по отклонению нижнего значения температуры</string>
+    <string name="TEMP.DEVH">Высокая температура воздуха</string>
+    <string name="TEMP.DEVL">Низкая температура воздуха</string>
     <string name="CTRL.ERR1">Проверьте кожный датчик A</string>
     <string name="CTRL.ERR2">Проверьте кожный датчик C</string>
     <string name="CTRL.MAN">Проверьте ручной режим</string>
     <string name="SEN.O2_1">Отказ датчика 1 O₂</string>
     <string name="SEN.O2_2">Отказ датчика 2 O₂</string>
     <string name="SEN.O2DIF">Ошибка разности показаний датчиковO₂</string>
-    <string name="O2.DEVH">Тревога по отклонению верхнего показания датчика O₂</string>
-    <string name="O2.DEVL">Тревога по отклонению нижнего показания датчика O₂</string>
+    <string name="O2.DEVH">Высокая концентрация O₂</string>
+    <string name="O2.DEVL">Низкая концентрация O₂</string>
     <string name="SEN.SPO2">Отказ модуля пульсоксиметра</string>
     <string name="SPO2.ERR">Отказ системы пульсоксиметра</string>
     <string name="SPO2.BIT12">Проводящий провод не присоединен</string>
     <string name="SPO2.BIT0">Ошибка подключения датчика SpO₂</string>
     <string name="SPO2.BIT1">Отказ датчика пульсоксиметра</string>
     <string name="SPO2.BIT7">Не удается идентифицировать датчик пульсоксиметра</string>
-    <string name="SPO2.BIT5">Датчик пульсоксиметра неправильно закреплен</string>
+    <string name="SPO2.BIT5">Датчик SpO₂ неправильно закреплен</string>
     <string name="SPO2.BIT13">Адгезивный датчик не подключен</string>
     <string name="SPO2.OVH">Верхний предел тревоги поSpO₂</string>
     <string name="SPO2.OVL">Нижний предел тревоги по SpO₂</string>
-    <string name="PR.OVH">Верхний предел тревоги по частоте пульса</string>
-    <string name="PR.OVL">Нижний предел тревоги по частоте пульса</string>
+    <string name="PR.OVH">Высокая частота пульса</string>
+    <string name="PR.OVL">Низкая частота пульса</string>
     <string name="UNIT.FAN">Отказ вентилятора в блоке управления</string>
-    <string name="SYS.HUMC">Отказ системы нагревателя в регуляторе влажности</string>
+    <string name="SYS.HUMC">Отказ увлажнителя</string>
     <string name="SEN.HUM">Отказ датчика влажности</string>
     <string name="SYS.TANK">Ошибка положения резервуара</string>
     <string name="SYS.WATER">Отсутствие воды</string>
-    <string name="HUM.DEVH">Тревога по отклонению верхнего показания датчика влажности</string>
-    <string name="HUM.DEVL">Тревога по отклонению нижнего показания датчика влажности</string>
-    <string name="SYS.UPS">Неисправна никель-металлогидридная батарея</string>
+    <string name="HUM.DEVH">Высокая влажность</string>
+    <string name="HUM.DEVL">Низкая влажность</string>
+    <string name="SYS.UPS">Неисправность Ni-MH батареи</string>
     <string name="SPO2.BIT2">Низк. PI</string>
     <string name="SPO2.LOW">SpO₂ менее 85%%</string>
     <string name="SPO2.BIT3">Найдите пульс</string>
     <string name="SPO2.BIT4">Обнаружена помеха</string>
     <string name="SPO2.BIT6">Слишком яркий свет в помещении</string>
     <string name="SPO2.BIT10">Низкое качество сигнала</string>
-    <string name="COM.ERR">Вернуть ОШИБКУ через последовательный интерфейс</string>
+    <string name="COM.ERR">Вернуть ошибку через посл. интерф.</string>
 </resources>
