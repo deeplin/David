@@ -3,11 +3,9 @@ package com.david.common.data;
 import com.david.R;
 import com.david.common.serial.BaseSerialMessage;
 import com.david.common.serial.command.module.ModuleGetHardwareCommand;
-import com.david.common.serial.command.module.ModuleGetSoftwareCommand;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 
-import java.net.InetAddress;
 import java.util.Objects;
 
 import javax.inject.Inject;
@@ -26,7 +24,6 @@ public class ModuleHardware extends ModuleSoftware {
 
     private boolean cameraInstalled;
     private boolean jaundiceInstalled;
-    private boolean envInstalled;
     private boolean matInstalled;
     private String deviceModel;
     private boolean user;
@@ -85,7 +82,6 @@ public class ModuleHardware extends ModuleSoftware {
             ModuleGetHardwareCommand moduleGetHardwareCommand = (ModuleGetHardwareCommand) baseSerialMessage;
             cameraInstalled = moduleGetHardwareCommand.getCAMERA() == 1;
             jaundiceInstalled = moduleGetHardwareCommand.getBLUE() == 1;
-            envInstalled = moduleGetHardwareCommand.getENV() == 1;
             matInstalled = moduleGetHardwareCommand.getMAT() == 1;
             user = moduleGetHardwareCommand.getUSER() == 1;
             inst = moduleGetHardwareCommand.getINST() == 1;
@@ -130,10 +126,6 @@ public class ModuleHardware extends ModuleSoftware {
 
     public boolean isInst() {
         return inst;
-    }
-
-    public boolean isEnvInstalled() {
-        return envInstalled;
     }
 
     public boolean isMatInstalled() {

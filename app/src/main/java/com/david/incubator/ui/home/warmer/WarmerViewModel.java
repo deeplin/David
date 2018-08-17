@@ -37,7 +37,6 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
     MessageSender messageSender;
 
     public ObservableBoolean spo2Visible = new ObservableBoolean(true);
-    public ObservableBoolean envVisible = new ObservableBoolean();
     public ObservableField<String> manualValue = new ObservableField<>();
     public ObservableBoolean jaundice = new ObservableBoolean();
 
@@ -119,7 +118,6 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
         shareMemory.manObjective.notifyChange();
 
         jaundice.set(moduleHardware.isJaundiceInstalled());
-        envVisible.set(moduleHardware.isEnvInstalled());
     }
 
     @Override

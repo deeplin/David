@@ -35,10 +35,6 @@ android {
         daoPackage 'com.david.common.dao.gen'
         targetGenDir 'src/main/java'
     }
-    buildToolsVersion '27.0.3'
-    dexOptions {
-        incremental true
-    }
 }
 
 dependencies {
