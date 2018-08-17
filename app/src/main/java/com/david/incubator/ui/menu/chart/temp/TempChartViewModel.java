@@ -12,6 +12,7 @@ import com.david.common.dao.gen.AnalogCommandDao;
 import com.david.common.dao.gen.DaoSession;
 import com.david.common.dao.gen.StatusCommandDao;
 import com.david.common.dao.gen.WeightModelDao;
+import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.util.Constant;
@@ -34,6 +35,7 @@ public class TempChartViewModel extends BaseChartViewModel<AnalogCommand> {
 
     public ShareMemory shareMemory;
     private DaoControl daoControl;
+    private ModuleHardware moduleHardware;
 
     public ObservableBoolean skin1Selected = new ObservableBoolean(true);
     public ObservableBoolean skin2Selected = new ObservableBoolean(true);
@@ -47,10 +49,11 @@ public class TempChartViewModel extends BaseChartViewModel<AnalogCommand> {
     private final int skin2Color;
 
     public TempChartViewModel(SensorChartView sensorChartView, PageTurnTable pageTurnTable,
-                              ShareMemory shareMemory, DaoControl daoControl) {
+                              ShareMemory shareMemory, DaoControl daoControl, ModuleHardware moduleHardware) {
         super(new AnalogChartWriter(sensorChartView), pageTurnTable);
         this.shareMemory = shareMemory;
         this.daoControl = daoControl;
+        this.moduleHardware = moduleHardware;
 
         airSeries = new ArrayList<>();
         airColor = ContextCompat.getColor(MainApplication.getInstance(), R.color.c_air);

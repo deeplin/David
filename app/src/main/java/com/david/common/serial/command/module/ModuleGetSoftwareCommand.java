@@ -20,6 +20,7 @@ public class ModuleGetSoftwareCommand extends BaseSerialMessage {
     protected int SCALE;
     protected int CAMERA;
     protected int BLUE;
+
     protected String MODEL;
 
     public ModuleGetSoftwareCommand() {

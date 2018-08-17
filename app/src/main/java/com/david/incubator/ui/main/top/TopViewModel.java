@@ -225,27 +225,29 @@ public class TopViewModel implements IViewModel {
         if (alarmControl.isAlert() && muteDisposable == null) {
             String alarmId = alarmControl.topAlarmId.get();
             int alarmTime = AlarmControl.getMuteTime(alarmId);
-            messageSender.setMute(alarmId, alarmTime, (aBoolean, baseSerialMessage) -> {
-                if (aBoolean) {
-                    /*静音成功*/
-                    synchronized (this) {
-                        clearAlarm();
-                        showMute.set(true);
-                        muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
+            if (alarmTime > 0) {
+                messageSender.setMute(alarmId, alarmTime, (aBoolean, baseSerialMessage) -> {
+                    if (aBoolean) {
+                        /*静音成功*/
+                        synchronized (this) {
+                            clearAlarm();
+                            showMute.set(true);
+                            muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
 
-                        muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe(aLong -> {
-                                    long remaining = alarmTime - aLong;
-                                    if (remaining > 0) {
-                                        muteAlarmField.set(String.format(Locale.US, "%ds", remaining));
-                                    } else {
-                                        clearAlarm();
-                                    }
-                                });
+                            muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe(aLong -> {
+                                        long remaining = alarmTime - aLong;
+                                        if (remaining > 0) {
+                                            muteAlarmField.set(String.format(Locale.US, "%ds", remaining));
+                                        } else {
+                                            clearAlarm();
+                                        }
+                                    });
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     }
 

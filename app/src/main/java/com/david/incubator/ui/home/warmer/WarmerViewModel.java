@@ -37,8 +37,9 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
     MessageSender messageSender;
 
     public ObservableBoolean spo2Visible = new ObservableBoolean(true);
+    public ObservableBoolean envVisible = new ObservableBoolean();
     public ObservableField<String> manualValue = new ObservableField<>();
-    public ObservableBoolean jaundice = new ObservableBoolean(false);
+    public ObservableBoolean jaundice = new ObservableBoolean();
 
     private Observable.OnPropertyChangedCallback warmCallback;
     private Observable.OnPropertyChangedCallback ctrlModeCallback;
@@ -117,9 +118,8 @@ public class WarmerViewModel extends BaseNavigatorModel<WarmerHomeNavigator> {
         shareMemory.warmPower.notifyChange();
         shareMemory.manObjective.notifyChange();
 
-        if(moduleHardware.is93S()){
-            jaundice.set(true);
-        }
+        jaundice.set(moduleHardware.isJaundiceInstalled());
+        envVisible.set(moduleHardware.isEnvInstalled());
     }
 
     @Override

@@ -60,6 +60,10 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     public ObservableInt SC = new ObservableInt(0);
     public ObservableInt PI = new ObservableInt();
     public ObservableInt VU = new ObservableInt();
+    public ObservableInt E1 = new ObservableInt();
+    public ObservableInt M1 = new ObservableInt();
+    public ObservableInt M2 = new ObservableInt();
+
     /*Ctrl Get Command*/
     public ObservableField<CtrlMode> ctrlMode = new ObservableField<>(CtrlMode.Prewarm);
     public ObservableBoolean above37 = new ObservableBoolean(false);
@@ -130,7 +134,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
 
                 //todo to be removed
                 if (!Constant.RELEASE_TO_DAVID)
-                    system = SystemMode.Cabin;
+                    system = SystemMode.Warmer;
                 systemMode.set(system);
 
                 CtrlMode ctrl = ctrlMode.get();
@@ -187,6 +191,9 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
                 SPO2.set(analogCommand.getSP());
                 PR.set(analogCommand.getPR());
                 PI.set(analogCommand.getPI());
+                E1.set(analogCommand.getE1());
+                M1.set(analogCommand.getM1());
+                M2.set(analogCommand.getM2());
             } else if (baseSerialMessage instanceof CtrlGetCommand) {
                 CtrlGetCommand ctrlGetCommand = (CtrlGetCommand) baseSerialMessage;
                 SystemMode system = systemMode.get();

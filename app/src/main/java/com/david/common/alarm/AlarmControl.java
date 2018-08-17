@@ -82,16 +82,34 @@ public class AlarmControl {
                 || Objects.equals(alarmId, "O2.DEVH")
                 || Objects.equals(alarmId, "O2.DEVL")) {
             return 115;
+        } else if (Objects.equals(alarmId, "SEN.SPO2")
+                || Objects.equals(alarmId, "SPO2.ERR")
+                || Objects.equals(alarmId, "SPO2.BIT12")
+                || Objects.equals(alarmId, "SPO2.BIT0")
+                || Objects.equals(alarmId, "SPO2.BIT1")
+                || Objects.equals(alarmId, "SPO2.BIT7")
+                || Objects.equals(alarmId, "SPO2.BIT5")
+                || Objects.equals(alarmId, "SPO2.BIT13")
+                || Objects.equals(alarmId, "SPO2.OVH")
+                || Objects.equals(alarmId, "SPO2.OVL")) {
+            return 60;
+        } else if (Objects.equals(alarmId, "SPO2.BIT2")
+                || Objects.equals(alarmId, "SPO2.LOW")
+                || Objects.equals(alarmId, "SPO2.BIT3")
+                || Objects.equals(alarmId, "SPO2.BIT4")
+                || Objects.equals(alarmId, "SPO2.BIT6")
+                || Objects.equals(alarmId, "SPO2.BIT10")) {
+            return 0;
         } else {
             return 240;
         }
     }
 
-    public static boolean isScaleAlarm(String alarmId){
+    public static boolean isScaleAlarm(String alarmId) {
         return Objects.equals(alarmId, "SEN.SCALE");
     }
 
-    public static boolean isOxygenAlarm(String alarmId){
+    public static boolean isOxygenAlarm(String alarmId) {
         return Objects.equals(alarmId, "SEN.O2_1")
                 || Objects.equals(alarmId, "SEN.O2_2");
     }

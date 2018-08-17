@@ -47,14 +47,17 @@ public class AnalogCommand extends BaseSerialMessage {
     private int T1;
     private int T2;
     private int T3;
+    private int E1;
+    private int M1;
+    private int M2;
 
     @Transient
     private int SC;
 
-    @Generated(hash = 25584125)
+    @Generated(hash = 864143254)
     public AnalogCommand(Long id, long timeStamp, int S1A, int S1B, int S2, int S3, int A1, int A2,
             int A3, int F1, int H1, int O1, int O2, int O3, int SP, int PR, int PI, int VB, int VR,
-            int VU, int T1, int T2, int T3) {
+            int VU, int T1, int T2, int T3, int E1, int M1, int M2) {
         this.id = id;
         this.timeStamp = timeStamp;
         this.S1A = S1A;
@@ -78,6 +81,9 @@ public class AnalogCommand extends BaseSerialMessage {
         this.T1 = T1;
         this.T2 = T2;
         this.T3 = T3;
+        this.E1 = E1;
+        this.M1 = M1;
+        this.M2 = M2;
     }
 
     @Generated(hash = 1330323325)
@@ -279,5 +285,29 @@ public class AnalogCommand extends BaseSerialMessage {
 
     public void setSC(int SC) {
         this.SC = SC;
+    }
+
+    public int getE1() {
+        return E1;
+    }
+
+    public void setE1(int e1) {
+        E1 = e1;
+    }
+
+    public int getM1() {
+        return M1;
+    }
+
+    public void setM1(int m1) {
+        M1 = m1;
+    }
+
+    public int getM2() {
+        return M2;
+    }
+
+    public void setM2(int m2) {
+        M2 = m2;
     }
 }

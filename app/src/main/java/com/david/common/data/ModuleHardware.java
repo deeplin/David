@@ -26,18 +26,12 @@ public class ModuleHardware extends ModuleSoftware {
 
     private boolean cameraInstalled;
     private boolean jaundiceInstalled;
+    private boolean envInstalled;
+    private boolean matInstalled;
     private String deviceModel;
-
-    public boolean isUser() {
-        return user;
-    }
-
-    public boolean isInst() {
-        return inst;
-    }
-
     private boolean user;
     private boolean inst;
+
 
 //    private boolean enableCloud;
 //    private InetAddress cloudServerIP;
@@ -91,13 +85,15 @@ public class ModuleHardware extends ModuleSoftware {
             ModuleGetHardwareCommand moduleGetHardwareCommand = (ModuleGetHardwareCommand) baseSerialMessage;
             cameraInstalled = moduleGetHardwareCommand.getCAMERA() == 1;
             jaundiceInstalled = moduleGetHardwareCommand.getBLUE() == 1;
+            envInstalled = moduleGetHardwareCommand.getENV() == 1;
+            matInstalled = moduleGetHardwareCommand.getMAT() == 1;
             user = moduleGetHardwareCommand.getUSER() == 1;
             inst = moduleGetHardwareCommand.getINST() == 1;
 
             //todo
-            if(Constant.RELEASE_TO_DAVID) {
+            if (Constant.RELEASE_TO_DAVID) {
                 deviceModel = moduleGetHardwareCommand.getMODEL();
-            }else{
+            } else {
                 deviceModel = ResourceUtil.getString(R.string.device_model);
             }
             super.accept(true, baseSerialMessage);
@@ -112,7 +108,7 @@ public class ModuleHardware extends ModuleSoftware {
         }
     }
 
-    public boolean is2000S(){
+    public boolean is2000S() {
         if (Objects.equals(deviceModel, Constant.YP2000S)) {
             return true;
         } else {
@@ -126,5 +122,21 @@ public class ModuleHardware extends ModuleSoftware {
         } else {
             return false;
         }
+    }
+
+    public boolean isUser() {
+        return user;
+    }
+
+    public boolean isInst() {
+        return inst;
+    }
+
+    public boolean isEnvInstalled() {
+        return envInstalled;
+    }
+
+    public boolean isMatInstalled() {
+        return matInstalled;
     }
 }

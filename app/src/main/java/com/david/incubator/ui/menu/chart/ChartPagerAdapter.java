@@ -30,6 +30,7 @@ public class ChartPagerAdapter extends PagerAdapter {
     private PageTurnTable pageTurnTable;
     private ShareMemory shareMemory;
     private ModuleSoftware moduleSoftware;
+    private ModuleHardware moduleHardware;
     private DaoControl daoControl;
 
     private int count;
@@ -43,6 +44,7 @@ public class ChartPagerAdapter extends PagerAdapter {
         this.pageTurnTable = pageTurnTable;
         this.shareMemory = shareMemory;
         this.moduleSoftware = moduleSoftware;
+        this.moduleHardware = moduleHardware;
         this.daoControl = daoControl;
 
         count = 0;
@@ -96,7 +98,7 @@ public class ChartPagerAdapter extends PagerAdapter {
         switch (tabId) {
             case 0:
                 TempChartViewModel chartTempViewModel = new TempChartViewModel(
-                        sensorChartView, pageTurnTable, shareMemory, daoControl);
+                        sensorChartView, pageTurnTable, shareMemory, daoControl, moduleHardware);
                 view = new ChartTempLayout(container.getContext(), chartTempViewModel);
                 break;
             case 1:
