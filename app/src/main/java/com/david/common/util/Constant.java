@@ -31,6 +31,7 @@ public class Constant {
     public static int AXIS_X_DOT_PER_STEP = 10;
 
     public static final int SENSOR_NA_VALUE = -2;
+    public static final byte NA_VALUE = -3;
     public static final String SENSOR_NA_STRING = "NA";
     public static final String SENSOR_DEFAULT_STRING = "--";
     public static final String SENSOR_TEMP_STRING = "--.-";

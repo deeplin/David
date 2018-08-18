@@ -1,4 +1,4 @@
-package com.david.incubator.util;
+package com.david.common.util;
 
 import com.apkfuns.logutils.LogUtils;
 import com.lztek.toolkit.SU;

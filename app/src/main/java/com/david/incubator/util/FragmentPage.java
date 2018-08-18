@@ -37,6 +37,4 @@ public class FragmentPage {
     public static final byte SYSTEM_DATA_PRINT = 36;
     public static final byte SYSTEM_FACTORY = 37;
     public static final byte SYSTEM_OVERHEAT_EXPERIMENT = 38;
-
-    public static final byte MENU_NONE = -1;
 }

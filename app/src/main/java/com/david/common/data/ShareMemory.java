@@ -23,7 +23,6 @@ import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.util.CommandChar;
 import com.david.common.util.Constant;
-import com.david.incubator.util.FragmentPage;
 
 import java.util.Objects;
 
@@ -78,7 +77,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     /*System*/
     public ObservableBoolean lockScreen = new ObservableBoolean(false);
 
-    public ObservableByte currentFragmentID = new ObservableByte(FragmentPage.MENU_NONE);
+    public ObservableByte currentFragmentID = new ObservableByte(Constant.NA_VALUE);
     /*Spo2 Get*/
     public ObservableField<Spo2SensMode> sensMode = new ObservableField<>(Spo2SensMode.Normal);
     public ObservableField<AverageTimeMode> averageTimeMode = new ObservableField<>(AverageTimeMode.Zero);

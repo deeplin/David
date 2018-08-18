@@ -15,7 +15,7 @@ import com.david.common.serial.command.other.LEDCommand;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.common.util.TimeUtil;
-import com.david.incubator.util.GPIOUtil;
+import com.david.common.util.GPIOUtil;
 
 import java.util.concurrent.TimeUnit;
 
