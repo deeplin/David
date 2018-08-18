@@ -6,13 +6,9 @@ import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
-import com.david.common.mode.CtrlMode;
 import com.david.common.ui.BaseNavigatorModel;
-import com.david.common.util.FragmentPage;
-import com.david.common.util.TimeUtil;
+import com.david.incubator.util.FragmentPage;
 import com.david.incubator.util.TimingData;
-
-import java.util.Objects;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

@@ -2,19 +2,17 @@ package com.david.incubator.ui.system.print;
 
 import android.content.Context;
 import android.databinding.ObservableInt;
-import android.view.ViewGroup;
 
 import com.david.R;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSystemPrintBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 /**

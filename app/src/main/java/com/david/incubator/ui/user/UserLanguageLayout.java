@@ -15,7 +15,7 @@ import com.david.common.mode.LanguageMode;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.alarm.AlarmAdapter;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutUserLanguageBinding;
 import com.david.incubator.ui.common.ButtonControlViewModel;

@@ -2,12 +2,11 @@ package com.david.incubator.ui.system.deviation;
 
 import android.content.Context;
 import android.databinding.ObservableInt;
-import android.view.LayoutInflater;
 
 import com.david.R;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSystemDeviationWarningBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 

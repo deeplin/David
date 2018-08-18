@@ -9,7 +9,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutUserHomeBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 

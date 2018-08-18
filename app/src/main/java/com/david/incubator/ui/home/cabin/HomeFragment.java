@@ -1,7 +1,6 @@
 package com.david.incubator.ui.home.cabin;
 
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,7 @@ import com.david.common.mode.FunctionMode;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AnimationUtil;
 import com.david.common.util.AutoUtil;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.FragmentHomeBinding;
 
 import javax.inject.Inject;

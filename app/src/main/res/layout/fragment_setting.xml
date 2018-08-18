@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.david.incubator.ui.setting.SettingHomeFragment" />
+            type="com.david.incubator.ui.setting.SettingFragment" />
     </data>
 
     <!--904*620-->

@@ -5,7 +5,6 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableByte;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
-import android.util.Log;
 
 import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
@@ -24,7 +23,7 @@ import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.util.CommandChar;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 
 import java.util.Objects;
 

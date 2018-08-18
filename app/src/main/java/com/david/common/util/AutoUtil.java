@@ -17,19 +17,7 @@ public class AutoUtil {
 
     public static void setSize(Activity activity, int designWidth, int designHeight) {
 
-        if (activity == null || designWidth < 1 || designHeight < 1)
-            return;
-
         Display display = activity.getWindowManager().getDefaultDisplay();
-//        int width = display.getWidth();
-//        int height = display.getHeight();
-//
-//        if (hasStatusBar) {
-//            height -= getStatusBarHeight(act);
-//        }
-//
-//        AutoUtil.displayWidth = width;
-//        AutoUtil.displayHeight = height;
 
         Point point = new Point();
         display.getRealSize(point);

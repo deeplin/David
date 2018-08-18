@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 
-public abstract class TabHomeLayout<U extends ViewDataBinding> extends AutoAttachConstraintLayout<U> {
+public abstract class TabHomeLayout<U extends ViewDataBinding> extends BindingConstraintLayout<U> {
 
     public TabHomeLayout(Context context) {
         super(context);
@@ -101,6 +101,6 @@ public abstract class TabHomeLayout<U extends ViewDataBinding> extends AutoAttac
         return tab;
     }
 
-    protected void pageSelected(){
+    protected void pageSelected() {
     }
 }

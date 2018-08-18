@@ -16,7 +16,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AutoUtil;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.ActivityMainBinding;
 import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
@@ -27,7 +27,7 @@ import com.david.incubator.ui.menu.scale.ScaleFragment;
 import com.david.incubator.ui.menu.spo2.Spo2Fragment;
 import com.david.incubator.ui.objective.cabin.ObjectiveHomeFragment;
 import com.david.incubator.ui.objective.warmer.WarmerObjectiveHomeFragment;
-import com.david.incubator.ui.setting.SettingHomeFragment;
+import com.david.incubator.ui.setting.SettingFragment;
 
 import javax.inject.Inject;
 
@@ -102,6 +102,10 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         }
         initFragment();
 
+        binding.tlTop.attach();
+        binding.mlMenu.attach();
+        binding.slSide.attach();
+
         binding.avAlarm.attach();
         mainViewModel.attach();
         automationControl.attach();
@@ -118,6 +122,10 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 //        automationControl.detach();
 //        mainViewModel.detach();
 //        binding.avAlarm.detach();
+
+//        binding.slSide.detach();
+//        binding.mlMenu.detach();
+//        binding.tlTop.detach();
     }
 
     @Override
@@ -155,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         fragmentArray = new AutoAttachFragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT + 1];
         fragmentArray[FragmentPage.HOME_FRAGMENT] = new HomeFragment();
         fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT] = new ObjectiveHomeFragment();
-        fragmentArray[FragmentPage.SETTING_FRAGMENT] = new SettingHomeFragment();
+        fragmentArray[FragmentPage.SETTING_FRAGMENT] = new SettingFragment();
         fragmentArray[FragmentPage.CHART_FRAGMENT] = new ChartFragment();
         fragmentArray[FragmentPage.SPO2_FRAGMENT] = new Spo2Fragment();
         fragmentArray[FragmentPage.SCALE_FRAGMENT] = new ScaleFragment();

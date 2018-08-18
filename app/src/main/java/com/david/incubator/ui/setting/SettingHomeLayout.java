@@ -10,7 +10,7 @@ import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.ITabConstraintLayout;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSettingHomeBinding;
 import com.david.incubator.ui.system.SystemHomeLayout;
 import com.david.incubator.ui.system.calibration.SystemCalibrationLayout;

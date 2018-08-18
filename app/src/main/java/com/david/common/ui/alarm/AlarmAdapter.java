@@ -2,7 +2,6 @@ package com.david.common.ui.alarm;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,6 @@ import com.david.common.alarm.AlarmModel;
 import com.david.common.alarm.AlarmPriorityMode;
 import com.david.common.control.MainApplication;
 import com.david.common.serial.command.alert.AlertListCommand;
-import com.david.incubator.ui.main.MainActivity;
 
 import java.util.Objects;
 
@@ -46,9 +44,9 @@ public class AlarmAdapter extends RecyclerView.Adapter<AlarmViewHolder> {
         String alarmId = alarmArray[position];
 
         AlarmModel alarmModel = AlarmControl.getAlarmMode(alarmId);
-        if(alarmModel != null) {
+        if (alarmModel != null) {
             holder.tvAlarm.setText(alarmModel.toString());
-        }else{
+        } else {
             holder.tvAlarm.setText(alarmId);
         }
         if (Objects.equals(alarmModel.getAlarmPriorityMode(), AlarmPriorityMode.High)) {

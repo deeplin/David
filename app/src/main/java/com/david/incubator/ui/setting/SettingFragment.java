@@ -18,7 +18,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SettingHomeFragment extends TabHomeFragment<FragmentSettingBinding> {
+public class SettingFragment extends TabHomeFragment<FragmentSettingBinding> {
 
     @Inject
     public SelectedUser selectedUser;

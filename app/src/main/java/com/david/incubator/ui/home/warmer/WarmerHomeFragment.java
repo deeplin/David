@@ -14,7 +14,7 @@ import com.david.common.mode.FunctionMode;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AnimationUtil;
 import com.david.common.util.AutoUtil;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.WarmerFragmentHomeBinding;
 import com.david.incubator.util.TimingData;
 

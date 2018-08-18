@@ -6,9 +6,9 @@ import android.util.AttributeSet;
 import com.david.R;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
-import com.david.common.ui.AutoAttachConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSideBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -22,7 +22,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class SideLayout extends AutoAttachConstraintLayout<LayoutSideBinding> {
+public class SideLayout extends BindingConstraintLayout<LayoutSideBinding> {
 
     @Inject
     SideViewModel viewModel;

@@ -38,11 +38,13 @@ public class Spo2Fragment extends AutoAttachFragment<FragmentSpo2Binding> implem
     public void attach() {
         binding.sllLeft.attach();
         binding.spo2SurfaceView.attach();
+        binding.spo2SettingLayout.attach();
         messageSender.getSpo2(false, shareMemory);
     }
 
     @Override
     public void detach() {
+        binding.spo2SettingLayout.detach();
         binding.spo2SurfaceView.detach();
         binding.sllLeft.detach();
     }

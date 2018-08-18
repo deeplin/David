@@ -5,14 +5,8 @@ import android.util.AttributeSet;
 
 import com.david.R;
 import com.david.common.control.MainApplication;
-import com.david.common.data.ShareMemory;
-import com.david.common.ui.AutoAttachConstraintLayout;
-import com.david.common.util.Constant;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.databinding.LayoutTopBinding;
-import com.david.incubator.ui.main.MainViewModel;
-import com.jakewharton.rxbinding2.view.RxView;
-
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
@@ -22,7 +16,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class TopLayout extends AutoAttachConstraintLayout<LayoutTopBinding> {
+public class TopLayout extends BindingConstraintLayout<LayoutTopBinding> {
 
     @Inject
     TopViewModel topViewModel;

@@ -13,7 +13,7 @@ import com.david.common.serial.command.other.DigitalCommand;
 import com.david.common.ui.ITabConstraintLayout;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.incubator.ui.common.ButtonControlViewModel;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.david.databinding.LayoutSystemOtherParameterBinding;

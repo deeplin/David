@@ -11,7 +11,7 @@ import com.david.common.control.MainApplication;
 import com.david.common.dao.SystemSetting;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutUserWarningVolumeBinding;
 import com.david.incubator.ui.common.ButtonControlViewModel;
 import com.david.incubator.util.TimingData;

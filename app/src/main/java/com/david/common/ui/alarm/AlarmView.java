@@ -8,14 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.david.R;
 import com.david.common.alarm.AlarmControl;
 import com.david.common.control.MainApplication;
-import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.ui.IViewModel;
 
 import javax.inject.Inject;
@@ -41,10 +38,6 @@ public class AlarmView extends FrameLayout implements IViewModel {
         final RecyclerView recyclerView = findViewById(R.id.rvAlarm);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(alarmAdapter);
-
-        //        recyclerView.addItemDecoration(new DividerItemDecoration(context,
-//                DividerItemDecoration.VERTICAL));
-//        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         alarmCallback = new Observable.OnPropertyChangedCallback() {
             @Override

@@ -9,11 +9,11 @@ import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
-import com.david.common.ui.AutoAttachConstraintLayout;
+import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
 import com.david.databinding.LayoutMenuBinding;
 import com.david.incubator.ui.main.MainViewModel;
+import com.david.incubator.util.FragmentPage;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
@@ -29,7 +29,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * description:
  */
 
-public class MenuLayout extends AutoAttachConstraintLayout<LayoutMenuBinding> {
+public class MenuLayout extends BindingConstraintLayout<LayoutMenuBinding> {
 
     @Inject
     MenuViewModel menuViewModel;

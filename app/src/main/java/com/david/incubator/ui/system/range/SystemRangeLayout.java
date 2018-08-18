@@ -6,7 +6,7 @@ import android.databinding.ObservableInt;
 import com.david.R;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.FragmentPage;
+import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSystemRangeBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 

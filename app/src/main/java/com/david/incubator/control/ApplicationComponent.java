@@ -56,7 +56,7 @@ import com.david.incubator.ui.objective.warmer.timing.WarmerObjectiveTimingLayou
 import com.david.incubator.ui.setting.SettingAddUserLayout;
 import com.david.incubator.ui.setting.SettingCalibrationLayout;
 import com.david.incubator.ui.setting.SettingDeviceLayout;
-import com.david.incubator.ui.setting.SettingHomeFragment;
+import com.david.incubator.ui.setting.SettingFragment;
 import com.david.incubator.ui.setting.SettingIntroductionLayout;
 import com.david.incubator.ui.system.calibration.SystemCalibrationViewModel;
 import com.david.incubator.ui.system.deviation.SystemDeviationViewModel;
@@ -232,7 +232,7 @@ public interface ApplicationComponent {
 
     void inject(UserTimeLayout userTimeLayout);
 
-    void inject(SettingHomeFragment settingHomeFragment);
+    void inject(SettingFragment settingFragment);
 
     void inject(DaoControl daoControl);
 

@@ -1,4 +1,4 @@
-package com.david.common.util;
+package com.david.incubator.util;
 
 /**
  * author: Ling Lin
