@@ -12,8 +12,8 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.util.AutoUtil;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.TimingData;
 
 import javax.inject.Inject;

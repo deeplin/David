@@ -1,9 +1,9 @@
 package com.david.incubator.ui.menu.scale;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentScaleBinding;
+import com.david.incubator.control.MainApplication;
 
 import javax.inject.Inject;
 

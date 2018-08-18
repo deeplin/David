@@ -1,7 +1,6 @@
 package com.david.incubator.control;
 
 import com.david.common.control.AutomationControl;
-import com.david.common.control.MainApplication;
 import com.david.incubator.ui.main.side.SideViewModel;
 import com.david.incubator.ui.main.top.TopViewModel;
 

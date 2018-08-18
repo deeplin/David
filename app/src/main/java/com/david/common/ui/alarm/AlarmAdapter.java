@@ -10,8 +10,8 @@ import com.david.R;
 import com.david.common.alarm.AlarmControl;
 import com.david.common.alarm.AlarmModel;
 import com.david.common.alarm.AlarmPriorityMode;
-import com.david.common.control.MainApplication;
 import com.david.common.serial.command.alert.AlertListCommand;
+import com.david.incubator.control.MainApplication;
 
 import java.util.Objects;
 

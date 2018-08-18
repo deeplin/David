@@ -9,19 +9,18 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.spo2.Spo2WaveCommand;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.AutoUtil;
 import com.david.common.util.Pair;
 import com.david.common.util.StringUtil;
+import com.david.incubator.control.MainApplication;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,10 +2,9 @@ package com.david.incubator.ui.menu;
 
 import android.databinding.ObservableBoolean;
 
-import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
-import com.david.incubator.ui.main.MainViewModel;
+import com.david.incubator.control.MainApplication;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

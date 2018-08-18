@@ -6,28 +6,13 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.SystemSetting;
-import com.david.common.dao.WeightModel;
-import com.david.common.dao.gen.DaoMaster;
-import com.david.common.dao.gen.DaoSession;
-import com.david.common.dao.gen.WeightModelDao;
-import com.david.common.util.TimeUtil;
-import com.david.incubator.control.ApplicationComponent;
-import com.david.incubator.control.IncubatorApplication;
-import com.david.incubator.ui.main.MainActivity;
 
-import org.greenrobot.greendao.database.Database;
-import org.greenrobot.greendao.query.QueryBuilder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
-
-import javax.inject.Singleton;
-
-import dagger.Component;
 
 import static org.junit.Assert.assertEquals;
 

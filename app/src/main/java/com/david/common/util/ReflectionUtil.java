@@ -2,7 +2,7 @@ package com.david.common.util;
 
 import android.content.Context;
 
-import com.david.common.control.MainApplication;
+import com.david.incubator.control.MainApplication;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;

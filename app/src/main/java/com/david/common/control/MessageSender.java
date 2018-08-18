@@ -27,6 +27,7 @@ import com.david.common.serial.command.other.LEDCommand;
 import com.david.common.serial.command.other.LanguageCommand;
 import com.david.common.serial.command.other.VersionCommand;
 import com.david.common.serial.command.spo2.Spo2SetCommand;
+import com.david.incubator.control.MainApplication;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

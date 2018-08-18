@@ -3,11 +3,11 @@ package com.david.incubator.ui.objective.warmer;
 import android.view.ViewGroup;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentObjectiveBinding;
+import com.david.incubator.control.MainApplication;
 
 import javax.inject.Inject;
 

@@ -2,11 +2,11 @@ package com.david.incubator.ui.menu.scale.chart;
 
 
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.WeightModel;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.common.util.TimeUtil;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.menu.chart.IChartViewModel;
 import com.david.incubator.ui.menu.chart.SensorChartView;
 import com.david.incubator.ui.menu.chart.chartview.BaseChartViewWriter;

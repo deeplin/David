@@ -3,10 +3,10 @@ package com.david.incubator.ui.objective.warmer.timing;
 import android.content.Context;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.WarmerLayoutObjectiveTimingBinding;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.TimingData;
 import com.jakewharton.rxbinding2.view.RxView;
 

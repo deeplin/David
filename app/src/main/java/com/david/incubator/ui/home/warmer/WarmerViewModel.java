@@ -4,17 +4,15 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.BaseNavigatorModel;
-import com.david.common.util.Constant;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.ViewUtil;
 
 import java.util.Locale;
-import java.util.Objects;
 
 import javax.inject.Inject;
 

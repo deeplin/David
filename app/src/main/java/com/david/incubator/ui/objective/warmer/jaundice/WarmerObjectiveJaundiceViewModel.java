@@ -5,10 +5,10 @@ import android.databinding.ObservableField;
 
 import com.david.R;
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.SystemSetting;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.ResourceUtil;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.home.warmer.JaunediceData;
 import com.david.incubator.util.ViewUtil;
 

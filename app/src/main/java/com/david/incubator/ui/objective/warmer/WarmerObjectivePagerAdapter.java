@@ -4,8 +4,8 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.objective.cabin.pr.ObjectivePrViewModel;
 import com.david.incubator.ui.objective.cabin.spo2.ObjectiveSpo2Layout;
 import com.david.incubator.ui.objective.cabin.spo2.ObjectiveSpo2ViewModel;

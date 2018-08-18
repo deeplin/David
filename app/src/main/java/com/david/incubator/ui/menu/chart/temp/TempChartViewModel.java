@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat;
 
 import com.david.R;
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.gen.AnalogCommandDao;
 import com.david.common.dao.gen.DaoSession;
@@ -16,6 +15,7 @@ import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.util.Constant;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.menu.chart.BaseChartViewModel;
 import com.david.incubator.ui.menu.chart.SensorChartView;
 import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;

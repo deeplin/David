@@ -6,7 +6,7 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
 
-import com.david.common.control.MainApplication;
+import com.david.incubator.control.MainApplication;
 
 import java.util.Locale;
 

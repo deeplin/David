@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
@@ -14,6 +13,7 @@ import com.david.common.mode.FunctionMode;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AnimationUtil;
 import com.david.common.util.AutoUtil;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
 import com.david.databinding.WarmerFragmentHomeBinding;
 import com.david.incubator.util.TimingData;

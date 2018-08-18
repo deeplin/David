@@ -4,11 +4,11 @@ import android.content.Context;
 import android.databinding.Observable;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.databinding.LayoutScaleChartBinding;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
 import com.david.incubator.ui.menu.scale.ScaleViewModel;
 import com.david.incubator.util.ViewUtil;

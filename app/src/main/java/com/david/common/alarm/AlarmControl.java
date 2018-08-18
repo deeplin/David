@@ -4,10 +4,10 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
 import com.apkfuns.logutils.LogUtils;
-import com.david.common.control.MainApplication;
 import com.david.common.util.FileUtil;
 import com.david.common.util.ReflectionUtil;
 import com.david.common.util.ResourceUtil;
+import com.david.incubator.control.MainApplication;
 
 import java.util.HashMap;
 import java.util.Map;

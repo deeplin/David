@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.widget.Button;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.AverageTimeMode;
 import com.david.common.ui.IViewModel;
+import com.david.incubator.control.MainApplication;
 
 import javax.inject.Inject;
 

@@ -7,15 +7,14 @@ import android.view.ViewGroup;
 
 import com.david.R;
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabHomeLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutChartBinding;
 import com.david.common.data.SelectedUser;
+import com.david.incubator.control.MainApplication;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.Calendar;

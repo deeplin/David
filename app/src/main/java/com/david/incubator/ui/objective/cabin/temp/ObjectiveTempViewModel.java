@@ -2,11 +2,9 @@ package com.david.incubator.ui.objective.cabin.temp;
 
 import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
-import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.dao.SystemSetting;
 import com.david.common.data.ShareMemory;
@@ -14,9 +12,8 @@ import com.david.common.mode.CtrlMode;
 import com.david.common.mode.SystemMode;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.objective.cabin.BaseObjectiveViewModel;
-
-import java.util.Objects;
 
 import javax.inject.Inject;
 

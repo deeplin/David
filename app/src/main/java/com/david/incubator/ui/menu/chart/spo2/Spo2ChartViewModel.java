@@ -2,10 +2,10 @@ package com.david.incubator.ui.menu.chart.spo2;
 
 import android.support.v4.content.ContextCompat;
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.util.Constant;
 import com.david.common.util.SensorRange;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.menu.chart.BaseChartViewModel;
 import com.david.incubator.ui.menu.chart.SensorChartView;
 import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;

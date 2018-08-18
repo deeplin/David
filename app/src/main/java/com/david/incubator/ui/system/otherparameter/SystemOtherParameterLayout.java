@@ -5,7 +5,6 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.StatusCommand;
 import com.david.common.serial.SerialControl;
@@ -13,6 +12,7 @@ import com.david.common.serial.command.other.DigitalCommand;
 import com.david.common.ui.ITabConstraintLayout;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
 import com.david.incubator.ui.common.ButtonControlViewModel;
 import com.jakewharton.rxbinding2.view.RxView;

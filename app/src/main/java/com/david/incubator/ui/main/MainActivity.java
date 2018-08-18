@@ -11,12 +11,12 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AutoUtil;
 import com.david.databinding.ActivityMainBinding;
 import com.david.incubator.control.IncubatorAutomationControl;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
 import com.david.incubator.ui.menu.MenuViewModel;

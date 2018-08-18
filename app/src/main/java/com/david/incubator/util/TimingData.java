@@ -7,8 +7,8 @@ import android.support.annotation.NonNull;
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.SystemSetting;
+import com.david.incubator.control.MainApplication;
 
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;

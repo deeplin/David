@@ -5,7 +5,6 @@ import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.dao.SystemSetting;
 import com.david.common.data.ModuleSoftware;
@@ -14,6 +13,7 @@ import com.david.common.mode.AlarmSettingMode;
 import com.david.common.mode.FunctionMode;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.objective.cabin.BaseObjectiveViewModel;
 import com.david.incubator.util.ViewUtil;
 

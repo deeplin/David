@@ -8,7 +8,6 @@ import android.databinding.ObservableInt;
 import com.david.R;
 import com.david.common.alarm.AlarmControl;
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.dao.UserModel;
 import com.david.common.data.ModuleHardware;
@@ -18,6 +17,7 @@ import com.david.common.mode.SystemMode;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
+import com.david.incubator.control.MainApplication;
 
 import java.util.Locale;
 import java.util.Objects;

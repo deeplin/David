@@ -4,10 +4,10 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSideBinding;
 import com.jakewharton.rxbinding2.view.RxView;

@@ -3,11 +3,11 @@ package com.david.incubator.ui.objective.warmer.temp;
 import android.content.Context;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.mode.CtrlMode;
 import com.david.common.ui.FastIncreaseConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.WarmerLayoutObjectiveTempBinding;
+import com.david.incubator.control.MainApplication;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;

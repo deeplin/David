@@ -4,17 +4,16 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.View;
 
 import com.david.R;
 import com.david.common.alarm.AlarmControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.WeightModel;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.SensorRange;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.menu.chart.IChartViewModel;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
 import com.david.incubator.ui.menu.chart.SensorChartView;
@@ -25,7 +24,6 @@ import java.util.Locale;
 
 import javax.inject.Inject;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 public class ScaleChartViewModel implements IViewModel, IRefreshableViewModel, IChartViewModel<WeightModel> {

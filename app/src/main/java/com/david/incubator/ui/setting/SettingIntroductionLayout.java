@@ -4,10 +4,10 @@ import android.content.Context;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.databinding.LayoutSettingIntroductionBinding;
+import com.david.incubator.control.MainApplication;
 import com.github.barteksc.pdfviewer.PDFView;
 
 import javax.inject.Inject;

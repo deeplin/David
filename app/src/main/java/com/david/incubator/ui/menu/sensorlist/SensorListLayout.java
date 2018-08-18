@@ -5,13 +5,13 @@ import android.util.AttributeSet;
 import android.view.animation.AlphaAnimation;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.mode.CtrlMode;
 import com.david.common.mode.SystemMode;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.AnimationUtil;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSensorListBinding;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.ViewUtil;
 
 import java.util.Objects;
@@ -33,8 +33,8 @@ public class SensorListLayout extends BindingConstraintLayout<LayoutSensorListBi
 
     public SensorListLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        animation = AnimationUtil.getAlphaAnimation();
         MainApplication.getInstance().getApplicationComponent().inject(this);
+        animation = AnimationUtil.getAlphaAnimation();
         binding.setViewModel(viewModel);
     }
 

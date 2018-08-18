@@ -8,7 +8,6 @@ import android.databinding.ObservableInt;
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.CtrlGetCommand;
 import com.david.common.dao.StatusCommand;
@@ -21,9 +20,9 @@ import com.david.common.dao.gen.WeightModelDao;
 import com.david.common.data.ModuleHardware;
 import com.david.common.serial.PrintSerialControl;
 import com.david.common.serial.command.other.PrintCommand;
-import com.david.common.util.LogUtil;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.common.ButtonControlViewModel;
 import com.david.incubator.util.ViewUtil;
 

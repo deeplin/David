@@ -2,11 +2,11 @@ package com.david.incubator.ui.main;
 
 import android.databinding.Observable;
 
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.BaseNavigatorModel;
 import com.david.incubator.control.IncubatorAutomationControl;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
 import com.david.incubator.util.TimingData;
 

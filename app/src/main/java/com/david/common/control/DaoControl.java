@@ -25,6 +25,7 @@ import com.david.common.mode.LanguageMode;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
+import com.david.incubator.control.MainApplication;
 
 import org.greenrobot.greendao.database.Database;
 import org.greenrobot.greendao.query.QueryBuilder;

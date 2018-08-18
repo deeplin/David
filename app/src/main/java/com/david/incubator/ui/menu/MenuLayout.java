@@ -5,13 +5,13 @@ import android.databinding.Observable;
 import android.util.AttributeSet;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.LayoutMenuBinding;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.main.MainViewModel;
 import com.david.incubator.util.FragmentPage;
 import com.jakewharton.rxbinding2.view.RxView;

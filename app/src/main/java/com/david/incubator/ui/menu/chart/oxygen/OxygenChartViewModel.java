@@ -3,12 +3,12 @@ package com.david.incubator.ui.menu.chart.oxygen;
 import android.support.v4.content.ContextCompat;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.data.ModuleSoftware;
 import com.david.common.data.ShareMemory;
 import com.david.common.util.Constant;
 import com.david.common.util.SensorRange;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.menu.chart.BaseChartViewModel;
 import com.david.incubator.ui.menu.chart.SensorChartView;
 import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;

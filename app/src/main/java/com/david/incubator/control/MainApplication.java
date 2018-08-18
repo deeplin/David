@@ -1,12 +1,12 @@
 package com.david.incubator.control;
 
+import android.app.Application;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.SerialMessageParser;
@@ -17,7 +17,7 @@ import com.wanjian.cockroach.Cockroach;
 
 import javax.inject.Inject;
 
-public class IncubatorApplication extends MainApplication {
+public class MainApplication extends Application{
 
     @Inject
     ModuleHardware moduleHardware;
@@ -34,17 +34,41 @@ public class IncubatorApplication extends MainApplication {
 //    @Inject
 //    CloudMessageParser cloudMessageParser;
 
+    private static MainApplication application;
+
+    private ApplicationComponent applicationComponent;
+
+    public static MainApplication getInstance() {
+        return application;
+    }
+
+    public ApplicationComponent getApplicationComponent() {
+        return applicationComponent;
+    }
+
     @Override
-    protected void start() {
+    public void onCreate() {
+        super.onCreate();
+        application = this;
+        applicationComponent = DaggerApplicationComponent.builder().build();
+        MainApplication.getInstance().getApplicationComponent().inject(this);
+        start();
+    }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+    }
+
+    private void start() {
         Cockroach.install((thread, throwable) -> new Handler(Looper.getMainLooper()).post(() -> {
             try {
                 LogUtils.e("--->CockroachException:" + thread + "<---", throwable);
                 LogUtils.e(throwable);
-                Toast.makeText(IncubatorApplication.this, "Exception \n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainApplication.this, "Exception \n" + thread + "\n" + throwable.toString(), Toast.LENGTH_SHORT).show();
             } catch (Throwable e) {
             }
         }));
-        MainApplication.getInstance().getApplicationComponent().inject(this);
 
         try {
             LogUtil.EnableLog();
@@ -73,7 +97,6 @@ public class IncubatorApplication extends MainApplication {
         }
     }
 
-    @Override
     public void stop() {
         try {
             serialControl.stop();

@@ -7,12 +7,12 @@ import android.view.View;
 import android.widget.Button;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.CommandChar;
 import com.david.common.util.Constant;
+import com.david.incubator.control.MainApplication;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;

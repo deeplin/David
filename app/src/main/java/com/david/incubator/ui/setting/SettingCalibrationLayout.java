@@ -8,7 +8,6 @@ import android.databinding.ObservableField;
 
 import com.david.R;
 import com.david.common.alarm.AlarmControl;
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.ModuleSoftware;
@@ -17,6 +16,7 @@ import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSettingCalibrationBinding;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 

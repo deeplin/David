@@ -1,7 +1,6 @@
 package com.david.incubator.control;
 
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.alarm.AlarmAdapter;
@@ -90,8 +89,6 @@ import dagger.Component;
 public interface ApplicationComponent {
 
     void inject(MainApplication mainApplication);
-
-    void inject(IncubatorApplication incubatorApplication);
 
     void inject(TopLayout topLayout);
 

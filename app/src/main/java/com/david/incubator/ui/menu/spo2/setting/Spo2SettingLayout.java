@@ -4,10 +4,10 @@ import android.content.Context;
 import android.util.AttributeSet;
 
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabHomeLayout;
 import com.david.databinding.LayoutSpo2SettingBinding;
+import com.david.incubator.control.MainApplication;
 
 import javax.inject.Inject;
 

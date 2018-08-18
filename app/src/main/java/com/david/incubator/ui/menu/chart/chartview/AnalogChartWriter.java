@@ -1,8 +1,8 @@
 package com.david.incubator.ui.menu.chart.chartview;
 
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.AnalogCommand;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.menu.chart.IChartViewModel;
 import com.david.incubator.ui.menu.chart.SensorChartView;
 

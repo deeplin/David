@@ -1,13 +1,11 @@
 package com.david.incubator.ui.setting;
 
-import android.util.Log;
-
 import com.david.R;
-import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.SelectedUser;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentSettingBinding;
+import com.david.incubator.control.MainApplication;
 
 import javax.inject.Inject;
 

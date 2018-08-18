@@ -6,10 +6,10 @@ import android.databinding.ObservableInt;
 
 import com.david.R;
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.SystemSetting;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.IViewModel;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.common.ButtonControlViewModel;
 import com.david.incubator.ui.common.KeyValueViewModel;
 import com.david.incubator.util.ViewUtil;

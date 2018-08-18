@@ -6,11 +6,11 @@ import android.databinding.ObservableInt;
 
 import com.david.R;
 import com.david.common.control.DaoControl;
-import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
 import com.david.common.data.SelectedUser;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
+import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutUserModelDetailBinding;

@@ -7,7 +7,6 @@ import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 
 import com.david.common.alarm.AlarmControl;
-import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.dao.AnalogCommand;
 import com.david.common.dao.CtrlGetCommand;
@@ -23,6 +22,7 @@ import com.david.common.serial.command.alert.AlertGetCommand;
 import com.david.common.serial.command.alert.AlertListCommand;
 import com.david.common.util.CommandChar;
 import com.david.common.util.Constant;
+import com.david.incubator.control.MainApplication;
 
 import java.util.Objects;
 
