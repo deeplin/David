@@ -16,7 +16,6 @@ public class FragmentPage {
     public static final byte CAMERA_FRAGMENT = 5;
     public static final byte SETTING_FRAGMENT = 6;
     public static final byte SETTING_LOGIN = 7;
-
     public static final byte WARMER_HOME_FRAGMENT = 8;
     public static final byte WARMER_OBJECTIVE_FRAGMENT = 9;
 

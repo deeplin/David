@@ -168,7 +168,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
         fragmentArray[FragmentPage.SPO2_FRAGMENT] = new Spo2Fragment();
         fragmentArray[FragmentPage.SCALE_FRAGMENT] = new ScaleFragment();
         fragmentArray[FragmentPage.CAMERA_FRAGMENT] = new CameraFragment();
-
         fragmentArray[FragmentPage.WARMER_HOME_FRAGMENT] = new WarmerHomeFragment();
         fragmentArray[FragmentPage.WARMER_OBJECTIVE_FRAGMENT] = new WarmerObjectiveHomeFragment();
 
