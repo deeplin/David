@@ -2,6 +2,7 @@ package com.david.common.ui;
 
 import android.databinding.BindingAdapter;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 /**
@@ -21,5 +22,13 @@ public class DataBindingAdapter {
     @BindingAdapter("android:imageSrc")
     public static void setImageSrc(ImageView imageView, int resource) {
         imageView.setImageResource(resource);
+    }
+
+    @BindingAdapter("android:layout_margin")
+    public static void setMargin(View view, float margin) {
+        ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+        layoutParams.setMargins(Math.round(margin), Math.round(margin), Math.round(margin),
+                Math.round(margin));
+        view.setLayoutParams(layoutParams);
     }
 }

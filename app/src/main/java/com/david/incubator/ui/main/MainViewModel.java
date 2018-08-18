@@ -2,11 +2,11 @@ package com.david.incubator.ui.main;
 
 import android.databinding.Observable;
 
-import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.BaseNavigatorModel;
+import com.david.incubator.control.IncubatorAutomationControl;
 import com.david.incubator.util.FragmentPage;
 import com.david.incubator.util.TimingData;
 
@@ -27,7 +27,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
     @Inject
     MessageSender messageSender;
     @Inject
-    AutomationControl automationControl;
+    IncubatorAutomationControl incubatorAutomationControl;
     @Inject
     TimingData timingData;
 
@@ -54,7 +54,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                     shareMemory.lockScreen.set(true);
                     timingData.stop();
                 }
-                automationControl.initializeTimeOut();
+                incubatorAutomationControl.initializeTimeOut();
             }
         };
 
@@ -75,7 +75,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                 if (status) {
                     shareMemory.enableAlertList.set(false);
                 } else {
-                    automationControl.initializeTimeOut();
+                    incubatorAutomationControl.initializeTimeOut();
                 }
 
                 //刷新系统状态

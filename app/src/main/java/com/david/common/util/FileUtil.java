@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.res.AssetManager;
 
 import com.apkfuns.logutils.LogUtils;
+import com.david.common.control.DaoControl;
+import com.david.common.dao.SystemSetting;
+import com.david.common.mode.LanguageMode;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Locale;
 
 /**
  * author: Ling Lin
@@ -87,6 +91,24 @@ public class FileUtil {
             }
             inputStream.close();
             fileOutputStream.close();
+        }
+    }
+
+    public static void setLanguage(Context context, DaoControl daoControl) {
+        SystemSetting sensorRange = daoControl.getSystemSetting();
+        if (sensorRange.getLanguageIndex() == LanguageMode.English.getIndex()) {
+            ResourceUtil.setLocalLanguage(context, Locale.ENGLISH);
+        } else if (sensorRange.getLanguageIndex() == LanguageMode.Chinese.getIndex()) {
+            ResourceUtil.setLocalLanguage(context, Locale.SIMPLIFIED_CHINESE);
+        } else if (sensorRange.getLanguageIndex() == LanguageMode.Turkish.getIndex()) {
+            Locale turkish = new Locale("tr", "TR");
+            ResourceUtil.setLocalLanguage(context, turkish);
+        } else if (sensorRange.getLanguageIndex() == LanguageMode.Polish.getIndex()) {
+            Locale spanish = new Locale("pl", "PL");
+            ResourceUtil.setLocalLanguage(context, spanish);
+        } else if (sensorRange.getLanguageIndex() == LanguageMode.Russia.getIndex()) {
+            Locale russia = new Locale("ru", "RU");
+            ResourceUtil.setLocalLanguage(context, russia);
         }
     }
 }

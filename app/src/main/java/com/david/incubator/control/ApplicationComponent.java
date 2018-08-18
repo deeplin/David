@@ -1,6 +1,5 @@
 package com.david.incubator.control;
 
-import com.david.common.control.AutomationControl;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.control.MessageSender;
@@ -16,18 +15,19 @@ import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
 import com.david.incubator.ui.home.warmer.WarmerViewModel;
 import com.david.incubator.ui.main.MainActivity;
 import com.david.incubator.ui.main.MainViewModel;
-import com.david.incubator.ui.menu.scale.ScaleFragment;
-import com.david.incubator.ui.menu.scale.ScaleViewModel;
 import com.david.incubator.ui.main.side.SideLayout;
 import com.david.incubator.ui.main.side.SideViewModel;
 import com.david.incubator.ui.main.top.TopLayout;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
+import com.david.incubator.ui.menu.chart.ChartLayout;
 import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;
 import com.david.incubator.ui.menu.chart.chartview.StatusChartWriter;
 import com.david.incubator.ui.menu.chart.table.AnalogDataRetriever;
 import com.david.incubator.ui.menu.chart.table.StatusDataRetriever;
+import com.david.incubator.ui.menu.scale.ScaleFragment;
+import com.david.incubator.ui.menu.scale.ScaleViewModel;
 import com.david.incubator.ui.menu.scale.chart.ScaleChartLayout;
 import com.david.incubator.ui.menu.scale.chart.ScaleChartViewModel;
 import com.david.incubator.ui.menu.scale.chart.ScaleChartWriter;
@@ -63,15 +63,14 @@ import com.david.incubator.ui.system.deviation.SystemDeviationViewModel;
 import com.david.incubator.ui.system.factory.SystemFactoryLayout;
 import com.david.incubator.ui.system.otherparameter.SystemOtherParameterLayout;
 import com.david.incubator.ui.system.overheat.SystemOverheatViewModel;
-import com.david.incubator.ui.user.UserHomeLayout;
-import com.david.incubator.ui.user.UserOverheatExperimentLayout;
 import com.david.incubator.ui.system.print.SystemPrintViewModel;
 import com.david.incubator.ui.system.range.SystemRangeViewModel;
+import com.david.incubator.ui.user.UserHomeLayout;
 import com.david.incubator.ui.user.UserLanguageLayout;
+import com.david.incubator.ui.user.UserOverheatExperimentLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
 import com.david.incubator.ui.user.UserTimeLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
-import com.david.incubator.ui.menu.chart.ChartLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
 import com.david.incubator.ui.user.usermodel.UserModelLayout;
 import com.david.incubator.util.TimingData;
@@ -98,7 +97,7 @@ public interface ApplicationComponent {
 
     void inject(MessageSender messageSender);
 
-    void inject(AutomationControl automationControl);
+    void inject(IncubatorAutomationControl incubatorAutomationControl);
 
     void inject(MainActivity mainActivity);
 

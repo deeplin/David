@@ -29,7 +29,6 @@ public class ModuleHardware extends ModuleSoftware {
     private boolean user;
     private boolean inst;
 
-
 //    private boolean enableCloud;
 //    private InetAddress cloudServerIP;
 //    private int cloudServerPort;

@@ -15,14 +15,11 @@ import com.david.common.serial.command.other.LEDCommand;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.common.util.TimeUtil;
-import com.david.incubator.ui.main.side.SideViewModel;
-import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.util.GPIOUtil;
 
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
@@ -35,8 +32,7 @@ import io.reactivex.schedulers.Schedulers;
  * description: 自动控制类
  */
 
-@Singleton
-public class AutomationControl implements IViewModel {
+public abstract class AutomationControl implements IViewModel {
 
     @Inject
     MessageSender messageSender;
@@ -50,12 +46,8 @@ public class AutomationControl implements IViewModel {
     ModuleHardware moduleHardware;
     @Inject
     ModuleSoftware moduleSoftware;
-    @Inject
-    TopViewModel topViewModel;
-    @Inject
-    SideViewModel sideViewModel;
 
-    private Disposable ioDisposable;
+    private Disposable ioDisposable = null;
 
     /*
      * 0: 屏幕解锁，开始计时
@@ -63,10 +55,7 @@ public class AutomationControl implements IViewModel {
      * */
     private int lockTimeOut = 0;
 
-    @Inject
     public AutomationControl() {
-        MainApplication.getInstance().getApplicationComponent().inject(this);
-        ioDisposable = null;
     }
 
     @Override
@@ -77,7 +66,7 @@ public class AutomationControl implements IViewModel {
         messageSender.getHardwareModule((aBoolean, baseSerialMessage) -> {
             if (aBoolean) {
                 moduleHardware.accept(true, baseSerialMessage);
-                startRefresh();
+                setConfig();
             }
         });
 
@@ -89,12 +78,9 @@ public class AutomationControl implements IViewModel {
                     .subscribe((aLong) -> {
                         serialControl.refresh();
 
-                        checkLockScreen();
-                        topViewModel.displayCurrentTime();
+                        secondRefresh();
 
-//                        if (GPIOUtil.read()) {
-//                            sideViewModel.muteAlarm();
-//                        }
+                        checkLockScreen();
 
                         long currentTime = TimeUtil.getCurrentTimeInSecond();
                         if (currentTime % 60 == 0) {
@@ -104,7 +90,7 @@ public class AutomationControl implements IViewModel {
         }
     }
 
-    private void startRefresh() {
+    private void setConfig() {
         messageSender.setStandBy(false, true, null);
 
         /*配置37度灯*/
@@ -192,4 +178,6 @@ public class AutomationControl implements IViewModel {
             messageSender.setLanguage(LanguageMode.values()[sensorRange.getLanguageIndex()].getName(), null);
         }
     }
+
+    protected abstract void secondRefresh();
 }

@@ -5,13 +5,13 @@ import android.os.Looper;
 import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
-import com.david.common.control.AutomationControl;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ModuleHardware;
 import com.david.common.serial.SerialControl;
 import com.david.common.serial.SerialMessageParser;
 import com.david.common.util.Constant;
+import com.david.common.util.FileUtil;
 import com.david.common.util.LogUtil;
 import com.wanjian.cockroach.Cockroach;
 
@@ -55,7 +55,7 @@ public class IncubatorApplication extends MainApplication {
             moduleHardware.load();
             daoControl.start(this);
 
-            super.setLanguage(daoControl);
+            FileUtil.setLanguage(this, daoControl);
         } catch (Exception e) {
             LogUtils.e(e);
             System.exit(-1);

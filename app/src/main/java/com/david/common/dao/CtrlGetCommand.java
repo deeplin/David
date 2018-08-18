@@ -116,6 +116,9 @@ public class CtrlGetCommand extends BaseSerialMessage {
         this.timeStamp = timeStamp;
     }
 
+    @Transient
+    private CtrlGetCommand ctrlGetCommand;
+
     @Generated(hash = 194615124)
     public CtrlGetCommand(Long id, long timeStamp, String ctrl, int c_air, int c_hum,
                           int c_o2, int c_skin, int w_skin, int w_man, int w_inc) {
@@ -135,7 +138,11 @@ public class CtrlGetCommand extends BaseSerialMessage {
     public CtrlGetCommand() {
     }
 
-    public boolean isChanged(CtrlGetCommand ctrlGetCommand) {
+    public void setCtrlGetCommand(CtrlGetCommand ctrlGetCommand) {
+        this.ctrlGetCommand = ctrlGetCommand;
+    }
+
+    public boolean isChanged() {
         if (ctrlGetCommand != null) {
             if (!ctrl.equals(ctrlGetCommand.ctrl)) {
                 return true;
@@ -153,11 +160,10 @@ public class CtrlGetCommand extends BaseSerialMessage {
                 return true;
             } else if (w_inc != ctrlGetCommand.w_inc) {
                 return true;
-            } else {
-                return false;
             }
         } else {
             return true;
         }
+        return false;
     }
 }

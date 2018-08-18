@@ -11,13 +11,12 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 
 import com.david.R;
-import com.david.common.control.AutomationControl;
 import com.david.common.control.MainApplication;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.AutoAttachFragment;
 import com.david.common.util.AutoUtil;
-import com.david.incubator.util.FragmentPage;
 import com.david.databinding.ActivityMainBinding;
+import com.david.incubator.control.IncubatorAutomationControl;
 import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
 import com.david.incubator.ui.menu.MenuViewModel;
@@ -28,6 +27,7 @@ import com.david.incubator.ui.menu.spo2.Spo2Fragment;
 import com.david.incubator.ui.objective.cabin.ObjectiveHomeFragment;
 import com.david.incubator.ui.objective.warmer.WarmerObjectiveHomeFragment;
 import com.david.incubator.ui.setting.SettingFragment;
+import com.david.incubator.util.FragmentPage;
 
 import javax.inject.Inject;
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     @Inject
     MenuViewModel menuViewModel;
     @Inject
-    AutomationControl automationControl;
+    IncubatorAutomationControl incubatorAutomationControl;
     @Inject
     ShareMemory shareMemory;
 
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 
         binding.avAlarm.attach();
         mainViewModel.attach();
-        automationControl.attach();
+        incubatorAutomationControl.attach();
     }
 
     @Override
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 //            currentFragment = null;
 //        }
 
-//        automationControl.detach();
+//        incubatorAutomationControl.detach();
 //        mainViewModel.detach();
 //        binding.avAlarm.detach();
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     public boolean dispatchTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
-                automationControl.initializeTimeOut();
+                incubatorAutomationControl.initializeTimeOut();
                 break;
             }
         }

@@ -19,7 +19,6 @@ import android.widget.NumberPicker;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
-import com.david.common.control.AutomationControl;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MainApplication;
 import com.david.common.dao.UserModel;
@@ -28,6 +27,7 @@ import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSettingAddUserBinding;
+import com.david.incubator.control.IncubatorAutomationControl;
 import com.david.incubator.ui.common.KeyEditTextViewModel;
 import com.david.incubator.ui.common.KeyValueViewModel;
 import com.david.incubator.ui.main.top.TopViewModel;
@@ -53,7 +53,7 @@ public class SettingAddUserLayout extends BindingConstraintLayout<LayoutSettingA
     @Inject
     TopViewModel topViewModel;
     @Inject
-    AutomationControl automationControl;
+    IncubatorAutomationControl automationControl;
 
     public ObservableBoolean addUser = new ObservableBoolean(false);
     public ObservableBoolean okSelected = new ObservableBoolean(false);
