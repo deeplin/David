@@ -43,14 +43,14 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
                 if (shareMemory.isCabin()) {
-                    shareMemory.currentFragmentID.set(FragmentPage.HOME_FRAGMENT);
+                    shareMemory.currentFragmentId.set(FragmentPage.HOME_FRAGMENT);
                     shareMemory.lockScreen.set(false);
                     timingData.stop();
                 } else if (shareMemory.isWarmer()) {
-                    shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
+                    shareMemory.currentFragmentId.set(FragmentPage.WARMER_HOME_FRAGMENT);
                     shareMemory.lockScreen.set(false);
                 } else if (shareMemory.isTransit()) {
-                    shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
+                    shareMemory.currentFragmentId.set(FragmentPage.WARMER_HOME_FRAGMENT);
                     shareMemory.lockScreen.set(true);
                     timingData.stop();
                 }
@@ -66,9 +66,9 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
 
                 if (!navigator.isLockableFragment()) {
                     if (shareMemory.isCabin()) {
-                        shareMemory.currentFragmentID.set(FragmentPage.HOME_FRAGMENT);
+                        shareMemory.currentFragmentId.set(FragmentPage.HOME_FRAGMENT);
                     } else if (shareMemory.isWarmer()) {
-                        shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
+                        shareMemory.currentFragmentId.set(FragmentPage.WARMER_HOME_FRAGMENT);
                     }
                 }
 
@@ -86,7 +86,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
         currentFragmentIDCallback = new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                navigator.changeFragment(shareMemory.currentFragmentID.get());
+                navigator.changeFragment(shareMemory.currentFragmentId.get());
             }
         };
     }
@@ -95,12 +95,12 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
     public void attach() {
         shareMemory.systemMode.addOnPropertyChangedCallback(systemModeCallback);
         shareMemory.lockScreen.addOnPropertyChangedCallback(lockScreenCallback);
-        shareMemory.currentFragmentID.addOnPropertyChangedCallback(currentFragmentIDCallback);
+        shareMemory.currentFragmentId.addOnPropertyChangedCallback(currentFragmentIDCallback);
     }
 
     @Override
     public void detach() {
-        shareMemory.currentFragmentID.removeOnPropertyChangedCallback(currentFragmentIDCallback);
+        shareMemory.currentFragmentId.removeOnPropertyChangedCallback(currentFragmentIDCallback);
         shareMemory.lockScreen.removeOnPropertyChangedCallback(lockScreenCallback);
         shareMemory.systemMode.removeOnPropertyChangedCallback(systemModeCallback);
     }

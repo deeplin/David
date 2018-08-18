@@ -29,7 +29,9 @@ import java.util.Objects;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.CompletableOnSubscribe;
 import io.reactivex.functions.BiConsumer;
+import io.reactivex.functions.Consumer;
 
 @Singleton
 public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
@@ -77,7 +79,9 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     /*System*/
     public ObservableBoolean lockScreen = new ObservableBoolean(false);
 
-    public ObservableByte currentFragmentID = new ObservableByte(Constant.NA_VALUE);
+    public ObservableByte currentFragmentId = new ObservableByte(Constant.NA_VALUE);
+    public ObservableByte currentMenuId = new ObservableByte(Constant.NA_VALUE);
+
     /*Spo2 Get*/
     public ObservableField<Spo2SensMode> sensMode = new ObservableField<>(Spo2SensMode.Normal);
     public ObservableField<AverageTimeMode> averageTimeMode = new ObservableField<>(AverageTimeMode.Zero);

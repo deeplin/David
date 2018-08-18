@@ -97,7 +97,7 @@ public class HomeFragment extends AutoAttachFragment<FragmentHomeBinding> implem
                     }
                     if (!shareMemory.lockScreen.get() && functionTab != CtrlMode.None.getIndex() && (shareMemory.ohTest.get() == 0)) {
                         shareMemory.functionTag.set(functionTab);
-                        shareMemory.currentFragmentID.set(FragmentPage.OBJECTIVE_FRAGMENT);
+                        shareMemory.currentFragmentId.set(FragmentPage.OBJECTIVE_FRAGMENT);
                     }
                     break;
                 }

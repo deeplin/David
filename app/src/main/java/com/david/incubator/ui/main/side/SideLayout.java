@@ -38,9 +38,9 @@ public class SideLayout extends BindingConstraintLayout<LayoutSideBinding> {
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object Void) -> {
                     if (shareMemory.isCabin()) {
-                        shareMemory.currentFragmentID.set(FragmentPage.HOME_FRAGMENT);
+                        shareMemory.currentFragmentId.set(FragmentPage.HOME_FRAGMENT);
                     } else if (shareMemory.isWarmer()) {
-                        shareMemory.currentFragmentID.set(FragmentPage.WARMER_HOME_FRAGMENT);
+                        shareMemory.currentFragmentId.set(FragmentPage.WARMER_HOME_FRAGMENT);
                     }
                     shareMemory.enableAlertList.set(false);
                 });

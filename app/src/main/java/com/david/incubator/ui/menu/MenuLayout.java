@@ -77,7 +77,7 @@ public class MenuLayout extends BindingConstraintLayout<LayoutMenuBinding> {
                     menuViewModel.menuScale.set(false);
                     menuViewModel.menuCamera.set(false);
                     menuViewModel.menuSetting.set(true);
-                    shareMemory.currentFragmentID.set(FragmentPage.SETTING_FRAGMENT);
+                    shareMemory.currentFragmentId.set(FragmentPage.SETTING_FRAGMENT);
                 });
 
         RxView.clicks(binding.btMenuChart)
@@ -88,7 +88,7 @@ public class MenuLayout extends BindingConstraintLayout<LayoutMenuBinding> {
                     menuViewModel.menuScale.set(false);
                     menuViewModel.menuCamera.set(false);
                     menuViewModel.menuSetting.set(false);
-                    shareMemory.currentFragmentID.set(FragmentPage.CHART_FRAGMENT);
+                    shareMemory.currentFragmentId.set(FragmentPage.CHART_FRAGMENT);
                 });
 
 
@@ -101,7 +101,7 @@ public class MenuLayout extends BindingConstraintLayout<LayoutMenuBinding> {
                         menuViewModel.menuScale.set(false);
                         menuViewModel.menuCamera.set(false);
                         menuViewModel.menuSetting.set(false);
-                        shareMemory.currentFragmentID.set(FragmentPage.SPO2_FRAGMENT);
+                        shareMemory.currentFragmentId.set(FragmentPage.SPO2_FRAGMENT);
                     }
                 });
 
@@ -114,7 +114,7 @@ public class MenuLayout extends BindingConstraintLayout<LayoutMenuBinding> {
                         menuViewModel.menuScale.set(true);
                         menuViewModel.menuCamera.set(false);
                         menuViewModel.menuSetting.set(false);
-                        shareMemory.currentFragmentID.set(FragmentPage.SCALE_FRAGMENT);
+                        shareMemory.currentFragmentId.set(FragmentPage.SCALE_FRAGMENT);
                     }
                 });
 
@@ -127,7 +127,7 @@ public class MenuLayout extends BindingConstraintLayout<LayoutMenuBinding> {
                         menuViewModel.menuScale.set(false);
                         menuViewModel.menuCamera.set(true);
                         menuViewModel.menuSetting.set(false);
-                        shareMemory.currentFragmentID.set(FragmentPage.CAMERA_FRAGMENT);
+                        shareMemory.currentFragmentId.set(FragmentPage.CAMERA_FRAGMENT);
                     }
                 });
     }

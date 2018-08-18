@@ -93,7 +93,7 @@ public class WarmerHomeFragment extends AutoAttachFragment<WarmerFragmentHomeBin
                         }
                         if ((!lockScreen) && functionTab != CtrlMode.None.getIndex()) {
                             shareMemory.functionTag.set(functionTab);
-                            shareMemory.currentFragmentID.set(FragmentPage.WARMER_OBJECTIVE_FRAGMENT);
+                            shareMemory.currentFragmentId.set(FragmentPage.WARMER_OBJECTIVE_FRAGMENT);
                         }
                         break;
                     }
