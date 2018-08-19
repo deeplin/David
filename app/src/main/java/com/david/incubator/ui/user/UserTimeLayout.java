@@ -17,7 +17,7 @@ import com.david.incubator.util.FragmentPage;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutUserTimeBinding;
 import com.david.incubator.ui.common.ButtonControlViewModel;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.io.DataOutputStream;

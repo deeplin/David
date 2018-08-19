@@ -18,7 +18,7 @@ import com.david.incubator.ui.menu.chart.IChartViewModel;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
 import com.david.incubator.ui.menu.chart.SensorChartView;
 import com.david.incubator.ui.menu.chart.table.PageTurnTable;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 import java.util.Locale;
 

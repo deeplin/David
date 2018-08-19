@@ -4,7 +4,7 @@ import android.databinding.Observable;
 
 import com.david.common.mode.AlarmSettingMode;
 import com.david.incubator.ui.objective.cabin.spo2.ObjectiveSpo2ViewModel;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 /**
  * author: Ling Lin

@@ -8,7 +8,7 @@ import com.david.common.ui.BaseNavigatorModel;
 import com.david.incubator.control.IncubatorAutomationControl;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
-import com.david.incubator.util.TimingData;
+import com.david.common.util.TimingData;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

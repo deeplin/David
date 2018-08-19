@@ -72,7 +72,7 @@ import com.david.incubator.ui.user.UserTimeLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
 import com.david.incubator.ui.user.usermodel.UserModelLayout;
-import com.david.incubator.util.TimingData;
+import com.david.common.util.TimingData;
 
 import javax.inject.Singleton;
 

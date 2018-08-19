@@ -7,7 +7,7 @@ import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.WarmerLayoutObjectiveTimingBinding;
 import com.david.incubator.control.MainApplication;
-import com.david.incubator.util.TimingData;
+import com.david.common.util.TimingData;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;

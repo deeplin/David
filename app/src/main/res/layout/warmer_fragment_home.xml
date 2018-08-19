@@ -6,7 +6,7 @@
 
         <import type="com.david.common.mode.CtrlMode" />
 
-        <import type="com.david.incubator.util.ViewUtil" />
+        <import type="com.david.common.ui.ViewUtil" />
 
         <import type="android.view.View" />
 

@@ -1,4 +1,4 @@
-package com.david.incubator.util;
+package com.david.common.util;
 
 import android.media.AudioManager;
 import android.media.SoundPool;

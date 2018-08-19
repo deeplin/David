@@ -14,7 +14,7 @@ import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutUserWarningVolumeBinding;
 import com.david.incubator.ui.common.ButtonControlViewModel;
-import com.david.incubator.util.TimingData;
+import com.david.common.util.TimingData;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;

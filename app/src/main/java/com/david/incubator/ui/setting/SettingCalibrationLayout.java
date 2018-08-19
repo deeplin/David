@@ -17,7 +17,7 @@ import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSettingCalibrationBinding;
 import com.david.incubator.control.MainApplication;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;

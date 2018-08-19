@@ -11,8 +11,8 @@ import com.david.common.mode.SystemMode;
 import com.david.common.ui.BaseNavigatorModel;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.home.warmer.JaunediceData;
-import com.david.incubator.util.TimingData;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.util.TimingData;
+import com.david.common.ui.ViewUtil;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

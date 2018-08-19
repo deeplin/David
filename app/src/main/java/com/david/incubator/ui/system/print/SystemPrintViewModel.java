@@ -24,7 +24,7 @@ import com.david.common.util.ResourceUtil;
 import com.david.common.util.TimeUtil;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.common.ButtonControlViewModel;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 import java.util.List;
 import java.util.Locale;

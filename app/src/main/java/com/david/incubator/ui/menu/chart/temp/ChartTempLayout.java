@@ -7,10 +7,8 @@ import com.david.R;
 import com.david.common.ui.IViewModel;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.util.Constant;
-import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutChartTempBinding;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
-import com.david.incubator.util.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;

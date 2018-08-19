@@ -1,4 +1,4 @@
-package com.david.incubator.util;
+package com.david.common.ui;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -48,6 +48,20 @@ public class ViewUtil {
             action1.accept(true);
         }
     }
+
+//    public static void displaySensor(boolean installed, boolean enabled, ObservableBoolean visible, Action1<Boolean> action1) {
+//        if (installed) {
+//            if (enabled) {
+//                visible.set(false);
+//            } else {
+//                visible.set(true);
+//                action1.accept(false);
+//            }
+//        } else {
+//            visible.set(true);
+//            action1.accept(true);
+//        }
+//    }
 
     public static String formatTempValue(int value) {
         if (value == Constant.SENSOR_NA_VALUE) {

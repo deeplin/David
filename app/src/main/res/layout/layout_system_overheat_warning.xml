@@ -6,7 +6,7 @@
 
         <import type="android.view.View" />
 
-        <import type="com.david.incubator.util.ViewUtil" />
+        <import type="com.david.common.ui.ViewUtil" />
 
         <variable
             name="viewModel"

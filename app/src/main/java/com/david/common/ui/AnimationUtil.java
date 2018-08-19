@@ -1,5 +1,8 @@
-package com.david.common.util;
+package com.david.common.ui;
 
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
@@ -31,5 +34,11 @@ public class AnimationUtil {
         rotateAnimation.setInterpolator(new LinearInterpolator());
         rotateAnimation.setFillAfter(true);//动画执行完后是否停留在执行完的状态
         return rotateAnimation;
+    }
+
+    public static ColorFilter getGrayFilter() {
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(50);//饱和度 0灰色 100过度彩色，50正常
+        return new ColorMatrixColorFilter(matrix);
     }
 }

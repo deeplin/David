@@ -12,7 +12,7 @@ import com.david.common.ui.IViewModel;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.common.ButtonControlViewModel;
 import com.david.incubator.ui.common.KeyValueViewModel;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 import javax.inject.Inject;
 

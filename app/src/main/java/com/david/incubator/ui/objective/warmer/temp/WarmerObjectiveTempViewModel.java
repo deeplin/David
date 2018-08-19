@@ -13,7 +13,7 @@ import com.david.common.mode.SystemMode;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
 import com.david.incubator.control.MainApplication;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 import java.util.Objects;
 

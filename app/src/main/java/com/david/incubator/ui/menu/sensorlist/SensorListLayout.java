@@ -8,11 +8,11 @@ import com.david.R;
 import com.david.common.mode.CtrlMode;
 import com.david.common.mode.SystemMode;
 import com.david.common.ui.BindingConstraintLayout;
-import com.david.common.util.AnimationUtil;
+import com.david.common.ui.AnimationUtil;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutSensorListBinding;
 import com.david.incubator.control.MainApplication;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 import java.util.Objects;
 

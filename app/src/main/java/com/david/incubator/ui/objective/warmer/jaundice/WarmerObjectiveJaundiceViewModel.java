@@ -10,7 +10,7 @@ import com.david.common.ui.IViewModel;
 import com.david.common.util.ResourceUtil;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.home.warmer.JaunediceData;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 import java.util.Locale;
 

@@ -2,7 +2,7 @@ package com.david.incubator.ui.objective.cabin.oxygen;
 
 import com.david.common.mode.FunctionMode;
 import com.david.incubator.ui.objective.cabin.humidity.ObjectiveHumidityViewModel;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 /**
  * author: Ling Lin

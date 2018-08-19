@@ -6,7 +6,7 @@ import com.david.common.control.DaoControl;
 import com.david.common.control.MessageSender;
 import com.david.common.serial.command.other.LEDCommand;
 import com.david.incubator.control.MainApplication;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 import java.util.concurrent.TimeUnit;
 

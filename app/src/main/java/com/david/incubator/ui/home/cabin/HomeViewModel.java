@@ -11,7 +11,7 @@ import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.ui.BaseNavigatorModel;
 import com.david.incubator.control.MainApplication;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 
 import java.util.Objects;
 

@@ -11,7 +11,7 @@ import com.david.databinding.LayoutScaleChartBinding;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.menu.chart.IRefreshableViewModel;
 import com.david.incubator.ui.menu.scale.ScaleViewModel;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;

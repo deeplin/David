@@ -16,7 +16,7 @@ import com.david.common.util.ResourceUtil;
 import com.david.databinding.LayoutUserModelDetailBinding;
 import com.david.incubator.ui.common.KeyValueViewModel;
 import com.david.incubator.ui.main.top.TopViewModel;
-import com.david.incubator.util.ViewUtil;
+import com.david.common.ui.ViewUtil;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.util.concurrent.TimeUnit;
