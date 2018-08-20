@@ -1,5 +1,8 @@
 package com.david.common.mode;
 
+import com.david.R;
+import com.david.common.util.ResourceUtil;
+
 /**
  * author: Ling Lin
  * created on: 2017/7/17 20:12
@@ -35,5 +38,21 @@ public enum CtrlMode {
 
     public int getIndex() {
         return index;
+    }
+
+    @Override
+    public String toString() {
+        switch (index) {
+            case (0):
+                return ResourceUtil.getString(R.string.skin);
+            case (1):
+                return ResourceUtil.getString(R.string.air);
+            case (11):
+                return ResourceUtil.getString(R.string.manual);
+            case (12):
+                return ResourceUtil.getString(R.string.prewarm);
+            default:
+                return name;
+        }
     }
 }

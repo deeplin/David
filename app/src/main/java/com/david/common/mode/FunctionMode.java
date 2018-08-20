@@ -8,7 +8,7 @@ package com.david.common.mode;
  */
 public enum FunctionMode {
 
-    Humidity("HUM", 11), Oxygen("O2", 12), Spo2("SPO2", 13), Pr("PR", 14), Timing("TIMING", 21), Scale("SCALE", 22);
+    Temp("TEMP", 10), Humidity("HUM", 11), Oxygen("O2", 12), Spo2("SPO2", 13), Pr("PR", 14), Timing("TIMING", 21), Scale("SCALE", 22);
 
     private String name;
     private int index;

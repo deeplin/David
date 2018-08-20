@@ -235,4 +235,7 @@
     <string name="SPO2.BIT6">太多环境光</string>
     <string name="SPO2.BIT10">低信号质量</string>
     <string name="COM.ERR">串口通讯返回ERR</string>
+
+    <string name="manual">手动</string>
+    <string name="prewarm">预热</string>
 </resources>
