@@ -49,7 +49,7 @@ public abstract class BaseSerialControl {
         LogUtil.i(this, String.format(Locale.US, "Serial send: %s", new String(serialMessage.getRequest())));
     }
 
-    private void receive(BaseSerialMessage serialMessage) throws Exception {
+    protected void receive(BaseSerialMessage serialMessage) throws Exception {
         InputStream inputStream = getInputStream();
         int index = 0;
         Thread.sleep(20);
@@ -71,5 +71,10 @@ public abstract class BaseSerialControl {
         } else {
             throw new Exception("No response.");
         }
+    }
+
+    protected void receive(byte[] buffer) throws Exception {
+        InputStream inputStream = getInputStream();
+        inputStream.read(buffer, 0, buffer.length);
     }
 }

@@ -29,12 +29,11 @@ import io.reactivex.functions.Consumer;
 @Singleton
 public class SerialMessageParser implements Consumer<BaseSerialMessage> {
 
-    private static final int SERIAL_BUFFER_SIZE = 10240;
     private final byte[] filteredInputBuffer;
 
     @Inject
     public SerialMessageParser() {
-        filteredInputBuffer = new byte[SERIAL_BUFFER_SIZE];
+        filteredInputBuffer = new byte[Constant.SERIAL_BUFFER_SIZE];
     }
 
     @Override
