@@ -10,7 +10,7 @@ import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.mode.FunctionMode;
-import com.david.common.ui.AutoAttachFragment;
+import com.david.common.ui.BindingFragment;
 import com.david.common.ui.AnimationUtil;
 import com.david.common.util.AutoUtil;
 import com.david.incubator.control.MainApplication;
@@ -29,7 +29,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
  * email: 10525677@qq.com
  * description:
  */
-public class WarmerHomeFragment extends AutoAttachFragment<WarmerFragmentHomeBinding> implements WarmerHomeNavigator {
+public class WarmerHomeFragment extends BindingFragment<WarmerFragmentHomeBinding> implements WarmerHomeNavigator {
 
     @Inject
     WarmerViewModel warmerViewModel;

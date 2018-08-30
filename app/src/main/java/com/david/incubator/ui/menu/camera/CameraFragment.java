@@ -3,7 +3,7 @@ package com.david.incubator.ui.menu.camera;
 import android.view.View;
 
 import com.david.R;
-import com.david.common.ui.AutoAttachFragment;
+import com.david.common.ui.BindingFragment;
 import com.david.common.util.LogUtil;
 import com.david.databinding.FragmentCameraBinding;
 import com.david.incubator.ui.main.IFragmentLockable;
@@ -14,7 +14,7 @@ import com.david.incubator.ui.main.IFragmentLockable;
  * email: 10525677@qq.com
  * description:
  */
-public class CameraFragment extends AutoAttachFragment<FragmentCameraBinding> implements IFragmentLockable {
+public class CameraFragment extends BindingFragment<FragmentCameraBinding> implements IFragmentLockable {
 
     CameraPreview cameraPreview = null;
 

@@ -12,7 +12,7 @@ import android.view.WindowManager;
 
 import com.david.R;
 import com.david.common.data.ShareMemory;
-import com.david.common.ui.AutoAttachFragment;
+import com.david.common.ui.BindingFragment;
 import com.david.common.util.AutoUtil;
 import com.david.databinding.ActivityMainBinding;
 import com.david.incubator.control.IncubatorAutomationControl;
@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     ShareMemory shareMemory;
 
     ActivityMainBinding binding;
-    private AutoAttachFragment[] fragmentArray;
-    private AutoAttachFragment currentFragment;
+    private BindingFragment[] fragmentArray;
+    private BindingFragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     }
 
     private void initFragment() {
-        fragmentArray = new AutoAttachFragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT + 1];
+        fragmentArray = new BindingFragment[FragmentPage.WARMER_OBJECTIVE_FRAGMENT + 1];
         fragmentArray[FragmentPage.HOME_FRAGMENT] = new HomeFragment();
         fragmentArray[FragmentPage.OBJECTIVE_FRAGMENT] = new ObjectiveHomeFragment();
         fragmentArray[FragmentPage.SETTING_FRAGMENT] = new SettingFragment();
@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
             currentFragment = null;
         }
 
-        AutoAttachFragment toFragment = fragmentArray[position];
+        BindingFragment toFragment = fragmentArray[position];
         if (toFragment != null) {
             transaction.show(toFragment);
             transaction.commit();

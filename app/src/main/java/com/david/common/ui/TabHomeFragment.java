@@ -6,8 +6,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.david.common.util.Constant;
-
 /**
  * author: Ling Lin
  * created on: 2017/7/29 14:50
@@ -15,7 +13,7 @@ import com.david.common.util.Constant;
  * description:
  */
 
-public abstract class TabHomeFragment<U extends ViewDataBinding> extends AutoAttachFragment<U> {
+public abstract class TabHomeFragment<U extends ViewDataBinding> extends BindingFragment<U> {
 
     protected int currentPosition = 0;
     protected IViewModel currentView = null;

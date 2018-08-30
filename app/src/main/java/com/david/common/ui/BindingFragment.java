@@ -8,7 +8,7 @@ package com.david.common.ui;
         import android.view.View;
         import android.view.ViewGroup;
 
-public abstract class AutoAttachFragment<U extends ViewDataBinding> extends Fragment implements IViewModel {
+public abstract class BindingFragment<U extends ViewDataBinding> extends Fragment implements IViewModel {
 
     protected U binding;
 

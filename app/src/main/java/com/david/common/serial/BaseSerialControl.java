@@ -56,7 +56,7 @@ public abstract class BaseSerialControl {
         for (int inputCount = 8; inputCount > 0; inputCount--) {
             int inputLength = inputStream.read(this.inputBuffer, index, this.inputBuffer.length - index);
             if (inputLength > 0) {
-                LogUtil.i(this, String.format(Locale.US, "%d: %d: %d", inputCount, inputLength, index));
+//                LogUtil.i(this, String.format(Locale.US, "%d: %d: %d", inputCount, inputLength, index));
                 index += inputLength;
             } else {
                 break;
