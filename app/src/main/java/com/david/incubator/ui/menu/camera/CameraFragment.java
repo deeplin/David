@@ -4,7 +4,9 @@ import android.view.View;
 
 import com.david.R;
 import com.david.common.ui.BindingFragment;
+import com.david.common.ui.camera.CameraView;
 import com.david.common.util.LogUtil;
+import com.david.common.util.ResourceUtil;
 import com.david.databinding.FragmentCameraBinding;
 import com.david.incubator.ui.main.IFragmentLockable;
 
@@ -16,7 +18,7 @@ import com.david.incubator.ui.main.IFragmentLockable;
  */
 public class CameraFragment extends BindingFragment<FragmentCameraBinding> implements IFragmentLockable {
 
-    CameraPreview cameraPreview = null;
+    CameraView cameraView = null;
 
     @Override
     protected int getLayoutId() {
@@ -31,14 +33,15 @@ public class CameraFragment extends BindingFragment<FragmentCameraBinding> imple
     public synchronized void attach() {
         binding.sllLeft.attach();
         try {
-            if (cameraPreview == null) {
-                cameraPreview = new CameraPreview(getView().getContext());
-                cameraPreview.startCamera();
-                binding.frCameraRight.addView(cameraPreview);
+            if (cameraView == null) {
+                cameraView = new CameraView(getView().getContext());
+                cameraView.attach();
+//                cameraView.startCamera();
+                binding.frCameraRight.addView(cameraView);
             } else {
-                cameraPreview.startCamera();
+//                cameraView.startCamera();
             }
-            binding.tvCameraError.setVisibility(View.GONE);
+//            binding.tvCameraError.setVisibility(View.GONE);
         } catch (Exception e) {
             LogUtil.i(this, "Open camera error.");
         }
@@ -46,9 +49,10 @@ public class CameraFragment extends BindingFragment<FragmentCameraBinding> imple
 
     @Override
     public synchronized void detach() {
-        if (cameraPreview != null) {
-            cameraPreview.stopCamera();
-            cameraPreview = null;
+        if (cameraView != null) {
+            cameraView.detach();
+//            cameraView.stopCamera();
+            cameraView = null;
             binding.frCameraRight.removeAllViews();
         }
         binding.sllLeft.detach();

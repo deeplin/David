@@ -4,12 +4,15 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.databinding.ObservableBoolean;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import com.david.R;
 import com.david.common.util.Action1;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.SensorRange;
+import com.david.incubator.control.MainApplication;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
@@ -98,7 +101,7 @@ public class ViewUtil {
         if (value == Constant.SENSOR_NA_VALUE) {
             return Constant.SENSOR_DEFAULT_STRING;
         } else if (value <= SensorRange.HUMIDITY_DISPLAY_UPPER && value >= SensorRange.HUMIDITY_DISPLAY_LOWER) {
-            return String.valueOf(Math.round(value/10.0));
+            return String.valueOf(Math.round(value / 10.0));
         } else {
             return Constant.SENSOR_DEFAULT_STRING;
         }
@@ -108,7 +111,7 @@ public class ViewUtil {
         if (value == Constant.SENSOR_NA_VALUE) {
             return Constant.SENSOR_DEFAULT_STRING;
         } else if (value <= SensorRange.OXYGEN_DISPLAY_UPPER && value >= SensorRange.OXYGEN_DISPLAY_LOWER) {
-            return String.valueOf(Math.round(value/10.0));
+            return String.valueOf(Math.round(value / 10.0));
         } else {
             return Constant.SENSOR_DEFAULT_STRING;
         }
@@ -146,5 +149,11 @@ public class ViewUtil {
     public static String formatData(int value) {
         DecimalFormat decimalFormat = new DecimalFormat("00.0");
         return decimalFormat.format(value / 10.0);
+    }
+
+    public static void showToast(String message) {
+        Toast toast = Toast.makeText(MainApplication.getInstance(), message, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 }

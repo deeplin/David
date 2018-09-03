@@ -1,9 +1,13 @@
 package com.david.common.ui;
 
 import android.databinding.BindingAdapter;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+
+import com.david.R;
 
 /**
  * author: Ling Lin

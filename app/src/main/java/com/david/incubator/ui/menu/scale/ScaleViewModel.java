@@ -10,6 +10,7 @@ import com.david.R;
 import com.david.common.control.DaoControl;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.IViewModel;
+import com.david.common.ui.ViewUtil;
 import com.david.common.util.ResourceUtil;
 import com.david.incubator.control.MainApplication;
 
@@ -91,10 +92,7 @@ public class ScaleViewModel implements IViewModel {
                     } else {
                         stopDisposable();
                         initialize();
-                        String message = ResourceUtil.getString(R.string.no_record_added);
-                        Toast toast = Toast.makeText(MainApplication.getInstance(), message, Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.CENTER, 0, 0);
-                        toast.show();
+                        ViewUtil.showToast(ResourceUtil.getString(R.string.no_record_added));
                     }
                 });
     }
@@ -115,10 +113,7 @@ public class ScaleViewModel implements IViewModel {
             if (count < 3) {
                 tempNewWeight = newWeight;
             } else {
-                String message = ResourceUtil.getString(R.string.no_record_added);
-                Toast toast = Toast.makeText(MainApplication.getInstance(), message, Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
+                ViewUtil.showToast(ResourceUtil.getString(R.string.no_record_added));
             }
         }
     }

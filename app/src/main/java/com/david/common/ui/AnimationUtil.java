@@ -29,7 +29,7 @@ public class AnimationUtil {
     public static RotateAnimation getRotateAnimation() {
         RotateAnimation rotateAnimation = new RotateAnimation(0f, 360f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        rotateAnimation.setDuration(500);//设置动画持续周期
+        rotateAnimation.setDuration(1000);//设置动画持续周期
         rotateAnimation.setRepeatCount(Animation.INFINITE);//设置重复次数
         rotateAnimation.setInterpolator(new LinearInterpolator());
         rotateAnimation.setFillAfter(true);//动画执行完后是否停留在执行完的状态

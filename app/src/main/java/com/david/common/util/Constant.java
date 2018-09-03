@@ -1,6 +1,7 @@
 package com.david.common.util;
 
 import android.graphics.Color;
+import android.os.Environment;
 
 /**
  * author: Ling Lin
@@ -10,6 +11,9 @@ import android.graphics.Color;
  */
 
 public class Constant {
+
+    public static final String IMAGE_DIRECTORY = Environment.getExternalStorageDirectory() + "/Pictures";
+    public static final String VIDEO_DIRECTORY = Environment.getExternalStorageDirectory() + "/Video";
 
     public static final boolean RELEASE_TO_DAVID = true;
     public static final boolean ENABLE_DEBUG = true;
