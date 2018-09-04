@@ -21,29 +21,18 @@ public class CameraViewModel implements IViewModel {
     public ObservableInt rightImage = new ObservableInt();
     public ObservableInt leftImage = new ObservableInt();
 
-    File imageFile;
-
     @Override
     public void attach() {
         showCaptureButton();
-
-        imageFile = new File(MainApplication.getInstance().getExternalFilesDir(null).getPath());
     }
 
     @Override
     public void detach() {
     }
 
-
-
     private void showCaptureButton() {
         leftImage.set(R.drawable.ic_photo_camera);
         rightImage.set(R.drawable.ic_videocam);
-    }
-
-    private void showConfirmButton() {
-        leftImage.set(R.drawable.ic_check_circle);
-        rightImage.set(R.drawable.ic_cancel);
     }
 
     private void showRecordButton() {
