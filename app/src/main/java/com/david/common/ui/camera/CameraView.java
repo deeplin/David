@@ -1,7 +1,6 @@
 package com.david.common.ui.camera;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -10,17 +9,14 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCaptureSession;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.CameraMetadata;
 import android.hardware.camera2.CaptureRequest;
 import android.media.MediaRecorder;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
-import android.widget.Toast;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
@@ -43,18 +39,20 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
     private CameraViewModel cameraViewModel;
 
-    private HandlerThread backgroundThread;
-    private Handler backgroundHandler;
-
+    //Camera2
     private CameraDevice cameraDevice;
-    private CameraCaptureSession cameraCaptureSession;
+    private CaptureRequest.Builder previewBuilder;
     private CameraCaptureSession previewSession;
+    private CameraCaptureSession cameraCaptureSession;
+
+    //handler
+//    private HandlerThread backgroundThread;
+//    private Handler backgroundHandler;
+
     private MediaRecorder mediaRecorder;
 
     private final TextureView.SurfaceTextureListener surfaceTextureListener;
     private final CameraDevice.StateCallback stateCallback;
-    private CaptureRequest.Builder captureRequestBuilder;
-    private CaptureRequest.Builder previewBuilder;
 
     private String recordingFileName;
 
@@ -85,19 +83,19 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
         stateCallback = new CameraDevice.StateCallback() {
             @Override
-            public void onOpened(CameraDevice cameraDevice) {
+            public void onOpened(@NonNull CameraDevice cameraDevice) {
                 CameraView.this.cameraDevice = cameraDevice;
                 startPreview();
             }
 
             @Override
-            public void onDisconnected(CameraDevice cameraDevice) {
+            public void onDisconnected(@NonNull CameraDevice cameraDevice) {
                 cameraDevice.close();
                 CameraView.this.cameraDevice = null;
             }
 
             @Override
-            public void onError(CameraDevice cameraDevice, int error) {
+            public void onError(@NonNull CameraDevice cameraDevice, int error) {
                 cameraDevice.close();
                 CameraView.this.cameraDevice = null;
             }
@@ -106,12 +104,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         RxView.clicks(binding.ivLeft)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    if (cameraViewModel.isRecordingVideo.get()) {
-                        cameraViewModel.isRecordingVideo.set(false);
-                        stopRecordingVideo();
-                        ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), recordingFileName));
-                    } else {
-                        String fileName = Constant.buildFileName("jpg");
+                    if (!cameraViewModel.isRecordingVideo.get()) {
+                        String fileName = Camera2Config.buildFileName("jpg");
                         saveImage(fileName);
                         ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), fileName));
                     }
@@ -125,7 +119,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                         stopRecordingVideo();
                     } else {
                         cameraViewModel.isRecordingVideo.set(true);
-                        recordingFileName = Constant.buildFileName("mp4");
+                        recordingFileName = Camera2Config.buildFileName("mp4");
                         startRecordingVideo(recordingFileName);
                     }
                 });
@@ -140,19 +134,14 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     public void attach() {
         cameraViewModel.attach();
         openBackgroundThread();
-
-        if (binding.tvCamera.isAvailable()) {
-            openCamera();
-        } else {
-            binding.tvCamera.setSurfaceTextureListener(surfaceTextureListener);
-        }
+        binding.tvCamera.setSurfaceTextureListener(surfaceTextureListener);
     }
 
     @Override
     public void detach() {
-        cameraViewModel.detach();
         closeCamera();
         closeBackgroundThread();
+        cameraViewModel.detach();
     }
 
     void openCamera() {
@@ -161,17 +150,18 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                 return;
             }
             mediaRecorder = new MediaRecorder();
-            CameraManager manager = (CameraManager) getContext().getSystemService(Context.CAMERA_SERVICE);
-            manager.openCamera("0", stateCallback, backgroundHandler);
+            CameraManager cameraManager = (CameraManager) getContext().getSystemService(Context.CAMERA_SERVICE);
+            cameraManager.openCamera("0", stateCallback, null);
         } catch (Exception e) {
+            ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_failed)));
             LogUtils.e(e);
         }
     }
 
     private void openBackgroundThread() {
-        backgroundThread = new HandlerThread("camera_background_thread");
-        backgroundThread.start();
-        backgroundHandler = new Handler(backgroundThread.getLooper());
+//        backgroundThread = new HandlerThread("CameraThread");
+//        backgroundThread.start();
+//        backgroundHandler = new Handler(backgroundThread.getLooper());
     }
 
     private void closeCamera() {
@@ -194,11 +184,11 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     }
 
     private void closeBackgroundThread() {
-        if (backgroundHandler != null) {
-            backgroundThread.quitSafely();
-            backgroundThread = null;
-            backgroundHandler = null;
-        }
+//        if (backgroundHandler != null) {
+//            backgroundThread.quitSafely();
+//            backgroundThread = null;
+//            backgroundHandler = null;
+//        }
     }
 
     private void startPreview() {
@@ -207,10 +197,10 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
             SurfaceTexture surfaceTexture = binding.tvCamera.getSurfaceTexture();
             surfaceTexture.setDefaultBufferSize(640, 480);
-            captureRequestBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+            previewBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
 
             Surface previewSurface = new Surface(surfaceTexture);
-            captureRequestBuilder.addTarget(previewSurface);
+            previewBuilder.addTarget(previewSurface);
 
             cameraDevice.createCaptureSession(Collections.singletonList(previewSurface),
                     new CameraCaptureSession.StateCallback() {
@@ -218,16 +208,11 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                         @Override
                         public void onConfigured(CameraCaptureSession cameraCaptureSession) {
                             try {
-                                if (cameraViewModel.isRecordingVideo.get()) {
-                                    previewSession = cameraCaptureSession;
-                                    updatePreview();
-                                } else {
-                                    CaptureRequest captureRequest = captureRequestBuilder.build();
-                                    CameraView.this.cameraCaptureSession = cameraCaptureSession;
-                                    CameraView.this.cameraCaptureSession.setRepeatingRequest(captureRequest,
-                                            null, backgroundHandler);
-                                }
+                                CameraView.this.cameraCaptureSession = cameraCaptureSession;
+                                cameraCaptureSession.setRepeatingRequest(previewBuilder.build(),
+                                        null, null);
                             } catch (CameraAccessException e) {
+                                ViewUtil.showToast(ResourceUtil.getString(R.string.capture_failed));
                                 LogUtils.e(e);
                             }
                         }
@@ -236,7 +221,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                         public void onConfigureFailed(CameraCaptureSession cameraCaptureSession) {
                             ViewUtil.showToast(ResourceUtil.getString(R.string.capture_failed));
                         }
-                    }, backgroundHandler);
+                    }, null);
         } catch (CameraAccessException e) {
             LogUtils.e(e);
         }
@@ -244,7 +229,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
     private void saveImage(String fileName) {
         lock();
-        File file = new File(Constant.buildPath(Constant.IMAGE_DIRECTORY, fileName));
+        File file = new File(Camera2Config.buildPath(Camera2Config.IMAGE_DIRECTORY, fileName));
         FileOutputStream outputPhoto = null;
         try {
             outputPhoto = new FileOutputStream(file);
@@ -266,8 +251,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
     private void lock() {
         try {
-            cameraCaptureSession.capture(captureRequestBuilder.build(),
-                    null, backgroundHandler);
+            cameraCaptureSession.capture(previewBuilder.build(),
+                    null, null);
         } catch (CameraAccessException e) {
             LogUtils.e(e);
         }
@@ -275,8 +260,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
     private void unlock() {
         try {
-            cameraCaptureSession.setRepeatingRequest(captureRequestBuilder.build(),
-                    null, backgroundHandler);
+            cameraCaptureSession.setRepeatingRequest(previewBuilder.build(),
+                    null, null);
         } catch (CameraAccessException e) {
             LogUtils.e(e);
         }
@@ -285,7 +270,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     private void startRecordingVideo(String fileName) {
         try {
             closePreviewSession();
-            setUpMediaRecorder(Constant.buildPath(Constant.VIDEO_DIRECTORY, fileName));
+            setUpMediaRecorder(Camera2Config.buildPath(Camera2Config.VIDEO_DIRECTORY, fileName));
             SurfaceTexture texture = binding.tvCamera.getSurfaceTexture();
             assert texture != null;
             texture.setDefaultBufferSize(640, 480);
@@ -307,15 +292,19 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                 @Override
                 public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
                     previewSession = cameraCaptureSession;
-                    updatePreview();
+                    try {
+                        previewSession.setRepeatingRequest(previewBuilder.build(), null, null);
+                    } catch (Exception e) {
+                        LogUtils.e(e);
+                    }
                     mediaRecorder.start();
                 }
 
                 @Override
                 public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
-                    ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_failed)));
+                    ViewUtil.showToast(ResourceUtil.getString(R.string.capture_failed));
                 }
-            }, backgroundHandler);
+            }, null);
         } catch (CameraAccessException | IOException e) {
             e.printStackTrace();
         }
@@ -329,28 +318,19 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     }
 
     private void setUpMediaRecorder(String fullFileName) throws IOException {
+        mediaRecorder.reset();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 
-        mediaRecorder.setOutputFile(fullFileName);
         mediaRecorder.setVideoEncodingBitRate(10000000);
         mediaRecorder.setVideoFrameRate(30);
         mediaRecorder.setVideoSize(640, 480);
         mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+//        mediaRecorder.setVideoEncodingBitRate(2500000);
+        mediaRecorder.setOutputFile(fullFileName);
         mediaRecorder.prepare();
-    }
-
-    private void updatePreview() {
-        try {
-            previewBuilder.set(CaptureRequest.CONTROL_MODE, CameraMetadata.CONTROL_MODE_AUTO);
-            HandlerThread thread = new HandlerThread("CameraPreview");
-            thread.start();
-            previewSession.setRepeatingRequest(previewBuilder.build(), null, backgroundHandler);
-        } catch (CameraAccessException e) {
-            e.printStackTrace();
-        }
     }
 
     private void stopRecordingVideo() {
@@ -358,12 +338,6 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         mediaRecorder.stop();
         mediaRecorder.reset();
 
-//        Activity activity = getActivity();
-//        if (null != activity) {
-//            Toast.makeText(activity, "Video saved: " + mNextVideoAbsolutePath,
-//                    Toast.LENGTH_SHORT).show();
-//            Log.d(TAG, "Video saved: " + mNextVideoAbsolutePath);
-//        }
 //        closeCamera();
 //        openCamera();
         startPreview();
