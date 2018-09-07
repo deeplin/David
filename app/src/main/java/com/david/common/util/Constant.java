@@ -12,8 +12,17 @@ import android.os.Environment;
 
 public class Constant {
 
-    public static final String IMAGE_DIRECTORY = Environment.getExternalStorageDirectory() + "/Pictures";
-    public static final String VIDEO_DIRECTORY = Environment.getExternalStorageDirectory() + "/Video";
+    public static final String IMAGE_DIRECTORY = "Pictures";
+    public static final String VIDEO_DIRECTORY = "Video";
+
+    public static String buildFileName(String extension) {
+        long fileName = System.currentTimeMillis();
+        return String.format("%s.%s", fileName, extension);
+    }
+
+    public static String buildPath(String path, String fileName) {
+        return String.format("%s/%s/%s", Environment.getExternalStorageDirectory(), path, fileName);
+    }
 
     public static final boolean RELEASE_TO_DAVID = true;
     public static final boolean ENABLE_DEBUG = true;
