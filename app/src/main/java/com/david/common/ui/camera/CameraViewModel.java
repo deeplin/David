@@ -11,6 +11,8 @@ public class CameraViewModel implements IViewModel {
 
     public ObservableBoolean isRecordingVideo = new ObservableBoolean(false);
 
+    public ObservableBoolean hasError = new ObservableBoolean(false);
+
     public ObservableInt rightImage = new ObservableInt();
     public ObservableInt leftImage = new ObservableInt();
 

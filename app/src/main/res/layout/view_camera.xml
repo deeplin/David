@@ -25,6 +25,7 @@
             android:layout_width="@dimen/y60"
             android:layout_height="@dimen/y60"
             android:imageSrc="@{viewModel.leftImage}"
+            android:visibility="@{viewModel.hasError? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/ivRight"
             app:layout_constraintHorizontal_bias="0.5"
@@ -37,12 +38,26 @@
             android:layout_width="@dimen/y60"
             android:layout_height="@dimen/y60"
             android:imageSrc="@{viewModel.rightImage}"
+            android:visibility="@{viewModel.hasError? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/ivLeft"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.9" />
+
+        <TextView
+            android:id="@+id/tvCameraError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/camera_no_connection"
+            android:textColor="@color/info_dark"
+            android:textSize="@dimen/f30"
+            android:visibility="@{viewModel.hasError? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

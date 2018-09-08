@@ -46,8 +46,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     private CameraCaptureSession cameraCaptureSession;
 
     //handler
-//    private HandlerThread backgroundThread;
-//    private Handler backgroundHandler;
+    private HandlerThread backgroundThread;
+    private Handler backgroundHandler;
 
     private MediaRecorder mediaRecorder;
 
@@ -64,7 +64,12 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         surfaceTextureListener = new TextureView.SurfaceTextureListener() {
             @Override
             public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-                openCamera();
+                try {
+                    openCamera();
+                } catch (Exception e) {
+                    cameraViewModel.hasError.set(true);
+                    LogUtils.e(e);
+                }
             }
 
             @Override
@@ -85,7 +90,12 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
             @Override
             public void onOpened(@NonNull CameraDevice cameraDevice) {
                 CameraView.this.cameraDevice = cameraDevice;
-                startPreview();
+                try {
+                    startPreview();
+                } catch (Exception e) {
+                    cameraViewModel.hasError.set(true);
+                    LogUtils.e(e);
+                }
             }
 
             @Override
@@ -117,6 +127,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                     if (cameraViewModel.isRecordingVideo.get()) {
                         cameraViewModel.isRecordingVideo.set(false);
                         stopRecordingVideo();
+                        ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), recordingFileName));
                     } else {
                         cameraViewModel.isRecordingVideo.set(true);
                         recordingFileName = Camera2Config.buildFileName("mp4");
@@ -144,24 +155,19 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         cameraViewModel.detach();
     }
 
-    void openCamera() {
-        try {
-            if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                return;
-            }
-            mediaRecorder = new MediaRecorder();
-            CameraManager cameraManager = (CameraManager) getContext().getSystemService(Context.CAMERA_SERVICE);
-            cameraManager.openCamera("0", stateCallback, null);
-        } catch (Exception e) {
-            ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_failed)));
-            LogUtils.e(e);
+    private void openCamera() throws Exception {
+        if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            return;
         }
+        mediaRecorder = new MediaRecorder();
+        CameraManager cameraManager = (CameraManager) getContext().getSystemService(Context.CAMERA_SERVICE);
+        cameraManager.openCamera("0", stateCallback, backgroundHandler);
     }
 
     private void openBackgroundThread() {
-//        backgroundThread = new HandlerThread("CameraThread");
-//        backgroundThread.start();
-//        backgroundHandler = new Handler(backgroundThread.getLooper());
+        backgroundThread = new HandlerThread("CameraThread");
+        backgroundThread.start();
+        backgroundHandler = new Handler(backgroundThread.getLooper());
     }
 
     private void closeCamera() {
@@ -184,130 +190,113 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     }
 
     private void closeBackgroundThread() {
-//        if (backgroundHandler != null) {
-//            backgroundThread.quitSafely();
-//            backgroundThread = null;
-//            backgroundHandler = null;
-//        }
-    }
-
-    private void startPreview() {
-        try {
-            closePreviewSession();
-
-            SurfaceTexture surfaceTexture = binding.tvCamera.getSurfaceTexture();
-            surfaceTexture.setDefaultBufferSize(640, 480);
-            previewBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
-
-            Surface previewSurface = new Surface(surfaceTexture);
-            previewBuilder.addTarget(previewSurface);
-
-            cameraDevice.createCaptureSession(Collections.singletonList(previewSurface),
-                    new CameraCaptureSession.StateCallback() {
-
-                        @Override
-                        public void onConfigured(CameraCaptureSession cameraCaptureSession) {
-                            try {
-                                CameraView.this.cameraCaptureSession = cameraCaptureSession;
-                                cameraCaptureSession.setRepeatingRequest(previewBuilder.build(),
-                                        null, null);
-                            } catch (CameraAccessException e) {
-                                ViewUtil.showToast(ResourceUtil.getString(R.string.capture_failed));
-                                LogUtils.e(e);
-                            }
-                        }
-
-                        @Override
-                        public void onConfigureFailed(CameraCaptureSession cameraCaptureSession) {
-                            ViewUtil.showToast(ResourceUtil.getString(R.string.capture_failed));
-                        }
-                    }, null);
-        } catch (CameraAccessException e) {
-            LogUtils.e(e);
+        if (backgroundHandler != null) {
+            backgroundThread.quitSafely();
+            backgroundThread = null;
+            backgroundHandler = null;
         }
     }
 
+    private void startPreview() throws Exception {
+        SurfaceTexture surfaceTexture = binding.tvCamera.getSurfaceTexture();
+        surfaceTexture.setDefaultBufferSize(640, 480);
+        previewBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
+
+        Surface previewSurface = new Surface(surfaceTexture);
+        previewBuilder.addTarget(previewSurface);
+
+        cameraDevice.createCaptureSession(Collections.singletonList(previewSurface),
+                new CameraCaptureSession.StateCallback() {
+
+                    @Override
+                    public void onConfigured(CameraCaptureSession cameraCaptureSession) {
+                        try {
+                            CameraView.this.cameraCaptureSession = cameraCaptureSession;
+                            cameraCaptureSession.setRepeatingRequest(previewBuilder.build(),
+                                    null, backgroundHandler);
+                        } catch (CameraAccessException e) {
+                            ViewUtil.showToast(ResourceUtil.getString(R.string.capture_failed));
+                            LogUtils.e(e);
+                        }
+                    }
+
+                    @Override
+                    public void onConfigureFailed(CameraCaptureSession cameraCaptureSession) {
+                        ViewUtil.showToast(ResourceUtil.getString(R.string.capture_failed));
+                    }
+                }, backgroundHandler);
+    }
+
     private void saveImage(String fileName) {
-        lock();
         File file = new File(Camera2Config.buildPath(Camera2Config.IMAGE_DIRECTORY, fileName));
         FileOutputStream outputPhoto = null;
         try {
+            lock();
             outputPhoto = new FileOutputStream(file);
             binding.tvCamera.getBitmap()
                     .compress(Bitmap.CompressFormat.PNG, 100, outputPhoto);
         } catch (Exception e) {
             LogUtils.e(e);
         } finally {
-            unlock();
             try {
+                unlock();
                 if (outputPhoto != null) {
                     outputPhoto.close();
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 LogUtils.e(e);
             }
         }
     }
 
-    private void lock() {
-        try {
-            cameraCaptureSession.capture(previewBuilder.build(),
-                    null, null);
-        } catch (CameraAccessException e) {
-            LogUtils.e(e);
-        }
+    private void lock() throws Exception {
+        cameraCaptureSession.capture(previewBuilder.build(),
+                null, backgroundHandler);
     }
 
-    private void unlock() {
-        try {
-            cameraCaptureSession.setRepeatingRequest(previewBuilder.build(),
-                    null, null);
-        } catch (CameraAccessException e) {
-            LogUtils.e(e);
-        }
+    private void unlock() throws Exception {
+        cameraCaptureSession.setRepeatingRequest(previewBuilder.build(),
+                null, backgroundHandler);
     }
 
-    private void startRecordingVideo(String fileName) {
-        try {
-            closePreviewSession();
-            setUpMediaRecorder(Camera2Config.buildPath(Camera2Config.VIDEO_DIRECTORY, fileName));
-            SurfaceTexture texture = binding.tvCamera.getSurfaceTexture();
-            assert texture != null;
-            texture.setDefaultBufferSize(640, 480);
-            previewBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
-            List<Surface> surfaces = new ArrayList<>();
+    private void startRecordingVideo(String fileName) throws Exception {
+        closePreviewSession();
+        setUpMediaRecorder(Camera2Config.buildPath(Camera2Config.VIDEO_DIRECTORY, fileName));
+        SurfaceTexture texture = binding.tvCamera.getSurfaceTexture();
 
-            // Set up Surface for the camera preview
-            Surface previewSurface = new Surface(texture);
-            surfaces.add(previewSurface);
-            previewBuilder.addTarget(previewSurface);
+        texture.setDefaultBufferSize(640, 480);
+        previewBuilder = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_RECORD);
+        List<Surface> surfaces = new ArrayList<>();
 
-            // Set up Surface for the MediaRecorder
-            Surface recorderSurface = mediaRecorder.getSurface();
-            surfaces.add(recorderSurface);
-            previewBuilder.addTarget(recorderSurface);
-            // Start a capture session
-            // Once the session starts, we can update the UI and start recording
-            cameraDevice.createCaptureSession(surfaces, new CameraCaptureSession.StateCallback() {
-                @Override
-                public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
-                    previewSession = cameraCaptureSession;
-                    try {
-                        previewSession.setRepeatingRequest(previewBuilder.build(), null, null);
-                    } catch (Exception e) {
-                        LogUtils.e(e);
-                    }
-                    mediaRecorder.start();
-                }
+        // Set up Surface for the camera preview
+        Surface previewSurface = new Surface(texture);
+        surfaces.add(previewSurface);
+        previewBuilder.addTarget(previewSurface);
 
-                @Override
-                public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
+        // Set up Surface for the MediaRecorder
+        Surface recorderSurface = mediaRecorder.getSurface();
+        surfaces.add(recorderSurface);
+        previewBuilder.addTarget(recorderSurface);
+        // Start a capture session
+        // Once the session starts, we can update the UI and start recording
+        cameraDevice.createCaptureSession(surfaces, new CameraCaptureSession.StateCallback() {
+            @Override
+            public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
+                previewSession = cameraCaptureSession;
+                try {
+                    previewSession.setRepeatingRequest(previewBuilder.build(), null, backgroundHandler);
+                } catch (Exception e) {
                     ViewUtil.showToast(ResourceUtil.getString(R.string.capture_failed));
+                    LogUtils.e(e);
                 }
-            }, null);
-        } catch (CameraAccessException | IOException e) {
-            e.printStackTrace();
-        }
+                mediaRecorder.start();
+            }
+
+            @Override
+            public void onConfigureFailed(@NonNull CameraCaptureSession cameraCaptureSession) {
+                ViewUtil.showToast(ResourceUtil.getString(R.string.capture_failed));
+            }
+        }, backgroundHandler);
     }
 
     private void closePreviewSession() {
@@ -323,23 +312,24 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 
-        mediaRecorder.setVideoEncodingBitRate(10000000);
-        mediaRecorder.setVideoFrameRate(30);
+        mediaRecorder.setVideoEncodingBitRate(2500000);
+        mediaRecorder.setVideoFrameRate(20);
         mediaRecorder.setVideoSize(640, 480);
         mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-//        mediaRecorder.setVideoEncodingBitRate(2500000);
         mediaRecorder.setOutputFile(fullFileName);
         mediaRecorder.prepare();
     }
 
-    private void stopRecordingVideo() {
+    private void stopRecordingVideo() throws Exception {
+//        closePreviewSession();
+
+        previewSession.stopRepeating();
+        previewSession.abortCaptures();
         // Stop recording
         mediaRecorder.stop();
         mediaRecorder.reset();
 
-//        closeCamera();
-//        openCamera();
         startPreview();
     }
 }
