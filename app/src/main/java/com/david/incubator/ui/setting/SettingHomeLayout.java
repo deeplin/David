@@ -10,7 +10,6 @@ import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.ITabConstraintLayout;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
-import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSettingHomeBinding;
 import com.david.incubator.ui.system.SystemHomeLayout;
 import com.david.incubator.ui.system.calibration.SystemCalibrationLayout;
@@ -18,16 +17,18 @@ import com.david.incubator.ui.system.deviation.SystemDeviationWarningLayout;
 import com.david.incubator.ui.system.factory.SystemFactoryLayout;
 import com.david.incubator.ui.system.otherparameter.SystemOtherParameterLayout;
 import com.david.incubator.ui.system.overheat.SystemOverheatWarningLayout;
-import com.david.incubator.ui.user.UserOverheatExperimentLayout;
 import com.david.incubator.ui.system.print.SystemPrintLayout;
 import com.david.incubator.ui.system.range.SystemRangeLayout;
 import com.david.incubator.ui.user.UserHomeLayout;
 import com.david.incubator.ui.user.UserLanguageLayout;
+import com.david.incubator.ui.user.UserOverheatExperimentLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
 import com.david.incubator.ui.user.UserTimeLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
+import com.david.incubator.ui.user.usermodel.ImageLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
 import com.david.incubator.ui.user.usermodel.UserModelLayout;
+import com.david.incubator.util.FragmentPage;
 
 /**
  * author: Ling Lin
@@ -75,6 +76,12 @@ public class SettingHomeLayout extends BindingConstraintLayout<LayoutSettingHome
                     case (FragmentPage.USER_MODEL_DETAIL):
                         view = new UserModelDetailLayout(context, navigationView);
                         break;
+                    case (FragmentPage.USER_MODEL_IMAGE):
+                        view = new ImageLayout(context, navigationView);
+                        break;
+//                    case (FragmentPage.USER_MODEL_DETAIL):
+//                        view = new UserModelDetailLayout(context, navigationView);
+//                        break;
                     case (FragmentPage.USER_TIME_SETUP):
                         view = new UserTimeLayout(context, navigationView);
                         break;

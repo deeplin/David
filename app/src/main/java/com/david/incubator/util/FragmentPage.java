@@ -22,6 +22,8 @@ public class FragmentPage {
     public static final byte USER_HOME = 20;
     public static final byte USER_MODEL = 21;
     public static final byte USER_MODEL_DETAIL = 22;
+    public static final byte USER_MODEL_IMAGE = 23;
+    public static final byte USER_MODEL_VIDEO = 24;
 
     public static final byte USER_TIME_SETUP = 25;
     public static final byte USER_LANGUAGE_SETUP = 26;

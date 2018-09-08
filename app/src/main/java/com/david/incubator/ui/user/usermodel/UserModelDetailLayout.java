@@ -76,19 +76,28 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> selectedUser.showDetail.set(true));
 
+        RxView.clicks(binding.btVideoData)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((aVoid) -> navigationView.set(FragmentPage.USER_MODEL_IMAGE));
+
+        RxView.clicks(binding.btImageData)
+                .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
+                .subscribe((aVoid) -> navigationView.set(FragmentPage.USER_MODEL_IMAGE));
+
         RxView.clicks(binding.btReturn)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> navigationView.set(FragmentPage.USER_MODEL));
+                .subscribe((aVoid) -> {
+                    selectedUser.userModel = null;
+                    navigationView.set(FragmentPage.USER_MODEL);
+                });
     }
 
     @Override
     public void attach() {
-        selectedUser.attach();
     }
 
     @Override
     public void detach() {
-        selectedUser.detach();
         if (alertDialog != null) {
             alertDialog.dismiss();
             alertDialog = null;

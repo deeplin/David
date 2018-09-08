@@ -16,21 +16,12 @@ import javax.inject.Singleton;
  */
 
 @Singleton
-public class SelectedUser implements IViewModel {
+public class SelectedUser{
 
     public UserModel userModel;
     public ObservableBoolean showDetail = new ObservableBoolean(false);
 
     @Inject
     SelectedUser() {
-    }
-
-    @Override
-    public void attach() {
-    }
-
-    @Override
-    public void detach() {
-        userModel = null;
     }
 }

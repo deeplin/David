@@ -3,7 +3,7 @@ package com.david.common.ui.camera;
 import android.os.Environment;
 
 public class Camera2Config {
-    public static final String IMAGE_DIRECTORY = "Pictures";
+    public static final String IMAGE_DIRECTORY = "Image";
     public static final String VIDEO_DIRECTORY = "Video";
 
     public static String buildFileName(String extension) {
