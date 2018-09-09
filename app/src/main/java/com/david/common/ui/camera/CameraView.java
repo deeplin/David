@@ -234,7 +234,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
             lock();
             outputPhoto = new FileOutputStream(file);
             binding.tvCamera.getBitmap()
-                    .compress(Bitmap.CompressFormat.PNG, 100, outputPhoto);
+                    .compress(Bitmap.CompressFormat.JPEG, 100, outputPhoto);
         } catch (Exception e) {
             LogUtils.e(e);
         } finally {

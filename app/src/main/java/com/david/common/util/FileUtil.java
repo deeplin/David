@@ -79,21 +79,6 @@ public class FileUtil {
         }
     }
 
-    public static void copyFile(String fromFileName, String toFileName) throws Exception {
-        File fromFile = new File(fromFileName);
-        if (fromFile.exists()) { //文件存在时
-            InputStream inputStream = new FileInputStream(fromFileName); //读入原文件
-            FileOutputStream fileOutputStream = new FileOutputStream(toFileName);
-            byte[] buffer = new byte[1024];
-            int byteRead;
-            while ((byteRead = inputStream.read(buffer)) != -1) {
-                fileOutputStream.write(buffer, 0, byteRead);
-            }
-            inputStream.close();
-            fileOutputStream.close();
-        }
-    }
-
     public static void setLanguage(Context context, DaoControl daoControl) {
         SystemSetting sensorRange = daoControl.getSystemSetting();
         if (sensorRange.getLanguageIndex() == LanguageMode.English.getIndex()) {

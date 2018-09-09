@@ -70,6 +70,7 @@ import com.david.incubator.ui.user.UserOverheatExperimentLayout;
 import com.david.incubator.ui.user.UserScreenLuminanceLayout;
 import com.david.incubator.ui.user.UserTimeLayout;
 import com.david.incubator.ui.user.UserWarningVolumeLayout;
+import com.david.incubator.ui.user.usermodel.ImageLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
 import com.david.incubator.ui.user.usermodel.UserModelLayout;
 import com.david.common.util.TimingData;
@@ -237,4 +238,6 @@ public interface ApplicationComponent {
     void inject(UserHomeLayout userHomeLayout);
 
     void inject(ScaleChartViewModel scaleChartViewModel);
+
+    void inject(ImageLayout imageLayout);
 }
