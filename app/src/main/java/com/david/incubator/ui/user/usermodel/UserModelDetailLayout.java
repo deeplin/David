@@ -78,7 +78,7 @@ public class UserModelDetailLayout extends BindingConstraintLayout<LayoutUserMod
 
         RxView.clicks(binding.btVideoData)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> navigationView.set(FragmentPage.USER_MODEL_IMAGE));
+                .subscribe((aVoid) -> navigationView.set(FragmentPage.USER_MODEL_VIDEO));
 
         RxView.clicks(binding.btImageData)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)

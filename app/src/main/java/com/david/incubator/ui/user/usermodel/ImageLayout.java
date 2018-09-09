@@ -100,7 +100,6 @@ public class ImageLayout extends BindingConstraintLayout<LayoutImageBinding> {
                 binding.ivFile.setImageBitmap(bitmap);
                 binding.ivFile.setVisibility(View.VISIBLE);
             });
-
         }
     }
 

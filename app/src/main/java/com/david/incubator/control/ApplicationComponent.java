@@ -74,6 +74,7 @@ import com.david.incubator.ui.user.usermodel.ImageLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
 import com.david.incubator.ui.user.usermodel.UserModelLayout;
 import com.david.common.util.TimingData;
+import com.david.incubator.ui.user.usermodel.VideoLayout;
 
 import javax.inject.Singleton;
 
@@ -240,4 +241,6 @@ public interface ApplicationComponent {
     void inject(ScaleChartViewModel scaleChartViewModel);
 
     void inject(ImageLayout imageLayout);
+
+    void inject(VideoLayout videoLayout);
 }

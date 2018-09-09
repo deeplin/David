@@ -28,6 +28,7 @@ import com.david.incubator.ui.user.UserWarningVolumeLayout;
 import com.david.incubator.ui.user.usermodel.ImageLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
 import com.david.incubator.ui.user.usermodel.UserModelLayout;
+import com.david.incubator.ui.user.usermodel.VideoLayout;
 import com.david.incubator.util.FragmentPage;
 
 /**
@@ -79,9 +80,9 @@ public class SettingHomeLayout extends BindingConstraintLayout<LayoutSettingHome
                     case (FragmentPage.USER_MODEL_IMAGE):
                         view = new ImageLayout(context, navigationView);
                         break;
-//                    case (FragmentPage.USER_MODEL_DETAIL):
-//                        view = new UserModelDetailLayout(context, navigationView);
-//                        break;
+                    case (FragmentPage.USER_MODEL_VIDEO):
+                        view = new VideoLayout(context, navigationView);
+                        break;
                     case (FragmentPage.USER_TIME_SETUP):
                         view = new UserTimeLayout(context, navigationView);
                         break;

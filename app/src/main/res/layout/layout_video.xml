@@ -4,8 +4,6 @@
 
     <data>
 
-        <import type="com.david.common.mode.SystemMode" />
-
         <import type="android.view.View" />
 
         <variable
@@ -24,6 +22,24 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <GridView
+            android:id="@+id/gvFiles"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            android:columnWidth="90dp"
+            android:numColumns="3"
+            android:stretchMode="spacingWidthUniform"
+            android:verticalSpacing="30dp"
+            app:layout_constraintBottom_toTopOf="@id/btReturn"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <VideoView
+            android:id="@+id/vvFile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
         <Button
             android:id="@+id/btReturn"
