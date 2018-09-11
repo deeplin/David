@@ -15,14 +15,14 @@ public class Constant {
     public static final boolean RELEASE_TO_DAVID = true;
     public static final boolean ENABLE_DEBUG = true;
 
-    public static final int SCREEN_LOCK_SECOND = 30000; //second
+    public static final int SCREEN_LOCK_SECOND = 30; //second
     public static final int BUTTON_CLICK_TIMEOUT = 500; //millisecond
     public static final int LONG_CLICK_DELAY = 100; //millisecond
 
     public static final int SENSOR_SAVED_IN_DATABASE = 2592000; //3600*24*30 per month 存储一月，秒为单位
 
-    public static final String SYSTEM_PASSWORD = "121212";
-    public static final String USER_PASSWORD = "898989";
+    public static final String SYSTEM_PASSWORD = "78722";
+    public static final String USER_PASSWORD = "36663";
 
     public static final String HKN93S = "HKN-93S";
     public static final String YP2000S = "YP-2000S";

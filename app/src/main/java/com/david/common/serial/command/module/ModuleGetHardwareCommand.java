@@ -18,6 +18,8 @@ public class ModuleGetHardwareCommand extends ModuleGetSoftwareCommand {
 
     protected int MAT;
 
+    protected int ENV;
+
     @Override
     public byte[] getRequest() {
         return HARDWARE_COMMAND;
@@ -73,5 +75,13 @@ public class ModuleGetHardwareCommand extends ModuleGetSoftwareCommand {
 
     public void setMAT(int MAT) {
         this.MAT = MAT;
+    }
+
+    public int getENV() {
+        return ENV;
+    }
+
+    public void setENV(int ENV) {
+        this.ENV = ENV;
     }
 }
