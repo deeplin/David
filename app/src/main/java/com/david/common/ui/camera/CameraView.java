@@ -314,7 +314,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 
         mediaRecorder.setVideoEncodingBitRate(2500000);
-        mediaRecorder.setVideoFrameRate(20);
+        mediaRecorder.setVideoFrameRate(10);
         mediaRecorder.setVideoSize(640, 480);
         mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
@@ -324,7 +324,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
     private void stopRecordingVideo() throws Exception {
         previewSession.stopRepeating();
-        Thread.sleep(1000);
+        Thread.sleep(2000);
 
         previewSession.abortCaptures();
 

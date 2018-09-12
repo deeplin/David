@@ -1,7 +1,6 @@
 package com.david.common.control;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.david.R;
 import com.david.common.dao.AnalogCommand;
@@ -45,7 +44,7 @@ import javax.inject.Singleton;
 @Singleton
 public class DaoControl {
 
-    private DaoMaster.DevOpenHelper devOpenHelper;
+    private DatabaseOpenHelper devOpenHelper;
     private Database database;
     private DaoSession daoSession;
 
@@ -58,7 +57,7 @@ public class DaoControl {
     }
 
     public void start(Context applicationContext) {
-        devOpenHelper = new DaoMaster.DevOpenHelper(applicationContext, "DavidDatabase");
+        devOpenHelper = new DatabaseOpenHelper(applicationContext, "DavidDatabase");
         database = devOpenHelper.getWritableDb();
         daoSession = new DaoMaster(database).newSession();
 
@@ -237,7 +236,7 @@ public class DaoControl {
                 .limit(limit);
 
         UserModel userModel = selectedUser.userModel;
-        if(userModel == null){
+        if (userModel == null) {
             userModel = getLastUserModel();
         }
 
@@ -267,7 +266,7 @@ public class DaoControl {
                 .limit(limit);
 
         UserModel userModel = selectedUser.userModel;
-        if(userModel == null){
+        if (userModel == null) {
             userModel = getLastUserModel();
         }
 
@@ -302,7 +301,7 @@ public class DaoControl {
                 .orderDesc(WeightModelDao.Properties.Id);
 
         UserModel userModel = selectedUser.userModel;
-        if(userModel == null){
+        if (userModel == null) {
             userModel = getLastUserModel();
         }
 

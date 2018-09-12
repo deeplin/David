@@ -21,7 +21,7 @@ public class ShowCalibrationCommand extends BaseSerialMessage {
     private int F1;
     private String O1;
     private String O2;
-    private String HUM;
+    private int HUM;
     private String SC;
 
     public ShowCalibrationCommand() {
@@ -33,7 +33,7 @@ public class ShowCalibrationCommand extends BaseSerialMessage {
         F1 = 0;
         O1 = "";
         O2 = "";
-        HUM = "";
+        HUM = 0;
         SC = "";
     }
 
@@ -114,11 +114,11 @@ public class ShowCalibrationCommand extends BaseSerialMessage {
         S2 = s2;
     }
 
-    public String getHUM() {
+    public int getHUM() {
         return HUM;
     }
 
-    public void setHUM(String HUM) {
+    public void setHUM(int HUM) {
         this.HUM = HUM;
     }
 }
