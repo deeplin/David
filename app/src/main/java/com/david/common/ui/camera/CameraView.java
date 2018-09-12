@@ -15,6 +15,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 
@@ -322,10 +323,11 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     }
 
     private void stopRecordingVideo() throws Exception {
-//        closePreviewSession();
-
         previewSession.stopRepeating();
+        Thread.sleep(1000);
+
         previewSession.abortCaptures();
+
         // Stop recording
         mediaRecorder.stop();
         mediaRecorder.reset();
