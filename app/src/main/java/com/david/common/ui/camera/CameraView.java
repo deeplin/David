@@ -15,7 +15,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.util.Log;
+import android.util.AttributeSet;
 import android.view.Surface;
 import android.view.TextureView;
 
@@ -57,8 +57,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
     private String recordingFileName;
 
-    public CameraView(Context context) {
-        super(context);
+    public CameraView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         cameraViewModel = new CameraViewModel();
         binding.setViewModel(cameraViewModel);
 
@@ -313,9 +313,9 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         mediaRecorder.setVideoSource(MediaRecorder.VideoSource.SURFACE);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 
-        mediaRecorder.setVideoEncodingBitRate(2500000);
+        mediaRecorder.setVideoEncodingBitRate(1024 * 256);
         mediaRecorder.setVideoFrameRate(10);
-        mediaRecorder.setVideoSize(640, 480);
+        mediaRecorder.setVideoSize(320, 240);
         mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
         mediaRecorder.setOutputFile(fullFileName);

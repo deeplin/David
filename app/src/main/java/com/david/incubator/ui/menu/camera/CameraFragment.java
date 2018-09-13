@@ -18,7 +18,7 @@ import com.david.incubator.ui.main.IFragmentLockable;
  */
 public class CameraFragment extends BindingFragment<FragmentCameraBinding> implements IFragmentLockable {
 
-    CameraView cameraView = null;
+//    CameraView cameraView = null;
 
     @Override
     protected int getLayoutId() {
@@ -32,29 +32,26 @@ public class CameraFragment extends BindingFragment<FragmentCameraBinding> imple
     @Override
     public synchronized void attach() {
         binding.sllLeft.attach();
-        try {
-            if (cameraView == null) {
-                cameraView = new CameraView(getView().getContext());
-                cameraView.attach();
-//                cameraView.startCamera();
-                binding.frCameraRight.addView(cameraView);
-            } else {
-//                cameraView.startCamera();
-            }
-//            binding.tvCameraError.setVisibility(View.GONE);
-        } catch (Exception e) {
-            LogUtil.i(this, "Open camera error.");
-        }
+        binding.frCameraRight.attach();
+//        try {
+//            if (cameraView == null) {
+//                cameraView = new CameraView(getView().getContext());
+//                cameraView.attach();
+//                binding.frCameraRight.addView(cameraView);
+//            }
+//        } catch (Exception e) {
+//            LogUtil.i(this, "Open camera error.");
+//        }
     }
 
     @Override
     public synchronized void detach() {
-        if (cameraView != null) {
-            cameraView.detach();
-//            cameraView.stopCamera();
-            cameraView = null;
-            binding.frCameraRight.removeAllViews();
-        }
+//        if (cameraView != null) {
+//            cameraView.detach();
+//            cameraView = null;
+//            binding.frCameraRight.removeAllViews();
+//        }
+        binding.frCameraRight.detach();
         binding.sllLeft.detach();
     }
 }
