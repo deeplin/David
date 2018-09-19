@@ -150,7 +150,16 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     public void attach() {
         cameraViewModel.attach();
         openBackgroundThread();
-        binding.tvCamera.setSurfaceTextureListener(surfaceTextureListener);
+        if (binding.tvCamera.isAvailable()) {
+            try {
+                openCamera();
+            } catch (Exception e) {
+                cameraViewModel.hasError.set(true);
+                LogUtils.e(e);
+            }
+        } else {
+            binding.tvCamera.setSurfaceTextureListener(surfaceTextureListener);
+        }
     }
 
     @Override
@@ -336,9 +345,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         mediaRecorder.stop();
         // clear recorder configuration
         mediaRecorder.reset();
-        // release the recorder object
-        mediaRecorder.release();
-        mediaRecorder = null;
+//        // release the recorder object
+//        mediaRecorder.release();
 
         startPreview();
     }
