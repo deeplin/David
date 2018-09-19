@@ -1,7 +1,12 @@
 package com.david.common.util;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
+import android.os.Environment;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.control.DaoControl;
@@ -10,8 +15,6 @@ import com.david.common.mode.LanguageMode;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -95,5 +98,34 @@ public class FileUtil {
             Locale russia = new Locale("ru", "RU");
             ResourceUtil.setLocalLanguage(context, russia);
         }
+    }
+
+    public static void makeDirectory(Context context, File directory) {
+
+//        if (ContextCompat.checkSelfPermission(context,
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+//                == PackageManager.PERMISSION_GRANTED) {
+//            Log.e("deeplin", "true");
+//
+//        }else{
+//            Log.e("deeplin", "false");
+//        }
+
+//        String path = Environment.getExternalStorageDirectory().getPath();
+//        String state = Environment.getExternalStorageState();
+//        if (!Environment.MEDIA_MOUNTED.equals(state)){
+//            Log.d("myAppName", "Error: external storage is unavailable");
+//        }
+//        if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+//            Log.d("myAppName", "Error: external storage is read only.");
+//        }
+
+        if (!directory.exists()) {
+            boolean status = directory.mkdirs();
+            if (!status) {
+                Log.e("deeplin", "mkdir error:" + directory);
+            }
+        }
+
     }
 }

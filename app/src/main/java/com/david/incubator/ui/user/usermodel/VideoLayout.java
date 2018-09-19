@@ -2,8 +2,6 @@ package com.david.incubator.ui.user.usermodel;
 
 import android.content.Context;
 import android.databinding.ObservableInt;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.view.View;
 
@@ -65,7 +63,7 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
 
     @Override
     public void attach() {
-        String filePath = Camera2Config.buildPath(Camera2Config.VIDEO_DIRECTORY, "");
+        String filePath = Camera2Config.buildFile(Camera2Config.VIDEO_DIRECTORY, "");
 
         File directory = new File(filePath);
         File[] files = directory.listFiles();

@@ -5,7 +5,6 @@ import android.databinding.ObservableInt;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 import android.view.View;
 
 import com.david.R;
@@ -67,7 +66,7 @@ public class ImageLayout extends BindingConstraintLayout<LayoutImageBinding> {
 
     @Override
     public void attach() {
-        String filePath = Camera2Config.buildPath(Camera2Config.IMAGE_DIRECTORY, "");
+        String filePath = Camera2Config.buildFile(Camera2Config.IMAGE_DIRECTORY, "");
 
         File directory = new File(filePath);
         File[] files = directory.listFiles();

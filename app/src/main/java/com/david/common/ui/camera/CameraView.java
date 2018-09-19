@@ -24,6 +24,7 @@ import com.david.R;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.ViewUtil;
 import com.david.common.util.Constant;
+import com.david.common.util.FileUtil;
 import com.david.common.util.ResourceUtil;
 import com.david.databinding.ViewCameraBinding;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -61,6 +62,9 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         super(context, attrs);
         cameraViewModel = new CameraViewModel();
         binding.setViewModel(cameraViewModel);
+
+        FileUtil.makeDirectory(getContext(), new File(Camera2Config.buildDirectory(Camera2Config.VIDEO_DIRECTORY)));
+        FileUtil.makeDirectory(getContext(), new File(Camera2Config.buildDirectory(Camera2Config.IMAGE_DIRECTORY)));
 
         surfaceTextureListener = new TextureView.SurfaceTextureListener() {
             @Override
@@ -116,7 +120,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
                     if (!cameraViewModel.isRecordingVideo.get()) {
-                        String fileName = Camera2Config.buildFileName("jpg");
+                        String fileName = Camera2Config.buildFile("jpg");
                         saveImage(fileName);
                         ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), fileName));
                     }
@@ -131,7 +135,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                         ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), recordingFileName));
                     } else {
                         cameraViewModel.isRecordingVideo.set(true);
-                        recordingFileName = Camera2Config.buildFileName("mp4");
+                        recordingFileName = Camera2Config.buildFile("mp4");
                         startRecordingVideo(recordingFileName);
                     }
                 });
@@ -229,7 +233,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     }
 
     private void saveImage(String fileName) {
-        File file = new File(Camera2Config.buildPath(Camera2Config.IMAGE_DIRECTORY, fileName));
+        File file = new File(Camera2Config.buildFile(Camera2Config.IMAGE_DIRECTORY, fileName));
         FileOutputStream outputPhoto = null;
         try {
             lock();
@@ -262,7 +266,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
     private void startRecordingVideo(String fileName) throws Exception {
         closePreviewSession();
-        setUpMediaRecorder(Camera2Config.buildPath(Camera2Config.VIDEO_DIRECTORY, fileName));
+        setUpMediaRecorder(Camera2Config.buildFile(Camera2Config.VIDEO_DIRECTORY, fileName));
         SurfaceTexture texture = binding.tvCamera.getSurfaceTexture();
 
         texture.setDefaultBufferSize(640, 480);
@@ -330,7 +334,11 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
         // Stop recording
         mediaRecorder.stop();
+        // clear recorder configuration
         mediaRecorder.reset();
+        // release the recorder object
+        mediaRecorder.release();
+        mediaRecorder = null;
 
         startPreview();
     }
