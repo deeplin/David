@@ -6,9 +6,9 @@ public class Camera2Config {
     public static final String IMAGE_DIRECTORY = "image";
     public static final String VIDEO_DIRECTORY = "video";
 
-    public static String buildFile(String extension) {
+    public static String buildFile() {
         long fileName = System.currentTimeMillis();
-        return String.format("%s.%s", fileName, extension);
+        return String.format("%s", fileName);
     }
 
     public static String buildFile(String path, String fileName) {

@@ -1,12 +1,7 @@
 package com.david.common.util;
 
-import android.Manifest;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
-import android.os.Environment;
-import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.common.control.DaoControl;
@@ -100,32 +95,12 @@ public class FileUtil {
         }
     }
 
-    public static void makeDirectory(Context context, File directory) {
-
-//        if (ContextCompat.checkSelfPermission(context,
-//                Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                == PackageManager.PERMISSION_GRANTED) {
-//            Log.e("deeplin", "true");
-//
-//        }else{
-//            Log.e("deeplin", "false");
-//        }
-
-//        String path = Environment.getExternalStorageDirectory().getPath();
-//        String state = Environment.getExternalStorageState();
-//        if (!Environment.MEDIA_MOUNTED.equals(state)){
-//            Log.d("myAppName", "Error: external storage is unavailable");
-//        }
-//        if (Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
-//            Log.d("myAppName", "Error: external storage is read only.");
-//        }
-
-        if (!directory.exists()) {
-            boolean status = directory.mkdirs();
-            if (!status) {
-                Log.e("deeplin", "mkdir error:" + directory);
-            }
+    public static boolean makeDirectory(String directory) {
+        File file = new File(directory);
+        if (!file.exists()) {
+            boolean status = file.mkdirs();
+            return status;
         }
-
+        return true;
     }
 }

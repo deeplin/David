@@ -13,6 +13,7 @@ import com.david.common.data.SelectedUser;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.camera.Camera2Config;
 import com.david.common.util.Constant;
+import com.david.common.util.TimeUtil;
 import com.david.databinding.LayoutImageBinding;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
@@ -77,13 +78,12 @@ public class ImageLayout extends BindingConstraintLayout<LayoutImageBinding> {
                 File file = files[index];
                 if (itemList.size() < 10) {
                     String fileName = file.getName();
-                    String createTimeString = fileName.substring(0, fileName.indexOf('.'));
-
                     try {
-                        long createTime = Long.parseLong(createTimeString);
+                        long createTime = Long.parseLong(fileName);
                         if (createTime > userModel.getStartTimeStamp()) {
                             if (userModel.getEndTimeStamp() == 0 || createTime < userModel.getEndTimeStamp()) {
-                                itemList.add(file.getName());
+                                String timeString = TimeUtil.getTime(createTime, TimeUtil.FullTime);
+                                itemList.add(timeString);
                                 pathList.add(file.getPath());
                             }
                         }

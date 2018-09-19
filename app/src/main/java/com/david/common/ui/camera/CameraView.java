@@ -3,6 +3,7 @@ package com.david.common.ui.camera;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.databinding.ObservableBoolean;
 import android.graphics.Bitmap;
 import android.graphics.SurfaceTexture;
 import android.hardware.camera2.CameraAccessException;
@@ -18,6 +19,7 @@ import android.support.v4.app.ActivityCompat;
 import android.util.AttributeSet;
 import android.view.Surface;
 import android.view.TextureView;
+import android.view.View;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
@@ -35,12 +37,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 
 public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
-    private CameraViewModel cameraViewModel;
+    public ObservableBoolean isRecordingVideo = new ObservableBoolean(false);
 
+    private CameraViewModel cameraViewModel;
     //Camera2
     private CameraDevice cameraDevice;
     private CaptureRequest.Builder previewBuilder;
@@ -51,30 +58,32 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     private HandlerThread backgroundThread;
     private Handler backgroundHandler;
 
-    private MediaRecorder mediaRecorder;
-
     private final TextureView.SurfaceTextureListener surfaceTextureListener;
     private final CameraDevice.StateCallback stateCallback;
 
+    private MediaRecorder mediaRecorder;
     private String recordingFileName;
+
+    private Disposable recodingDisposable = null;
 
     public CameraView(Context context, AttributeSet attrs) {
         super(context, attrs);
         cameraViewModel = new CameraViewModel();
         binding.setViewModel(cameraViewModel);
 
-        FileUtil.makeDirectory(getContext(), new File(Camera2Config.buildDirectory(Camera2Config.VIDEO_DIRECTORY)));
-        FileUtil.makeDirectory(getContext(), new File(Camera2Config.buildDirectory(Camera2Config.IMAGE_DIRECTORY)));
+        if (!FileUtil.makeDirectory(Camera2Config.buildDirectory(Camera2Config.VIDEO_DIRECTORY))) {
+            cameraViewModel.enableCapture.set(false);
+            cameraViewModel.showNoButton();
+        }
+        if (!FileUtil.makeDirectory(Camera2Config.buildDirectory(Camera2Config.IMAGE_DIRECTORY))) {
+            cameraViewModel.enableCapture.set(false);
+            cameraViewModel.showNoButton();
+        }
 
         surfaceTextureListener = new TextureView.SurfaceTextureListener() {
             @Override
             public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-                try {
-                    openCamera();
-                } catch (Exception e) {
-                    cameraViewModel.hasError.set(true);
-                    LogUtils.e(e);
-                }
+                openCamera();
             }
 
             @Override
@@ -116,11 +125,22 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
             }
         };
 
+        isRecordingVideo.addOnPropertyChangedCallback(new android.databinding.Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(android.databinding.Observable sender, int propertyId) {
+                if (isRecordingVideo.get()) {
+                    cameraViewModel.showRecordButton();
+                } else {
+                    cameraViewModel.showCaptureButton();
+                }
+            }
+        });
+
         RxView.clicks(binding.ivLeft)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    if (!cameraViewModel.isRecordingVideo.get()) {
-                        String fileName = Camera2Config.buildFile("jpg");
+                    if (!isRecordingVideo.get()) {
+                        String fileName = Camera2Config.buildFile();
                         saveImage(fileName);
                         ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), fileName));
                     }
@@ -129,13 +149,36 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         RxView.clicks(binding.ivRight)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    if (cameraViewModel.isRecordingVideo.get()) {
-                        cameraViewModel.isRecordingVideo.set(false);
+                    if (isRecordingVideo.get()) {
+                        isRecordingVideo.set(false);
                         stopRecordingVideo();
                         ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), recordingFileName));
+
+                        if (recodingDisposable != null) {
+                            recodingDisposable.dispose();
+                            recodingDisposable = null;
+                        }
                     } else {
-                        cameraViewModel.isRecordingVideo.set(true);
-                        recordingFileName = Camera2Config.buildFile("mp4");
+                        if (recodingDisposable != null) {
+                            recodingDisposable.dispose();
+                            recodingDisposable = null;
+                        }
+
+                        recodingDisposable = io.reactivex.Observable.interval(0, 1, TimeUnit.SECONDS)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe((Long aLong) ->
+                                {
+                                    cameraViewModel.recordString.set(String.format(Locale.US, "%02d:%02d:%02d",
+                                            aLong / 3600 % 24, aLong / 60 % 60, aLong % 60));
+                                    if (aLong % 60 == 59) {
+                                        stopRecordingVideo();
+                                        recordingFileName = Camera2Config.buildFile();
+                                        startRecordingVideo(recordingFileName);
+                                    }
+                                });
+
+                        isRecordingVideo.set(true);
+                        recordingFileName = Camera2Config.buildFile();
                         startRecordingVideo(recordingFileName);
                     }
                 });
@@ -148,34 +191,41 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
     @Override
     public void attach() {
-        cameraViewModel.attach();
-        openBackgroundThread();
-        if (binding.tvCamera.isAvailable()) {
-            try {
-                openCamera();
-            } catch (Exception e) {
-                cameraViewModel.hasError.set(true);
-                LogUtils.e(e);
-            }
+        if (isRecordingVideo.get()) {
+            binding.tvCamera.setVisibility(View.VISIBLE);
         } else {
-            binding.tvCamera.setSurfaceTextureListener(surfaceTextureListener);
+            openBackgroundThread();
+            if (binding.tvCamera.isAvailable()) {
+                openCamera();
+            } else {
+                binding.tvCamera.setSurfaceTextureListener(surfaceTextureListener);
+            }
+            isRecordingVideo.notifyChange();
         }
     }
 
     @Override
     public void detach() {
-        closeCamera();
-        closeBackgroundThread();
-        cameraViewModel.detach();
+        if (isRecordingVideo.get()) {
+            binding.tvCamera.setVisibility(View.GONE);
+        } else {
+            closeCamera();
+            closeBackgroundThread();
+        }
     }
 
-    private void openCamera() throws Exception {
-        if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            return;
+    private void openCamera() {
+        try {
+            if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                throw new Exception("No camera permission");
+            }
+            mediaRecorder = new MediaRecorder();
+            CameraManager cameraManager = (CameraManager) getContext().getSystemService(Context.CAMERA_SERVICE);
+            cameraManager.openCamera("0", stateCallback, backgroundHandler);
+        } catch (Exception e) {
+            cameraViewModel.hasError.set(true);
+            LogUtils.e(e);
         }
-        mediaRecorder = new MediaRecorder();
-        CameraManager cameraManager = (CameraManager) getContext().getSystemService(Context.CAMERA_SERVICE);
-        cameraManager.openCamera("0", stateCallback, backgroundHandler);
     }
 
     private void openBackgroundThread() {
@@ -291,6 +341,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         Surface recorderSurface = mediaRecorder.getSurface();
         surfaces.add(recorderSurface);
         previewBuilder.addTarget(recorderSurface);
+
         // Start a capture session
         // Once the session starts, we can update the UI and start recording
         cameraDevice.createCaptureSession(surfaces, new CameraCaptureSession.StateCallback() {
@@ -327,7 +378,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
 
         mediaRecorder.setVideoEncodingBitRate(1024 * 256);
-        mediaRecorder.setVideoFrameRate(10);
+        mediaRecorder.setVideoFrameRate(5);
         mediaRecorder.setVideoSize(320, 240);
         mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
         mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
