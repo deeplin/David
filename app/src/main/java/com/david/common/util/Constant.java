@@ -1,7 +1,6 @@
 package com.david.common.util;
 
 import android.graphics.Color;
-import android.os.Environment;
 
 /**
  * author: Ling Lin
@@ -12,10 +11,10 @@ import android.os.Environment;
 
 public class Constant {
 
-    public static final boolean RELEASE_TO_DAVID = false;
+    public static final boolean RELEASE_TO_DAVID = true;
     public static final boolean ENABLE_DEBUG = true;
 
-    public static final int SCREEN_LOCK_SECOND = 30 * 100; //second
+    public static final int SCREEN_LOCK_SECOND = 30; //second
     public static final int BUTTON_CLICK_TIMEOUT = 500; //millisecond
     public static final int LONG_CLICK_DELAY = 100; //millisecond
 
