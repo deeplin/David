@@ -35,6 +35,8 @@ public class ModuleHardware extends ModuleSoftware {
 
     @Inject
     public ModuleHardware() {
+        //todo
+        user = true;
     }
 
     public void load() throws Exception {
@@ -84,9 +86,6 @@ public class ModuleHardware extends ModuleSoftware {
             matInstalled = moduleGetHardwareCommand.getMAT() == 1;
             user = moduleGetHardwareCommand.getUSER() == 1;
             inst = moduleGetHardwareCommand.getINST() == 1;
-
-            //todo
-            user = true;
 
             //todo
             if (Constant.RELEASE_TO_DAVID) {

@@ -170,7 +170,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                                 {
                                     cameraViewModel.recordString.set(String.format(Locale.US, "%02d:%02d:%02d",
                                             aLong / 3600 % 24, aLong / 60 % 60, aLong % 60));
-                                    if (aLong % 60 == 59) {
+                                    if (aLong % 3600 == 3599) {
                                         stopRecordingVideo();
                                         recordingFileName = Camera2Config.buildFile();
                                         startRecordingVideo(recordingFileName);

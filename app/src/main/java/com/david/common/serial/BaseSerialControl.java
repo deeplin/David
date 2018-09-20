@@ -61,7 +61,7 @@ public abstract class BaseSerialControl {
             } else {
                 break;
             }
-            Thread.sleep(3);
+            Thread.sleep(6);
         }
         if (index > 0) {
             byte[] tempBuffer = new byte[index];

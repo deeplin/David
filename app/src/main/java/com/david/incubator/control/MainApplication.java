@@ -72,7 +72,6 @@ public class MainApplication extends Application{
 
         try {
             LogUtil.EnableLog();
-            //todo
             if (Constant.RELEASE_TO_DAVID)
                 LogUtil.EnableLogToFile();
 
