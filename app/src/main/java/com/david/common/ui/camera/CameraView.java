@@ -17,6 +17,7 @@ import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
@@ -35,6 +36,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -299,6 +301,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
             outputPhoto = new FileOutputStream(file);
             binding.tvCamera.getBitmap()
                     .compress(Bitmap.CompressFormat.JPEG, 100, outputPhoto);
+
+            removeImageFile();
         } catch (Exception e) {
             LogUtils.e(e);
         } finally {
@@ -396,9 +400,54 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
         mediaRecorder.stop();
         // clear recorder configuration
         mediaRecorder.reset();
-//        // release the recorder object
-//        mediaRecorder.release();
 
         startPreview();
+
+        removeVideoFile();
+    }
+
+    private void removeImageFile() {
+        File[] files = FileUtil.listFile(Camera2Config.buildDirectory(Camera2Config.IMAGE_DIRECTORY));
+        if (files != null && files.length > Constant.IMAGE_MAX) {
+
+            Arrays.sort(files, (f1, f2) -> {
+                long diff = f1.lastModified() - f2.lastModified();
+                if (diff > 0)
+                    return 1;
+                else if (diff == 0)
+                    return 0;
+                else
+                    return -1;//如果 if 中修改为 返回-1 同时此处修改为返回 1  排序就会是递减
+            });
+
+            for (int index = 0; index < files.length - Constant.IMAGE_MAX; index++) {
+                files[index].delete();
+            }
+        }
+    }
+
+    private void removeVideoFile() {
+        File[] files = FileUtil.listFile(Camera2Config.buildDirectory(Camera2Config.VIDEO_DIRECTORY));
+        if (files != null) {
+
+            Arrays.sort(files, (f1, f2) -> {
+                long diff = f1.lastModified() - f2.lastModified();
+                if (diff > 0)
+                    return -1;
+                else if (diff == 0)
+                    return 0;
+                else
+                    return 1;//如果 if 中修改为 返回-1 同时此处修改为返回 1  排序就会是递减
+            });
+
+            int sizeSum = 0;
+            for (int index = 0; index < files.length; index++) {
+                Log.e("deeplin", "" + files[index].getName());
+                sizeSum += files[index].length() / 1024;
+                if (sizeSum > Constant.VIDEO_MAX_SIZE) {
+                    files[index].delete();
+                }
+            }
+        }
     }
 }

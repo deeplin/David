@@ -103,4 +103,11 @@ public class FileUtil {
         }
         return true;
     }
+
+    public static File[] listFile(String path){
+        File file =new File(path);
+        File[] files = file.listFiles();
+
+        return files;
+    }
 }
