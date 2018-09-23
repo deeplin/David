@@ -14,15 +14,19 @@ import com.david.common.serial.SerialControl;
 import com.david.common.serial.command.other.LEDCommand;
 import com.david.common.ui.IViewModel;
 import com.david.common.util.Constant;
-import com.david.common.util.TimeUtil;
 import com.david.common.util.GPIOUtil;
+import com.david.common.util.TimeUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -32,7 +36,8 @@ import io.reactivex.schedulers.Schedulers;
  * description: 自动控制类
  */
 
-public abstract class AutomationControl implements IViewModel {
+@Singleton
+public class AutomationControl implements IViewModel {
 
     @Inject
     MessageSender messageSender;
@@ -49,13 +54,17 @@ public abstract class AutomationControl implements IViewModel {
 
     private Disposable ioDisposable = null;
 
+    private List<Consumer<Long>> consumerList;
+
     /*
      * 0: 屏幕解锁，开始计时
      * Constant.SCREEN_LOCK_SECOND: 时间到，自动锁屏
      * */
     private int lockTimeOut = 0;
 
+    @Inject
     public AutomationControl() {
+        consumerList = new ArrayList<>();
     }
 
     @Override
@@ -78,7 +87,15 @@ public abstract class AutomationControl implements IViewModel {
                     .subscribe((aLong) -> {
                         serialControl.refresh();
 
-                        secondRefresh();
+                        synchronized (AutomationControl.this) {
+                            for (Consumer consumer : consumerList) {
+                                consumer.accept(aLong);
+                            }
+                        }
+
+                        //        if (GPIOUtil.read()) {
+                        //            sideViewModel.muteAlarm();
+                        //        }
 
                         checkLockScreen();
 
@@ -179,5 +196,15 @@ public abstract class AutomationControl implements IViewModel {
         }
     }
 
-    protected abstract void secondRefresh();
+    public void addConsumer(Consumer consumer) {
+        synchronized (AutomationControl.this) {
+            consumerList.add(consumer);
+        }
+    }
+
+    public void removeConsumer(Consumer consumer) {
+        synchronized (AutomationControl.this) {
+            consumerList.remove(consumer);
+        }
+    }
 }

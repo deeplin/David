@@ -1,6 +1,7 @@
 package com.david.incubator.ui.menu.scale;
 
 import com.david.R;
+import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentScaleBinding;
 import com.david.incubator.control.MainApplication;
@@ -18,6 +19,8 @@ public class ScaleFragment extends TabHomeFragment<FragmentScaleBinding> {
 
     @Inject
     ScaleViewModel scaleViewModel;
+    @Inject
+    ShareMemory shareMemory;
 
     @Override
     protected int getLayoutId() {
@@ -32,6 +35,7 @@ public class ScaleFragment extends TabHomeFragment<FragmentScaleBinding> {
 
     @Override
     public void attach() {
+        shareMemory.layoutLockable.set(false);
         binding.sllLeft.attach();
         scaleViewModel.attach();
 

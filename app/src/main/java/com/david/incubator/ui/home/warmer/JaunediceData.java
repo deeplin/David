@@ -2,21 +2,17 @@ package com.david.incubator.ui.home.warmer;
 
 import android.support.annotation.NonNull;
 
+import com.david.common.control.AutomationControl;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MessageSender;
 import com.david.common.serial.command.other.LEDCommand;
-import com.david.incubator.control.MainApplication;
 import com.david.common.ui.ViewUtil;
-
-import java.util.concurrent.TimeUnit;
+import com.david.incubator.control.MainApplication;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * author: Ling Lin
@@ -32,6 +28,8 @@ public class JaunediceData implements Consumer<Long> {
     DaoControl daoControl;
     @Inject
     MessageSender messageSender;
+    @Inject
+    AutomationControl automationControl;
 
     private boolean clockwise;
     private int countdownMinute;
@@ -39,8 +37,8 @@ public class JaunediceData implements Consumer<Long> {
     private String textString;
 
     private int count;
-    private Disposable disposable;
     private Consumer<String> consumer;
+    private boolean started = false;
 
     @Inject
     public JaunediceData() {
@@ -50,12 +48,11 @@ public class JaunediceData implements Consumer<Long> {
     }
 
     public synchronized void start() {
-        if (disposable == null) {
+        if (!started) {
             messageSender.setLED(LEDCommand.BLUE, false, (aBoolean, baseSerialMessage) -> {
+                started = true;
+                automationControl.addConsumer(this);
                 count = -1;
-                Observable<Long> observable = Observable.interval(0, 1, TimeUnit.SECONDS)
-                        .observeOn(Schedulers.io());
-                disposable = observable.subscribe(this);
                 if (consumer != null) {
                     consumer.accept(textString);
                 }
@@ -64,11 +61,11 @@ public class JaunediceData implements Consumer<Long> {
     }
 
     public synchronized void stop() {
-        if (disposable != null) {
+        if (started) {
             messageSender.setLED(LEDCommand.BLUE, true, (aBoolean, baseSerialMessage) -> {
+                started = false;
+                automationControl.removeConsumer(this);
                 textString = "--:--";
-                disposable.dispose();
-                disposable = null;
                 if (consumer != null) {
                     consumer.accept(textString);
                 }
@@ -87,7 +84,7 @@ public class JaunediceData implements Consumer<Long> {
     }
 
     public synchronized boolean isStarted() {
-        return disposable != null;
+        return started;
     }
 
     public synchronized boolean isClockwiseSelected() {

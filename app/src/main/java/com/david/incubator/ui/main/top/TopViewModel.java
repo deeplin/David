@@ -7,6 +7,7 @@ import android.databinding.ObservableInt;
 
 import com.david.R;
 import com.david.common.alarm.AlarmControl;
+import com.david.common.control.AutomationControl;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MessageSender;
 import com.david.common.dao.UserModel;
@@ -28,20 +29,23 @@ import javax.inject.Singleton;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 @Singleton
-public class TopViewModel implements IViewModel {
+public class TopViewModel implements IViewModel, Consumer<Long> {
 
     @Inject
     public AlarmControl alarmControl;
     @Inject
     public ShareMemory shareMemory;
     @Inject
+    public ModuleHardware moduleHardware;
+    @Inject
     DaoControl daoControl;
     @Inject
     MessageSender messageSender;
     @Inject
-    public ModuleHardware moduleHardware;
+    AutomationControl automationControl;
 
     public ObservableField<String> userId = new ObservableField<>();
     public ObservableField<String> alarmField = new ObservableField<>();
@@ -146,6 +150,7 @@ public class TopViewModel implements IViewModel {
 
     @Override
     public void attach() {
+        automationControl.addConsumer(this);
         shareMemory.VU.addOnPropertyChangedCallback(vuCallback);
         loadUserId();
     }
@@ -153,6 +158,7 @@ public class TopViewModel implements IViewModel {
     @Override
     public void detach() {
         shareMemory.VU.removeOnPropertyChangedCallback(vuCallback);
+        automationControl.removeConsumer(this);
     }
 
     public void loadUserId() {
@@ -170,7 +176,7 @@ public class TopViewModel implements IViewModel {
         userId.set(userString);
     }
 
-    public void displayCurrentTime() {
+    private void displayCurrentTime() {
         this.dateTime.set(String.format(Locale.US, "%s\n%s",
                 TimeUtil.getCurrentDate(TimeUtil.Date), TimeUtil.getCurrentDate(TimeUtil.Time)));
     }
@@ -274,5 +280,10 @@ public class TopViewModel implements IViewModel {
 
     public void refresh() {
         setOverheatExperiment(overheatExperimentMode.get());
+    }
+
+    @Override
+    public void accept(Long aLong) {
+        displayCurrentTime();
     }
 }

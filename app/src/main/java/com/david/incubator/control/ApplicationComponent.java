@@ -1,10 +1,13 @@
 package com.david.incubator.control;
 
+import com.david.common.control.AutomationControl;
 import com.david.common.control.DaoControl;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.alarm.AlarmAdapter;
 import com.david.common.ui.alarm.AlarmView;
+import com.david.common.ui.camera.CameraView;
+import com.david.common.util.TimingData;
 import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.home.cabin.HomeViewModel;
 import com.david.incubator.ui.home.warmer.HeatingTimingView;
@@ -20,6 +23,8 @@ import com.david.incubator.ui.main.top.TopLayout;
 import com.david.incubator.ui.main.top.TopViewModel;
 import com.david.incubator.ui.menu.MenuLayout;
 import com.david.incubator.ui.menu.MenuViewModel;
+import com.david.incubator.ui.menu.camera.CameraFragment;
+import com.david.incubator.ui.menu.chart.ChartFragment;
 import com.david.incubator.ui.menu.chart.ChartLayout;
 import com.david.incubator.ui.menu.chart.chartview.AnalogChartWriter;
 import com.david.incubator.ui.menu.chart.chartview.StatusChartWriter;
@@ -73,7 +78,6 @@ import com.david.incubator.ui.user.UserWarningVolumeLayout;
 import com.david.incubator.ui.user.usermodel.ImageLayout;
 import com.david.incubator.ui.user.usermodel.UserModelDetailLayout;
 import com.david.incubator.ui.user.usermodel.UserModelLayout;
-import com.david.common.util.TimingData;
 import com.david.incubator.ui.user.usermodel.VideoLayout;
 
 import javax.inject.Singleton;
@@ -96,7 +100,7 @@ public interface ApplicationComponent {
 
     void inject(MessageSender messageSender);
 
-    void inject(IncubatorAutomationControl incubatorAutomationControl);
+    void inject(AutomationControl automationControl);
 
     void inject(MainActivity mainActivity);
 
@@ -243,4 +247,10 @@ public interface ApplicationComponent {
     void inject(ImageLayout imageLayout);
 
     void inject(VideoLayout videoLayout);
+
+    void inject(CameraView cameraView);
+
+    void inject(CameraFragment cameraFragment);
+
+    void inject(ChartFragment chartFragment);
 }

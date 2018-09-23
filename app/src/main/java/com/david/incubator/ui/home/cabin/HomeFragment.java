@@ -11,12 +11,12 @@ import com.david.common.data.ModuleHardware;
 import com.david.common.data.ShareMemory;
 import com.david.common.mode.CtrlMode;
 import com.david.common.mode.FunctionMode;
-import com.david.common.ui.BindingFragment;
 import com.david.common.ui.AnimationUtil;
+import com.david.common.ui.BindingFragment;
 import com.david.common.util.AutoUtil;
+import com.david.databinding.FragmentHomeBinding;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
-import com.david.databinding.FragmentHomeBinding;
 
 import javax.inject.Inject;
 
@@ -48,6 +48,7 @@ public class HomeFragment extends BindingFragment<FragmentHomeBinding> implement
     @Override
     protected void init() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
+        shareMemory.layoutLockable.set(false);
 
         binding.setViewModel(homeViewModel);
         animation = AnimationUtil.getAlphaAnimation();

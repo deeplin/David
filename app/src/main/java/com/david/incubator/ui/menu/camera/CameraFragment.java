@@ -1,14 +1,12 @@
 package com.david.incubator.ui.menu.camera;
 
-import android.view.View;
-
 import com.david.R;
+import com.david.common.data.ShareMemory;
 import com.david.common.ui.BindingFragment;
-import com.david.common.ui.camera.CameraView;
-import com.david.common.util.LogUtil;
-import com.david.common.util.ResourceUtil;
 import com.david.databinding.FragmentCameraBinding;
-import com.david.incubator.ui.main.IFragmentLockable;
+import com.david.incubator.control.MainApplication;
+
+import javax.inject.Inject;
 
 /**
  * author: Ling Lin
@@ -16,9 +14,10 @@ import com.david.incubator.ui.main.IFragmentLockable;
  * email: 10525677@qq.com
  * description:
  */
-public class CameraFragment extends BindingFragment<FragmentCameraBinding> implements IFragmentLockable {
+public class CameraFragment extends BindingFragment<FragmentCameraBinding> {
 
-//    CameraView cameraView = null;
+    @Inject
+    ShareMemory shareMemory;
 
     @Override
     protected int getLayoutId() {
@@ -27,30 +26,18 @@ public class CameraFragment extends BindingFragment<FragmentCameraBinding> imple
 
     @Override
     protected void init() {
+        MainApplication.getInstance().getApplicationComponent().inject(this);
     }
 
     @Override
     public synchronized void attach() {
+        shareMemory.layoutLockable.set(false);
         binding.sllLeft.attach();
         binding.frCameraRight.attach();
-//        try {
-//            if (cameraView == null) {
-//                cameraView = new CameraView(getView().getContext());
-//                cameraView.attach();
-//                binding.frCameraRight.addView(cameraView);
-//            }
-//        } catch (Exception e) {
-//            LogUtil.i(this, "Open camera error.");
-//        }
     }
 
     @Override
     public synchronized void detach() {
-//        if (cameraView != null) {
-//            cameraView.detach();
-//            cameraView = null;
-//            binding.frCameraRight.removeAllViews();
-//        }
         binding.frCameraRight.detach();
         binding.sllLeft.detach();
     }

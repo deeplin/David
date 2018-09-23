@@ -6,7 +6,6 @@ import com.david.common.data.ShareMemory;
 import com.david.common.ui.BindingFragment;
 import com.david.databinding.FragmentSpo2Binding;
 import com.david.incubator.control.MainApplication;
-import com.david.incubator.ui.main.IFragmentLockable;
 
 import javax.inject.Inject;
 
@@ -17,7 +16,7 @@ import javax.inject.Inject;
  * description:
  */
 
-public class Spo2Fragment extends BindingFragment<FragmentSpo2Binding> implements IFragmentLockable {
+public class Spo2Fragment extends BindingFragment<FragmentSpo2Binding> {
 
     @Inject
     MessageSender messageSender;
@@ -36,6 +35,7 @@ public class Spo2Fragment extends BindingFragment<FragmentSpo2Binding> implement
 
     @Override
     public void attach() {
+        shareMemory.layoutLockable.set(false);
         binding.sllLeft.attach();
         binding.spo2SurfaceView.attach();
         binding.spo2SettingLayout.attach();

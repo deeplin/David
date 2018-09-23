@@ -1,9 +1,12 @@
 package com.david.incubator.ui.menu.chart;
 
 import com.david.R;
+import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentChartBinding;
-import com.david.incubator.ui.main.IFragmentLockable;
+import com.david.incubator.control.MainApplication;
+
+import javax.inject.Inject;
 
 /**
  * author: Ling Lin
@@ -11,10 +14,14 @@ import com.david.incubator.ui.main.IFragmentLockable;
  * email: 10525677@qq.com
  * description:
  */
-public class ChartFragment extends TabHomeFragment<FragmentChartBinding> implements IFragmentLockable {
+public class ChartFragment extends TabHomeFragment<FragmentChartBinding> {
+
+    @Inject
+    ShareMemory shareMemory;
 
     @Override
     protected void init() {
+        MainApplication.getInstance().getApplicationComponent().inject(this);
     }
 
     @Override
@@ -24,6 +31,7 @@ public class ChartFragment extends TabHomeFragment<FragmentChartBinding> impleme
 
     @Override
     public void attach() {
+        shareMemory.layoutLockable.set(false);
         binding.sllLeft.attach();
         binding.clChart.attach();
     }

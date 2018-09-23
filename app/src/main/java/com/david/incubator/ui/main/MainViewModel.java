@@ -2,13 +2,13 @@ package com.david.incubator.ui.main;
 
 import android.databinding.Observable;
 
+import com.david.common.control.AutomationControl;
 import com.david.common.control.MessageSender;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.BaseNavigatorModel;
-import com.david.incubator.control.IncubatorAutomationControl;
+import com.david.common.util.TimingData;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.util.FragmentPage;
-import com.david.common.util.TimingData;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -27,7 +27,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
     @Inject
     MessageSender messageSender;
     @Inject
-    IncubatorAutomationControl incubatorAutomationControl;
+    AutomationControl automationControl;
     @Inject
     TimingData timingData;
 
@@ -54,7 +54,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                     shareMemory.lockScreen.set(true);
                     timingData.stop();
                 }
-                incubatorAutomationControl.initializeTimeOut();
+                automationControl.initializeTimeOut();
             }
         };
 
@@ -64,7 +64,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                 //Status 是否锁屏
                 boolean status = shareMemory.lockScreen.get();
 
-                if (!navigator.isLockableFragment()) {
+                if (shareMemory.layoutLockable.get()) {
                     if (shareMemory.isCabin()) {
                         shareMemory.currentFragmentId.set(FragmentPage.HOME_FRAGMENT);
                     } else if (shareMemory.isWarmer()) {
@@ -75,7 +75,7 @@ public class MainViewModel extends BaseNavigatorModel<MainNavigator> {
                 if (status) {
                     shareMemory.enableAlertList.set(false);
                 } else {
-                    incubatorAutomationControl.initializeTimeOut();
+                    automationControl.initializeTimeOut();
                 }
 
                 //刷新系统状态

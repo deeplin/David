@@ -3,6 +3,7 @@ package com.david.incubator.ui.setting;
 import com.david.R;
 import com.david.common.data.ModuleHardware;
 import com.david.common.data.SelectedUser;
+import com.david.common.data.ShareMemory;
 import com.david.common.ui.TabHomeFragment;
 import com.david.databinding.FragmentSettingBinding;
 import com.david.incubator.control.MainApplication;
@@ -22,6 +23,8 @@ public class SettingFragment extends TabHomeFragment<FragmentSettingBinding> {
     public SelectedUser selectedUser;
     @Inject
     ModuleHardware moduleHardware;
+    @Inject
+    ShareMemory shareMemory;
 
     @Override
     protected void init() {
@@ -36,6 +39,7 @@ public class SettingFragment extends TabHomeFragment<FragmentSettingBinding> {
 
     @Override
     public void attach() {
+        shareMemory.layoutLockable.set(true);
         binding.sllLeft.attach();
         binding.clChart.attach();
 

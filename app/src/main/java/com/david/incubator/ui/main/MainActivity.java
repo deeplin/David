@@ -11,11 +11,11 @@ import android.view.MotionEvent;
 import android.view.WindowManager;
 
 import com.david.R;
+import com.david.common.control.AutomationControl;
 import com.david.common.data.ShareMemory;
 import com.david.common.ui.BindingFragment;
 import com.david.common.util.AutoUtil;
 import com.david.databinding.ActivityMainBinding;
-import com.david.incubator.control.IncubatorAutomationControl;
 import com.david.incubator.control.MainApplication;
 import com.david.incubator.ui.home.cabin.HomeFragment;
 import com.david.incubator.ui.home.warmer.WarmerHomeFragment;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     @Inject
     MenuViewModel menuViewModel;
     @Inject
-    IncubatorAutomationControl incubatorAutomationControl;
+    AutomationControl automationControl;
     @Inject
     ShareMemory shareMemory;
 
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 
         binding.avAlarm.attach();
         mainViewModel.attach();
-        incubatorAutomationControl.attach();
+        automationControl.attach();
     }
 
     @Override
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 //            currentFragment = null;
 //        }
 
-//        incubatorAutomationControl.detach();
+//        automationControl.detach();
 //        mainViewModel.detach();
 //        binding.avAlarm.detach();
 
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     public boolean dispatchTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN: {
-                incubatorAutomationControl.initializeTimeOut();
+                automationControl.initializeTimeOut();
                 break;
             }
         }
@@ -224,11 +224,6 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
             }
             break;
         }
-    }
-
-    @Override
-    public boolean isLockableFragment() {
-        return currentFragment instanceof IFragmentLockable;
     }
 
     @Override

@@ -11,8 +11,5 @@ public interface MainNavigator {
     /*转换碎片*/
     void changeFragment(byte position);
 
-    /*返回是否锁屏*/
-    boolean isLockableFragment();
-
     void setLight(int brightness);
 }

@@ -78,6 +78,7 @@ public class ShareMemory implements BiConsumer<Boolean, BaseSerialMessage> {
     public ObservableInt prLowerLimit = new ObservableInt();
     /*System*/
     public ObservableBoolean lockScreen = new ObservableBoolean(false);
+    public ObservableBoolean layoutLockable = new ObservableBoolean();
 
     public ObservableByte currentFragmentId = new ObservableByte(Constant.NA_VALUE);
     public ObservableByte currentMenuId = new ObservableByte(Constant.NA_VALUE);

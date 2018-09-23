@@ -17,20 +17,20 @@ import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
+import com.david.common.control.AutomationControl;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.ViewUtil;
 import com.david.common.util.Constant;
 import com.david.common.util.FileUtil;
 import com.david.common.util.ResourceUtil;
-import com.david.common.util.TimeUtil;
 import com.david.databinding.ViewCameraBinding;
+import com.david.incubator.control.MainApplication;
 import com.jakewharton.rxbinding2.view.RxView;
 
 import java.io.File;
@@ -43,10 +43,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
+import javax.inject.Inject;
 
-public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
+import io.reactivex.functions.Consumer;
+
+public class CameraView extends BindingConstraintLayout<ViewCameraBinding> implements Consumer<Long> {
+
+    @Inject
+    AutomationControl automationControl;
 
     public ObservableBoolean isRecordingVideo = new ObservableBoolean(false);
 
@@ -66,11 +70,12 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
     private MediaRecorder mediaRecorder;
     private long recordingFileName;
-
-    private Disposable recodingDisposable = null;
+    private int startTime;
 
     public CameraView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        MainApplication.getInstance().getApplicationComponent().inject(this);
+
         cameraViewModel = new CameraViewModel();
         binding.setViewModel(cameraViewModel);
 
@@ -157,28 +162,11 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                         stopRecordingVideo();
                         ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), recordingFileName));
 
-                        if (recodingDisposable != null) {
-                            recodingDisposable.dispose();
-                            recodingDisposable = null;
-                        }
+                        automationControl.removeConsumer(this);
                     } else {
-                        if (recodingDisposable != null) {
-                            recodingDisposable.dispose();
-                            recodingDisposable = null;
-                        }
-
-                        recodingDisposable = io.reactivex.Observable.interval(0, 1, TimeUnit.SECONDS)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe((Long aLong) ->
-                                {
-                                    cameraViewModel.recordString.set(String.format(Locale.US, "%02d:%02d:%02d",
-                                            aLong / 3600 % 24, aLong / 60 % 60, aLong % 60));
-                                    if (aLong % 3600 == 3599) {
-                                        stopRecordingVideo();
-                                        recordingFileName = System.currentTimeMillis();
-                                        startRecordingVideo(recordingFileName);
-                                    }
-                                });
+                        startTime = 0;
+                        cameraViewModel.recordString.set("00:00:00");
+                        automationControl.addConsumer(this);
 
                         isRecordingVideo.set(true);
                         recordingFileName = System.currentTimeMillis();
@@ -449,5 +437,17 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                 }
             }
         }
+    }
+
+    @Override
+    public void accept(Long aLong) throws Exception {
+        cameraViewModel.recordString.set(String.format(Locale.US, "%02d:%02d:%02d",
+                startTime / 3600 % 24, startTime / 60 % 60, startTime % 60));
+        if (startTime % 3600 == 3599) {
+            stopRecordingVideo();
+            recordingFileName = System.currentTimeMillis();
+            startRecordingVideo(recordingFileName);
+        }
+        startTime++;
     }
 }

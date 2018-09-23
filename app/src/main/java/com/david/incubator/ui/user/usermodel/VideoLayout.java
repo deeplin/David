@@ -8,8 +8,10 @@ import android.net.Uri;
 import android.view.View;
 
 import com.david.R;
+import com.david.common.control.AutomationControl;
 import com.david.common.dao.UserModel;
 import com.david.common.data.SelectedUser;
+import com.david.common.data.ShareMemory;
 import com.david.common.ui.BindingConstraintLayout;
 import com.david.common.ui.camera.Camera2Config;
 import com.david.common.util.Constant;
@@ -22,14 +24,21 @@ import com.jakewharton.rxbinding2.view.RxView;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
+import io.reactivex.functions.Consumer;
+
+public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> implements Consumer<Long> {
 
     @Inject
     SelectedUser selectedUser;
+    @Inject
+    AutomationControl automationControl;
+    @Inject
+    ShareMemory shareMemory;
 
     public ObservableBoolean recordIcon = new ObservableBoolean();
     public ObservableField<String> recordString = new ObservableField<>();
@@ -39,10 +48,13 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
     private List<String> itemList;
     private List<String> pathList;
 
+    private int startTime;
+
     public VideoLayout(Context context, ObservableInt navigationView) {
         super(context);
         this.navigationView = navigationView;
         MainApplication.getInstance().getApplicationComponent().inject(this);
+        shareMemory.layoutLockable.set(false);
 
         init();
         binding.setViewModel(this);
@@ -54,10 +66,13 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
                     if (binding.vvFile.getVisibility() == View.VISIBLE) {
+                        recordIcon.set(false);
+                        automationControl.removeConsumer(VideoLayout.this);
                         binding.vvFile.stopPlayback();
                         binding.vvFile.setVisibility(View.GONE);
                     } else {
                         navigationView.set(FragmentPage.USER_MODEL_DETAIL);
+                        shareMemory.layoutLockable.set(true);
                     }
                 });
     }
@@ -106,6 +121,12 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
                 binding.vvFile.setVisibility(View.VISIBLE);
                 recordIcon.set(true);
                 recordString.set("00:00:00");
+                startTime = 0;
+
+                automationControl.addConsumer(VideoLayout.this);
+                binding.vvFile.setOnCompletionListener(mp -> {
+                    automationControl.removeConsumer(VideoLayout.this);
+                });
             });
         }
     }
@@ -116,5 +137,12 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
 
     private void init() {
         binding.title.setTitle(R.string.video_data);
+    }
+
+    @Override
+    public void accept(Long aLong) throws Exception {
+        recordString.set(String.format(Locale.US, "%02d:%02d:%02d",
+                startTime / 3600 % 24, startTime / 60 % 60, startTime % 60));
+        startTime++;
     }
 }
