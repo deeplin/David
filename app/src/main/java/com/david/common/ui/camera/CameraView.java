@@ -29,6 +29,7 @@ import com.david.common.ui.ViewUtil;
 import com.david.common.util.Constant;
 import com.david.common.util.FileUtil;
 import com.david.common.util.ResourceUtil;
+import com.david.common.util.TimeUtil;
 import com.david.databinding.ViewCameraBinding;
 import com.jakewharton.rxbinding2.view.RxView;
 
@@ -64,7 +65,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
     private final CameraDevice.StateCallback stateCallback;
 
     private MediaRecorder mediaRecorder;
-    private String recordingFileName;
+    private long recordingFileName;
 
     private Disposable recodingDisposable = null;
 
@@ -142,7 +143,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
                     if (!isRecordingVideo.get()) {
-                        String fileName = Camera2Config.buildFile();
+                        long fileName = System.currentTimeMillis();
                         saveImage(fileName);
                         ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), fileName));
                     }
@@ -174,13 +175,13 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                                             aLong / 3600 % 24, aLong / 60 % 60, aLong % 60));
                                     if (aLong % 3600 == 3599) {
                                         stopRecordingVideo();
-                                        recordingFileName = Camera2Config.buildFile();
+                                        recordingFileName = System.currentTimeMillis();
                                         startRecordingVideo(recordingFileName);
                                     }
                                 });
 
                         isRecordingVideo.set(true);
-                        recordingFileName = Camera2Config.buildFile();
+                        recordingFileName = System.currentTimeMillis();
                         startRecordingVideo(recordingFileName);
                     }
                 });
@@ -293,8 +294,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                 }, backgroundHandler);
     }
 
-    private void saveImage(String fileName) {
-        File file = new File(Camera2Config.buildFile(Camera2Config.IMAGE_DIRECTORY, fileName));
+    private void saveImage(long fileName) {
+        File file = new File(Camera2Config.buildFile(Camera2Config.IMAGE_DIRECTORY, String.valueOf(fileName)));
         FileOutputStream outputPhoto = null;
         try {
             lock();
@@ -327,9 +328,9 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
                 null, backgroundHandler);
     }
 
-    private void startRecordingVideo(String fileName) throws Exception {
+    private void startRecordingVideo(long fileName) throws Exception {
         closePreviewSession();
-        setUpMediaRecorder(Camera2Config.buildFile(Camera2Config.VIDEO_DIRECTORY, fileName));
+        setUpMediaRecorder(Camera2Config.buildFile(Camera2Config.VIDEO_DIRECTORY, String.valueOf(fileName)));
         SurfaceTexture texture = binding.tvCamera.getSurfaceTexture();
 
         texture.setDefaultBufferSize(640, 480);
@@ -442,7 +443,6 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> {
 
             int sizeSum = 0;
             for (int index = 0; index < files.length; index++) {
-                Log.e("deeplin", "" + files[index].getName());
                 sizeSum += files[index].length() / 1024;
                 if (sizeSum > Constant.VIDEO_MAX_SIZE) {
                     files[index].delete();

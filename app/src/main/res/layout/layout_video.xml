@@ -29,7 +29,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="30dp"
             android:columnWidth="90dp"
-            android:numColumns="3"
+            android:numColumns="5"
             android:stretchMode="spacingWidthUniform"
             android:verticalSpacing="30dp"
             app:layout_constraintBottom_toTopOf="@id/btReturn"
@@ -51,6 +51,22 @@
             android:textSize="@dimen/f18"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/tvRecording"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.recordString}"
+            android:textColor="@color/info_white"
+            android:textSize="@dimen/f22"
+            android:visibility="@{viewModel.recordIcon ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1" />
 
     </android.support.constraint.ConstraintLayout>
 </layout>

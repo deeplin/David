@@ -11,7 +11,7 @@ import android.graphics.Color;
 
 public class Constant {
 
-    public static final boolean RELEASE_TO_DAVID = true;
+    public static final boolean RELEASE_TO_DAVID = false;
     public static final boolean ENABLE_DEBUG = true;
 
     public static final int SCREEN_LOCK_SECOND = 30; //second
@@ -19,8 +19,8 @@ public class Constant {
     public static final int LONG_CLICK_DELAY = 100; //millisecond
 
     public static final int SENSOR_SAVED_IN_DATABASE = 2592000; //3600*24*30 per month 存储一月，秒为单位
-    public static final int IMAGE_MAX = 3;
-    public static final int VIDEO_MAX_SIZE = 2 * 1024;//K
+    public static final int IMAGE_MAX = 100;
+    public static final long VIDEO_MAX_SIZE = 5 * 1024 * 1024 * 1024;//K
 
     public static final String SYSTEM_PASSWORD = "78722";
     public static final String USER_PASSWORD = "36663";

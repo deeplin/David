@@ -1,6 +1,8 @@
 package com.david.incubator.ui.user.usermodel;
 
 import android.content.Context;
+import android.databinding.ObservableBoolean;
+import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
 import android.net.Uri;
 import android.view.View;
@@ -28,6 +30,9 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
 
     @Inject
     SelectedUser selectedUser;
+
+    public ObservableBoolean recordIcon = new ObservableBoolean();
+    public ObservableField<String> recordString = new ObservableField<>();
 
     ObservableInt navigationView;
 
@@ -64,6 +69,8 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
 
     @Override
     public void attach() {
+        recordIcon.set(false);
+
         String filePath = Camera2Config.buildFile(Camera2Config.VIDEO_DIRECTORY, "");
 
         File directory = new File(filePath);
@@ -73,11 +80,11 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
         if (userModel != null) {
             for (int index = files.length - 1; index >= 0; index--) {
                 File file = files[index];
-                if (itemList.size() < 10) {
+                if (itemList.size() <= 15) {
                     String fileName = file.getName();
                     try {
                         long createTime = Long.parseLong(fileName);
-                        if (createTime > userModel.getStartTimeStamp()) {
+                        if (TimeUtil.getTimeInSecond(createTime) > userModel.getStartTimeStamp()) {
                             if (userModel.getEndTimeStamp() == 0 || createTime < userModel.getEndTimeStamp()) {
                                 String timeString = TimeUtil.getTime(createTime, TimeUtil.FullTime);
                                 itemList.add(timeString);
@@ -97,6 +104,8 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> {
                 binding.vvFile.setVideoURI(uri);
                 binding.vvFile.start();
                 binding.vvFile.setVisibility(View.VISIBLE);
+                recordIcon.set(true);
+                recordString.set("00:00:00");
             });
         }
     }

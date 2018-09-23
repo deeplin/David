@@ -88,6 +88,9 @@ public class ModuleHardware extends ModuleSoftware {
             inst = moduleGetHardwareCommand.getINST() == 1;
 
             //todo
+            user = true;
+
+            //todo
             if (Constant.RELEASE_TO_DAVID) {
                 deviceModel = moduleGetHardwareCommand.getMODEL();
             } else {

@@ -35,4 +35,8 @@ public class TimeUtil {
     public static long getCurrentTimeInSecond() {
         return Math.round(System.currentTimeMillis() / 1000.0);
     }
+
+    public static long getTimeInSecond(long time) {
+        return Math.round(time / 1000.0);
+    }
 }

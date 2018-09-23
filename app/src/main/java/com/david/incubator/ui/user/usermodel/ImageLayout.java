@@ -5,6 +5,7 @@ import android.databinding.ObservableInt;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.View;
 
 import com.david.R;
@@ -76,11 +77,11 @@ public class ImageLayout extends BindingConstraintLayout<LayoutImageBinding> {
         if (userModel != null) {
             for (int index = files.length - 1; index >= 0; index--) {
                 File file = files[index];
-                if (itemList.size() < 10) {
+                if (itemList.size() <= 15) {
                     String fileName = file.getName();
                     try {
                         long createTime = Long.parseLong(fileName);
-                        if (createTime > userModel.getStartTimeStamp()) {
+                        if (TimeUtil.getTimeInSecond(createTime) > userModel.getStartTimeStamp()) {
                             if (userModel.getEndTimeStamp() == 0 || createTime < userModel.getEndTimeStamp()) {
                                 String timeString = TimeUtil.getTime(createTime, TimeUtil.FullTime);
                                 itemList.add(timeString);
