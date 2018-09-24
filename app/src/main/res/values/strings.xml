@@ -52,8 +52,12 @@
 
     <!--Camera-->
     <string name="camera_no_connection">请连接摄像头</string>
+
+
+    <!--todo-->
     <string name="capture_confirm">已添加%s</string>
     <string name="capture_failed">拍照失败</string>
+
 
     <!--Scale-->
     <string name="rescale">重新称重</string>

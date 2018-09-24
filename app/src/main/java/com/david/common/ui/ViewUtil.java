@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.david.R;
 import com.david.common.util.Action1;
+import com.david.common.util.Action2;
 import com.david.common.util.Constant;
 import com.david.common.util.ResourceUtil;
 import com.david.common.util.SensorRange;
@@ -52,19 +53,17 @@ public class ViewUtil {
         }
     }
 
-//    public static void displaySensor(boolean installed, boolean enabled, ObservableBoolean visible, Action1<Boolean> action1) {
-//        if (installed) {
-//            if (enabled) {
-//                visible.set(false);
-//            } else {
-//                visible.set(true);
-//                action1.accept(false);
-//            }
-//        } else {
-//            visible.set(true);
-//            action1.accept(true);
-//        }
-//    }
+    public static void displaySensor(boolean installed, boolean enabled, Action2<Boolean, Boolean> action2) {
+        if (installed) {
+            if (enabled) {
+                action2.accept(true, false);
+            } else {
+                action2.accept(true, true);
+            }
+        } else {
+            action2.accept(false, false);
+        }
+    }
 
     public static String formatTempValue(int value) {
         if (value == Constant.SENSOR_NA_VALUE) {

@@ -17,7 +17,7 @@ public abstract class BaseSerialControl {
 
     private boolean running;
 
-    private byte[] inputBuffer;
+    protected byte[] inputBuffer;
 
     protected abstract OutputStream getOutputStream();
 

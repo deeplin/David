@@ -23,6 +23,15 @@ public class StringUtil {
         return stringBuilder.append(hv).toString().toUpperCase();
     }
 
+    public static String byteArrayToHex(int bufferLength, byte[] buffer){
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int index = 0; index < bufferLength; index++) {
+            String message = StringUtil.byteToHex(buffer[index]) + " ";
+            stringBuffer.append(message);
+        }
+        return stringBuffer.toString();
+    }
+
     /*0x80: -127
     * 0xFF: -1
     * 0x7F: 127

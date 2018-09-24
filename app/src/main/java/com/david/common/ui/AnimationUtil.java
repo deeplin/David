@@ -36,9 +36,17 @@ public class AnimationUtil {
         return rotateAnimation;
     }
 
-    public static ColorFilter getGrayFilter() {
+    public static ColorFilter getGrayFilter(boolean gray) {
         ColorMatrix matrix = new ColorMatrix();
-        matrix.setSaturation(50);//饱和度 0灰色 100过度彩色，50正常
+        ColorMatrix satMatrix = new ColorMatrix();
+        if (gray) {
+            matrix.setScale((float) 0.5, (float) 0.5, (float) 0.5, 1);
+            satMatrix.setSaturation(0);
+        } else {
+            matrix.setScale(1, 1, 1, 1);
+            satMatrix.setSaturation(50);
+        }
+        matrix.postConcat(satMatrix);
         return new ColorMatrixColorFilter(matrix);
     }
 }
