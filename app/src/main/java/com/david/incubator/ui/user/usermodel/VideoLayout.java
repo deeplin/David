@@ -96,37 +96,35 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> imp
             for (int index = files.length - 1; index >= 0; index--) {
                 File file = files[index];
                 if (itemList.size() <= 15) {
-                    String fileName = file.getName();
-                    try {
-                        long createTime = Long.parseLong(fileName);
-                        if (TimeUtil.getTimeInSecond(createTime) > userModel.getStartTimeStamp()) {
-                            if (userModel.getEndTimeStamp() == 0 || createTime < userModel.getEndTimeStamp()) {
-                                String timeString = TimeUtil.getTime(createTime, TimeUtil.FullTime);
-                                itemList.add(timeString);
-                                pathList.add(file.getPath());
-                            }
+                    long createTime = file.lastModified();
+                    if (TimeUtil.getTimeInSecond(createTime) > userModel.getStartTimeStamp()) {
+                        if (userModel.getEndTimeStamp() == 0 || createTime < userModel.getEndTimeStamp()) {
+                            String timeString = TimeUtil.getTime(createTime, TimeUtil.FullTime);
+                            itemList.add(timeString);
+                            pathList.add(file.getPath());
                         }
-                    } catch (Exception e) {
                     }
                 }
             }
             FileAdapter fileAdapter = new FileAdapter(getContext(), itemList, pathList, R.drawable.ic_ondemand_video_black);
             binding.gvFiles.setAdapter(fileAdapter);
             binding.gvFiles.setOnItemClickListener((parent, view, position, id) -> {
-                String fileName = (String) view.getTag();
+                if (!recordIcon.get()) {
+                    recordIcon.set(true);
 
-                Uri uri = Uri.parse(fileName);
-                binding.vvFile.setVideoURI(uri);
-                binding.vvFile.start();
-                binding.vvFile.setVisibility(View.VISIBLE);
-                recordIcon.set(true);
-                recordString.set("00:00:00");
-                startTime = 0;
+                    String fileName = (String) view.getTag();
+                    Uri uri = Uri.parse(fileName);
+                    binding.vvFile.setVideoURI(uri);
+                    binding.vvFile.start();
+                    binding.vvFile.setVisibility(View.VISIBLE);
+                    recordString.set("00:00:00");
+                    startTime = 0;
 
-                automationControl.addConsumer(VideoLayout.this);
-                binding.vvFile.setOnCompletionListener(mp -> {
-                    automationControl.removeConsumer(VideoLayout.this);
-                });
+                    automationControl.addConsumer(VideoLayout.this);
+                    binding.vvFile.setOnCompletionListener(mp -> {
+                        automationControl.removeConsumer(VideoLayout.this);
+                    });
+                }
             });
         }
     }
@@ -140,7 +138,7 @@ public class VideoLayout extends BindingConstraintLayout<LayoutVideoBinding> imp
     }
 
     @Override
-    public void accept(Long aLong) throws Exception {
+    public void accept(Long aLong) {
         recordString.set(String.format(Locale.US, "%02d:%02d:%02d",
                 startTime / 3600 % 24, startTime / 60 % 60, startTime % 60));
         startTime++;

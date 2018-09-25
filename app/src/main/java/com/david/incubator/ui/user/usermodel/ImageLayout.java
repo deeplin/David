@@ -5,7 +5,6 @@ import android.databinding.ObservableInt;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.util.Log;
 import android.view.View;
 
 import com.david.R;
@@ -78,27 +77,25 @@ public class ImageLayout extends BindingConstraintLayout<LayoutImageBinding> {
             for (int index = files.length - 1; index >= 0; index--) {
                 File file = files[index];
                 if (itemList.size() <= 15) {
-                    String fileName = file.getName();
-                    try {
-                        long createTime = Long.parseLong(fileName);
-                        if (TimeUtil.getTimeInSecond(createTime) > userModel.getStartTimeStamp()) {
-                            if (userModel.getEndTimeStamp() == 0 || createTime < userModel.getEndTimeStamp()) {
-                                String timeString = TimeUtil.getTime(createTime, TimeUtil.FullTime);
-                                itemList.add(timeString);
-                                pathList.add(file.getPath());
-                            }
+                    long createTime = file.lastModified();
+                    if (TimeUtil.getTimeInSecond(createTime) > userModel.getStartTimeStamp()) {
+                        if (userModel.getEndTimeStamp() == 0 || createTime < userModel.getEndTimeStamp()) {
+                            String timeString = TimeUtil.getTime(createTime, TimeUtil.FullTime);
+                            itemList.add(timeString);
+                            pathList.add(file.getPath());
                         }
-                    } catch (Exception e) {
                     }
                 }
             }
             FileAdapter fileAdapter = new FileAdapter(getContext(), itemList, pathList, R.drawable.ic_image_black);
             binding.gvFiles.setAdapter(fileAdapter);
             binding.gvFiles.setOnItemClickListener((parent, view, position, id) -> {
-                String fileName = (String) view.getTag();
-                Bitmap bitmap = BitmapFactory.decodeFile(fileName);
-                binding.ivFile.setImageBitmap(bitmap);
-                binding.ivFile.setVisibility(View.VISIBLE);
+                if (binding.ivFile.getVisibility() == View.GONE) {
+                    String fileName = (String) view.getTag();
+                    Bitmap bitmap = BitmapFactory.decodeFile(fileName);
+                    binding.ivFile.setImageBitmap(bitmap);
+                    binding.ivFile.setVisibility(View.VISIBLE);
+                }
             });
         }
     }

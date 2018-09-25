@@ -13,11 +13,17 @@ import java.util.Locale;
 
 public class TimeUtil {
     public static final String HourMinute = "HH:mm";
+    public static final String FILENAME = "yyMMddHHmmss";
     public static final String FullTime = "yy-MM-dd HH:mm:ss";
     public static final String DateTimeWithoutSecond = "yy-MM-dd HH:mm";
     public static final String Date = "yyyy-MM-dd";
     public static final String SimpleDate = "MM-dd";
     public static final String Time = "HH:mm:ss";
+
+    public static String getFileName() {
+        long time = System.currentTimeMillis();
+        return TimeUtil.getTime(time, TimeUtil.FILENAME);
+    }
 
     public static String getCurrentDate(String format) {
         Calendar calendar = Calendar.getInstance();

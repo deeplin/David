@@ -29,6 +29,7 @@ import com.david.common.ui.ViewUtil;
 import com.david.common.util.Constant;
 import com.david.common.util.FileUtil;
 import com.david.common.util.ResourceUtil;
+import com.david.common.util.TimeUtil;
 import com.david.databinding.ViewCameraBinding;
 import com.david.incubator.control.MainApplication;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -45,7 +46,10 @@ import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class CameraView extends BindingConstraintLayout<ViewCameraBinding> implements Consumer<Long> {
 
@@ -69,7 +73,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
     private final CameraDevice.StateCallback stateCallback;
 
     private MediaRecorder mediaRecorder;
-    private long recordingFileName;
+    private String recordingFileName;
     private int startTime;
 
     public CameraView(Context context, AttributeSet attrs) {
@@ -148,7 +152,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
                     if (!isRecordingVideo.get()) {
-                        long fileName = System.currentTimeMillis();
+                        String fileName = TimeUtil.getFileName();
                         saveImage(fileName);
                         ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), fileName));
                     }
@@ -169,7 +173,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
                         automationControl.addConsumer(this);
 
                         isRecordingVideo.set(true);
-                        recordingFileName = System.currentTimeMillis();
+                        recordingFileName = TimeUtil.getFileName();
                         startRecordingVideo(recordingFileName);
                     }
                 });
@@ -182,24 +186,29 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
 
     @Override
     public void attach() {
-        if (isRecordingVideo.get()) {
-            binding.tvCamera.setVisibility(View.VISIBLE);
-        } else {
+        if (!isRecordingVideo.get()) {
             openBackgroundThread();
             if (binding.tvCamera.isAvailable()) {
                 openCamera();
             } else {
                 binding.tvCamera.setSurfaceTextureListener(surfaceTextureListener);
             }
-            isRecordingVideo.notifyChange();
         }
+
+        Observable.just(this)
+                .delay(2, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(cameraView -> {
+                    binding.tvCamera.setVisibility(View.VISIBLE);
+                    cameraViewModel.showCaptureButton();
+                });
     }
 
     @Override
     public void detach() {
-        if (isRecordingVideo.get()) {
-            binding.tvCamera.setVisibility(View.GONE);
-        } else {
+        binding.tvCamera.setVisibility(View.GONE);
+        cameraViewModel.showNoButton();
+        if (!isRecordingVideo.get()) {
             closeCamera();
             closeBackgroundThread();
         }
@@ -282,8 +291,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
                 }, backgroundHandler);
     }
 
-    private void saveImage(long fileName) {
-        File file = new File(Camera2Config.buildFile(Camera2Config.IMAGE_DIRECTORY, String.valueOf(fileName)));
+    private void saveImage(String fileName) {
+        File file = new File(Camera2Config.buildFile(Camera2Config.IMAGE_DIRECTORY, fileName));
         FileOutputStream outputPhoto = null;
         try {
             lock();
@@ -316,9 +325,9 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
                 null, backgroundHandler);
     }
 
-    private void startRecordingVideo(long fileName) throws Exception {
+    private void startRecordingVideo(String fileName) throws Exception {
         closePreviewSession();
-        setUpMediaRecorder(Camera2Config.buildFile(Camera2Config.VIDEO_DIRECTORY, String.valueOf(fileName)));
+        setUpMediaRecorder(Camera2Config.buildFile(Camera2Config.VIDEO_DIRECTORY, fileName));
         SurfaceTexture texture = binding.tvCamera.getSurfaceTexture();
 
         texture.setDefaultBufferSize(640, 480);
@@ -432,7 +441,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
             int sizeSum = 0;
             for (int index = 0; index < files.length; index++) {
                 sizeSum += files[index].length() / 1024;
-                if (sizeSum > Constant.VIDEO_MAX_SIZE) {
+                if (sizeSum / 1024 > Constant.VIDEO_MAX_SIZE) {
                     files[index].delete();
                 }
             }
@@ -445,7 +454,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
                 startTime / 3600 % 24, startTime / 60 % 60, startTime % 60));
         if (startTime % 3600 == 3599) {
             stopRecordingVideo();
-            recordingFileName = System.currentTimeMillis();
+            recordingFileName = TimeUtil.getFileName();
             startRecordingVideo(recordingFileName);
         }
         startTime++;

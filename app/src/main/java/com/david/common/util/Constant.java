@@ -20,7 +20,7 @@ public class Constant {
 
     public static final int SENSOR_SAVED_IN_DATABASE = 2592000; //3600*24*30 per month 存储一月，秒为单位
     public static final int IMAGE_MAX = 100;
-    public static final long VIDEO_MAX_SIZE = 5 * 1024 * 1024 * 1024;//K
+    public static final long VIDEO_MAX_SIZE = 6 * 1024 * 1024;//兆
 
     public static final String SYSTEM_PASSWORD = "78722";
     public static final String USER_PASSWORD = "36663";
