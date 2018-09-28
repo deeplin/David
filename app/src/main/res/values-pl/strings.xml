@@ -71,8 +71,8 @@
     <string name="calibration_confirm_o2_21">Potwierdź, czy kalibrować przy stężeniu tlenu 21%</string>
     <string name="calibration_confirm_o2_100">Potwierdź, czy kalibrować przy stężeniu tlenu 100%</string>
     <string name="calibration_scale">Kalibracja wagi.</string>
-    <string name="calibration_confirm_scale_0">Aktualna waga %sg \ nProszę potwierdzić, czy waga została skalibrowana na 0g</string>
-    <string name="calibration_confirm_scale_5000">Aktualna waga %sg \ nProszę potwierdzić, czy waga została skalibrowana na 5000g</string>
+    <string name="calibration_confirm_scale_0">Aktualna waga %sg \nProszę potwierdzić, czy waga została skalibrowana na 0g</string>
+    <string name="calibration_confirm_scale_5000">Aktualna waga %sg \nProszę potwierdzić, czy waga została skalibrowana na 5000g</string>
     <string name="cancel">Anuluj</string>
     <string name="calibration_successful">Kalibracja pomyślna</string>
     <string name="calibration_failed">Kalibracja niepomyślna</string>

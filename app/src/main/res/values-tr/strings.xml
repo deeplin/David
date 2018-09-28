@@ -71,8 +71,8 @@
     <string name="calibration_confirm_o2_21">Lütfen O₂\'nin %21\'de kalibre edildiğini onaylayın</string>
     <string name="calibration_confirm_o2_100">Lütfen O₂\'nin % 100\'de kalibre edildiğini onaylayın</string>
     <string name="calibration_scale">Terazi Kalibrasyonu</string>
-    <string name="calibration_confirm_scale_0">Mevcut ağırlık %sg\nLütfen terazi klb. 0g'da onaylayın</string>
-    <string name="calibration_confirm_scale_5000">Mevcut ağırlık %sg\nLütfen terazi klb. 5000g'da onaylayın</string>
+    <string name="calibration_confirm_scale_0">Mevcut ağırlık %sg\nLütfen terazi klb. 0g\'da onaylayın</string>
+    <string name="calibration_confirm_scale_5000">Mevcut ağırlık %sg\nLütfen terazi klb. 5000g\'da onaylayın</string>
     <string name="cancel">İptal</string>
     <string name="calibration_successful">Kalibrasyon başarılı</string>
     <string name="calibration_failed">Kalibrasyon başarısız</string>
@@ -85,7 +85,7 @@
     <string name="master_version">Ana Versiyon</string>
     <string name="slave_version">Yardımcı Versiyon</string>
     <string name="upper_version">Üst Versiyon</string>
-    <string name="device_id">Cihaz ID'si</string>
+    <string name="device_id">Cihaz ID</string>
 
     <!--Login-->
     <string name="input_password">Lütfen şifre girin</string>
