@@ -42,19 +42,19 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public class CameraView extends BindingConstraintLayout<ViewCameraBinding> implements Consumer<Long> {
 
     @Inject
     AutomationControl automationControl;
+
+    private Semaphore cameraOpenCloseLock = new Semaphore(1);
 
     public ObservableBoolean isRecordingVideo = new ObservableBoolean(false);
 
@@ -115,6 +115,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
         stateCallback = new CameraDevice.StateCallback() {
             @Override
             public void onOpened(@NonNull CameraDevice cameraDevice) {
+                cameraOpenCloseLock.release();
                 CameraView.this.cameraDevice = cameraDevice;
                 try {
                     startPreview();
@@ -126,12 +127,14 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
 
             @Override
             public void onDisconnected(@NonNull CameraDevice cameraDevice) {
+                cameraOpenCloseLock.release();
                 cameraDevice.close();
                 CameraView.this.cameraDevice = null;
             }
 
             @Override
             public void onError(@NonNull CameraDevice cameraDevice, int error) {
+                cameraOpenCloseLock.release();
                 cameraDevice.close();
                 CameraView.this.cameraDevice = null;
             }
@@ -194,14 +197,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
                 binding.tvCamera.setSurfaceTextureListener(surfaceTextureListener);
             }
         }
-
-        Observable.just(this)
-                .delay(2, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(cameraView -> {
-                    binding.tvCamera.setVisibility(View.VISIBLE);
-                    cameraViewModel.showCaptureButton();
-                });
+        binding.tvCamera.setVisibility(View.VISIBLE);
+        isRecordingVideo.notifyChange();
     }
 
     @Override
@@ -216,6 +213,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
 
     private void openCamera() {
         try {
+            cameraOpenCloseLock.acquire();
             if (ActivityCompat.checkSelfPermission(this.getContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 throw new Exception("No camera permission");
             }
@@ -235,21 +233,29 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
     }
 
     private void closeCamera() {
-        closePreviewSession();
+        try {
+            cameraOpenCloseLock.acquire();
 
-        if (cameraCaptureSession != null) {
-            cameraCaptureSession.close();
-            cameraCaptureSession = null;
-        }
+            closePreviewSession();
 
-        if (cameraDevice != null) {
-            cameraDevice.close();
-            cameraDevice = null;
-        }
+            if (cameraCaptureSession != null) {
+                cameraCaptureSession.close();
+                cameraCaptureSession = null;
+            }
 
-        if (mediaRecorder != null) {
-            mediaRecorder.release();
-            mediaRecorder = null;
+            if (cameraDevice != null) {
+                cameraDevice.close();
+                cameraDevice = null;
+            }
+
+            if (mediaRecorder != null) {
+                mediaRecorder.release();
+                mediaRecorder = null;
+            }
+        } catch (InterruptedException e) {
+            LogUtils.e(e);
+        } finally {
+            cameraOpenCloseLock.release();
         }
     }
 
@@ -389,8 +395,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
     }
 
     private void stopRecordingVideo() throws Exception {
-        previewSession.stopRepeating();
-        Thread.sleep(2000);
+//        previewSession.stopRepeating();
 
         previewSession.abortCaptures();
 

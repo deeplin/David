@@ -89,7 +89,11 @@ public class AutomationControl implements IViewModel {
 
                         synchronized (AutomationControl.this) {
                             for (Consumer consumer : consumerList) {
-                                consumer.accept(aLong);
+                                try {
+                                    consumer.accept(aLong);
+                                } catch (Exception e) {
+                                    LogUtils.e(e);
+                                }
                             }
                         }
 
