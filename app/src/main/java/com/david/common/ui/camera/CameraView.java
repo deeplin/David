@@ -17,7 +17,6 @@ import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
@@ -43,17 +42,16 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-import java.util.Observable;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
 public class CameraView extends BindingConstraintLayout<ViewCameraBinding> implements Consumer<Long> {
+
+    private static final int VIDEO_SAVE_RATE = 20; // seconds
 
     @Inject
     AutomationControl automationControl;
@@ -67,7 +65,6 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
     private CameraDevice cameraDevice;
     private CaptureRequest.Builder previewBuilder;
     private CameraCaptureSession previewSession;
-    private CameraCaptureSession cameraCaptureSession;
 
     //handler
     private HandlerThread backgroundThread;
@@ -119,8 +116,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
         stateCallback = new CameraDevice.StateCallback() {
             @Override
             public void onOpened(@NonNull CameraDevice cameraDevice) {
-                cameraOpenCloseLock.release();
                 CameraView.this.cameraDevice = cameraDevice;
+                cameraOpenCloseLock.release();
                 try {
                     startPreview();
                 } catch (Exception e) {
@@ -242,11 +239,6 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
 
             closePreviewSession();
 
-            if (cameraCaptureSession != null) {
-                cameraCaptureSession.close();
-                cameraCaptureSession = null;
-            }
-
             if (cameraDevice != null) {
                 cameraDevice.close();
                 cameraDevice = null;
@@ -285,7 +277,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
                     @Override
                     public void onConfigured(CameraCaptureSession cameraCaptureSession) {
                         try {
-                            CameraView.this.cameraCaptureSession = cameraCaptureSession;
+                            CameraView.this.previewSession = cameraCaptureSession;
                             cameraCaptureSession.setRepeatingRequest(previewBuilder.build(),
                                     null, backgroundHandler);
                         } catch (CameraAccessException e) {
@@ -326,12 +318,12 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
     }
 
     private void lock() throws Exception {
-        cameraCaptureSession.capture(previewBuilder.build(),
+        previewSession.capture(previewBuilder.build(),
                 null, backgroundHandler);
     }
 
     private void unlock() throws Exception {
-        cameraCaptureSession.setRepeatingRequest(previewBuilder.build(),
+        previewSession.setRepeatingRequest(previewBuilder.build(),
                 null, backgroundHandler);
     }
 
@@ -398,10 +390,11 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
         mediaRecorder.prepare();
     }
 
-    private void stopRecordingVideo() throws Exception {
+    private void stopSession() throws Exception {
         previewSession.stopRepeating();
-        Thread.sleep(2000);
+    }
 
+    private void stopRecordingVideo() throws Exception {
         previewSession.abortCaptures();
 
         // Stop recording
@@ -462,11 +455,13 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
         startTime++;
         cameraViewModel.recordString.set(String.format(Locale.US, "%02d:%02d:%02d",
                 startTime / 3600 % 24, startTime / 60 % 60, startTime % 60));
-//        if (startTime % 3600 == 3599) {
-        if (startTime % 10 == 9) {
+        if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 6) {
             stopRecordingVideo();
+        } else if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 1) {
             recordingFileName = TimeUtil.getFileName();
             startRecordingVideo(recordingFileName);
+        } else if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 8) {
+            stopSession();
         }
     }
 }
