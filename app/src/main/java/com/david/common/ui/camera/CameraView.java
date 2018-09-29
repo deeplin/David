@@ -17,6 +17,7 @@ import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
@@ -42,11 +43,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.Observable;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
 public class CameraView extends BindingConstraintLayout<ViewCameraBinding> implements Consumer<Long> {
@@ -395,7 +399,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
     }
 
     private void stopRecordingVideo() throws Exception {
-//        previewSession.stopRepeating();
+        previewSession.stopRepeating();
+        Thread.sleep(2000);
 
         previewSession.abortCaptures();
 
@@ -404,9 +409,8 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
         // clear recorder configuration
         mediaRecorder.reset();
 
-        startPreview();
-
         removeVideoFile();
+        startPreview();
     }
 
     private void removeImageFile() {
@@ -455,13 +459,14 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
 
     @Override
     public void accept(Long aLong) throws Exception {
+        startTime++;
         cameraViewModel.recordString.set(String.format(Locale.US, "%02d:%02d:%02d",
                 startTime / 3600 % 24, startTime / 60 % 60, startTime % 60));
-        if (startTime % 3600 == 3599) {
+//        if (startTime % 3600 == 3599) {
+        if (startTime % 10 == 9) {
             stopRecordingVideo();
             recordingFileName = TimeUtil.getFileName();
             startRecordingVideo(recordingFileName);
         }
-        startTime++;
     }
 }

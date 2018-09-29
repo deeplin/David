@@ -94,13 +94,29 @@ import dagger.Component;
 @Component
 public interface ApplicationComponent {
 
-    void inject(MainApplication mainApplication);
+    /*Common*/
 
-    void inject(TopLayout topLayout);
+    void inject(MainApplication mainApplication);
 
     void inject(MessageSender messageSender);
 
     void inject(AutomationControl automationControl);
+
+    void inject(AlarmView alarmView);
+
+    void inject(ShareMemory shareMemory);
+
+    void inject(AlarmAdapter alarmAdapter);
+
+    void inject(DaoControl daoControl);
+
+    void inject(TimingData timingData);
+
+    void inject(CameraView cameraView);
+
+    /*Incubator*/
+
+    void inject(TopLayout topLayout);
 
     void inject(MainActivity mainActivity);
 
@@ -113,8 +129,6 @@ public interface ApplicationComponent {
     void inject(SideLayout sideLayout);
 
     void inject(TopViewModel topViewModel);
-
-    void inject(AlarmView alarmView);
 
     void inject(MenuViewModel menuViewModel);
 
@@ -159,8 +173,6 @@ public interface ApplicationComponent {
     void inject(SensorListViewModel sensorListViewModel);
 
     void inject(SensorListLayout sensorListLayout);
-
-    void inject(ShareMemory shareMemory);
 
     void inject(SettingAddUserLayout settingAddUserLayout);
 
@@ -230,15 +242,9 @@ public interface ApplicationComponent {
 
     void inject(Spo2ChartSurfaceView spo2ChartSurfaceView);
 
-    void inject(AlarmAdapter alarmAdapter);
-
     void inject(UserTimeLayout userTimeLayout);
 
     void inject(SettingFragment settingFragment);
-
-    void inject(DaoControl daoControl);
-
-    void inject(TimingData timingData);
 
     void inject(UserHomeLayout userHomeLayout);
 
@@ -247,8 +253,6 @@ public interface ApplicationComponent {
     void inject(ImageLayout imageLayout);
 
     void inject(VideoLayout videoLayout);
-
-    void inject(CameraView cameraView);
 
     void inject(CameraFragment cameraFragment);
 
