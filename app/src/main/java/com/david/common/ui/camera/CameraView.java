@@ -51,7 +51,7 @@ import io.reactivex.functions.Consumer;
 
 public class CameraView extends BindingConstraintLayout<ViewCameraBinding> implements Consumer<Long> {
 
-    private static final int VIDEO_SAVE_RATE = 20; // seconds
+    private static final int VIDEO_SAVE_RATE = 3600; // seconds
 
     @Inject
     AutomationControl automationControl;
