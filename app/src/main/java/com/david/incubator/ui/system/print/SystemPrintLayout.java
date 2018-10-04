@@ -45,11 +45,9 @@ public class SystemPrintLayout extends FastIncreaseConstraintLayout<LayoutSystem
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibOK))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> {
-                    Observable.just(this)
-                            .observeOn(Schedulers.io())
-                            .subscribe((num) -> systemPrintViewModel.startPrint());
-                });
+                .subscribe((aVoid) -> Observable.just(this)
+                        .observeOn(Schedulers.io())
+                        .subscribe((num) -> systemPrintViewModel.startPrint()));
 
         RxView.clicks(binding.buttonControl.findViewById(R.id.ibReturn))
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)

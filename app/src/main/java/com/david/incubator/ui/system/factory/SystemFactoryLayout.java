@@ -26,8 +26,8 @@ public class SystemFactoryLayout extends BindingConstraintLayout<LayoutSystemFac
     @Inject
     MessageSender messageSender;
 
-    public ObservableBoolean selectLower = new ObservableBoolean(false);
-    public ObservableBoolean selectUpper = new ObservableBoolean(false);
+    public ObservableBoolean selectLower = new ObservableBoolean();
+    public ObservableBoolean selectUpper = new ObservableBoolean();
 
     ObservableInt navigationView;
 
@@ -76,6 +76,8 @@ public class SystemFactoryLayout extends BindingConstraintLayout<LayoutSystemFac
 
     @Override
     public void attach() {
+        selectLower.set(false);
+        selectUpper.set(false);
     }
 
     @Override

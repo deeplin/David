@@ -40,7 +40,7 @@ import javax.inject.Inject;
 public class SystemPrintViewModel {
 
     @Inject
-    public PrintSerialControl printSerialControl;
+    PrintSerialControl printSerialControl;
     @Inject
     ModuleHardware moduleHardware;
     @Inject

@@ -114,18 +114,18 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     @Override
     public void onPause() {
         super.onPause();
-//        if (currentFragment != null) {
-//            currentFragment.detach();
-//            currentFragment = null;
-//        }
+        if (currentFragment != null) {
+            currentFragment.detach();
+            currentFragment = null;
+        }
 
-//        automationControl.detach();
-//        mainViewModel.detach();
-//        binding.avAlarm.detach();
+        automationControl.detach();
+        mainViewModel.detach();
+        binding.avAlarm.detach();
 
-//        binding.slSide.detach();
-//        binding.mlMenu.detach();
-//        binding.tlTop.detach();
+        binding.slSide.detach();
+        binding.mlMenu.detach();
+        binding.tlTop.detach();
     }
 
     @Override

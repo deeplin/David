@@ -25,12 +25,12 @@ import javax.inject.Inject;
  */
 public class SystemCalibrationViewModel implements IViewModel {
 
-    private static final int TEMP_MAX = 50;
-
     @Inject
     MessageSender messageSender;
     @Inject
     ShareMemory shareMemory;
+
+    private static final int TEMP_MAX = 50;
 
     public ObservableInt airValue = new ObservableInt();
     public ObservableInt isoAirValue = new ObservableInt();
