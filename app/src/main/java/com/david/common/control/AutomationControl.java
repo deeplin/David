@@ -200,15 +200,21 @@ public class AutomationControl implements IViewModel {
         }
     }
 
-    public void addConsumer(Consumer consumer) {
+    public void addConsumer(Consumer<Long> consumer) {
         synchronized (AutomationControl.this) {
             consumerList.add(consumer);
         }
     }
 
-    public void removeConsumer(Consumer consumer) {
+    public void removeConsumer(Consumer<Long> consumer) {
         synchronized (AutomationControl.this) {
             consumerList.remove(consumer);
+        }
+    }
+
+    public boolean containConsumer(Consumer<Long> consumer){
+        synchronized (AutomationControl.this) {
+            return consumerList.contains(consumer);
         }
     }
 }

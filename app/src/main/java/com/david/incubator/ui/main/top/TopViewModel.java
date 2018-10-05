@@ -4,6 +4,7 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
+import android.util.Log;
 
 import com.david.R;
 import com.david.common.alarm.AlarmControl;
@@ -27,12 +28,14 @@ import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 @Singleton
-public class TopViewModel implements IViewModel, Consumer<Long> {
+public class TopViewModel implements IViewModel {
 
     @Inject
     public AlarmControl alarmControl;
@@ -62,7 +65,10 @@ public class TopViewModel implements IViewModel, Consumer<Long> {
 
     private long batteryStartTime;
 
-    private Disposable muteDisposable = null;
+    private Consumer<Long> timeConsumer;
+    private Consumer<Long> muteConsumer;
+
+    private int alarmTime;
 
     @Inject
     public TopViewModel() {
@@ -145,12 +151,23 @@ public class TopViewModel implements IViewModel, Consumer<Long> {
             }
         };
 
+        timeConsumer = aLong -> displayCurrentTime();
+
+        muteConsumer = aLong -> {
+            if (alarmTime > 0) {
+                muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
+            } else {
+                clearAlarm();
+            }
+            alarmTime--;
+        };
+
         displayCurrentTime();
     }
 
     @Override
     public void attach() {
-        automationControl.addConsumer(this);
+        automationControl.addConsumer(timeConsumer);
         shareMemory.VU.addOnPropertyChangedCallback(vuCallback);
         loadUserId();
     }
@@ -158,7 +175,7 @@ public class TopViewModel implements IViewModel, Consumer<Long> {
     @Override
     public void detach() {
         shareMemory.VU.removeOnPropertyChangedCallback(vuCallback);
-        automationControl.removeConsumer(this);
+        automationControl.removeConsumer(timeConsumer);
     }
 
     public void loadUserId() {
@@ -176,7 +193,7 @@ public class TopViewModel implements IViewModel, Consumer<Long> {
         userId.set(userString);
     }
 
-    private void displayCurrentTime() {
+    public void displayCurrentTime() {
         this.dateTime.set(String.format(Locale.US, "%s\n%s",
                 TimeUtil.getCurrentDate(TimeUtil.Date), TimeUtil.getCurrentDate(TimeUtil.Time)));
     }
@@ -218,19 +235,16 @@ public class TopViewModel implements IViewModel, Consumer<Long> {
         batteryImageId.set(imageId);
     }
 
-    public void clearAlarm() {
-        if (muteDisposable != null) {
-            muteDisposable.dispose();
-            muteDisposable = null;
-        }
+    public synchronized void clearAlarm() {
+        automationControl.removeConsumer(muteConsumer);
         showMute.set(false);
         muteAlarmField.set(null);
     }
 
     public synchronized void muteAlarm() {
-        if (alarmControl.isAlert() && muteDisposable == null) {
+        if (alarmControl.isAlert() && (!automationControl.containConsumer(muteConsumer))) {
             String alarmId = alarmControl.topAlarmId.get();
-            int alarmTime = AlarmControl.getMuteTime(alarmId);
+            alarmTime = AlarmControl.getMuteTime(alarmId);
             if (alarmTime > 0) {
                 messageSender.setMute(alarmId, alarmTime, (aBoolean, baseSerialMessage) -> {
                     if (aBoolean) {
@@ -238,18 +252,7 @@ public class TopViewModel implements IViewModel, Consumer<Long> {
                         synchronized (this) {
                             clearAlarm();
                             showMute.set(true);
-                            muteAlarmField.set(String.format(Locale.US, "%ds", alarmTime));
-
-                            muteDisposable = io.reactivex.Observable.interval(1, TimeUnit.SECONDS)
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe(aLong -> {
-                                        long remaining = alarmTime - aLong;
-                                        if (remaining > 0) {
-                                            muteAlarmField.set(String.format(Locale.US, "%ds", remaining));
-                                        } else {
-                                            clearAlarm();
-                                        }
-                                    });
+                            automationControl.addConsumer(muteConsumer);
                         }
                     }
                 });
@@ -280,10 +283,5 @@ public class TopViewModel implements IViewModel, Consumer<Long> {
 
     public void refresh() {
         setOverheatExperiment(overheatExperimentMode.get());
-    }
-
-    @Override
-    public void accept(Long aLong) {
-        displayCurrentTime();
     }
 }
