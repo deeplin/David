@@ -4,7 +4,6 @@ import android.databinding.Observable;
 import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableInt;
-import android.util.Log;
 
 import com.david.R;
 import com.david.common.alarm.AlarmControl;
@@ -23,16 +22,11 @@ import com.david.incubator.control.MainApplication;
 
 import java.util.Locale;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import io.reactivex.Scheduler;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 @Singleton
 public class TopViewModel implements IViewModel {
