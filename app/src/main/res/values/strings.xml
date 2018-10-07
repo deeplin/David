@@ -7,14 +7,12 @@
     <!--<string name="device_model" translatable="false">YP-2000S</string>-->
     <!--<string name="device_model" translatable="false">HKN-93S</string>-->
     <string name="device_model" translatable="false">YP-970S</string>
+    <string name="language" translatable="false">CHINESE</string>
 
     <!--网络设置-->
     <bool name="enable_cloud" translatable="false">false</bool>
     <string name="cloud_ip" translatable="false">192.168.1.107</string>
     <integer name="cloud_port" translatable="false">8180</integer>
-
-    <!--默认语言-->
-    <string name="language" translatable="false">CHINESE</string>
 
     <!--Home-->
     <string name="default_user">默认用户</string>
@@ -32,7 +30,6 @@
     <string name="skin1">肤温1</string>
     <string name="skin2">肤温2</string>
     <string name="mat">床温</string>
-
     <string name="air">箱温</string>
     <string name="humidity">湿度</string>
     <string name="oxygen">氧气</string>
@@ -53,11 +50,9 @@
     <!--Camera-->
     <string name="camera_no_connection">请连接摄像头</string>
 
-
     <!--todo-->
     <string name="capture_confirm">已添加%s</string>
     <string name="capture_failed">拍照失败</string>
-
 
     <!--Scale-->
     <string name="rescale">重新称重</string>
@@ -78,7 +73,6 @@
     <string name="birth_weight">出生体重</string>
     <string name="medical_history">病例</string>
     <string name="add_patient">添加患者</string>
-
     <string name="male">男</string>
     <string name="female">女</string>
 
@@ -160,13 +154,11 @@
     <string name="language_setup">语言设置</string>
     <string name="warning_volume">报警音量</string>
     <string name="screen_luminance">屏幕亮度</string>
-
     <string name="delete_user">患者删除</string>
     <string name="signs_data">体征数据</string>
     <string name="video_data">视频数据</string>
     <string name="image_data">照片数据</string>
 
-    <!--User -->
     <string name="reset_lower">重置</string>
     <string name="reset_upper">重置上位机</string>
 
