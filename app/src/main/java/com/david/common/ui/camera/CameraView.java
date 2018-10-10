@@ -167,16 +167,18 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
                 .subscribe((aVoid) -> {
                     if (isRecordingVideo.get()) {
                         isRecordingVideo.set(false);
+                        automationControl.removeConsumer(this);
+
+                        //todo
+                        stopSession();
                         stopRecordingVideo();
                         ViewUtil.showToast(String.format(ResourceUtil.getString(R.string.capture_confirm), recordingFileName));
-
-                        automationControl.removeConsumer(this);
                     } else {
+                        isRecordingVideo.set(true);
                         startTime = 0;
                         cameraViewModel.recordString.set("00:00:00");
                         automationControl.addConsumer(this);
 
-                        isRecordingVideo.set(true);
                         recordingFileName = TimeUtil.getFileName();
                         startRecordingVideo(recordingFileName);
                     }
@@ -455,12 +457,12 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
         startTime++;
         cameraViewModel.recordString.set(String.format(Locale.US, "%02d:%02d:%02d",
                 startTime / 3600 % 24, startTime / 60 % 60, startTime % 60));
-        if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 6) {
+        if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 2) {
             stopRecordingVideo();
         } else if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 1) {
             recordingFileName = TimeUtil.getFileName();
             startRecordingVideo(recordingFileName);
-        } else if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 12) {
+        } else if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 4) {
             stopSession();
         }
     }
