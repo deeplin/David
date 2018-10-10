@@ -460,7 +460,7 @@ public class CameraView extends BindingConstraintLayout<ViewCameraBinding> imple
         } else if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 1) {
             recordingFileName = TimeUtil.getFileName();
             startRecordingVideo(recordingFileName);
-        } else if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 8) {
+        } else if (startTime % VIDEO_SAVE_RATE == VIDEO_SAVE_RATE - 12) {
             stopSession();
         }
     }
