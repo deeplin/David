@@ -17,6 +17,7 @@ import com.david.common.ui.ViewUtil;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -53,7 +54,9 @@ public class SensorListViewModel extends BaseNavigatorModel<SensorListNavigator>
         shareMemory.systemMode.addOnPropertyChangedCallback(new Observable.OnPropertyChangedCallback() {
             @Override
             public void onPropertyChanged(Observable observable, int i) {
-                setSensorConfig();
+                io.reactivex.Observable.just(this)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe((o) -> setSensorConfig());
             }
         });
 

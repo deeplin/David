@@ -29,6 +29,7 @@ public class ObjectiveHomeFragment extends TabHomeFragment<FragmentObjectiveBind
 
     @Override
     public void attach() {
+        shareMemory.layoutLockable.set(true);
         ViewGroup.LayoutParams layoutParams = binding.tlObjective.getLayoutParams();
         ObjectivePagerAdapter pagerAdapter = new ObjectivePagerAdapter();
         layoutParams.width = 120 * pagerAdapter.getCount();

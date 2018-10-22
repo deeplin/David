@@ -29,6 +29,7 @@ public class FragmentPage {
     public static final byte USER_LANGUAGE_SETUP = 26;
     public static final byte USER_WARNING_VOLUME = 27;
     public static final byte USER_SCREEN_LUMINANCE = 28;
+    public static final byte USER_OVERHEAT_EXPERIMENT = 29;
 
     public static final byte SYSTEM_HOME = 30;
     public static final byte SYSTEM_DEVIATION_WARNING = 31;
@@ -38,5 +39,4 @@ public class FragmentPage {
     public static final byte SYSTEM_OTHER_PARAMETER = 35;
     public static final byte SYSTEM_DATA_PRINT = 36;
     public static final byte SYSTEM_FACTORY = 37;
-    public static final byte SYSTEM_OVERHEAT_EXPERIMENT = 38;
 }

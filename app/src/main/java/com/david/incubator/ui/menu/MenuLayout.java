@@ -72,62 +72,72 @@ public class MenuLayout extends BindingConstraintLayout<LayoutMenuBinding> {
         RxView.clicks(binding.btMenuSetting)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    menuViewModel.menuChart.set(false);
-                    menuViewModel.menuSpo2.set(false);
-                    menuViewModel.menuScale.set(false);
-                    menuViewModel.menuCamera.set(false);
-                    menuViewModel.menuSetting.set(true);
-                    shareMemory.currentFragmentId.set(FragmentPage.SETTING_FRAGMENT);
+                    if (!shareMemory.lockScreen.get()) {
+                        menuViewModel.menuChart.set(false);
+                        menuViewModel.menuSpo2.set(false);
+                        menuViewModel.menuScale.set(false);
+                        menuViewModel.menuCamera.set(false);
+                        menuViewModel.menuSetting.set(true);
+                        shareMemory.currentFragmentId.set(FragmentPage.SETTING_FRAGMENT);
+                    }
                 });
 
         RxView.clicks(binding.btMenuChart)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    menuViewModel.menuChart.set(true);
-                    menuViewModel.menuSpo2.set(false);
-                    menuViewModel.menuScale.set(false);
-                    menuViewModel.menuCamera.set(false);
-                    menuViewModel.menuSetting.set(false);
-                    shareMemory.currentFragmentId.set(FragmentPage.CHART_FRAGMENT);
+                    if (!shareMemory.lockScreen.get()) {
+                        menuViewModel.menuChart.set(true);
+                        menuViewModel.menuSpo2.set(false);
+                        menuViewModel.menuScale.set(false);
+                        menuViewModel.menuCamera.set(false);
+                        menuViewModel.menuSetting.set(false);
+                        shareMemory.currentFragmentId.set(FragmentPage.CHART_FRAGMENT);
+                    }
                 });
 
 
         RxView.clicks(binding.btMenuSpo2)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    if (moduleHardware.isSPO2() && moduleSoftware.isSPO2()) {
-                        menuViewModel.menuChart.set(false);
-                        menuViewModel.menuSpo2.set(true);
-                        menuViewModel.menuScale.set(false);
-                        menuViewModel.menuCamera.set(false);
-                        menuViewModel.menuSetting.set(false);
-                        shareMemory.currentFragmentId.set(FragmentPage.SPO2_FRAGMENT);
+                    if (!shareMemory.lockScreen.get()) {
+                        if (moduleHardware.isSPO2() && moduleSoftware.isSPO2()) {
+                            menuViewModel.menuChart.set(false);
+                            menuViewModel.menuSpo2.set(true);
+                            menuViewModel.menuScale.set(false);
+                            menuViewModel.menuCamera.set(false);
+                            menuViewModel.menuSetting.set(false);
+                            shareMemory.currentFragmentId.set(FragmentPage.SPO2_FRAGMENT);
+                        }
                     }
                 });
 
         RxView.clicks(binding.btMenuScale)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    if (moduleHardware.isSCALE()) {
-                        menuViewModel.menuChart.set(false);
-                        menuViewModel.menuSpo2.set(false);
-                        menuViewModel.menuScale.set(true);
-                        menuViewModel.menuCamera.set(false);
-                        menuViewModel.menuSetting.set(false);
-                        shareMemory.currentFragmentId.set(FragmentPage.SCALE_FRAGMENT);
+                    if (!shareMemory.lockScreen.get()) {
+                        if (moduleHardware.isSCALE()) {
+                            menuViewModel.menuChart.set(false);
+                            menuViewModel.menuSpo2.set(false);
+                            menuViewModel.menuScale.set(true);
+                            menuViewModel.menuCamera.set(false);
+                            menuViewModel.menuSetting.set(false);
+                            shareMemory.currentFragmentId.set(FragmentPage.SCALE_FRAGMENT);
+                        }
                     }
                 });
 
         RxView.clicks(binding.btMenuCamera)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((aVoid) -> {
-                    if (moduleHardware.isCameraInstalled()) {
-                        menuViewModel.menuChart.set(false);
-                        menuViewModel.menuSpo2.set(false);
-                        menuViewModel.menuScale.set(false);
-                        menuViewModel.menuCamera.set(true);
-                        menuViewModel.menuSetting.set(false);
-                        shareMemory.currentFragmentId.set(FragmentPage.CAMERA_FRAGMENT);
+                    if (!shareMemory.lockScreen.get()) {
+                        if (moduleHardware.isCameraInstalled()) {
+                            menuViewModel.menuChart.set(false);
+                            menuViewModel.menuSpo2.set(false);
+                            menuViewModel.menuScale.set(false);
+                            menuViewModel.menuCamera.set(true);
+                            menuViewModel.menuSetting.set(false);
+                            shareMemory.currentFragmentId.set(FragmentPage.CAMERA_FRAGMENT);
+                        }
                     }
                 });
     }

@@ -48,8 +48,6 @@ public class HomeFragment extends BindingFragment<FragmentHomeBinding> implement
     @Override
     protected void init() {
         MainApplication.getInstance().getApplicationComponent().inject(this);
-        shareMemory.layoutLockable.set(false);
-
         binding.setViewModel(homeViewModel);
         animation = AnimationUtil.getAlphaAnimation();
 
@@ -109,6 +107,7 @@ public class HomeFragment extends BindingFragment<FragmentHomeBinding> implement
 
     @Override
     public void attach() {
+        shareMemory.layoutLockable.set(false);
         homeViewModel.setNavigator(this);
         homeViewModel.attach();
 

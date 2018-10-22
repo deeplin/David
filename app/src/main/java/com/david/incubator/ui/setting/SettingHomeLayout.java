@@ -95,6 +95,9 @@ public class SettingHomeLayout extends BindingConstraintLayout<LayoutSettingHome
                     case (FragmentPage.USER_SCREEN_LUMINANCE):
                         view = new UserScreenLuminanceLayout(context, navigationView);
                         break;
+                    case (FragmentPage.USER_OVERHEAT_EXPERIMENT):
+                        view = new UserOverheatExperimentLayout(context, navigationView);
+                        break;
                     case (FragmentPage.SYSTEM_HOME):
                         view = new SystemHomeLayout(context, navigationView);
                         break;
@@ -112,9 +115,6 @@ public class SettingHomeLayout extends BindingConstraintLayout<LayoutSettingHome
                         break;
                     case (FragmentPage.SYSTEM_OTHER_PARAMETER):
                         view = new SystemOtherParameterLayout(context, navigationView);
-                        break;
-                    case (FragmentPage.SYSTEM_OVERHEAT_EXPERIMENT):
-                        view = new UserOverheatExperimentLayout(context, navigationView);
                         break;
                     case (FragmentPage.SYSTEM_DATA_PRINT):
                         view = new SystemPrintLayout(context, navigationView);

@@ -60,7 +60,7 @@ public class UserHomeLayout extends BindingConstraintLayout<LayoutUserHomeBindin
 
         RxView.clicks(binding.systemOverheatExperiment)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
-                .subscribe((aVoid) -> navigationView.set(FragmentPage.SYSTEM_OVERHEAT_EXPERIMENT));
+                .subscribe((aVoid) -> navigationView.set(FragmentPage.USER_OVERHEAT_EXPERIMENT));
 
         if(!moduleHardware.isUser())
             binding.userPatientInfo.setVisibility(View.INVISIBLE);

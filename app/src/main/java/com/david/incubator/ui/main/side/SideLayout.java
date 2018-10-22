@@ -37,12 +37,14 @@ public class SideLayout extends BindingConstraintLayout<LayoutSideBinding> {
         RxView.clicks(binding.btSideHome)
                 .throttleFirst(Constant.BUTTON_CLICK_TIMEOUT, TimeUnit.MILLISECONDS)
                 .subscribe((Object Void) -> {
-                    if (shareMemory.isCabin()) {
-                        shareMemory.currentFragmentId.set(FragmentPage.HOME_FRAGMENT);
-                    } else if (shareMemory.isWarmer()) {
-                        shareMemory.currentFragmentId.set(FragmentPage.WARMER_HOME_FRAGMENT);
+                    if (!shareMemory.lockScreen.get()) {
+                        if (shareMemory.isCabin()) {
+                            shareMemory.currentFragmentId.set(FragmentPage.HOME_FRAGMENT);
+                        } else if (shareMemory.isWarmer()) {
+                            shareMemory.currentFragmentId.set(FragmentPage.WARMER_HOME_FRAGMENT);
+                        }
+                        shareMemory.enableAlertList.set(false);
                     }
-                    shareMemory.enableAlertList.set(false);
                 });
 
         RxView.clicks(binding.btSideLockScreen)
