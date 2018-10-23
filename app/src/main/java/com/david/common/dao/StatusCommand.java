@@ -25,7 +25,6 @@ public class StatusCommand extends BaseSerialMessage {
     @Id(autoincrement = true)
     private Long id;
     private long timeStamp;
-
     private String mode;
     private String ctrl;
     @Transient
@@ -41,13 +40,15 @@ public class StatusCommand extends BaseSerialMessage {
     private String alert;
 
     private int ACount;
+    private int led;
 
     @Transient
     private int ohtest;
 
-    @Generated(hash = 1823528336)
+
+    @Generated(hash = 163171037)
     public StatusCommand(Long id, long timeStamp, String mode, String ctrl, int warm, int inc, int hum,
-            int o2, String alert, int ACount) {
+            int o2, String alert, int ACount, int led) {
         this.id = id;
         this.timeStamp = timeStamp;
         this.mode = mode;
@@ -58,6 +59,7 @@ public class StatusCommand extends BaseSerialMessage {
         this.o2 = o2;
         this.alert = alert;
         this.ACount = ACount;
+        this.led = led;
     }
 
     @Generated(hash = 1692704117)
@@ -176,5 +178,13 @@ public class StatusCommand extends BaseSerialMessage {
 
     public void setACount(int ACount) {
         this.ACount = ACount;
+    }
+
+    public int getLed() {
+        return this.led;
+    }
+
+    public void setLed(int led) {
+        this.led = led;
     }
 }

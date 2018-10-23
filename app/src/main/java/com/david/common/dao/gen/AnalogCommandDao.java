@@ -49,6 +49,8 @@ public class AnalogCommandDao extends AbstractDao<AnalogCommand, Long> {
         public final static Property T3 = new Property(22, int.class, "T3", false, "T3");
         public final static Property M1 = new Property(23, int.class, "M1", false, "M1");
         public final static Property M2 = new Property(24, int.class, "M2", false, "M2");
+        public final static Property E1 = new Property(25, int.class, "E1", false, "E1");
+        public final static Property E2 = new Property(26, int.class, "E2", false, "E2");
     }
 
 
@@ -88,7 +90,9 @@ public class AnalogCommandDao extends AbstractDao<AnalogCommand, Long> {
                 "\"T2\" INTEGER NOT NULL ," + // 21: T2
                 "\"T3\" INTEGER NOT NULL ," + // 22: T3
                 "\"M1\" INTEGER NOT NULL ," + // 23: M1
-                "\"M2\" INTEGER NOT NULL );"); // 24: M2
+                "\"M2\" INTEGER NOT NULL ," + // 24: M2
+                "\"E1\" INTEGER NOT NULL ," + // 25: E1
+                "\"E2\" INTEGER NOT NULL );"); // 26: E2
     }
 
     /** Drops the underlying database table. */
@@ -129,6 +133,8 @@ public class AnalogCommandDao extends AbstractDao<AnalogCommand, Long> {
         stmt.bindLong(23, entity.getT3());
         stmt.bindLong(24, entity.getM1());
         stmt.bindLong(25, entity.getM2());
+        stmt.bindLong(26, entity.getE1());
+        stmt.bindLong(27, entity.getE2());
     }
 
     @Override
@@ -163,6 +169,8 @@ public class AnalogCommandDao extends AbstractDao<AnalogCommand, Long> {
         stmt.bindLong(23, entity.getT3());
         stmt.bindLong(24, entity.getM1());
         stmt.bindLong(25, entity.getM2());
+        stmt.bindLong(26, entity.getE1());
+        stmt.bindLong(27, entity.getE2());
     }
 
     @Override
@@ -197,7 +205,9 @@ public class AnalogCommandDao extends AbstractDao<AnalogCommand, Long> {
             cursor.getInt(offset + 21), // T2
             cursor.getInt(offset + 22), // T3
             cursor.getInt(offset + 23), // M1
-            cursor.getInt(offset + 24) // M2
+            cursor.getInt(offset + 24), // M2
+            cursor.getInt(offset + 25), // E1
+            cursor.getInt(offset + 26) // E2
         );
         return entity;
     }
@@ -229,6 +239,8 @@ public class AnalogCommandDao extends AbstractDao<AnalogCommand, Long> {
         entity.setT3(cursor.getInt(offset + 22));
         entity.setM1(cursor.getInt(offset + 23));
         entity.setM2(cursor.getInt(offset + 24));
+        entity.setE1(cursor.getInt(offset + 25));
+        entity.setE2(cursor.getInt(offset + 26));
      }
     
     @Override

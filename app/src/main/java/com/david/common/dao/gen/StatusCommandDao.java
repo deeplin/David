@@ -34,6 +34,7 @@ public class StatusCommandDao extends AbstractDao<StatusCommand, Long> {
         public final static Property O2 = new Property(7, int.class, "o2", false, "O2");
         public final static Property Alert = new Property(8, String.class, "alert", false, "ALERT");
         public final static Property ACount = new Property(9, int.class, "ACount", false, "ACOUNT");
+        public final static Property Led = new Property(10, int.class, "led", false, "LED");
     }
 
 
@@ -58,7 +59,8 @@ public class StatusCommandDao extends AbstractDao<StatusCommand, Long> {
                 "\"HUM\" INTEGER NOT NULL ," + // 6: hum
                 "\"O2\" INTEGER NOT NULL ," + // 7: o2
                 "\"ALERT\" TEXT," + // 8: alert
-                "\"ACOUNT\" INTEGER NOT NULL );"); // 9: ACount
+                "\"ACOUNT\" INTEGER NOT NULL ," + // 9: ACount
+                "\"LED\" INTEGER NOT NULL );"); // 10: led
     }
 
     /** Drops the underlying database table. */
@@ -96,6 +98,7 @@ public class StatusCommandDao extends AbstractDao<StatusCommand, Long> {
             stmt.bindString(9, alert);
         }
         stmt.bindLong(10, entity.getACount());
+        stmt.bindLong(11, entity.getLed());
     }
 
     @Override
@@ -127,6 +130,7 @@ public class StatusCommandDao extends AbstractDao<StatusCommand, Long> {
             stmt.bindString(9, alert);
         }
         stmt.bindLong(10, entity.getACount());
+        stmt.bindLong(11, entity.getLed());
     }
 
     @Override
@@ -146,7 +150,8 @@ public class StatusCommandDao extends AbstractDao<StatusCommand, Long> {
             cursor.getInt(offset + 6), // hum
             cursor.getInt(offset + 7), // o2
             cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // alert
-            cursor.getInt(offset + 9) // ACount
+            cursor.getInt(offset + 9), // ACount
+            cursor.getInt(offset + 10) // led
         );
         return entity;
     }
@@ -163,6 +168,7 @@ public class StatusCommandDao extends AbstractDao<StatusCommand, Long> {
         entity.setO2(cursor.getInt(offset + 7));
         entity.setAlert(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
         entity.setACount(cursor.getInt(offset + 9));
+        entity.setLed(cursor.getInt(offset + 10));
      }
     
     @Override

@@ -30,6 +30,10 @@ public class CtrlGetCommand extends BaseSerialMessage {
     private int w_skin;
     private int w_man;
     private int w_inc;
+    private int s_set;
+    private int a_set;
+    private int w_set;
+    private int w_mat;
 
     @Override
     public byte[] getRequest() {
@@ -119,9 +123,10 @@ public class CtrlGetCommand extends BaseSerialMessage {
     @Transient
     private CtrlGetCommand ctrlGetCommand;
 
-    @Generated(hash = 194615124)
+    @Generated(hash = 1683499512)
     public CtrlGetCommand(Long id, long timeStamp, String ctrl, int c_air, int c_hum,
-                          int c_o2, int c_skin, int w_skin, int w_man, int w_inc) {
+            int c_o2, int c_skin, int w_skin, int w_man, int w_inc, int s_set, int a_set,
+            int w_set, int w_mat) {
         this.id = id;
         this.timeStamp = timeStamp;
         this.ctrl = ctrl;
@@ -132,6 +137,10 @@ public class CtrlGetCommand extends BaseSerialMessage {
         this.w_skin = w_skin;
         this.w_man = w_man;
         this.w_inc = w_inc;
+        this.s_set = s_set;
+        this.a_set = a_set;
+        this.w_set = w_set;
+        this.w_mat = w_mat;
     }
 
     @Generated(hash = 1730074060)
@@ -165,5 +174,37 @@ public class CtrlGetCommand extends BaseSerialMessage {
             return true;
         }
         return false;
+    }
+
+    public int getS_set() {
+        return this.s_set;
+    }
+
+    public void setS_set(int s_set) {
+        this.s_set = s_set;
+    }
+
+    public int getA_set() {
+        return this.a_set;
+    }
+
+    public void setA_set(int a_set) {
+        this.a_set = a_set;
+    }
+
+    public int getW_set() {
+        return this.w_set;
+    }
+
+    public void setW_set(int w_set) {
+        this.w_set = w_set;
+    }
+
+    public int getW_mat() {
+        return this.w_mat;
+    }
+
+    public void setW_mat(int w_mat) {
+        this.w_mat = w_mat;
     }
 }

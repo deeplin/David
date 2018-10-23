@@ -34,6 +34,10 @@ public class CtrlGetCommandDao extends AbstractDao<CtrlGetCommand, Long> {
         public final static Property W_skin = new Property(7, int.class, "w_skin", false, "W_SKIN");
         public final static Property W_man = new Property(8, int.class, "w_man", false, "W_MAN");
         public final static Property W_inc = new Property(9, int.class, "w_inc", false, "W_INC");
+        public final static Property S_set = new Property(10, int.class, "s_set", false, "S_SET");
+        public final static Property A_set = new Property(11, int.class, "a_set", false, "A_SET");
+        public final static Property W_set = new Property(12, int.class, "w_set", false, "W_SET");
+        public final static Property W_mat = new Property(13, int.class, "w_mat", false, "W_MAT");
     }
 
 
@@ -58,7 +62,11 @@ public class CtrlGetCommandDao extends AbstractDao<CtrlGetCommand, Long> {
                 "\"C_SKIN\" INTEGER NOT NULL ," + // 6: c_skin
                 "\"W_SKIN\" INTEGER NOT NULL ," + // 7: w_skin
                 "\"W_MAN\" INTEGER NOT NULL ," + // 8: w_man
-                "\"W_INC\" INTEGER NOT NULL );"); // 9: w_inc
+                "\"W_INC\" INTEGER NOT NULL ," + // 9: w_inc
+                "\"S_SET\" INTEGER NOT NULL ," + // 10: s_set
+                "\"A_SET\" INTEGER NOT NULL ," + // 11: a_set
+                "\"W_SET\" INTEGER NOT NULL ," + // 12: w_set
+                "\"W_MAT\" INTEGER NOT NULL );"); // 13: w_mat
     }
 
     /** Drops the underlying database table. */
@@ -88,6 +96,10 @@ public class CtrlGetCommandDao extends AbstractDao<CtrlGetCommand, Long> {
         stmt.bindLong(8, entity.getW_skin());
         stmt.bindLong(9, entity.getW_man());
         stmt.bindLong(10, entity.getW_inc());
+        stmt.bindLong(11, entity.getS_set());
+        stmt.bindLong(12, entity.getA_set());
+        stmt.bindLong(13, entity.getW_set());
+        stmt.bindLong(14, entity.getW_mat());
     }
 
     @Override
@@ -111,6 +123,10 @@ public class CtrlGetCommandDao extends AbstractDao<CtrlGetCommand, Long> {
         stmt.bindLong(8, entity.getW_skin());
         stmt.bindLong(9, entity.getW_man());
         stmt.bindLong(10, entity.getW_inc());
+        stmt.bindLong(11, entity.getS_set());
+        stmt.bindLong(12, entity.getA_set());
+        stmt.bindLong(13, entity.getW_set());
+        stmt.bindLong(14, entity.getW_mat());
     }
 
     @Override
@@ -130,7 +146,11 @@ public class CtrlGetCommandDao extends AbstractDao<CtrlGetCommand, Long> {
             cursor.getInt(offset + 6), // c_skin
             cursor.getInt(offset + 7), // w_skin
             cursor.getInt(offset + 8), // w_man
-            cursor.getInt(offset + 9) // w_inc
+            cursor.getInt(offset + 9), // w_inc
+            cursor.getInt(offset + 10), // s_set
+            cursor.getInt(offset + 11), // a_set
+            cursor.getInt(offset + 12), // w_set
+            cursor.getInt(offset + 13) // w_mat
         );
         return entity;
     }
@@ -147,6 +167,10 @@ public class CtrlGetCommandDao extends AbstractDao<CtrlGetCommand, Long> {
         entity.setW_skin(cursor.getInt(offset + 7));
         entity.setW_man(cursor.getInt(offset + 8));
         entity.setW_inc(cursor.getInt(offset + 9));
+        entity.setS_set(cursor.getInt(offset + 10));
+        entity.setA_set(cursor.getInt(offset + 11));
+        entity.setW_set(cursor.getInt(offset + 12));
+        entity.setW_mat(cursor.getInt(offset + 13));
      }
     
     @Override
