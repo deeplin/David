@@ -111,7 +111,7 @@ public class AutomationControl implements IViewModel {
         }
     }
 
-    private void setConfig() {
+    protected void setConfig() {
         messageSender.setStandBy(false, true, null);
 
         /*配置37度灯*/
