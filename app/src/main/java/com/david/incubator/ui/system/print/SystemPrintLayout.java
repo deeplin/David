@@ -4,7 +4,7 @@ import android.content.Context;
 import android.databinding.ObservableInt;
 
 import com.david.R;
-import com.david.common.ui.FastIncreaseConstraintLayout;
+import com.david.common.ui.FastUpdateLayout;
 import com.david.common.util.Constant;
 import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSystemPrintBinding;
@@ -21,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
  * email: 10525677@qq.com
  * description:
  */
-public class SystemPrintLayout extends FastIncreaseConstraintLayout<LayoutSystemPrintBinding> {
+public class SystemPrintLayout extends FastUpdateLayout<LayoutSystemPrintBinding> {
 
     SystemPrintViewModel systemPrintViewModel;
 

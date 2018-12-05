@@ -4,7 +4,7 @@ import android.content.Context;
 import android.databinding.ObservableInt;
 
 import com.david.R;
-import com.david.common.ui.FastIncreaseConstraintLayout;
+import com.david.common.ui.FastUpdateLayout;
 import com.david.common.util.Constant;
 import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSystemOverheatWarningBinding;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
  * email: 10525677@qq.com
  * description:
  */
-public class SystemOverheatWarningLayout extends FastIncreaseConstraintLayout<LayoutSystemOverheatWarningBinding> {
+public class SystemOverheatWarningLayout extends FastUpdateLayout<LayoutSystemOverheatWarningBinding> {
 
     SystemOverheatViewModel systemOverheatViewModel;
 

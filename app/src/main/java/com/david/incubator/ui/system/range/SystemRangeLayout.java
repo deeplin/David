@@ -4,7 +4,7 @@ import android.content.Context;
 import android.databinding.ObservableInt;
 
 import com.david.R;
-import com.david.common.ui.FastIncreaseConstraintLayout;
+import com.david.common.ui.FastUpdateLayout;
 import com.david.common.util.Constant;
 import com.david.incubator.util.FragmentPage;
 import com.david.databinding.LayoutSystemRangeBinding;
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
  * description:
  */
 
-public class SystemRangeLayout extends FastIncreaseConstraintLayout<LayoutSystemRangeBinding> {
+public class SystemRangeLayout extends FastUpdateLayout<LayoutSystemRangeBinding> {
 
     SystemRangeViewModel systemRangeViewModel;
 

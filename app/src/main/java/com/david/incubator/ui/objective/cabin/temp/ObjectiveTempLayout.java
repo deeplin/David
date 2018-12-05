@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.david.R;
 import com.david.common.mode.CtrlMode;
-import com.david.common.ui.FastIncreaseConstraintLayout;
+import com.david.common.ui.FastUpdateLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.LayoutObjectiveTempBinding;
 import com.david.incubator.control.MainApplication;
@@ -20,7 +20,7 @@ import javax.inject.Inject;
  * email: 10525677@qq.com
  * description:
  */
-public class ObjectiveTempLayout extends FastIncreaseConstraintLayout<LayoutObjectiveTempBinding> {
+public class ObjectiveTempLayout extends FastUpdateLayout<LayoutObjectiveTempBinding> {
 
     @Inject
     ObjectiveTempViewModel viewModel;

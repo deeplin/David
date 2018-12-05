@@ -19,7 +19,7 @@ import io.reactivex.disposables.Disposable;
  * email: 10525677@qq.com
  * description:
  */
-public abstract class FastIncreaseConstraintLayout<U extends ViewDataBinding> extends BindingConstraintLayout<U> implements ITabConstraintLayout {
+public abstract class FastUpdateLayout<U extends ViewDataBinding> extends BindingConstraintLayout<U> implements ITabConstraintLayout {
 
     private volatile Disposable increaseDisposable;
     private volatile Disposable decreaseDisposable;
@@ -27,11 +27,11 @@ public abstract class FastIncreaseConstraintLayout<U extends ViewDataBinding> ex
     private ImageButton increaseButton;
     private ImageButton decreaseButton;
 
-    public FastIncreaseConstraintLayout(Context context) {
+    public FastUpdateLayout(Context context) {
         super(context);
     }
 
-    public FastIncreaseConstraintLayout(Context context, AttributeSet attrs) {
+    public FastUpdateLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

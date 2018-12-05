@@ -59,7 +59,6 @@ public class ObjectiveHomeFragment extends TabHomeFragment<FragmentObjectiveBind
 
         binding.vpObjective.addOnPageChangeListener(super.getPageChangeListener(binding.vpObjective));
 
-        currentPosition = 0;
         int tagId = shareMemory.functionTag.get();
         if (tagId >= 10) {
             /*根据按键设置页面*/

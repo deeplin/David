@@ -3,7 +3,7 @@ package com.david.incubator.ui.objective.cabin.humidity;
 import android.content.Context;
 
 import com.david.R;
-import com.david.common.ui.FastIncreaseConstraintLayout;
+import com.david.common.ui.FastUpdateLayout;
 import com.david.common.util.Constant;
 import com.david.databinding.LayoutObjectiveHumidityBinding;
 import com.jakewharton.rxbinding2.view.RxView;
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * email: 10525677@qq.com
  * description:
  */
-public class ObjectiveHumidityLayout extends FastIncreaseConstraintLayout<LayoutObjectiveHumidityBinding> {
+public class ObjectiveHumidityLayout extends FastUpdateLayout<LayoutObjectiveHumidityBinding> {
 
     ObjectiveHumidityViewModel objectiveViewModel;
 

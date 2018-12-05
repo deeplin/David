@@ -5,7 +5,7 @@ import android.databinding.ObservableField;
 
 import com.apkfuns.logutils.LogUtils;
 import com.david.R;
-import com.david.common.ui.FastIncreaseConstraintLayout;
+import com.david.common.ui.FastUpdateLayout;
 import com.david.common.util.FileUtil;
 import com.david.databinding.LayoutSettingComfortZoneBinding;
 import com.david.incubator.ui.common.ButtonControlViewModel;
@@ -17,7 +17,7 @@ import com.david.incubator.ui.common.KeyValueViewModel;
  * email: 10525677@qq.com
  * description:
  */
-public class SettingComfortZoneLayout extends FastIncreaseConstraintLayout<LayoutSettingComfortZoneBinding> {
+public class SettingComfortZoneLayout extends FastUpdateLayout<LayoutSettingComfortZoneBinding> {
 
     KeyValueViewModel ageKeyValueViewModel;
     KeyValueViewModel gestationKeyValueViewModel;
