@@ -90,6 +90,10 @@ public class ModuleHardware extends ModuleSoftware {
             //todo
             user = true;
 
+            if (moduleGetHardwareCommand instanceof Object) {
+                Object getHardwareCommand = (Object) moduleGetHardwareCommand;
+
+            }
             //todo
             if (Constant.RELEASE_TO_DAVID) {
                 deviceModel = moduleGetHardwareCommand.getMODEL();

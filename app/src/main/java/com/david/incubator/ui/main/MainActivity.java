@@ -136,8 +136,8 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        MainApplication.getInstance().stop();
-        System.exit(0);
+//        MainApplication.getInstance().stop();
+//        System.exit(0);
     }
 
     /* 鼠标电击，自动调用*/
