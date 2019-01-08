@@ -73,7 +73,7 @@ public class ImageLayout extends BindingConstraintLayout<LayoutImageBinding> {
         File[] files = directory.listFiles();
 
         UserModel userModel = selectedUser.userModel;
-        if (userModel != null) {
+        if (userModel != null && files != null) {
             for (int index = files.length - 1; index >= 0; index--) {
                 File file = files[index];
                 if (itemList.size() <= 15) {
