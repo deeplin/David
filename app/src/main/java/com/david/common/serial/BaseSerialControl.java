@@ -46,7 +46,7 @@ public abstract class BaseSerialControl {
     protected void send(BaseSerialMessage serialMessage) throws Exception {
         OutputStream outputStream = getOutputStream();
         outputStream.write(serialMessage.getRequest());
-        LogUtil.i(this, String.format(Locale.US, "Serial send: %s", new String(serialMessage.getRequest())));
+//        LogUtil.i(this, String.format(Locale.US, "Serial send: %s", new String(serialMessage.getRequest())));
     }
 
     protected void receive(BaseSerialMessage serialMessage) throws Exception {
@@ -56,7 +56,7 @@ public abstract class BaseSerialControl {
         for (int inputCount = 8; inputCount > 0; inputCount--) {
             int inputLength = inputStream.read(this.inputBuffer, index, this.inputBuffer.length - index);
             if (inputLength > 0) {
-                LogUtil.i(this, String.format(Locale.US, "%d: %d: %d", inputCount, inputLength, index));
+//                LogUtil.i(this, String.format(Locale.US, "%d: %d: %d", inputCount, inputLength, index));
                 index += inputLength;
             } else {
                 break;
@@ -67,7 +67,7 @@ public abstract class BaseSerialControl {
             byte[] tempBuffer = new byte[index];
             System.arraycopy(this.inputBuffer, 0, tempBuffer, 0, index);
             serialMessage.setResponse(tempBuffer);
-            LogUtil.i(this, String.format(Locale.US, "Serial receive: %d %s", index, new String(tempBuffer)));
+//            LogUtil.i(this, String.format(Locale.US, "Serial receive: %d %s", index, new String(tempBuffer)));
         } else {
             throw new Exception("No response.");
         }

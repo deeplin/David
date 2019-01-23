@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 
@@ -96,7 +97,9 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
 //        intent.setAction("android.intent.action.HIDE_NAVIGATION_BAR");
 //        MainActivity.this.sendBroadcast(intent);
 
-        ActionBar actionBar = getSupportActionBar();
+        Log.e("deeplin55", "Resume");
+
+     ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.hide();
         }
@@ -118,6 +121,7 @@ public class MainActivity extends AppCompatActivity implements MainNavigator {
             currentFragment.detach();
             currentFragment = null;
         }
+        Log.e("deeplin55", "Pause");
 
         automationControl.detach();
         mainViewModel.detach();
