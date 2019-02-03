@@ -181,21 +181,4 @@ public class TempChartViewModel extends BaseChartViewModel<AnalogCommand> {
     public boolean isCabin() {
         return shareMemory.isCabin();
     }
-
-    public void delete() {
-        DaoSession daoSession = daoControl.getDaoSession();
-        AnalogCommandDao analogCommandDao = daoSession.getAnalogCommandDao();
-        analogCommandDao.deleteAll();
-
-        StatusCommandDao statusCommandDao = daoSession.getStatusCommandDao();
-        statusCommandDao.deleteAll();
-
-        WeightModelDao weightModelDao = daoSession.getWeightModelDao();
-        weightModelDao.deleteAll();
-
-        airSeries.clear();
-        skin2Series.clear();
-
-        attach();
-    }
 }

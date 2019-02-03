@@ -48,8 +48,8 @@ public class ObjectiveSpo2ViewModel extends BaseObjectiveViewModel implements IV
     protected Observable.OnPropertyChangedCallback upperValueCallback;
     protected Observable.OnPropertyChangedCallback lowerValueCallback;
 
-    protected int upperTopLimit;
     protected int upperBottomLimit;
+    protected int upperTopLimit;
     protected int lowerTopLimit;
     protected int lowerBottomLimit;
 
